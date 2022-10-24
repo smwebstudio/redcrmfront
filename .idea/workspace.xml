@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/i18n.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/am/common.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/am/home.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/en/common.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/en/home.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/elements/_accordion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/elements/_blog.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/elements/_flaticon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/elements/_gallery.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/elements/_pricing.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/elements/_user_list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/global/_variables.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/sections/_widgets.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/vendor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Flaticon.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Flaticon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Flaticon.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Flaticon.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Flaticon.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/line-awesome.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/line-awesome.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/line-awesome.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/line-awesome.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/line-awesome.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/ajax-loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/author/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/author/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/author/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/author/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/author/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/banner/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/banner/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/banner/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/banner/main-banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/4 - Copy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/44.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/55.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/city/ss.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/explore/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/explore/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/explore/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/explore/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/l1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/l2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/l3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/l4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/l5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/property1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/property2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/feature/property3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/footer-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/gallery/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/gallery/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/gallery/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/gallery/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/15547@2x.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/l1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/l2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/l3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/l4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/l5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/icons/l6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/logo-footer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/logo-pc.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/news/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/others/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/popular-post/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/popular-post/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/popular-post/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/popular-post/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/team/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/team/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/team/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/team/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/why/why1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/why/why2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/why/why3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/maplace-active.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/vendor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_accordion.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_all_filter.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_apartments_slider.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_blog.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_city.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_client.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_comments.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_feature.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_flaticon.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_gallery.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_intro.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_main_search.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_pricing.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_service.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_team.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/elements/_user_list.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/global/_common.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/global/_global.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/global/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/global/_theme.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/global/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/sections/_banner.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/sections/_footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/sections/_navbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/sections/_section.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/sections/_widgets.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/sass/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo-pc.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/about.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/add-property.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/advisor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/availavbe-property.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/blog-components/comments.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/blog-components/news-details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/blog-components/popular-post.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/blog-components/post-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/contact.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/error.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/faq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/global-components/footer-v2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/global-components/footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/global-components/page-header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/home-v1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/home-v2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/home-v3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/home-v4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/news-details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/news.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/pricing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/properties-by-city.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/property-details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/property.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/recent-properties.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/search-grid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/search-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/search-map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/about-us.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/aboutv2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/add-new.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/ads.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/appertment-slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/available-peroperty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/banner-v2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/banner-v3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/banner-v4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/banner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/buy-or-sell.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/calltoaction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/dream.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/error.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/explore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/faq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/featured-project.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/featured-properties.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/mission-two.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/mission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/our-partner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/popular-property.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/pricing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/process.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/professional.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/properties-by-cities.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/properties-by-city.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/property-details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/property.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/recent-properties-for-sold.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/recent-properties.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/recomand-properties.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/room-spacing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/search-grid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/search-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/search-map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/sellhome.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/service-two.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/team-v2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/team.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/top-author.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/user-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/section-components/why-choose-us.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/React/user-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/blogdata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/footerdata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/sections.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/single-blogdata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/widgetdata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/api/estate/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/index2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/property.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FMGnkAh68gf5FkD7AC9NmW16ZI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.15.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.11.62&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/var/www/html/breeze-next/public/assets/img/banner&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/var/www/html/breeze-next/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/docus/.local/share/JetBrains/Toolbox/apps/WebStorm/ch-0/222.4167.31/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets/img/banner" />
+      <recent name="$PROJECT_DIR$/public/assets/img" />
+      <recent name="$PROJECT_DIR$/public/assets/img/feature" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/locales" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="" />
+      <created>1664294709000</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664294709000</updated>
+      <workItem from="1664294710207" duration="104000" />
+      <workItem from="1664349350960" duration="761000" />
+      <workItem from="1664354414822" duration="4109000" />
+      <workItem from="1664362065555" duration="14773000" />
+      <workItem from="1665404729131" duration="48000" />
+      <workItem from="1666021644166" duration="1000" />
+      <workItem from="1666273479986" duration="26000" />
+      <workItem from="1666273522357" duration="5206000" />
+      <workItem from="1666367660048" duration="1915000" />
+      <workItem from="1666619159028" duration="618000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
