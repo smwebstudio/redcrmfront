@@ -2790,7 +2790,9 @@ ul {
     .single-feature .details .price {
       display: inline-block;
       margin-right: 10px;
-      margin-bottom: 0; }
+      margin-bottom: 0;
+        color: #D8002C;
+        font-size: 16px;}
     .single-feature .details del {
       color: #C3CFE1;
       font-size: 14px; }

@@ -37,7 +37,7 @@ class FeaturedProject extends Component {
 
                         <ul className="info-list">
                            { item.featuresThirdItem.map( ( features, i )=>
-                             <li key={ i } ><i className={ features.icon } /> { features.title }</li>
+                             <li key={ i } ><i className={ features.icon } /> <img src={ publicUrl+features.icon } /> { features.title }</li>
                            ) }
                           <li><img src={publicUrl+"/assets/img/icons/7.png"} alt="img" /> { item.areaThirdItem }</li>
                         </ul>

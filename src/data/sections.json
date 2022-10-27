@@ -312,11 +312,11 @@
           "authornameThirdItem":"Vilma Jarvi By Redbrox",
           "featuresThirdItem":[
             {
-              "icon":"fa fa-bed",
+              "icon":"assets/img/icons/location.png",
               "title":"05 Bed"
             },
             {
-              "icon":"fa fa-bath",
+              "icon":"assets/img/icons/location.png",
               "title":"02 Bath"
             }
           ]
