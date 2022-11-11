@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from "react";
 import sectiondata from 'data/sections.json';
 import parse from 'html-react-parser';
 import Link from 'next/link';
+import api from "@/hooks/api";
 
 class Property extends Component {
 
 
     render() {
-
         let publicUrl = process.env.PUBLIC_URL+'/'
         let imagealt = 'image'
         let data = sectiondata.property

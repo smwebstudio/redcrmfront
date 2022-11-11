@@ -1,40 +1,36 @@
 import React, { Component } from 'react';
 import sectiondata from 'data/sections.json';
 import parse from 'html-react-parser';
+import { Carousel } from "antd";
 
-class WhyChooseUs extends Component {
-
-
-    render() {
-
-        let publicUrl = process.env.PUBLIC_URL+'/'
-        let imagealt = 'image'
-        let data = sectiondata.whychooseus
-
-
-    return <div className="why-choose-us-area bg-gray pd-top-90 pd-bottom-60">
-          <div className="container">
-            <div className="row justify-content-center">
-             { data.items.map( ( item,i ) =>
-                  <div key={ i } className={"col-xl-3 col-lg-4 col-sm-6 "+item.class}>
-                    <div className="single-intro text-lg-left text-center">
-                      <div className="thumb">
-                        <img src={ publicUrl+item.icon } alt={ imagealt } />
-                      </div>
-                      <div className="details">
-                        <h6 className="title"><a href={ item.url } >{ item.title }</a></h6>
-                        <p>{ item.content }</p>
-                      </div>
-                    </div>
-                  </div>
-              ) }
+const contentStyle = {
+    margin: 0,
+    height: '360px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+};
+const WhyChooseUs = () => {
+    const onChange = (currentSlide) => {
+        console.log(currentSlide);
+    };
+    return (
+        <Carousel afterChange={onChange}>
+            <div>
+                <h3 style={contentStyle}>1</h3>
             </div>
-          </div>
-        </div>
-
-
-
-        }
-}
+            <div>
+                <h3 style={contentStyle}>2</h3>
+            </div>
+            <div>
+                <h3 style={contentStyle}>3</h3>
+            </div>
+            <div>
+                <h3 style={contentStyle}>4</h3>
+            </div>
+        </Carousel>
+    );
+};
 
 export default WhyChooseUs
