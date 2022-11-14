@@ -32,7 +32,6 @@ class Footer_v1 extends Component {
                     </div>
                     <div className="col-sm-8">
                       <div className="footer-social text-sm-right">
-                        <span className="text-white">FOLLOW US</span>
                         <ul className="social-icon">
                          { footerdata.socialicon.map( ( item, i )=>
                             <li key={i}>
@@ -77,20 +76,21 @@ class Footer_v1 extends Component {
                         </ul>
                       </div>
                     </div>
-                    <div className="col-lg-3 col-sm-6">
-                      <form className="widget widget-subscribe" method="GET">
-                        <div className="rld-single-input">
-                          <input type="text" name="name" placeholder="Full Name" />
-                        </div>
-                        <div className="rld-single-input">
-                          <input type="text" name="email" placeholder="Your@email.com" />
-                        </div>
-                        <button className="btn btn-yellow w-100">Subscribe</button>
-                      </form>
-                    </div>
+                      <div className="col-lg-3 col-sm-6">
+                          <div className="widget widget_nav_menu">
+                              <h6 className="widget-title text-white">{ footerdata.quicklink.title }</h6>
+                              <ul>
+                                  { footerdata.quicklink.links.map( ( item, i )=>
+                                      <li className="readeal-top" key={ i }><Link href={ item.url } ><a>{ item.title }</a></Link></li>
+                                  ) }
+                              </ul>
+                          </div>
+                      </div>
+
+
                   </div>
                 </div>
-                <div className="copy-right text-center" dangerouslySetInnerHTML={{__html: footerdata.copyrighttext}}></div>
+                <div className="copy-right text-white text-left" dangerouslySetInnerHTML={{__html: footerdata.copyrighttext}}></div>
               </div>
             </footer>
 

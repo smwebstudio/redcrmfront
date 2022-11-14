@@ -1,0 +1,157 @@
+.text-main {
+    color: #D8002C;
+}
+
+.bg-orange {
+    background: #FF8038;
+}
+
+.border-orange {
+    border:1px solid #FF8038
+}
+
+.btn-main {
+    background: var(--main-color-one);
+    color: #fff;
+}
+
+.btn-main:hover, .btn-main:focus {
+    color: #fff;
+    background: #C60028;
+}
+
+.btn-main-transparent {
+    background: none;
+    color: #D8002C;
+    border: 1px solid #D8002C;
+}
+
+.btn-main-transparent:hover {
+    background: #D8002C;
+    color: #FFF;
+}
+
+.ant-carousel .slick-prev::before {
+    content: url('../../assets/img/svg/arrow-left.svg') !important;
+}
+
+.ant-carousel .slick-next::before {
+    content: url('../../assets/img/svg/arrow-right.svg') !important;
+}
+
+.ant-carousel .slick-prev:hover::before {
+    content: url('../../assets/img/svg/arrow-left-hover.svg') !important;
+}
+
+.ant-carousel .slick-next:hover::before {
+    content: url('../../assets/img/svg/arrow-right-hover.svg') !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #D8002C !important;
+}
+
+.ant-tabs-ink-bar {
+    background: transparent !important;
+}
+
+.ant-tabs-tab:hover {
+    color: #D8002C !important;
+}
+
+
+
+/*Image gallery customized*/
+
+.image-gallery-slide-wrapper.left, .image-gallery-slide-wrapper.right {
+    width: calc(100% - 210px) !important;
+}
+
+.image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
+    width: 200px !important;
+}
+
+/*.image-gallery-content:not(.fullscreen) {*/
+/*    font-weight: bold;*/
+/*    display: flex;*/
+/*}*/
+
+/*.image-gallery-content:not(.fullscreen) .image-gallery-slide-wrapper {*/
+/*    width: calc(100% - 200px);*/
+/*}*/
+
+/*.image-gallery-content:not(.fullscreen) .image-gallery-thumbnails-wrapper {*/
+/*    width: 200px;*/
+/*}*/
+
+.image-gallery-content:not(.fullscreen) .image-gallery-thumbnail {
+    border: 0px solid transparent;
+    transition: border .3s ease-out;
+    width: 200px !important;
+    height:20% !important
+}
+
+
+/*Map*/
+
+.map-container {
+    width: 200px;
+    overflow: hidden;
+    position: fixed;
+    top: 150px;
+    left: 0px;
+    height: 100vh;
+    padding-right:30px;
+}
+
+.map-container-opened {
+    overflow: hidden;
+    cursor: crosshair;
+    padding-right:30px;
+}
+
+.estates-map {
+    min-height: 700px;
+    width:64vw;
+}
+
+.map-container-opened .estates-map {
+    position: fixed;
+}
+
+
+
+.map-pencil {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    border-radius: 25px 0px 0px 25px;
+    padding: 0px 15px 0px 0px;
+
+    background: #fff;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 99;
+}
+
+.map-pencil span.drawing-icon {
+    background: #D8002C;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.estates-map .toggle-map {
+    position: absolute;
+    top: 250px;
+    width:50px;
+    right: 0px;
+    z-index: 99;
+    background: #fff;
+}
+
+.estates-map .toggle-map:hover {
+    border: 1px solid #D8002C;
+}

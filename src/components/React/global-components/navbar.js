@@ -8,7 +8,7 @@ class Navbar extends Component {
         let imgattr = 'logo'
         let anchor = '#'
         return (
-            <div>
+            <div className="mb-5">
                 <div className="navbar-area">
                 <nav className="navbar navbar-area navbar-expand-lg">
                   <div className="container nav-container">
@@ -27,8 +27,8 @@ class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="realdeal_main_menu">
                       <ul className="navbar-nav menu-open readeal-top">
 
-                        <li><Link href="/contact"><a>Գնել</a></Link></li>
-                        <li><Link href="/contact"><a>Վարձակալել</a></Link></li>
+                        <li><Link href="/estates"><a>Գնել</a></Link></li>
+                        <li><Link href="/estates"><a>Վարձակալել</a></Link></li>
                         <li><Link href="/contact"><a>Մեր մասին</a></Link></li>
                         <li><Link href="/contact"><a>Մասնագետներ</a></Link></li>
                         <li><Link href="/contact"><a>Բլոգ</a></Link></li>
@@ -38,7 +38,7 @@ class Navbar extends Component {
                       </ul>
                     </div>
                     <div className="nav-right-part nav-right-part-desktop readeal-top">
-                      <Link  href="/add-property"><a className="btn btn-yellow"><i className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
+                      <Link  href="/add-property"><a className="btn btn-main-transparent"><i className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
                     </div>
                   </div>
                 </nav>

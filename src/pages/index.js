@@ -13,6 +13,11 @@ import OurPartner from "@/components/React/section-components/our-partner";
 import Footer from "@/components/React/global-components/footer";
 import FeaturedProject from "@/components/React/section-components/featured-project";
 import WhyChooseUs from "@/components/React/section-components/why-choose-us";
+import Topbar from "@/components/React/global-components/topbar";
+import EstateMainTabs from "@/components/Estate/estate-main-tabs";
+import EstateCarousel from "@/components/Estate/estate-carousel";
+import React from "react";
+import EstateMainHot from "@/components/Estate/estate-main-hot";
 
 
 
@@ -26,17 +31,12 @@ export default function Home() {
             </Head>
 
             <div>
+                <Topbar />
                 <Navbar />
                 <Banner />
-                {/*<Service />*/}
-                {/*<Explore />*/}
-                {/*<FeaturedProperties />*/}
-                {/*<Ads />*/}
-                {/*<PropertiesByCities />*/}
-                {/*<RecentProperties />*/}
-                <FeaturedProject />
+                <EstateMainTabs />
+                <EstateMainHot />
                 <WhyChooseUs />
-                {/*<OurPartner />*/}
                 <Footer />
             </div>
         </>

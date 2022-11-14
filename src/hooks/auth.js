@@ -19,6 +19,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const csrf = () => axios.get('/sanctum/csrf-cookie')
 
+    console.log(789);
+    console.log(csrf);
+
     const register = async ({ setErrors, ...props }) => {
         await csrf()
 
@@ -37,6 +40,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const login = async ({ setErrors, setStatus, ...props }) => {
         await csrf()
 
+        console.log('CSRF');
+        console.log(await csrf());
         setErrors([])
         setStatus(null)
 
