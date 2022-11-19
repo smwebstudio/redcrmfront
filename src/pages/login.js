@@ -48,7 +48,7 @@ const Login = () => {
         <GuestLayout>
             <Topbar />
             <Navbar />
-            <div className="container">
+            <div className="container pd-top-100 pb-5">
 
                 <div className="offset-4 col-4">
 
@@ -64,16 +64,16 @@ const Login = () => {
                         {/* Session Status */}
                         <AuthSessionStatus className="mb-4" status={status} />
 
-                        <h2 className="text-left">Մուտք</h2>
+                        <h5 className="mb-5 text-left text-dark"><strong>Մուտք</strong></h5>
                         <form onSubmit={submitForm}>
                             {/* Email Address */}
-                            <div>
-                                <Label htmlFor="email">Email</Label>
+                            <div className="d-flex flex-column">
+                                <Label htmlFor="email"><p>Օգտանուն <span className={"text-main"}>*</span></p></Label>
                                 <Input
                                     id="email"
                                     type="email"
                                     value={email}
-                                    className="block mt-1 w-full"
+                                    className="input-main"
                                     onChange={event => setEmail(event.target.value)}
                                     required
                                     autoFocus
@@ -83,14 +83,14 @@ const Login = () => {
                             </div>
 
                             {/* Password */}
-                            <div className="mt-4">
-                                <Label htmlFor="password">Password</Label>
+                            <div className="mt-4 d-flex flex-column">
+                                <Label htmlFor="password"><p>Գաղտնաբառ <span className={"text-main"}>*</span></p></Label>
 
                                 <Input
                                     id="password"
                                     type="password"
                                     value={password}
-                                    className="block mt-1 w-full"
+                                    className="input-main"
                                     onChange={event => setPassword(event.target.value)}
                                     required
                                     autoComplete="current-password"
@@ -112,20 +112,25 @@ const Login = () => {
                                         onChange={event => setShouldRemember(event.target.checked)}
                                     />
 
-                                    <span className="ml-2 text-sm text-gray-600">
-                                Remember me
+                                    <span className="ml-2 font-size-12">
+                                Հիշել ինձ
                             </span>
                                 </label>
                             </div>
-
-                            <div className="flex items-center justify-end mt-4">
+                            <Button className="btn btn-block  btn-main p-2 mt-3">Մուտք</Button>
+                            <div className="d-flex items-center flex-column justify-end text-center mt-4">
                                 <Link href="/forgot-password">
-                                    <a className="underline text-sm text-gray-600 hover:text-gray-900">
-                                        Forgot your password?
+                                    <a className="underline text-sm w-100 hover:text-gray-900">
+                                        Մոռացել եք գաղտնաբառը?
+                                    </a>
+                                </Link>
+                                <Link href="/register">
+                                    <a className="underline mt-5 text-sm  hover:text-gray-900">
+                                        Գրանցված չեք? <span className={"ml-3 text-main text-underline"}>Ստեղծել հաշիվ</span>
                                     </a>
                                 </Link>
 
-                                <Button className="ml-3">Login</Button>
+
                             </div>
                         </form>
                     </AuthCard>

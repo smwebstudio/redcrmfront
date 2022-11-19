@@ -88,7 +88,7 @@ export function EstateItems(props) {
 
 };
 
-// This gets called on every request
+
 export async function getStaticProps({
                                          params,
                                          req,

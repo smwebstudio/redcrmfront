@@ -17,6 +17,7 @@ export function EstatesMap(props) {
         document.title = `loaded`;
 
         ymaps.ready(init());
+
         function init() {
             ymaps.ready(["ext.paintOnMap"]).then(function() {
                 let map = new ymaps.Map("map", {
@@ -24,6 +25,7 @@ export function EstatesMap(props) {
                     zoom: 12,
                     controls: ["zoomControl"]
                 });
+
 
                 let paintProcess;
 
@@ -57,11 +59,11 @@ export function EstatesMap(props) {
 
                     if ($(this).attr("drawable") === "false") {
                         $(this).attr("drawable", "true");
-                        $(this).find('.drawing-title').html("Ջնջել");
-                        $(this).find('.drawing-icon').html("<img src='assets/img/svg/pencil.svg' />");
+                        $(this).find(".drawing-title").html("Ջնջել");
+                        $(this).find(".drawing-icon").html("<img src='assets/img/svg/pencil.svg' />");
                     } else {
                         $(this).attr("drawable", "false");
-                        $(this).find('.drawing-title').html("Շրջագծել");
+                        $(this).find(".drawing-title").html("Շրջագծել");
 
                         // Reset all polygones
                         map.geoObjects.each(function(item) {
@@ -127,67 +129,97 @@ export function EstatesMap(props) {
                         // Ajax
                         let polygonCoordinates = coordinates;
                         $.ajax({
-                            url: "/url2",
-                            method: "post",
+                            url: "http://redoc/api/estates/map_search",
+                            method: "GET",
                             dataType: "JSON",
                             data: {
-                                "_token": $("meta[name=\"csrf-token\"]").attr("content"),
                                 "coords": polygonCoordinates,
                                 "filter": params,
                                 "locale": locale
                             },
                             success: function(response) {
-                                $(".announcement.index .ajax-loader-block").hide();
-                                let announcements = response.data;
+                                console.log(6565);
+                                console.log(response.data);
 
-                                let buttonText = $("#load_more_button").text();
+                                let estates = response.data;
 
-                                if (response.current_page == response.last_page) {
-                                    $("#load_more_button").remove();
-                                } else {
-                                    $("#load_more_button").text(buttonText);
-                                }
-                                $.each(announcements, function(index, announcement) {
-                                    let parent = announcement.place ? announcement.place.parent.name : "";
-                                    let place_name = announcement.place ? announcement.place.name : "";
-                                    let code = announcement.currency_price ? announcement.currency_price.code : "";
+                                Object.values(estates).forEach(item => {
+                                    console.log("item");
+                                    console.log(item.aaaaaaaaaaaaa);
 
-                                    let address = parent + "," + place_name;
-                                    nextPage += "<div class=\"col-md-6 announcement-item\">";
-                                    nextPage += "<a href=\"" + location.origin + "/announcement/" + announcement.code + "\">";
-                                    nextPage += "<div class=\"thumbnail\">";
-                                    nextPage += "<img src=\"" + announcement.thumbnail + "\" alt=\"\">";
-                                    nextPage += "<span class=\"announcement-type\">" + announcement.announcement_type.title + "</span>";
-                                    nextPage += "<p class=\"announcement-price\">";
-                                    nextPage += "<span class=\"property-price\">" + announcement.price + " " + code + "</span>";
-                                    nextPage += "</p>";
-                                    nextPage += announcement.advertised ? "<span class=\"advertised\"><i class=\"fas fa-star\"></i></span>" : "";
-                                    nextPage += "</div>";
-                                    nextPage += "<div class=\"property-info\">";
-                                    nextPage += "<span class=\"announcement-code\" title=\"{{ __(";
-                                    common.code;
-                                    ") }}\">" + announcement.code + "</span>";
-                                    nextPage += "<h4>" + announcement.property_type.title + " " + address + "</h4>";
-                                    nextPage += "<p class=\"address\">{{ __(";
-                                    common.address;
-                                    ") }} &#32;" + address + "</p>";
-                                    nextPage += "<p>";
-                                    nextPage += "<span class=\"rooms\">";
-                                    nextPage += "<i class=\"far fa-moon\"></i>";
-                                    nextPage += "<span class=\"mr-1\">{{ __(\"common.rooms\") }} </span>";
-                                    nextPage += "<span class=\"rooms-count\">" + announcement.rooms.split("-")[0] < announcement.rooms_ext ? (announcement.rooms.split("-")[0] + "-" + announcement.rooms_ext) : announcement.rooms_ext + "</span>";
-                                    nextPage += "</span>";
-                                    nextPage += "<span class=\"area\">";
-                                    nextPage += "<i class=\"fas fa-vector-square\"></i>";
-                                    nextPage += "<span class=\"mr-1\">{{ __(\"common.area\") }} </span>";
-                                    nextPage += "<span class=\"area-count\">" + Number((+announcement.area).toFixed(2)) + " {{ __(\"common.area_point\") }}</span>";
-                                    nextPage += "</span>";
-                                    nextPage += "</p>";
-                                    nextPage += "</div>";
-                                    nextPage += "</a>";
-                                    nextPage += "</div>";
+                                    let position = [item.aaaaaaaaaaaaa[1], item.aaaaaaaaaaaaa[0]];
+                                    let iconContent = '<a class="item-in-baloon" href="#" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street.name_arm+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p></a>';
+                                    let estateBaloon = new ymaps.GeoObject({
+                                        // Описание геометрии.
+                                        geometry: {
+                                            type: "Point",
+                                            coordinates: position
+                                        },
+                                        // Свойства.
+                                        properties: {
+                                            // Контент метки.
+                                            iconContent: '',
+                                            balloonContentBody: iconContent,
+                                        }
+                                    }, {
+                                        preset: 'islands#redHomeCircleIcon',
+                                    });
+
+                                    map.geoObjects.add(estateBaloon);
                                 });
-                                $(".searched-announcements").html(nextPage);
+
+
+                                // $(".announcement.index .ajax-loader-block").hide();
+                                // let announcements = response.data;
+                                //
+                                // let buttonText = $("#load_more_button").text();
+                                //
+                                // if (response.current_page == response.last_page) {
+                                //     $("#load_more_button").remove();
+                                // } else {
+                                //     $("#load_more_button").text(buttonText);
+                                // }
+                                // $.each(announcements, function(index, announcement) {
+                                //     let parent = announcement.place ? announcement.place.parent.name : "";
+                                //     let place_name = announcement.place ? announcement.place.name : "";
+                                //     let code = announcement.currency_price ? announcement.currency_price.code : "";
+                                //
+                                //     let address = parent + "," + place_name;
+                                //     nextPage += "<div class=\"col-md-6 announcement-item\">";
+                                //     nextPage += "<a href=\"" + location.origin + "/announcement/" + announcement.code + "\">";
+                                //     nextPage += "<div class=\"thumbnail\">";
+                                //     nextPage += "<img src=\"" + announcement.thumbnail + "\" alt=\"\">";
+                                //     nextPage += "<span class=\"announcement-type\">" + announcement.announcement_type.title + "</span>";
+                                //     nextPage += "<p class=\"announcement-price\">";
+                                //     nextPage += "<span class=\"property-price\">" + announcement.price + " " + code + "</span>";
+                                //     nextPage += "</p>";
+                                //     nextPage += announcement.advertised ? "<span class=\"advertised\"><i class=\"fas fa-star\"></i></span>" : "";
+                                //     nextPage += "</div>";
+                                //     nextPage += "<div class=\"property-info\">";
+                                //     nextPage += "<span class=\"announcement-code\" title=\"{{ __(";
+                                //     common.code;
+                                //     ") }}\">" + announcement.code + "</span>";
+                                //     nextPage += "<h4>" + announcement.property_type.title + " " + address + "</h4>";
+                                //     nextPage += "<p class=\"address\">{{ __(";
+                                //     common.address;
+                                //     ") }} &#32;" + address + "</p>";
+                                //     nextPage += "<p>";
+                                //     nextPage += "<span class=\"rooms\">";
+                                //     nextPage += "<i class=\"far fa-moon\"></i>";
+                                //     nextPage += "<span class=\"mr-1\">{{ __(\"common.rooms\") }} </span>";
+                                //     nextPage += "<span class=\"rooms-count\">" + announcement.rooms.split("-")[0] < announcement.rooms_ext ? (announcement.rooms.split("-")[0] + "-" + announcement.rooms_ext) : announcement.rooms_ext + "</span>";
+                                //     nextPage += "</span>";
+                                //     nextPage += "<span class=\"area\">";
+                                //     nextPage += "<i class=\"fas fa-vector-square\"></i>";
+                                //     nextPage += "<span class=\"mr-1\">{{ __(\"common.area\") }} </span>";
+                                //     nextPage += "<span class=\"area-count\">" + Number((+announcement.area).toFixed(2)) + " {{ __(\"common.area_point\") }}</span>";
+                                //     nextPage += "</span>";
+                                //     nextPage += "</p>";
+                                //     nextPage += "</div>";
+                                //     nextPage += "</a>";
+                                //     nextPage += "</div>";
+                                // });
+                                // $(".searched-announcements").html(nextPage);
                             },
                             error: function(error) {
                                 console.log(error);
@@ -334,13 +366,13 @@ export function EstatesMap(props) {
     }, []);
 
 
-
     return (
         <div className="estates-map" id="map">
             <button className="btn btn-main-transparent map-pencil" id="start_drawing" drawable="false">
-                <span className="drawing-icon mr-2"><img src={"/assets/img/svg/pencil.svg"} /></span> <span className="drawing-title">Շրջագծել</span>
+                <span className="drawing-icon mr-2"><img src={"/assets/img/svg/pencil.svg"} /></span> <span
+                className="drawing-title">Շրջագծել</span>
             </button>
-            <Button className="btn btn-main-transparent toggle-map" onClick={(event) => {
+            <Button className="btn btn-main-transparent bg-white toggle-map p-2" onClick={(event) => {
                 props.toggleMap();
                 toggleMap();
             }}>

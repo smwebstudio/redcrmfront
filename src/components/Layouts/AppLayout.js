@@ -1,5 +1,3 @@
-import Navigation from "@/components/Layouts/Navigation";
-import { useAuth } from "@/hooks/auth";
 import Topbar from "@/components/React/global-components/topbar";
 import Navbar from "@/components/React/global-components/navbar";
 import React from "react";

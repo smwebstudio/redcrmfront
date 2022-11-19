@@ -7,8 +7,8 @@ export function EstateItem(props) {
     let item = props.item;
 
     return (
-        <>
-                <div key={item.id} className={" mb-5 pr-3 cat" + item.contract_type_id}>
+        <div className="">
+                <div key={item.id} className={" mb-5  cat" + item.contract_type_id}>
                     <div className="single-feature">
                         <div className="thumb">
                             <Link href={"estates/" + item.id}>
@@ -48,7 +48,7 @@ export function EstateItem(props) {
                         </div>
                     </div>
                 </div>
-        </>
+        </div>
     );
 
 

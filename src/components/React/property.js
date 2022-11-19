@@ -4,7 +4,7 @@ import PageHeader from '@/components/React/global-components/page-header';
 import PropertySection from '@/components/React/section-components/property';
 import TopAuthor from '@/components/React/section-components/top-author';
 import Footer from '@/components/React/global-components/footer';
-import Estates from "@/pages/estates";
+import Index from "@/pages/estates/estates";
 
 const Property = () => {
     return <div>

@@ -49,7 +49,8 @@ Version: 1.0.0
     --main-color-two: #FF6E63;
     --heading-color: #101425;
     --paragraph-color: #959595;
-    --heading-font: 'Poppins', sans-serif;
+    --dark-color: #414141;
+    --heading-font: 'Montserratarm', sans-serif;
     --body-font: 'Montserratarm', sans-serif;
     --body-font-size: 15px;
     --line-height30: 1.8;
@@ -140,7 +141,7 @@ p {
 }
 
 a {
-    color: inherit;
+    color: var(--paragraph-color) !important;
     text-decoration: none;
     -webkit-transition: 0.4s;
     -o-transition: 0.4s;
@@ -157,7 +158,7 @@ a:active {
 }
 
 a:hover {
-    color: var(--main-color-one);
+    color: var(--main-color-one) !important;
 }
 
 pre {
@@ -678,7 +679,6 @@ ul {
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    font-weight: 600;
 }
 
 .btn:focus, .btn:active {
@@ -1196,6 +1196,29 @@ ul {
     margin-bottom: 18px;
 }
 
+.property-details-area .rld-list-style li {
+    list-style: circle;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-left: 16px;
+}
+.property-details-area .rld-list-style li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    display: block;
+    background: #D8002C;
+    border-radius: 50%;
+    position: absolute;
+    align-self: center;
+    left: 0;
+}
+
+
+
+
 .rld-list-style li img {
     margin-right: 6px;
 }
@@ -1475,11 +1498,12 @@ ul {
 
 .widget_nav_menu ul li {
     list-style: none;
+    margin-bottom: 16px;
 }
 
 .widget_nav_menu ul li a {
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 12px;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
@@ -1643,7 +1667,6 @@ ul {
 ----------------------------------------------*/
 .topbar-area {
     padding: 16px 15px;
-     position: fixed;
     background: #ffffff;
     width: 100%;
     /* top: 0; */
@@ -1664,11 +1687,8 @@ ul {
 ----------------------------------------------*/
 .navbar-area {
     padding: 0;
-    position: fixed;
     background: #ffffff;
     width: 100%;
-    /*top: 0;*/
-    z-index: 9999;
     box-shadow: 0px 3px 15px rgba(166, 166, 166, 0.1);
     -webkit-transition: all .4s;
     -o-transition: all .4s;
@@ -2501,7 +2521,7 @@ ul {
 
 .rld-banner-tab .nav-item a {
     border: 0;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0px 0px 0 0;
     height: 50px;
     line-height: 50px;
     padding: 0 35px;
@@ -2509,8 +2529,8 @@ ul {
     position: relative;
     display: block;
     letter-spacing: 0.4px;
-    background: rgba(255, 255, 255, 0.8);
-    color: var(--heading-color);
+    background: #212120a3;
+    color: #fff;
     font-family: var(--heading-font);
     font-weight: 600;
     -webkit-transition: all 0.4s ease;
@@ -2520,8 +2540,8 @@ ul {
 }
 
 .rld-banner-tab .nav-item a:hover, .rld-banner-tab .nav-item a:focus, .rld-banner-tab .nav-item a.active {
-    background: var(--main-color-one);
-    color: #fff;
+    background: #fff;
+    color: var(--main-color-one);
 }
 
 .rld-banner-tab .nav-item:last-child {
@@ -3623,7 +3643,8 @@ ul {
     transition: all 0.5s ease;
     min-height: 275px;
     max-height: 275px;
-    width:100%
+    width:100%;
+    object-fit: cover;
 }
 
 .single-feature .details {

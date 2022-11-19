@@ -1,52 +1,67 @@
-import React, { Component } from 'react';
-import Link from 'next/link'
+import React, { Component, useEffect } from "react";
+import Link from "next/link";
+import { Select } from "antd";
 
-class Navbar extends Component {
+function Navbar() {
 
-    render() {
-        let publicUrl = process.env.PUBLIC_URL+'/'
-        let imgattr = 'logo'
-        let anchor = '#'
-        return (
-            <div className="mb-5">
-                <div className="navbar-area">
+    useEffect(() => {
+        window.addEventListener("scroll", isSticky);
+        return () => {
+            window.removeEventListener("scroll", isSticky);
+        };
+    }, []);
+    const isSticky = (e) => {
+        const header = document.querySelector(".sticked");
+        const scrollTop = window.scrollY;
+        scrollTop >= 60 ? header.classList.add("is-sticky") : header.classList.remove("is-sticky");
+    };
+
+
+
+    return (
+        <div className="">
+            <div className="navbar-area sticked">
                 <nav className="navbar navbar-area navbar-expand-lg">
-                  <div className="container nav-container">
-                    <div className="responsive-mobile-menu">
-                      <button className="menu toggle-btn d-block d-lg-none" data-toggle="collapse" data-target="#realdeal_main_menu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="icon-left" />
-                        <span className="icon-right" />
-                      </button>
-                    </div>
-                    <div className="logo readeal-top">
-                      <Link href="/"><a><img src={"/assets/img/logo-pc.svg"} alt="logo" /></a></Link>
-                    </div>
-                    <div className="nav-right-part nav-right-part-mobile">
-                      <Link className="btn btn-yellow" href="/add-property"><a>ADD LISTING <span className="right"><i className="la la-plus" /></span></a></Link>
-                    </div>
-                    <div className="collapse navbar-collapse" id="realdeal_main_menu">
-                      <ul className="navbar-nav menu-open readeal-top">
+                    <div className="container nav-container">
+                        <div className="responsive-mobile-menu">
+                            <button className="menu toggle-btn d-block d-lg-none" data-toggle="collapse"
+                                    data-target="#realdeal_main_menu" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <span className="icon-left" />
+                                <span className="icon-right" />
+                            </button>
+                        </div>
+                        <div className="logo readeal-top">
+                            <Link href="/"><a><img src={"/assets/img/logo-pc.svg"} alt="logo" /></a></Link>
+                        </div>
+                        <div className="nav-right-part nav-right-part-mobile">
+                            <Link className="btn btn-yellow" href="/add-property"><a>ADD LISTING <span
+                                className="right"><i className="la la-plus" /></span></a></Link>
+                        </div>
+                        <div className="collapse navbar-collapse" id="realdeal_main_menu">
+                            <ul className="navbar-nav menu-open readeal-top">
 
-                        <li><Link href="/estates"><a>Գնել</a></Link></li>
-                        <li><Link href="/estates"><a>Վարձակալել</a></Link></li>
-                        <li><Link href="/contact"><a>Մեր մասին</a></Link></li>
-                        <li><Link href="/contact"><a>Մասնագետներ</a></Link></li>
-                        <li><Link href="/contact"><a>Բլոգ</a></Link></li>
-                        <li><Link href="/contact"><a>Կապ</a></Link></li>
-                        <li><Link href="/contact"><a>Գնահատում</a></Link></li>
-                        <li><Link href="/contact"><a>Կարուցապատողներ</a></Link></li>
-                      </ul>
+                                <li><Link href="/estates"><a>Գնել</a></Link></li>
+                                <li><Link href="/estates"><a>Վարձակալել</a></Link></li>
+                                <li><Link href="/contact"><a>Մեր մասին</a></Link></li>
+                                <li><Link href="/professionals"><a>Մասնագետներ</a></Link></li>
+                                <li><Link href="/contact"><a>Բլոգ</a></Link></li>
+                                <li><Link href="/contact"><a>Կապ</a></Link></li>
+                                <li><Link href="/contact"><a>Գնահատում</a></Link></li>
+                                <li><Link href="/contact"><a>Կառուցապատողներ</a></Link></li>
+                            </ul>
+                        </div>
+                        <div className="nav-right-part nav-right-part-desktop readeal-top">
+                            <Link href="/add-property"><a className="btn btn-main-transparent"><i
+                                className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
+                        </div>
                     </div>
-                    <div className="nav-right-part nav-right-part-desktop readeal-top">
-                      <Link  href="/add-property"><a className="btn btn-main-transparent"><i className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
-                    </div>
-                  </div>
                 </nav>
-              </div>
             </div>
-        )
-    }
+        </div>
+    );
+
 }
 
 
-export default Navbar
+export default Navbar;

@@ -1,6 +1,7 @@
 import { Tabs } from "antd";
 import React, { Component, useState } from "react";
 import EstateCarousel from "@/components/Estate/estate-carousel";
+import Link from "next/link";
 
 
 const onChange = (key) => {
@@ -10,11 +11,14 @@ const onChange = (key) => {
 function EstateMainHot(props) {
     return (
 
-        <div className="container  pt-5 mt-5">
+        <div className="container   mt-5">
             <div className="row main-featured min-h-fit">
                 <div className="col-12">
-                    <h5 className="mb-5"><strong>Շտապ առաջարկներ</strong></h5>
+                    <h5 className="mb-5 text-dark">Շտապ առաջարկներ</h5>
                     <EstateCarousel type="hot"/>
+                </div>
+                <div className="col-12 text-right">
+                    <Link href="/estates"><a className="text-main hover-underline">Տեսնել բոլորը</a></Link>
                 </div>
             </div>
         </div>

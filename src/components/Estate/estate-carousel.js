@@ -35,7 +35,7 @@ export function EstateCarousel(props) {
     }, []);
 
     return (
-            <Carousel className="mt-3 " slidesToShow={3} afterChange={onChange} arrows {...settings}>
+            <Carousel className="mt-3 " slidesToShow={3} centerPadding={"0px"}  centerMode={true}  afterChange={onChange} arrows {...settings}>
                 {estatesData.data?.map((item, index) => (
                     <EstateItem key={index} item={item} />
                 ))}

@@ -50,7 +50,9 @@
       <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.ttf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/estate-estimate.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/bg/login_bg.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/client/client.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/404.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/area.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/arrow-left-hover.svg" afterDir="false" />
@@ -60,11 +62,16 @@
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/compare.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/cross-remove.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/doors.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/dot.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/drawer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/envelope.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/favorites.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/floor.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/location-white.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/location.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/login.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/mobile-white.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/mobile.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/pencil.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/public/assets/img/svg/phone.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Carousel/NextArrow.js" afterDir="false" />
@@ -76,10 +83,21 @@
       <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-main-hot.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-main-tabs.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Estate/estates-map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Filters/select-filter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Global/Languages/am-option.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Global/Languages/en-option.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Global/Languages/ru-option.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Global/scroll-to-top.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Home/estate-estimate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Home/professionals.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/LoginFooter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional-section.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional-tabs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/React/global-components/not-found.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/React/global-components/topbar.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/estates/[id].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/professionals/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -87,11 +105,14 @@
       <change beforePath="$PROJECT_DIR$/public/assets/css/vendor.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/vendor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ApplicationLogo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationLogo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AuthCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-tabs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Estate/estates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layouts/AppLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/AppLayout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/React/global-components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/global-components/footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/React/property.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/property.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/React/section-components/banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/section-components/banner.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/React/section-components/why-choose-us.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/section-components/why-choose-us.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/footerdata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/footerdata.json" afterDir="false" />
@@ -99,9 +120,11 @@
       <change beforePath="$PROJECT_DIR$/src/pages/404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_document.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/api/estate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/estate/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/estates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/estates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/estates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/estates/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/forgot-password.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/forgot-password.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +152,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FMGnkAh68gf5FkD7AC9NmW16ZI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -141,7 +167,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.15.1",
     "javascript.nodejs.core.library.typings.version": "16.18.0",
-    "last_opened_file_path": "/var/www/html/redfront/public/assets/css",
+    "last_opened_file_path": "/var/www/html/redfront/src/components/Professionals",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -149,18 +175,21 @@
     "node.js.selected.package.standard": "",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/var/www/html/breeze-next/node_modules/prettier",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.spelling",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "ts.external.directory.path": "/home/suren/.local/share/JetBrains/Toolbox/apps/WebStorm/ch-0/222.4345.14/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Professionals" />
       <recent name="$PROJECT_DIR$/public/assets/css" />
       <recent name="$PROJECT_DIR$/public/assets/fonts" />
       <recent name="$PROJECT_DIR$/public/assets/img/banner" />
       <recent name="$PROJECT_DIR$/public/assets/img" />
-      <recent name="$PROJECT_DIR$/public/assets/img/feature" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/estates" />
     </key>
   </component>
   <component name="RunManager">
@@ -196,6 +225,10 @@
       <workItem from="1668150497676" duration="12002000" />
       <workItem from="1668338917785" duration="12044000" />
       <workItem from="1668405853862" duration="29241000" />
+      <workItem from="1668518532804" duration="5893000" />
+      <workItem from="1668583209228" duration="28902000" />
+      <workItem from="1668700648975" duration="6145000" />
+      <workItem from="1668848507179" duration="8505000" />
     </task>
     <servers />
   </component>
@@ -212,5 +245,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Estate/estate-details-section.js</url>
+          <line>7</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

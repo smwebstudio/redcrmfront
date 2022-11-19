@@ -1,35 +1,114 @@
-.text-main {
-    color: #D8002C;
+html, body {
+    width: auto !important;
+    height: auto !important;
 }
 
+.font-size-10 {
+    font-size:10px !important;
+}
+
+.font-size-11 {
+    font-size:11px !important;
+}
+
+.font-size-12 {
+    font-size:12px !important;
+}
+
+.font-size-13 {
+    font-size:13px !important;
+}
+
+.text-main {
+    color: var(--main-color-one) !important;
+}
+
+.text-dark {
+    color:var(--dark-color) !important;
+}
+
+.text-underline {
+    text-decoration: underline !important;
+}
+
+
 .bg-orange {
-    background: #FF8038;
+    background: #FF8038 !important;
+}
+
+.bg-white {
+    background: #FFFFFF !important;
 }
 
 .border-orange {
-    border:1px solid #FF8038
+    border: 1px solid #FF8038 !important
 }
 
 .btn-main {
-    background: var(--main-color-one);
-    color: #fff;
+    background: var(--main-color-one) !important;
+    color: #fff !important;
 }
 
 .btn-main:hover, .btn-main:focus {
-    color: #fff;
-    background: #C60028;
+    color: #fff !important;
+    background: #C60028 !important;
 }
 
 .btn-main-transparent {
-    background: none;
-    color: #D8002C;
-    border: 1px solid #D8002C;
+    background: none !important;
+    color: var(--main-color-one) !important;
+    border: 1px solid var(--main-color-one) !important;
+}
+
+.btn-main-transparent-dark {
+    background: none !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
 }
 
 .btn-main-transparent:hover {
-    background: #D8002C;
-    color: #FFF;
+    background: var(--main-color-one) !important;
+    color: #FFF !important;
 }
+
+.hover-primary:hover , .hover-primary:focus {
+    color: var(--main-color-one) !important;
+}
+
+.hover-underline:hover {
+    text-decoration: underline;
+}
+
+.input-main {
+    background: #FFFFFF !important;
+    border: 1px solid #EFEFEF !important;
+    height:40px;
+    line-height: 40px;
+}
+
+.slick-center {
+    padding:0px 15px
+}
+
+/*Flex custom classes*/
+
+.flex-grow-1 {
+    flex-grow: 1 !important;
+}
+
+.flex-grow-2 {
+    flex-grow: 2 !important;
+}
+
+.flex-grow-3 {
+    flex-grow: 3 !important;
+}
+
+.flex-grow-4 {
+    flex-grow: 4 !important;
+}
+
+/*Ant customized*/
 
 .ant-carousel .slick-prev::before {
     content: url('../../assets/img/svg/arrow-left.svg') !important;
@@ -48,7 +127,7 @@
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: #D8002C !important;
+    color: var(--main-color-one) !important;
 }
 
 .ant-tabs-ink-bar {
@@ -56,10 +135,49 @@
 }
 
 .ant-tabs-tab:hover {
-    color: #D8002C !important;
+    color: var(--main-color-one) !important;
 }
 
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    color: var(--main-color-one) !important;
+    font-weight: 600;
+    background-color: #fff !important;
+}
 
+/*End Ant*/
+
+.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
+    background-color: #ffffff !important;
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*Home*/
+
+.main-featured {
+    min-height: 450px;
+}
+
+.estate-estimate {
+    background: url('../../assets/img/bg/estate-estimate.png') center center;
+
+    background-size: cover;
+    height: 400px;
+}
+
+.professional-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    align-self: center;
+}
 
 /*Image gallery customized*/
 
@@ -88,7 +206,7 @@
     border: 0px solid transparent;
     transition: border .3s ease-out;
     width: 200px !important;
-    height:20% !important
+    height: 20% !important
 }
 
 
@@ -98,27 +216,26 @@
     width: 200px;
     overflow: hidden;
     position: fixed;
-    top: 150px;
+    top: 160px;
     left: 0px;
     height: 100vh;
-    padding-right:30px;
+    padding-right: 30px;
 }
 
 .map-container-opened {
     overflow: hidden;
     cursor: crosshair;
-    padding-right:30px;
+    padding-right: 30px;
 }
 
 .estates-map {
-    min-height: 700px;
-    width:64vw;
+    min-height: calc(100vh - 100px);
+    width: 64vw;
 }
 
 .map-container-opened .estates-map {
     position: fixed;
 }
-
 
 
 .map-pencil {
@@ -127,16 +244,20 @@
     align-items: center;
     border-radius: 25px 0px 0px 25px;
     padding: 0px 15px 0px 0px;
-
     background: #fff;
     position: absolute;
     top: 15px;
     right: 15px;
     z-index: 99;
+    opacity: 0
+}
+
+.map-container-opened .map-pencil {
+    opacity: 1;
 }
 
 .map-pencil span.drawing-icon {
-    background: #D8002C;
+    background: var(--main-color-one);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -145,13 +266,19 @@
 
 .estates-map .toggle-map {
     position: absolute;
-    top: 250px;
-    width:50px;
+    top: calc(100vh - 70%);
+    width: 50px;
     right: 0px;
     z-index: 99;
-    background: #fff;
+    background: #fff !important;
+    border: 0 !important;
+}
+
+.map-container-opened .toggle-map {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .estates-map .toggle-map:hover {
-    border: 1px solid #D8002C;
+    border: 1px solid var(--main-color-one);
 }

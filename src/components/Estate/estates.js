@@ -1,23 +1,11 @@
 import React, { Component, useEffect, useState } from "react";
-import sectiondata from "data/sections.json";
-import parse from "html-react-parser";
 import Link from "next/link";
-import api from "@/hooks/api";
-import { Tabs } from "antd";
 
 const onChange = (key) => {
     console.log(key);
 };
 
 export function EstatesSection(props) {
-
-    console.log(props);
-    console.log(54);
-    console.log(props.estates);
-    console.log(props.type);
-
-    console.log('props');
-    console.log(props);
 
     let mapState = props.mapState ? props.mapState : false;
     let colClass = mapState ? "col-12" : "col-lg-4 col-sm-6";
@@ -37,12 +25,6 @@ export function EstatesSection(props) {
 
     let publicUrl = process.env.PUBLIC_URL + "/";
     let imagealt = "image";
-
-console.log("mapState");
-console.log(mapState);
-
-
-
     return (
         <>
             <div className="property-area min-vh-100 pt-5">
@@ -104,19 +86,8 @@ console.log(mapState);
 
 };
 
-// This gets called on every request
-export async function getStaticProps({
-                                         params,
-                                         req,
-                                         res,
-                                         query,
-                                         preview,
-                                         previewData,
-                                         resolvedUrl,
-                                         locale,
-                                         locales,
-                                         defaultLocale
-                                     }) {
+
+export async function getStaticProps({}) {
 
     // Fetch data from external API
     const data = await fetch("http://redoc/api/estates");

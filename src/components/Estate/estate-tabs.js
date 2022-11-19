@@ -4,18 +4,15 @@ import EstatesSection from "@/components/Estate/estates";
 import { Typography } from "antd";
 import withTranslation from "next-translate/withTranslation";
 import EstatesMap from "@/components/Estate/estates-map";
+import { useAuth } from "@/hooks/auth";
 
-
-const onChange = (key) => {
-    console.log(key);
-};
 
 function EstateTabs(props) {
 
     const [estatesCount, setEstatesCount] = useState([]);
     const [mapState, setMapState] = useState(false);
-    const changeEstatesFoundCount = (arg) => {
-        setEstatesCount(arg);
+    const changeEstatesFoundCount = (estatesCount) => {
+        setEstatesCount(estatesCount);
     };
 
     function onToggleMapClicked() {
@@ -23,6 +20,7 @@ function EstateTabs(props) {
             opened: !prevState.opened
         }));
     }
+
 
 
     return (
@@ -36,36 +34,47 @@ function EstateTabs(props) {
                 <div className={mapState.opened ? "col-4" : "container  pt-5 mt-5 border-top"}>
                     <div className="row ">
                         <div className="col-8">
-                            <h4>Բնակարաններ Երևանում<small className="text-secondary ml-3 size-">/ Որոնման
-                                արդյունքներ {estatesCount} </small></h4>
+                            <h4>Բնակարաններ Երևանում<small className="text-secondary ml-3 font-size-13">/ Որոնման
+                                արդյունքներ <strong className={"text-dark"}>{estatesCount}</strong> </small></h4>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12">
                             <Tabs
                                 defaultActiveKey="1"
-                                onChange={onChange}
+                                onChange={changeEstatesFoundCount}
                                 items={[
                                     {
                                         label: `Բոլորը`,
                                         key: "1",
                                         children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
-                                                                  type="all" mapState={mapState.opened} />
+                                                                  type="all"
+                                                                  mapState={mapState.opened}
+                                        />
                                     },
                                     {
                                         label: `Նոր ավելացված`,
                                         key: "2",
-                                        children: <EstatesSection props={props} type="latest" mapState={mapState.opened} />
+                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
+                                                                  type="latest"
+                                                                  mapState={mapState.opened}
+                                        />
                                     },
                                     {
                                         label: `Ամենադիտված`,
                                         key: "3",
-                                        children: <EstatesSection props={props} type="most_hits" mapState={mapState.opened} />
+                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
+                                                                  type="most_hits"
+                                                                  mapState={mapState.opened}
+                                        />
                                     },
                                     {
                                         label: `Շտապ`,
                                         key: "4",
-                                        children: <EstatesSection type="hot" itemColClass={mapState.opened}/>
+                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
+                                                                  type="hot"
+                                                                  itemColClass={mapState.opened}
+                                        />
                                     }
                                 ]}
                             />

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import sectiondata from "data/sections.json";
-import parse from "html-react-parser";
 import withTranslation from "next-translate/withTranslation";
-import { Button } from "antd";
+import SelectFilter from "@/components/Filters/select-filter";
+import { Button, Input } from "antd";
 
 class Banner extends Component {
 
@@ -38,13 +38,13 @@ class Banner extends Component {
                             <div className="banner-inner text-center align-self-center mt-5">
                                 <h3 className="text-center text-white">{title}</h3>
                                 <h6 className="title text-center text-white mb-5">{data.title1} {data.title2}</h6>
-                                <Link  href="/estates"><a className="btn btn-main">Տեսնել ավելին</a></Link>
+                                <Link href="/estates"><a className="btn btn-main-transparent-dark pr-3 pl-3">Տեսնել ավելին</a></Link>
 
                             </div>
                         </div>
                         <div className="col-12 main-search-tabs">
                             <div className="banner-search-wrap">
-                                <ul className="nav nav-tabs rld-banner-tab">
+                                <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
                                     <li className="nav-item">
                                         <a className="nav-link active" data-toggle="tab" href="#tabs_1">Վաճառք</a>
                                     </li>
@@ -52,98 +52,159 @@ class Banner extends Component {
                                         <a className="nav-link" data-toggle="tab" href="#tabs_2">Վարձակալություն</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#tabs_2">Օրավարձ</a>
+                                        <a className="nav-link" data-toggle="tab" href="#tabs_3">Օրավարձ</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="btn btn-main" href="/estates">Որոնել քարտեզով</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" data-toggle="tab" href="#tabs_4">Որոնում</a>
                                     </li>
                                 </ul>
                                 <div className="tab-content">
                                     <div className="tab-pane fade show active" id="tabs_1">
-                                        <div className="rld-main-search">
-                                            <div className="row">
-                                                <div className="col-xl-4 col-lg-6 col-md-6">
-                                                    <div className="rld-single-input left-icon">
-                                                        <input type="text" placeholder="Entry Landmark Location" />
-                                                    </div>
+                                        <div className="pt-4 pl-3 bg-white">
+                                            <form className="bg-white d-flex  text-gray-50 justify-content-around">
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Տեսակ</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-6 col-md-6">
-                                                    <div className="rld-single-select">
-                                                        <select className="select single-select">
-                                                            <option value={1}>All Properties</option>
-                                                            <option value={2}>Properties 1</option>
-                                                            <option value={3}>Properties 2</option>
-                                                            <option value={3}>Properties 3</option>
-                                                        </select>
-                                                    </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Քաղաք</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-4 col-md-4">
-                                                    <div className="rld-single-select">
-                                                        <select className="select single-select">
-                                                            <option value={1}>Room</option>
-                                                            <option value={2}>Room 1</option>
-                                                            <option value={3}>Room 2</option>
-                                                            <option value={3}>Room 3</option>
-                                                        </select>
-                                                    </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Համայնք</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-4 col-md-4">
-                                                    <div className="rld-single-select">
-                                                        <select className="select single-select">
-                                                            <option value={1}>Any Price</option>
-                                                            <option value={2}>Price 1</option>
-                                                            <option value={3}>Price 2</option>
-                                                            <option value={3}>Price 3</option>
-                                                        </select>
-                                                    </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Գին</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-4 col-md-4 readeal-top">
-                                                    <Link  href="/search-list"><a className="btn btn-main">SEARCH
-                                                        NOW</a></Link>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Արժույթ</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                            </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Սենյակ</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item">
+                                                    <Button
+                                                        className="btn  bg-white hover-primary border-0 h-100">
+                                                        Լրացուցիչ
+                                                    </Button>
+                                                </div>
+                                                <div className="field-item pr-2 pl-2 ml-3">
+                                                    <Button
+                                                        className="btn btn-main border-0 h-100 pr-5 pl-5">
+                                                        Փնտրել
+                                                    </Button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="tabs_2">
-                                        <div className="rld-main-search">
-                                            <div className="row">
-                                                <div className="col-xl-4 col-lg-6 col-md-6">
-                                                    <div className="rld-single-input left-icon">
-                                                        <input type="text" placeholder="Entry Landmark Location" />
-                                                    </div>
+                                        <div className="pt-4 pl-3 bg-white">
+                                            <form className="bg-white d-flex  text-gray-50 justify-content-around">
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Տեսակ</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-6 col-md-6">
-                                                    <div className="rld-single-select">
-                                                        <select className="select single-select">
-                                                            <option value={1}>All Properties</option>
-                                                            <option value={2}>Properties 1</option>
-                                                            <option value={3}>Properties 2</option>
-                                                            <option value={3}>Properties 3</option>
-                                                        </select>
-                                                    </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Քաղաք</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-4 col-md-4">
-                                                    <div className="rld-single-select">
-                                                        <select className="select single-select">
-                                                            <option value={1}>Room</option>
-                                                            <option value={2}>Room 1</option>
-                                                            <option value={3}>Room 2</option>
-                                                            <option value={3}>Room 3</option>
-                                                        </select>
-                                                    </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Համայնք</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-4 col-md-4">
-                                                    <div className="rld-single-select">
-                                                        <select className="select single-select">
-                                                            <option value={1}>Any Price</option>
-                                                            <option value={2}>Price 1</option>
-                                                            <option value={3}>Price 2</option>
-                                                            <option value={3}>Price 3</option>
-                                                        </select>
-                                                    </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Գին</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                                <div className="col-xl-2 col-lg-4 col-md-4 readeal-top">
-                                                    <Link className="btn btn-yellow" href="/search-list"><a>SEARCH
-                                                        NOW</a></Link>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Արժույթ</small>
+                                                    <SelectFilter type="evaluation_locations" />
                                                 </div>
-                                            </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Սենյակ</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item">
+                                                    <Button
+                                                        className="btn  bg-white hover-primary border-0 h-100">
+                                                        Լրացուցիչ
+                                                    </Button>
+                                                </div>
+                                                <div className="field-item pr-2 pl-2 ml-3">
+                                                    <Button
+                                                        className="btn btn-main border-0 h-100 pr-5 pl-5">
+                                                        Փնտրել
+                                                    </Button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div className="tab-pane fade" id="tabs_3">
+                                        <div className="pt-4 pl-3 bg-white">
+                                            <form className="bg-white d-flex  text-gray-50 justify-content-around">
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Տեսակ</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Քաղաք</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Համայնք</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Գին</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Արժույթ</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item d-flex flex-column">
+                                                    <small className="pl-2">Սենյակ</small>
+                                                    <SelectFilter type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item">
+                                                    <Button
+                                                        className="btn  bg-white hover-primary border-0 h-100">
+                                                        Լրացուցիչ
+                                                    </Button>
+                                                </div>
+                                                <div className="field-item pr-2 pl-2 ml-3">
+                                                    <Button
+                                                        className="btn btn-main border-0 h-100 pr-5 pl-5">
+                                                        Փնտրել
+                                                    </Button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div className="tab-pane fade" id="tabs_4">
+                                        <div className="pt-4 pl-3 bg-white">
+                                            <form className="bg-white d-flex  text-gray-50 justify-content-around pr-3">
+                                                <div className="field-item d-flex flex-column flex-grow-4">
+                                                    <Input
+                                                        size={"large"}
+                                                        bordered={false}
+                                                        placeholder={"Հասցե, կոդ"}
+                                                        type="evaluation_locations" />
+                                                </div>
+                                                <div className="field-item pr-2 pl-2 ml-3">
+                                                    <Button
+                                                        className="btn btn-main border-0 h-100 pr-5 pl-5 pt-3 pb-3">
+                                                        Փնտրել
+                                                    </Button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

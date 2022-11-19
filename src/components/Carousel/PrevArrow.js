@@ -5,7 +5,7 @@ const PrevArrow = props => {
     return (
         <div
             className={className}
-            style={{ ...style, display: 'block', position: 'absolute', top: '-48px', left: 'calc(100% - 75px)' }}
+            style={{ ...style, display: 'block', position: 'absolute', top: '-48px', left: 'calc(100% - 50px)' }}
             onClick={onClick}
         />
     )

@@ -5,6 +5,7 @@ import { Typography } from "antd";
 import withTranslation from "next-translate/withTranslation";
 import EstateItems from "@/components/Estate/EstateItems";
 import EstateCarousel from "@/components/Estate/estate-carousel";
+import Link from "next/link";
 
 
 const onChange = (key) => {
@@ -20,10 +21,10 @@ function EstateMainTabs(props) {
 
     return (
 
-        <div className="container  pt-5 mt-5">
+        <div className="container  pt-5 mt-5 mb-5">
             <div className="row main-featured min-h-fit">
-                <div className="col-12">
-                    <h5 className=""><strong>Լավագույն առաջարկներ</strong></h5>
+                <div className="col-12 ">
+                    <h5 className="text-dark">Լավագույն առաջարկներ</h5>
                         <Tabs
                             defaultActiveKey="1"
                             centered={true}
@@ -33,20 +34,23 @@ function EstateMainTabs(props) {
                                 {
                                     label: `Վաճառք`,
                                     key: "1",
-                                    children: <EstateCarousel  type="latest"/>
+                                    children: <EstateCarousel  type="sale"/>
                                 },
                                 {
                                     label: `Վարձակալություն`,
                                     key: "2",
-                                    children: <EstateCarousel type="most_hits"/>
+                                    children: <EstateCarousel type="rent"/>
                                 },
                                 {
                                     label: `Օրավարձ`,
                                     key: "3",
-                                    children: <EstateCarousel  type="hot"/>
+                                    children: <EstateCarousel  type="daily"/>
                                 }
                             ]}
                         />
+                </div>
+                <div className="col-12 text-right">
+                    <Link href="/estates"><a className="text-main hover-underline">Տեսնել բոլորը</a></Link>
                 </div>
             </div>
         </div>
