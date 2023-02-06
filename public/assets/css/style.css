@@ -95,6 +95,11 @@ h1 {
     line-height: 1.2333333333333333;
 }
 
+h1.blog_title {
+    font-size: 18px;
+    line-height: 1.2333333333333333;
+}
+
 h2 {
     font-size: 45px;
     line-height: 1.3380952380952381;
@@ -4682,6 +4687,64 @@ ul {
 /* --------------------------------------------------
 	##Blog / News
 ---------------------------------------------------- */
+
+.blog-nav {
+    list-style: none;
+    display: flex;
+    padding-left: 0px ;
+    margin-bottom: 0;
+}
+
+.blog-nav li {
+    line-height: 50px;
+    padding: 0px 15px;
+    margin-right: 3px;
+    margin-left: 5px;
+}
+
+.blog-nav li.active {
+    border-bottom: 5px solid #D8002C;
+}
+
+.BlogItem-image img {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    min-height: 300px;
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+h1.blog_title {
+    font-size: 18px;
+    line-height: 1.2333333333333333;
+    font-weight: 700;
+}
+
+
+
+.BlogDetails-info {
+    margin-bottom: 30px;
+}
+
+.BlogDetails-info img {
+    margin:10px 0px
+}
+
+.BlogDetails-info h2 {
+    font-size: 16px;
+}
+
+.BlogDetails-info h3 {
+    font-size: 14px;
+}
+
+.blog_created_at svg {
+    margin-right: 10px;
+}
+
 .single-news {
     border-radius: 10px;
     -webkit-box-shadow: 0px 2px 12px #97A1B21A;
@@ -5202,4 +5265,17 @@ ul {
 
 .rld-banner-search .rld-single-input button.btn-home3 a:hover {
     color: #fff;
+}
+
+
+.shareButtons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: -50px;
+    top: 100px;
+}
+
+.shareButtons button {
+    margin-bottom: 7px;
 }

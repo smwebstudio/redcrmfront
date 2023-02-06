@@ -1,130 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/suren.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Black/Montserratarm-Black.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Black/Montserratarm-Black.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Black/Montserratarm-Black.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Black/Montserratarm-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Black/Montserratarm-Black.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Bold/Montserratarm-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Bold/Montserratarm-Bold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Bold/Montserratarm-Bold.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Bold/Montserratarm-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Bold/Montserratarm-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraBold/Montserratarm-ExtraBold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraBold/Montserratarm-ExtraBold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraBold/Montserratarm-ExtraBold.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraBold/Montserratarm-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraBold/Montserratarm-ExtraBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraLight/Montserratarm-ExtraLight.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraLight/Montserratarm-ExtraLight.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraLight/Montserratarm-ExtraLight.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraLight/Montserratarm-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-ExtraLight/Montserratarm-ExtraLight.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Light/Montserratarm-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Light/Montserratarm-Light.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Light/Montserratarm-Light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Light/Montserratarm-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Light/Montserratarm-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Medium/Montserratarm-Medium.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Medium/Montserratarm-Medium.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Medium/Montserratarm-Medium.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Medium/Montserratarm-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Medium/Montserratarm-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Regular/Montserratarm-Regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Regular/Montserratarm-Regular.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Regular/Montserratarm-Regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Regular/Montserratarm-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Regular/Montserratarm-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-SemiBold/Montserratarm-SemiBold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-SemiBold/Montserratarm-SemiBold.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-SemiBold/Montserratarm-SemiBold.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-SemiBold/Montserratarm-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-SemiBold/Montserratarm-SemiBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/Montserratarm-Thin/Montserratarm-Thin.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/estate-estimate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/login_bg.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/client/client.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/404.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/area.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/arrow-left-hover.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/arrow-left.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/arrow-right-hover.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/arrow-right.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/compare.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/cross-remove.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/doors.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/dot.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/drawer.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/envelope.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/favorites.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/floor.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/location-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/location.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/login.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/mobile-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/mobile.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/pencil.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/phone.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Carousel/NextArrow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Carousel/PrevArrow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/EstateItems.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-details-section.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-item.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-main-hot.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-main-tabs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estates-map.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Filters/select-filter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Global/Languages/am-option.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Global/Languages/en-option.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Global/Languages/ru-option.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Global/scroll-to-top.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Home/estate-estimate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Home/professionals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LoginFooter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional-section.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional-tabs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/React/global-components/not-found.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/React/global-components/topbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/estates/[id].js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/professionals/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/banner/about-banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/about/1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/About/about-banner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/About/about-content.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/News/news-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/articles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/blog-banner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/blog-details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/blog-item.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/blog-list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Blog/blog-navbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Global/share-buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/articles/[id].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/articles/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/news/[id].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/news/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/prices/[id].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/prices/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/statistics/[id].js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/blog/statistics/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/vendor.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/vendor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ApplicationLogo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ApplicationLogo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-details-section.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-details-section.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-tabs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Estate/estates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layouts/AppLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/AppLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/React/global-components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/global-components/footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/React/property.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/property.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/React/section-components/banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/section-components/banner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/React/section-components/why-choose-us.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/section-components/why-choose-us.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/footerdata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/footerdata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/api/estate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/estate/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/estates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/estates/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/forgot-password.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/forgot-password.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/estates/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/estates/[id].js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,12 +78,14 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.15.1",
     "javascript.nodejs.core.library.typings.version": "16.18.0",
-    "last_opened_file_path": "/var/www/html/redfront/src/components/Professionals",
+    "last_opened_file_path": "/var/www/html/redfront/src/pages/blog",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/var/www/html/breeze-next/node_modules/prettier",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -182,13 +95,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/blog" />
+      <recent name="$PROJECT_DIR$/src/pages/blog/news" />
+      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/src/components/Professionals" />
       <recent name="$PROJECT_DIR$/public/assets/css" />
-      <recent name="$PROJECT_DIR$/public/assets/fonts" />
-      <recent name="$PROJECT_DIR$/public/assets/img/banner" />
-      <recent name="$PROJECT_DIR$/public/assets/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/blog" />
       <recent name="$PROJECT_DIR$/src/pages/estates" />
     </key>
   </component>
@@ -228,7 +142,12 @@
       <workItem from="1668518532804" duration="5893000" />
       <workItem from="1668583209228" duration="28902000" />
       <workItem from="1668700648975" duration="6145000" />
-      <workItem from="1668848507179" duration="8505000" />
+      <workItem from="1668848507179" duration="9520000" />
+      <workItem from="1668888866646" duration="295000" />
+      <workItem from="1669460082874" duration="2776000" />
+      <workItem from="1669707312278" duration="841000" />
+      <workItem from="1675529487826" duration="727000" />
+      <workItem from="1675583536878" duration="11802000" />
     </task>
     <servers />
   </component>

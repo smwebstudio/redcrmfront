@@ -1,10 +1,7 @@
 import { Tabs } from "antd";
 import React, { Component, useState } from "react";
 import EstatesSection from "@/components/Estate/estates";
-import { Typography } from "antd";
-import withTranslation from "next-translate/withTranslation";
 import EstatesMap from "@/components/Estate/estates-map";
-import { useAuth } from "@/hooks/auth";
 
 
 function EstateTabs(props) {

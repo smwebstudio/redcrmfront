@@ -35,7 +35,7 @@ function Navbar() {
                             <Link href="/"><a><img src={"/assets/img/logo-pc.svg"} alt="logo" /></a></Link>
                         </div>
                         <div className="nav-right-part nav-right-part-mobile">
-                            <Link className="btn btn-yellow" href="/add-property"><a>ADD LISTING <span
+                            <Link className="btn btn-yellow" href="/add-property"><a>Նոր Հայտ <span
                                 className="right"><i className="la la-plus" /></span></a></Link>
                         </div>
                         <div className="collapse navbar-collapse" id="realdeal_main_menu">
@@ -43,9 +43,9 @@ function Navbar() {
 
                                 <li><Link href="/estates"><a>Գնել</a></Link></li>
                                 <li><Link href="/estates"><a>Վարձակալել</a></Link></li>
-                                <li><Link href="/contact"><a>Մեր մասին</a></Link></li>
+                                <li><Link href="/about"><a>Մեր մասին</a></Link></li>
                                 <li><Link href="/professionals"><a>Մասնագետներ</a></Link></li>
-                                <li><Link href="/contact"><a>Բլոգ</a></Link></li>
+                                <li><Link href="/blog"><a>Բլոգ</a></Link></li>
                                 <li><Link href="/contact"><a>Կապ</a></Link></li>
                                 <li><Link href="/contact"><a>Գնահատում</a></Link></li>
                                 <li><Link href="/contact"><a>Կառուցապատողներ</a></Link></li>

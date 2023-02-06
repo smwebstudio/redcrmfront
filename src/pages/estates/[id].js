@@ -6,13 +6,11 @@ import EstateDetailsSection from "@/components/Estate/estate-details-section";
 import Topbar from "@/components/React/global-components/topbar";
 
 function EstateDetails(props) {
-    console.log("props main");
-    console.log(props);
     return <div>
         <Topbar />
         <Navbar />
         <EstateDetailsSection />
-        <RecomandProperties />
+        {/*<RecomandProperties />*/}
         <Footer />
     </div>;
 }
