@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Professional from "@/components/Professionals/professional";
 import Link from "next/link";
+import { apiURL } from "@/constants";
+
+
 
 function Professionals(props) {
     const [professionalsData, setProfessionalsData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/brokers/best")
+        fetch(apiURL + "/brokers/best")
             .then(res => res.json())
             .then(data => {
                 setProfessionalsData(data);
