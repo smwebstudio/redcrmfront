@@ -83,17 +83,23 @@ const images = [
 function EstateDetailsSection() {
 
     const router = useRouter();
-    const { id } = router.query;
     const [estateData, setEstateData] = useState([]);
+
     useEffect(() => {
-        fetch("http://redoc/api/estates/" + id)
-            .then(res => res.json())
-            .then(data => {
-                setEstateData(data);
-            }).catch((e) => {
-            console.log(e);
-        });
-    }, []);
+        if(router.isReady){
+            const { id } = router.query;
+            if (!id) return null;
+            fetch("http://redoc/api/estates/" + id)
+                .then(res => res.json())
+                .then(data => {
+                    setEstateData(data);
+                }).catch((e) => {
+                console.log(e);
+            });
+        }
+
+
+    }, [router.isReady]);
 
     let publicUrl = process.env.PUBLIC_URL + "/";
     let publicCDN = "https://proinfo.am/uploadsWithWaterMark/";

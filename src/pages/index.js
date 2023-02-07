@@ -11,13 +11,9 @@ import EstateEstimate from "@/components/Home/estate-estimate";
 import Professionals from "@/components/Home/professionals";
 import ScrollToTop from "@/components/Global/scroll-to-top";
 
-import nextConfig from "../../next.config";
 
 export default function Home() {
-    console.error('process.env');
-    console.error(nextConfig.env.NEXT_PUBLIC_BACKEND_URL);
 
-    console.error('publicRuntimeConfig');
     return (
         <>
             <Head>

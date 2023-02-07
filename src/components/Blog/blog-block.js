@@ -3,13 +3,15 @@ import Link from "next/link";
 import Professional from "@/components/Professionals/professional";
 import BlogItem from "@/components/Blog/blog-item";
 import BlogSmallItem from "@/components/Blog/blog-small-item";
+import BlogMidItem from "@/components/Blog/blog-mid-item";
 
-export function BlogList(props, type) {
+export function BlogBlock(props) {
 
     const title = props.title;
+    const articleType = props.type;
     const [blogData, setBlogData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/blog/"+props.type)
+        fetch("http://redoc/api/blog/"+articleType)
             .then(res => res.json())
             .then(data => {
                 setBlogData(data);
@@ -26,11 +28,12 @@ export function BlogList(props, type) {
                     <div className="row">
                         <div className={"col-8"}>
                             <h3 className={"font-bold"}>{title}</h3>
+                            <div className={"row"}>
                             {blogData?.data &&
 
-                                blogData.data?.map((item, i) =>
-                                <div key={i} className={""}>
-                                <BlogItem BlogItem={item} />
+                                blogData.data?.filter((item, i) => i < 2).map((item, i) =>
+                                <div key={i} className={"col-6"}>
+                                <BlogMidItem BlogItem={item} />
                                 </div>
                                 )
                             }
@@ -38,20 +41,16 @@ export function BlogList(props, type) {
                             {!blogData?.data?.length &&
                                 <h3 className={"mt-2 pb-5 mb-5"}>Ոչինի չի գտնվել</h3>
                             }
+                            </div>
 
 
                         </div>
                         <div className={"col-4"}>
-                            <div className={"d-flex flex-row justify-content-between"}>
-                                <h3 className={"font-bold"}>Առաջարկվող</h3>
-                                <Link href={"/blog/news/"}><a className={"text-main hover-underline"}>Տեսնել բոլորը</a></Link>
+                            <div className={"d-flex flex-row justify-content-end"}>
+                                <Link href={"/blog/"+articleType}><a className={"text-main hover-underline mb-2 pb-1 text-underline"}>Տեսնել բոլորը</a></Link>
                             </div>
-
-
-
                             {blogData?.data &&
-
-                                blogData.data?.filter((item, i) => i < 6).map((item, i) =>
+                                blogData.data?.filter((item, i) => i < 3).map((item, i) =>
                                     <div key={i} className={""}>
                                         <BlogSmallItem BlogSmallItem={item} />
                                     </div>
@@ -81,4 +80,4 @@ export async function getStaticProps({}) {
     return { props: { items } };
 }
 
-export default BlogList;
+export default BlogBlock;

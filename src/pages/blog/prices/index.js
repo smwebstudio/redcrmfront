@@ -11,7 +11,7 @@ const News = () => {
         <Topbar />
         <Navbar />
         <BlogNavbar />
-        <BlogList type="prices"/>
+        <BlogList type="prices" title="Գներ"/>
         <Footer />
     </div>
 }

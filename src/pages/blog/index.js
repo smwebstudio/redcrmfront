@@ -4,6 +4,7 @@ import React from "react";
 import Topbar from "@/components/React/global-components/topbar";
 import BlogNavbar from "@/components/Blog/blog-navbar";
 import BlogBanner from "@/components/Blog/blog-banner";
+import BlogBlock from "@/components/Blog/blog-block";
 
 const Blog = () => {
     return <div>
@@ -11,6 +12,10 @@ const Blog = () => {
         <Navbar />
         <BlogNavbar />
         <BlogBanner />
+        <BlogBlock type="news" title="Նորություններ"/>
+        <BlogBlock type="articles" title="Հոդվածներ"/>
+        <BlogBlock type="prices" title="Գներ"/>
+        <BlogBlock type="statistics" title="Հաշվետվություններ"/>
         <Footer />
     </div>
 }

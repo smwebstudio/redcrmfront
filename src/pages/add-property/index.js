@@ -1,21 +1,16 @@
 import React from 'react';
 import Navbar from '@/components/React/global-components/navbar';
 import Footer from '@/components/React/global-components/footer';
-import AboutBanner from "@/components/About/about-banner";
 import Topbar from "@/components/React/global-components/topbar";
-import AboutContent from "@/components/About/about-content";
+import AddPropertyForm from "@/components/Forms/add-property";
 
-const About = () => {
+const AddProperty = () => {
     return <div>
         <Topbar />
         <Navbar />
-        <AboutBanner />
-        <AboutContent />
-        {/*<AboutUs />*/}
-        {/*<Team />*/}
+        <AddPropertyForm />
         <Footer />
     </div>
 }
 
-export default About
-
+export default AddProperty
