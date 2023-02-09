@@ -1,5 +1,5 @@
 // import 'tailwindcss/tailwind.css'
-import 'antd/dist/antd.css'
+import '/src/styles/red_theme.css'
 
 const App = ({ Component, pageProps }) => <Component {...pageProps} />
 
