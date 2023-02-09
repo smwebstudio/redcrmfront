@@ -5353,3 +5353,37 @@ h1.blog_title {
     display: flex;
     flex-direction: column;
 }
+
+.add_property_wrapper .ant-form label {
+    flex-basis: 180px;
+    flex-grow: 0;
+    margin: 5px 0;
+    font-size: 11px;
+}
+
+.add_property_wrapper .ant-checkbox-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.add_property_wrapper .ant-upload-list.ant-upload-list-picture-card {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.add_property_wrapper .ant-upload-list-picture-card-container {
+    flex-basis: 20%;
+}
+
+.add_property_wrapper .ant-upload.ant-upload-select {
+    display: inline-block;
+    flex-basis: 100%;
+}
+
+
+.add_property_wrapper .ant-upload.ant-upload-select-picture-card {
+    background-color: transparent;
+    border: 0px dashed #d9d9d9;
+}

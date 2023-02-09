@@ -276,7 +276,7 @@ const AddProperyForm = () => {
                                             }
                                         ]}
                                     >
-                                        <Radio.Group defaultValue="a" buttonStyle="solid" size="large"
+                                        <Radio.Group  buttonStyle="solid" size="large"
                                                      style={{ width: "100%" }}>
                                             <Radio.Button value="aa" style={{
                                                 width: "33%",
@@ -346,8 +346,9 @@ const AddProperyForm = () => {
                                     <h4 className={"mb-3 font-bold font-size-13"}>Այլ</h4>
                                 </Col>
                                 <Col span={24}>
-                                    <Checkbox.Group options={estateOptions} defaultValue={['Apple']}  />
+                                    <Checkbox.Group options={estateOptions}  />
                                 </Col>
+                                <Divider />
                             </Row>
 
                             <Row>
