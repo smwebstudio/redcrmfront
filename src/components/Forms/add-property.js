@@ -122,6 +122,7 @@ const AddProperyForm = () => {
     }));
     return (
         <div className={"container mt-5 mb-5"}>
+
             <Row>
                 <h3 className={"text-dark font-bold"}>Նոր հայտ</h3>
             </Row>
@@ -225,6 +226,7 @@ const AddProperyForm = () => {
                                     <Form.Item
                                         name="estate_type"
                                         label=""
+                                        wrapperCol={{ sm: 24 }}
                                         rules={[
                                             {
                                                 required: true,
@@ -234,21 +236,10 @@ const AddProperyForm = () => {
                                         ]}
                                     >
                                         <Radio.Group defaultValue="a"  buttonStyle='solid' size="large" style={{ width: '100%' }}>
-                                            <Row>
-                                                <Col span={6} className={"test"}>
-                                                    <Radio.Button value="a">Բնակարան</Radio.Button>
-                                                </Col>
-                                                <Col span={6}>
-                                                    <Radio.Button value="b">Առանձնատուն</Radio.Button>
-                                                </Col>
-                                                <Col span={6}>
-                                                    <Radio.Button value="c">Կոմերցիոն</Radio.Button>
-                                                </Col>
-                                                <Col span={6}>
-                                                    <Radio.Button value="d">Հող</Radio.Button>
-                                                </Col>
-                                            </Row>
-
+                                            <Radio.Button value="a" style={{ width: '25%', textAlign: 'center' }}>Բնակարան</Radio.Button>
+                                            <Radio.Button value="b" style={{ width: '25%', textAlign: 'center' }}>Առանձնատուն</Radio.Button>
+                                            <Radio.Button value="c" style={{ width: '25%', textAlign: 'center' }}>Կոմերցիոն</Radio.Button>
+                                            <Radio.Button value="d" style={{ width: '25%', textAlign: 'center' }}>Հող</Radio.Button>
                                         </Radio.Group>
                                     </Form.Item>
 
@@ -257,6 +248,63 @@ const AddProperyForm = () => {
                                 <Divider />
                             </Row>
 
+                            <Row>
+                                <Col span={24}>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>Կոնտրակտի տեսակ</h4>
+
+                                </Col>
+                                <Col span={24}>
+
+                                    <Form.Item
+                                        name="contract_type"
+                                        label=""
+                                        wrapperCol={{ sm: 24 }}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: "Please input!",
+                                                whitespace: true
+                                            }
+                                        ]}
+                                    >
+                                        <Radio.Group defaultValue="a"  buttonStyle='solid' size="large" style={{ width: '100%' }}>
+                                            <Radio.Button value="aa" style={{ width: '33%', textAlign: 'center' }}>Վաճառք</Radio.Button>
+                                            <Radio.Button value="bb" style={{ width: '33%', textAlign: 'center' }}>Վարձակալություն</Radio.Button>
+                                            <Radio.Button value="cc" style={{ width: '33%', textAlign: 'center' }}>Օրավարձ</Radio.Button>
+                                        </Radio.Group>
+                                    </Form.Item>
+
+                                </Col>
+
+                                <Divider />
+                            </Row>
+
+
+                            <Row>
+                                <Col span={24}>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>Հիմնական</h4>
+
+                                </Col>
+                                <Col span={24}>
+
+                                    <Form.Item
+                                        name="residence"
+                                        label="Մարզ"
+                                        rules={[
+                                            {
+                                                type: "array",
+                                                required: true,
+                                                message: "Please select your habitual residence!"
+                                            }
+                                        ]}
+                                    >
+                                        <Cascader options={residences} />
+                                    </Form.Item>
+
+                                </Col>
+
+                                <Divider />
+                            </Row>
 
                         </Form>
                     </div>

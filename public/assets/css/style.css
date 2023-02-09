@@ -5343,15 +5343,23 @@ h1.blog_title {
     content: '*';
 }
 
-
-.ant-radio-checked .ant-radio-inner{
-    border-color: red !important ;
+.ant-radio-button-wrapper {
+    padding: 10px 30px !important;
+    height: auto !important;
 }
 
-.ant-radio-checked .ant-radio-inner:after{
-    background-color: red;
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    background: var(--main-color-one) !important;
+    border-color: var(--main-color-one) !important;
 }
 
-.ant-radio:hover .ant-radio-inner {
-    border-color: red ;
+
+.ant-radio-button-wrapper:hover {
+    color: var(--main-color-one) !important;
+}
+
+
+.ant-radio-button-wrapper.ant-radio-button-wrapper-checked:hover     {
+    color: #fff !important;
 }
