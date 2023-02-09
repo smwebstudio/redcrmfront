@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/styles/redgroup.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/svg/mapIcon.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estates-map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estates-map.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Less File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -127,7 +124,7 @@
       <workItem from="1675583536878" duration="11802000" />
       <workItem from="1675700390706" duration="3187000" />
       <workItem from="1675762467474" duration="16378000" />
-      <workItem from="1675933046537" duration="1707000" />
+      <workItem from="1675933046537" duration="20147000" />
     </task>
     <servers />
   </component>

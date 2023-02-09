@@ -143,31 +143,70 @@ export function EstatesMap(props) {
 
                                 let estates = response.data;
 
+                                const iconContentLayout = ymaps.templateLayoutFactory.createClass(
+                                    '<div style="display:block; color: #FFFFFF; font-weight: bold; text-align: center; font-family: \'Montserrat arm\'; font-style: normal;  font-size: 12px; width: 100%;">$[properties.iconContent]</div>'
+                                );
+
+
+                                let points = [];
+                                let geoObjects = [];
+
                                 Object.values(estates).forEach(item => {
                                     console.log("item");
+                                    console.log(item);
                                     console.log(item.aaaaaaaaaaaaa);
 
                                     let position = [item.aaaaaaaaaaaaa[1], item.aaaaaaaaaaaaa[0]];
                                     let iconContent = '<a class="item-in-baloon" href="#" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street.name_arm+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p></a>';
-                                    let estateBaloon = new ymaps.GeoObject({
+                                    let estateBaloon = new ymaps.Placemark(
+                                         position, {
                                         // Описание геометрии.
-                                        geometry: {
-                                            type: "Point",
-                                            coordinates: position
-                                        },
-                                        // Свойства.
-                                        properties: {
-                                            // Контент метки.
-                                            iconContent: '',
-                                            balloonContentBody: iconContent,
-                                        }
-                                    }, {
-                                        preset: 'islands#redHomeCircleIcon',
-                                    });
+                                        // geometry: {
+                                        //     type: "Rectangle",
+                                        //     coordinates: position
+                                        // },
 
-                                    map.geoObjects.add(estateBaloon);
+                                        // Свойства.
+
+                                            // Контент метки.
+                                            iconContent: item.price+'֏',
+                                            balloonContentBody: iconContent,
+
+                                    }, {
+                                            iconLayout: 'default#imageWithContent',
+                                            iconContent: item.price,
+                                            iconImageHref: '/assets/img/svg/mapIcon.svg',
+                                            iconImageSize: [120, 40],
+                                            iconImageOffset: [-60, -20],
+                                            iconContentOffset: [30, 10],
+                                            iconContentLayout: iconContentLayout
+                                        });
+
+                                    points.push(position);
+                                    geoObjects.push(estateBaloon);
+
+                                    // map.geoObjects.add(estateBaloon);
+
+                                    // var clusterer = new ymaps.Clusterer({ clusterDisableClickZoom: true });
+                                    //
+                                    // clusterer.add(estateBaloon);
+                                    //
+                                    // clusterer.options.set({
+                                    //     gridSize: 80,
+                                    //     clusterDisableClickZoom: false
+                                    // });
+                                    //
+                                    // map.geoObjects.add(clusterer);
+
+
                                 });
 
+                                let clusterer = new ymaps.Clusterer({
+                                    preset: 'islands#invertedRedClusterIcons',
+                                });
+
+                                clusterer.add(geoObjects);
+                                map.geoObjects.add(clusterer);
 
                                 // $(".announcement.index .ajax-loader-block").hide();
                                 // let announcements = response.data;
