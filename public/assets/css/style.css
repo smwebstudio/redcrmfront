@@ -5347,3 +5347,9 @@ h1.blog_title {
     padding: 10px 30px !important;
     height: auto !important;
 }
+
+
+.ant-checkbox-group {
+    display: flex;
+    flex-direction: column;
+}

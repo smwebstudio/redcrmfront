@@ -12,43 +12,17 @@ import {
     Select,
     Divider
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import UploadBlock from "@/components/Uploader/uploadBlock";
 
 const { Option } = Select;
-const residences = [
-    {
-        value: "zhejiang",
-        label: "Zhejiang",
-        children: [
-            {
-                value: "hangzhou",
-                label: "Hangzhou",
-                children: [
-                    {
-                        value: "xihu",
-                        label: "West Lake"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        value: "jiangsu",
-        label: "Jiangsu",
-        children: [
-            {
-                value: "nanjing",
-                label: "Nanjing",
-                children: [
-                    {
-                        value: "zhonghuamen",
-                        label: "Zhong Hua Men"
-                    }
-                ]
-            }
-        ]
-    }
-];
+
+
+const filter = (inputValue, path) =>
+    path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+
+
+const residences = [];
 const formItemLayout = {
     labelCol: {
         xs: {
@@ -67,21 +41,48 @@ const formItemLayout = {
         }
     }
 };
-const tailFormItemLayout = {
-    wrapperCol: {
-        xs: {
-            span: 24,
-            offset: 0
-        },
-        sm: {
-            span: 16,
-            offset: 8
-        }
-    }
-};
+
 
 const AddProperyForm = () => {
+
     const [form] = Form.useForm();
+
+    const [location, setLocation] = useState([residences]);
+    const [estateOptions, setEstateOptions] = useState([]);
+    useEffect(() => {
+        fetch("http://redoc/api/address_data")
+            .then(res => res.json())
+            .then(response => {
+                response.data.forEach((value) => {
+                    residences.push({
+                        value: value.id,
+                        label: value.name,
+                        children: value.cities
+                    });
+                });
+                setLocation([...residences]);
+            }).catch((e) => {
+            console.log(e);
+        });
+
+        fetch("http://redoc/api/estate_options")
+            .then(res => res.json())
+            .then(response => {
+                let estateOptionsData = [];
+                response.data.forEach((value) => {
+                    estateOptionsData.push({
+                        value: value.id,
+                        label: value.label
+                    });
+                });
+
+                setEstateOptions([...estateOptionsData]);
+            }).catch((e) => {
+            console.log(e);
+        });
+    }, []);
+
+
     const onFinish = (values) => {
         console.log("Received values of form: ", values);
     };
@@ -139,12 +140,7 @@ const AddProperyForm = () => {
                             name="register"
                             layout="vertical"
                             onFinish={onFinish}
-                            initialValues={{
-                                residence: ["zhejiang", "hangzhou", "xihu"],
-                                prefix: "865"
-                            }}
-                            style={{
-                            }}
+                            style={{}}
                             scrollToFirstError
                         >
 
@@ -235,11 +231,24 @@ const AddProperyForm = () => {
                                             }
                                         ]}
                                     >
-                                        <Radio.Group defaultValue="a"  buttonStyle='solid' size="large" style={{ width: '100%' }}>
-                                            <Radio.Button value="a" style={{ width: '25%', textAlign: 'center' }}>Բնակարան</Radio.Button>
-                                            <Radio.Button value="b" style={{ width: '25%', textAlign: 'center' }}>Առանձնատուն</Radio.Button>
-                                            <Radio.Button value="c" style={{ width: '25%', textAlign: 'center' }}>Կոմերցիոն</Radio.Button>
-                                            <Radio.Button value="d" style={{ width: '25%', textAlign: 'center' }}>Հող</Radio.Button>
+                                        <Radio.Group  buttonStyle="solid" size="large"
+                                                     style={{ width: "100%" }}>
+                                            <Radio.Button value="a" style={{
+                                                width: "25%",
+                                                textAlign: "center"
+                                            }}>Բնակարան</Radio.Button>
+                                            <Radio.Button value="b" style={{
+                                                width: "25%",
+                                                textAlign: "center"
+                                            }}>Առանձնատուն</Radio.Button>
+                                            <Radio.Button value="c" style={{
+                                                width: "25%",
+                                                textAlign: "center"
+                                            }}>Կոմերցիոն</Radio.Button>
+                                            <Radio.Button value="d" style={{
+                                                width: "25%",
+                                                textAlign: "center"
+                                            }}>Հող</Radio.Button>
                                         </Radio.Group>
                                     </Form.Item>
 
@@ -267,10 +276,20 @@ const AddProperyForm = () => {
                                             }
                                         ]}
                                     >
-                                        <Radio.Group defaultValue="a"  buttonStyle='solid' size="large" style={{ width: '100%' }}>
-                                            <Radio.Button value="aa" style={{ width: '33%', textAlign: 'center' }}>Վաճառք</Radio.Button>
-                                            <Radio.Button value="bb" style={{ width: '33%', textAlign: 'center' }}>Վարձակալություն</Radio.Button>
-                                            <Radio.Button value="cc" style={{ width: '33%', textAlign: 'center' }}>Օրավարձ</Radio.Button>
+                                        <Radio.Group defaultValue="a" buttonStyle="solid" size="large"
+                                                     style={{ width: "100%" }}>
+                                            <Radio.Button value="aa" style={{
+                                                width: "33%",
+                                                textAlign: "center"
+                                            }}>Վաճառք</Radio.Button>
+                                            <Radio.Button value="bb" style={{
+                                                width: "33%",
+                                                textAlign: "center"
+                                            }}>Վարձակալություն</Radio.Button>
+                                            <Radio.Button value="cc" style={{
+                                                width: "33%",
+                                                textAlign: "center"
+                                            }}>Օրավարձ</Radio.Button>
                                         </Radio.Group>
                                     </Form.Item>
 
@@ -289,21 +308,58 @@ const AddProperyForm = () => {
 
                                     <Form.Item
                                         name="residence"
-                                        label="Մարզ"
+                                        label="Մարզ / քաղաք / փողոց"
+                                        wrapperCol={{ sm: 24 }}
                                         rules={[
                                             {
                                                 type: "array",
                                                 required: true,
-                                                message: "Please select your habitual residence!"
+                                                message: "Please select!"
                                             }
                                         ]}
                                     >
-                                        <Cascader options={residences} />
-                                    </Form.Item>
 
+
+                                        <Cascader
+                                            options={location}
+                                            showSearch={{ filter }}
+                                        />
+                                    </Form.Item>
                                 </Col>
 
                                 <Divider />
+                            </Row>
+
+                            <Row>
+                                <Col span={24}>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>Նկարներ</h4>
+
+                                </Col>
+                                <Col span={24}>
+                                    <UploadBlock />
+                                </Col>
+                                <Divider />
+                            </Row>
+
+                            <Row>
+                                <Col span={24}>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>Այլ</h4>
+                                </Col>
+                                <Col span={24}>
+                                    <Checkbox.Group options={estateOptions} defaultValue={['Apple']}  />
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col span={4} offset={20}>
+                                    <Form.Item
+                                        wrapperCol={{ sm: 24 }}
+                                    >
+                                        <Button type="primary" htmlType="submit">
+                                            Ուղարկել
+                                        </Button>
+                                    </Form.Item>
+                                </Col>
                             </Row>
 
                         </Form>
@@ -313,7 +369,6 @@ const AddProperyForm = () => {
 
                 </Col>
             </Row>
-
 
 
         </div>
