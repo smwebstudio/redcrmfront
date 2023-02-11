@@ -1216,7 +1216,14 @@ ul {
     justify-content: space-between;
     position: relative;
     padding-left: 16px;
+    flex-basis: 50%;
+    flex-grow: 0;
 }
+
+.property-details-area .rld-list-style li:nth-child(2n+1) {
+    padding-right:30px !important;
+}
+
 .property-details-area .rld-list-style li::before {
     content: '';
     width: 6px;
@@ -2452,13 +2459,15 @@ ul {
     ## Banner
 ----------------------------------------------*/
 .banner-inner-wrap {
-    height: 550px;
+    height: 380px;
+    max-height: 380px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    justify-content: center;
 }
 
 .banner-inner-area {
@@ -2513,6 +2522,7 @@ ul {
     background-repeat: no-repeat;
     background-position: center;
     margin-bottom: 100px;
+    height: 550px;
 }
 
 .banner-area .banner-search-wrap {
@@ -2520,8 +2530,7 @@ ul {
 }
 
 .main-search-tabs {
-    position: relative;
-    top: 100px
+
 }
 
 .rld-banner-tab {
@@ -5386,4 +5395,15 @@ h1.blog_title {
 .add_property_wrapper .ant-upload.ant-upload-select-picture-card {
     background-color: transparent;
     border: 0px dashed #d9d9d9;
+}
+
+
+/*Estate images slider*/
+
+.image-gallery-content.left .image-gallery-slide .image-gallery-image, .image-gallery-content.right .image-gallery-slide .image-gallery-image {
+    max-height: 510px !important;
+}
+
+.image-gallery-content.fullscreen .image-gallery-slide .image-gallery-image {
+    max-height: 100vh !important;
 }

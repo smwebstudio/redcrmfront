@@ -138,8 +138,6 @@ export function EstatesMap(props) {
                                 "locale": locale
                             },
                             success: function(response) {
-                                console.log(6565);
-                                console.log(response.data);
 
                                 let estates = response.data;
 
@@ -148,25 +146,16 @@ export function EstatesMap(props) {
                                 );
 
 
-                                let points = [];
+
                                 let geoObjects = [];
 
                                 Object.values(estates).forEach(item => {
-                                    console.log("item");
-                                    console.log(item);
-                                    console.log(item.aaaaaaaaaaaaa);
 
-                                    let position = [item.aaaaaaaaaaaaa[1], item.aaaaaaaaaaaaa[0]];
-                                    let iconContent = '<a class="item-in-baloon" href="#" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street.name_arm+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p></a>';
+
+                                    let position = [item.native_coords[1], item.native_coords[0]];
+                                    let iconContent = '<a class="item-in-baloon" href="#" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name_arm+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p></a>';
                                     let estateBaloon = new ymaps.Placemark(
                                          position, {
-                                        // Описание геометрии.
-                                        // geometry: {
-                                        //     type: "Rectangle",
-                                        //     coordinates: position
-                                        // },
-
-                                        // Свойства.
 
                                             // Контент метки.
                                             iconContent: item.price+'֏',
@@ -182,22 +171,7 @@ export function EstatesMap(props) {
                                             iconContentLayout: iconContentLayout
                                         });
 
-                                    points.push(position);
                                     geoObjects.push(estateBaloon);
-
-                                    // map.geoObjects.add(estateBaloon);
-
-                                    // var clusterer = new ymaps.Clusterer({ clusterDisableClickZoom: true });
-                                    //
-                                    // clusterer.add(estateBaloon);
-                                    //
-                                    // clusterer.options.set({
-                                    //     gridSize: 80,
-                                    //     clusterDisableClickZoom: false
-                                    // });
-                                    //
-                                    // map.geoObjects.add(clusterer);
-
 
                                 });
 
@@ -207,6 +181,8 @@ export function EstatesMap(props) {
 
                                 clusterer.add(geoObjects);
                                 map.geoObjects.add(clusterer);
+
+                                console.error('cluster added');
 
                                 // $(".announcement.index .ajax-loader-block").hide();
                                 // let announcements = response.data;
