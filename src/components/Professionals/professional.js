@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Professional(props) {
     let publicUrl = process.env.PUBLIC_URL + "/";
@@ -8,7 +9,12 @@ function Professional(props) {
 
         <div className="professional-card d-flex flex-row pt-4 pb-4">
             <div className="professional-image d-flex p-2">
-                <img src={professional.profile_picture} />
+                <Link href={"professionals/" + professional.id}>
+                    <a>
+
+                        <img src={professional.profile_picture} />
+                    </a>
+                </Link>
             </div>
             <div className="professional-info p-2 d-flex flex-column justify-content-center">
                 <p className="font-size-13 mb-1 text-gray-800 text-dark">{professional.full_name}</p>

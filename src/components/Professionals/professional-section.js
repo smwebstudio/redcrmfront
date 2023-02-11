@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import Link from "next/link";
 import Professional from "@/components/Professionals/professional";
 import { apiURL } from "@/constants";
+import { Col } from "antd";
 
 export function ProfessionalSection(props, type) {
 
@@ -24,9 +25,9 @@ export function ProfessionalSection(props, type) {
                     <div className="property-filter-area_changed row custom-gutter">
 
                         {profData.data?.map((item, i) =>
-                            <div key={i} className={"col-6 " + item.contract_type_id}>
+                            <Col sm={12} xs={24} key={i} className={item.contract_type_id}>
                                 <Professional professional={item} />
-                            </div>
+                            </Col>
                         )
                         }
                     </div>

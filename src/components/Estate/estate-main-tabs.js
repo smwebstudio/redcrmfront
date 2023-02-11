@@ -1,9 +1,6 @@
 import { Tabs } from "antd";
 import React, { Component, useState } from "react";
-import EstatesSection from "@/components/Estate/estates";
-import { Typography } from "antd";
-import withTranslation from "next-translate/withTranslation";
-import EstateItems from "@/components/Estate/EstateItems";
+
 import EstateCarousel from "@/components/Estate/estate-carousel";
 import Link from "next/link";
 

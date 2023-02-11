@@ -5338,6 +5338,14 @@ h1.blog_title {
 
 /*Antd overrrides*/
 
+.ant-tabs-tab-btn {
+    padding-bottom: 7px !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    border-bottom: 5px solid var(--main-color-one);
+}
+
 .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
     display: none !important;
 }
@@ -5406,4 +5414,38 @@ h1.blog_title {
 
 .image-gallery-content.fullscreen .image-gallery-slide .image-gallery-image {
     max-height: 100vh !important;
+}
+
+
+/*Professional details*/
+
+.professionalBanner {
+    height:250px;
+    width:100%;
+    background-image: url("../../assets/img/banner/professionalBanner.png");
+}
+
+.professionalDetails {
+
+    margin-top: -80px;
+}
+
+.professionalDetails  img.avatar{
+    border-radius: 50%; width:150px; height:150px
+}
+
+
+.bannerOverlay {
+    width:100%;
+    height:100%;
+    background: rgba(40, 40, 40, 0.6);
+}
+
+
+.large-estate img.estate-image {
+    height: 150px;
+    max-height: 150px;
+    min-height: 150px;
+    max-width: 100%;
+    object-fit: cover;
 }
