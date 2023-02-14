@@ -1,58 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Col, Row, Typography, Image, Tabs } from "antd";
+import { Col, Row, Typography, Image, Tabs, Rate, Divider } from "antd";
 import ContactSimpleForm from "@/components/Forms/contact-simple-form";
 import EstatesSection from "@/components/Estate/estates";
 import EstateList from "@/components/Estate/estate-list";
 import EstateProfessionalList from "@/components/Estate/estate-professional-list";
+import ProfessionalInfo from "@/components/Professionals/professional-info";
 
 const { Text } = Typography;
 
 function ProfessionalDetails(props) {
-    const router = useRouter();
-    console.error(props);
-    const [professionalData, setProfessionalData] = useState([]);
-    useEffect(() => {
-        if (router.isReady) {
-            const { id } = router.query;
-            if (!id) return null;
-            fetch("http://redoc/api/professionals/" + id)
-                .then(res => res.json())
-                .then(data => {
-                    setProfessionalData(data);
-                }).catch((e) => {
-                console.log(e);
-            });
-        }
 
+    console.error('props');
+    console.error(props.professionalItem.data);
 
-    }, [router.isReady]);
-
-
+    const professional = props.professionalItem.data;
     let publicUrl = process.env.PUBLIC_URL + "/";
-
-    let professional = professionalData.data;
-
+    let professions = professional.professions;
+    let estatesLabel = 'Հայտարարություններ ('+professional.estates_count+')';
     return (
 
         <Row className={"container mt-4"}>
             <Col sm={6}>
-                <div className={"professionalDetails bg-white pt-4 pb-5 d-flex flex-column justify-center align-items-center mb-5"}>
-                    <img className={"avatar"}   src={professional?.profile_picture}  />
-                    <Text strong className="mt-2 mb-3">{professional?.full_name}</Text>
-                    <Text className="mb-1">Անշարժ գույքի գործակալ</Text>
+                <div className={"professionalDetails bg-white pt-4 d-flex flex-column justify-center align-items-center mb-5"}>
+                    <img className={"avatar"}   src={professional.profile_picture}  />
+                    <Text strong className="mt-2 mb-2">{professional.full_name}</Text>
+                    <Text className="mb-2 text-center">
+                        {professions.map((profession, index, row) => (
+                            (index === row.length - 1) ?
+                                <span key={`${index}`}>{profession.name_arm}</span> :
+                                <span key={`${index}`}>{profession.name_arm}, </span>
+                        ))}
+                    </Text>
+                    <div className={"mb-3"}>
+                        <Rate defaultValue={professional.rating} />
+                    </div>
                     <div>
-                        <Text className="d-flex mb-1 justify-content-start text-dark">
+                        <Text className="d-flex mb-1 justify-content-start text-dark font-size-12">
                             <img className="mr-2" src={publicUrl + "assets/img/svg/envelope.svg"} />
-                            <span className="align-self-center">{professional?.email}</span></Text>
-                        <Text className="d-flex justify-content-start text-dark">
+                            <span className="align-self-center">{professional.email}</span></Text>
+                        <Text className="d-flex justify-content-start text-dark font-size-12">
                             <img className="mr-2" src={publicUrl + "assets/img/svg/mobile.svg"} />
-                            <span className="align-self-center">{professional?.phone_1}</span>
+                            <span className="align-self-center">{professional.phone_1}</span>
                         </Text>
                     </div>
 
                 </div>
 
+                <Divider />
                 <ContactSimpleForm />
             </Col>
             <Col sm={18} className={"pl-5 pt-2"}>
@@ -60,14 +55,14 @@ function ProfessionalDetails(props) {
                     defaultActiveKey="1"
                     items={[
                         {
-                            label: `Բոլորը`,
+                            label: 'Մասնագետի մասին ինֆորմացիա',
                             key: "1",
-                            children: <EstateList  type="all" />
+                            children: <ProfessionalInfo  professional={professional} />
                         },
                         {
-                            label: `Հայտարարություններ`,
+                            label: estatesLabel,
                             key: "2",
-                            children: <EstateProfessionalList  id={professional?.user?.id} />
+                            children: <EstateProfessionalList  id={professional.user?.id} estatesCount={professional.estates_count} />
                         },
 
                     ]}

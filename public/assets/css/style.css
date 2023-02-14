@@ -5338,13 +5338,25 @@ h1.blog_title {
 
 /*Antd overrrides*/
 
+.ant-tabs-tab {
+    padding: 0px 30px !important;
+    border-bottom: 5px solid #eee !important;
+}
+
+.ant-tabs-tab + .ant-tabs-tab {
+    margin: 0 0 0 0px !important;
+    padding-right:30px !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active {
+    border-bottom: 5px solid var(--main-color-one)  !important;
+}
+
 .ant-tabs-tab-btn {
     padding-bottom: 7px !important;
 }
 
-.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    border-bottom: 5px solid var(--main-color-one);
-}
+
 
 .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
     display: none !important;

@@ -12,7 +12,7 @@ import Professionals from "@/components/Home/professionals";
 import ScrollToTop from "@/components/Global/scroll-to-top";
 
 
-export default function Home() {
+export default function Home({filtersData}) {
 
     return (
         <>
@@ -23,7 +23,7 @@ export default function Home() {
             <div>
                 <Topbar />
                 <Navbar />
-                <Banner />
+                <Banner filtersData={filtersData}/>
                 <EstateMainTabs />
                 <EstateEstimate />
                 <Professionals />
@@ -34,4 +34,12 @@ export default function Home() {
             </div>
         </>
     )
+}
+
+export async function getServerSideProps() {
+
+    const data = await fetch("http://redoc/api/filters/");
+    const filtersData = await data.json();
+
+    return { props: { filtersData } };
 }

@@ -4,15 +4,30 @@ import Footer from "@/components/React/global-components/footer";
 import Topbar from "@/components/React/global-components/topbar";
 import ProfessionalDetails from "@/components/Professionals/professional-details";
 import ProfessionalBanner from "@/components/Professionals/professional-banner";
+import { useRouter } from "next/router";
 
-function ProfessionalItem(props) {
+function ProfessionalItem({professionalItem}) {
     return <div>
         <Topbar />
         <Navbar />
         <ProfessionalBanner />
-        <ProfessionalDetails />
+        <ProfessionalDetails professionalItem={professionalItem} />
         <Footer />
     </div>
+}
+
+export async function getServerSideProps(context) {
+
+    const { id } = context.query;
+
+    console.log("id");
+    console.log(id);
+    // Fetch data from external API
+    const data = await fetch("http://redoc/api/professionals/" + id);
+    const professionalItem = await data.json();
+
+    // Pass data to the page via props
+    return { props: { professionalItem } };
 }
 
 export default ProfessionalItem

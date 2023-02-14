@@ -6,7 +6,6 @@ function SelectFilter(props) {
     const [options, setOptions] = useState([]);
     const type = props.type;
     useEffect(() => {
-
         const results = [];
         fetch("http://redoc/api/" + type)
             .then(res => res.json())
@@ -28,6 +27,7 @@ function SelectFilter(props) {
         <Select
             defaultValue="Ընտրել"
             bordered={false}
+            name={"tes"}
             dropdownMatchSelectWidth={300}
             style={{ width: 120 }}
             options={options}

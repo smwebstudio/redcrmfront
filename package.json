@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "generate-theme": "generate-theme ./src/styles/redgroup.less ./src/styles/red_theme.css",
         "dev": "next dev",
         "build": "next build",
         "start": "next start",

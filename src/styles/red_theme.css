@@ -297,7 +297,7 @@ template {
 }
 mark {
   padding: 0.2em;
-  background-color: #feffe6;
+  background-color: #ffe6e6;
 }
 ::selection {
   color: #fff;
@@ -1790,7 +1790,7 @@ html {
   background: #fa8c16;
 }
 .ant-badge-status-yellow {
-  background: #fadb14;
+  background: #D8002C;
 }
 .ant-badge-status-gold {
   background: #faad14;
@@ -1995,8 +1995,8 @@ html {
   background: #fa8c16;
 }
 .ant-ribbon-color-yellow {
-  color: #fadb14;
-  background: #fadb14;
+  color: #D8002C;
+  background: #D8002C;
 }
 .ant-ribbon-color-gold {
   color: #faad14;
@@ -18827,10 +18827,10 @@ textarea.ant-pagination-options-quick-jumper input {
   background-color: #fa8c16;
 }
 .ant-popover-yellow .ant-popover-inner {
-  background-color: #fadb14;
+  background-color: #D8002C;
 }
 .ant-popover-yellow .ant-popover-arrow-content {
-  background-color: #fadb14;
+  background-color: #D8002C;
 }
 .ant-popover-gold .ant-popover-inner {
   background-color: #faad14;
@@ -19433,7 +19433,7 @@ span.ant-radio + * {
   display: inline-block;
   margin: 0;
   padding: 0;
-  color: #fadb14;
+  color: #D8002C;
   font-size: 20px;
   line-height: unset;
   list-style: none;
@@ -19464,7 +19464,7 @@ span.ant-radio + * {
   outline: 0;
 }
 .ant-rate-star > div:focus-visible {
-  outline: 1px dashed #fadb14;
+  outline: 1px dashed #D8002C;
   transform: scale(1.1);
 }
 .ant-rate-star-first,
@@ -23670,14 +23670,14 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
   border-color: #fa8c16;
 }
 .ant-tag-yellow {
-  color: #d4b106;
-  background: #feffe6;
-  border-color: #fffb8f;
+  color: #b3002a;
+  background: #ffe6e6;
+  border-color: #ff7a88;
 }
 .ant-tag-yellow-inverse {
   color: #fff;
-  background: #fadb14;
-  border-color: #fadb14;
+  background: #D8002C;
+  border-color: #D8002C;
 }
 .ant-tag-gold {
   color: #d48806;
@@ -24234,10 +24234,10 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
   background: #fa8c16;
 }
 .ant-tooltip-yellow .ant-tooltip-inner {
-  background-color: #fadb14;
+  background-color: #D8002C;
 }
 .ant-tooltip-yellow .ant-tooltip-arrow-content::before {
-  background: #fadb14;
+  background: #D8002C;
 }
 .ant-tooltip-gold .ant-tooltip-inner {
   background-color: #faad14;
