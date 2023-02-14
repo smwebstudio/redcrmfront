@@ -69,15 +69,4 @@ export function BlogBlock(props) {
 
 
 };
-
-export async function getStaticProps({}) {
-
-    // Fetch data from external API
-    const data = await fetch("http://redoc/api/blog");
-    const items = await data.json();
-
-    // Pass data to the page via props
-    return { props: { items } };
-}
-
 export default BlogBlock;

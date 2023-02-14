@@ -86,15 +86,4 @@ export function EstatesSection(props) {
 
 };
 
-
-export async function getStaticProps({}) {
-
-    // Fetch data from external API
-    const data = await fetch("http://redoc/api/estates");
-    const estates = await data.json();
-
-    // Pass data to the page via props
-    return { props: { estates } };
-}
-
 export default EstatesSection;

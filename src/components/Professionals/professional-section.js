@@ -38,15 +38,4 @@ export function ProfessionalSection(props, type) {
 
 
 };
-
-export async function getStaticProps({}) {
-
-    // Fetch data from external API
-    const data = await fetch(apiURL + "/brokers");
-    const professionals = await data.json();
-
-    // Pass data to the page via props
-    return { props: { professionals } };
-}
-
 export default ProfessionalSection;

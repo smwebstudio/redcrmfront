@@ -43,13 +43,4 @@ export function EstateCarousel(props) {
     );
 };
 
-
-export async function getStaticProps({}) {
-
-    const data = await fetch("http://redoc/api/estates");
-    const estates = await data.json();
-
-    return { props: { estates } };
-}
-
 export default EstateCarousel;

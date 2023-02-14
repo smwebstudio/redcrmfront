@@ -72,20 +72,4 @@ function ProfessionalDetails(props) {
         </Row>
     );
 }
-
-export async function getStaticProps({}) {
-
-    const router = useRouter();
-    const { id } = router.query;
-
-    console.log("id");
-    console.log(id);
-    // Fetch data from external API
-    const data = await fetch("http://redoc/api/professional/" + id);
-    const articles = await data.json();
-
-    // Pass data to the page via props
-    return { props: { articles } };
-}
-
 export default ProfessionalDetails;

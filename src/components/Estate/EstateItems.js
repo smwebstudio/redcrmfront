@@ -88,26 +88,4 @@ export function EstateItems(props) {
 
 };
 
-
-export async function getStaticProps({
-                                         params,
-                                         req,
-                                         res,
-                                         query,
-                                         preview,
-                                         previewData,
-                                         resolvedUrl,
-                                         locale,
-                                         locales,
-                                         defaultLocale
-                                     }) {
-
-    // Fetch data from external API
-    const data = await fetch("http://redoc/api/estates");
-    const estates = await data.json();
-
-    // Pass data to the page via props
-    return { props: { estates } };
-}
-
 export default EstateItems;
