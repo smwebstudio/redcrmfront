@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Estate/estate-search-list.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Filters/main-filter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Professionals/professional-info.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/search/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Filters/main-search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-professional-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-professional-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Filters/select-filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filters/select-filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forms/add-property.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/add-property.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forms/contact-simple-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/contact-simple-form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Professionals/professional-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Professionals/professional-details.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Filters/main-filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filters/main-filter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/React/section-components/banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/section-components/banner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/professionals/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/professionals/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/red_theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/red_theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/redgroup.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/redgroup.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/search/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,30 +46,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "javascript.nodejs.core.library.configured.version": "16.18.0",
-    "javascript.nodejs.core.library.typings.version": "16.18.0",
-    "last_opened_file_path": "/var/www/html/redfront/src/components/Blog",
-    "list.type.of.created.stylesheet": "Less",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/var/www/html/breeze-next/node_modules/prettier",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "settings.sync",
-    "ts.external.directory.path": "/home/suren/.local/share/JetBrains/Toolbox/apps/WebStorm/ch-0/223.8617.44/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.18.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.18.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/var/www/html/redfront/src/components/Blog&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;Less&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/var/www/html/breeze-next/node_modules/prettier&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/suren/.local/share/JetBrains/Toolbox/apps/WebStorm/ch-0/223.8617.44/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/Blog" />
@@ -146,6 +134,7 @@
       <workItem from="1676270730320" duration="198000" />
       <workItem from="1676270937222" duration="32000" />
       <workItem from="1676270977984" duration="30099000" />
+      <workItem from="1676358369629" duration="3657000" />
     </task>
     <servers />
   </component>

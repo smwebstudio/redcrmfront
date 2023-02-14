@@ -37,6 +37,7 @@ export async function getServerSideProps(context) {
     const searchData = await data.json();
     const searchDataURL = "http://redoc/api/estates/filter/estates?" + queryURL;
 
+    console.error(searchDataURL);
     return { props: { searchData, searchDataURL } };
 }
 

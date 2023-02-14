@@ -5,6 +5,7 @@ import withTranslation from "next-translate/withTranslation";
 import SelectFilter from "@/components/Filters/select-filter";
 import { Button, Cascader, Form, Input } from "antd";
 import MainFilter from "@/components/Filters/main-filter";
+import MainSearch from "@/components/Filters/main-search";
 
 function Banner(props) {
 
@@ -58,105 +59,17 @@ function Banner(props) {
                         </div>
                         <div className="tab-pane fade" id="tabs_2">
                             <div className="pt-4 pl-3 bg-white">
-                                <form className="bg-white d-flex  text-gray-50 justify-content-around">
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Տեսակ</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Քաղաք</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Համայնք</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Գին</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Արժույթ</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Սենյակ</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item">
-                                        <Button
-                                            className="btn  bg-white hover-primary border-0 h-100">
-                                            Լրացուցիչ
-                                        </Button>
-                                    </div>
-                                    <div className="field-item pr-2 pl-2 ml-3">
-                                        <Button
-                                            className="btn btn-main border-0 h-100 pr-5 pl-5">
-                                            Փնտրել
-                                        </Button>
-                                    </div>
-                                </form>
+                                <MainFilter filtersData={filtersData} />
                             </div>
                         </div>
                         <div className="tab-pane fade" id="tabs_3">
                             <div className="pt-4 pl-3 bg-white">
-                                <form className="bg-white d-flex  text-gray-50 justify-content-around">
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Տեսակ</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Քաղաք</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Համայնք</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Գին</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Արժույթ</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item d-flex flex-column">
-                                        <small className="pl-2">Սենյակ</small>
-                                        <SelectFilter type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item">
-                                        <Button
-                                            className="btn  bg-white hover-primary border-0 h-100">
-                                            Լրացուցիչ
-                                        </Button>
-                                    </div>
-                                    <div className="field-item pr-2 pl-2 ml-3">
-                                        <Button
-                                            className="btn btn-main border-0 h-100 pr-5 pl-5">
-                                            Փնտրել
-                                        </Button>
-                                    </div>
-                                </form>
+                                <MainFilter filtersData={filtersData} />
                             </div>
                         </div>
                         <div className="tab-pane fade" id="tabs_4">
                             <div className="pt-4 pl-3 bg-white">
-                                <form className="bg-white d-flex  text-gray-50 justify-content-around pr-3">
-                                    <div className="field-item d-flex flex-column flex-grow-4">
-                                        <Input
-                                            size={"large"}
-                                            bordered={false}
-                                            placeholder={"Հասցե, կոդ"}
-                                            type="evaluation_locations" />
-                                    </div>
-                                    <div className="field-item pr-2 pl-2 ml-3">
-                                        <Button
-                                            className="btn btn-main border-0 h-100 pr-5 pl-5 pt-3 pb-3">
-                                            Փնտրել
-                                        </Button>
-                                    </div>
-                                </form>
+                                <MainSearch />
                             </div>
                         </div>
                     </div>

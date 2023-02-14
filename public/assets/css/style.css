@@ -217,7 +217,7 @@ select:focus {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
 }
 
 .no-gutter.row,
@@ -5354,6 +5354,13 @@ h1.blog_title {
 
 .ant-tabs-tab-btn {
     padding-bottom: 7px !important;
+}
+
+.ant-input:focus {
+    border-color: #ffffff;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0px rgba(87,168,233, .2);
+    box-shadow: 0 0 0 0px rgba(87,168,233, .2);
 }
 
 
