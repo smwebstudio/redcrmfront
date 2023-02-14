@@ -7,39 +7,6 @@ var settings = {
 
 const axios = require("axios");
 
-// axios.get("https://us1.locationiq.com/v1/search?key=pk.2192e998596792b7ac8842b2fd6aceac&q=Armenia%20Yerevan%20Tumanyan 24&format=json").then(res => {
-//     const headerDate = res.headers && res.headers.date ? res.headers.date : "no response date";
-//     console.log("Status Code:", res.status);
-//     console.log("Date in Response header:", res.data);
-//
-// }).catch(err => {
-//     console.log("Error: ", err.message);
-// });
-
-
-// axios.get('http://redoc/api/estates/19166').then(res => {
-//     console.log("Status Code:", res.status);
-//     console.log("Date in Response header:", res.data.data.full_address);
-//
-//     let address = res.data.data.full_address;
-//     let query = encodeURIComponent(address);
-//
-//     console.log('address - '+res.data.data.full_address);
-//     console.log('query - '+query);
-//     let geocoderURL = "https://eu1.locationiq.com/v1/search?key=pk.2192e998596792b7ac8842b2fd6aceac&q="+query+"&format=json";
-//
-//     axios.get(geocoderURL).then(res => {
-//         console.log("Status Code:", res.status);
-//         console.log("Geocoder data:", res.data);
-//         console.log("Status data:", res.status);
-//
-//     }).catch(err => {
-//         console.log("Error: ", err.message);
-//     });
-//
-// }).catch(err => {
-//     console.log("Error: ", err.message);
-// });
 
 
 const NodeGeocoder = require('node-geocoder');

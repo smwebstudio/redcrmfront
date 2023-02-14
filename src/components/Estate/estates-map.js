@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import $ from "jquery";
 import { Button } from "antd";
+import { apiURL } from "@/constants";
 
 export function EstatesMap(props) {
 
@@ -129,7 +130,7 @@ export function EstatesMap(props) {
                         // Ajax
                         let polygonCoordinates = coordinates;
                         $.ajax({
-                            url: "http://redoc/api/estates/map_search",
+                            url: apiURL+"/estates/map_search",
                             method: "GET",
                             dataType: "JSON",
                             data: {

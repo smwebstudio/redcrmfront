@@ -10,6 +10,7 @@ import EstateMainHot from "@/components/Estate/estate-main-hot";
 import EstateEstimate from "@/components/Home/estate-estimate";
 import Professionals from "@/components/Home/professionals";
 import ScrollToTop from "@/components/Global/scroll-to-top";
+import { apiURL } from "@/constants";
 
 
 export default function Home({filtersData}) {
@@ -38,7 +39,7 @@ export default function Home({filtersData}) {
 
 export async function getServerSideProps() {
 
-    const data = await fetch("http://redoc/api/filters/");
+    const data = await fetch(apiURL+"/filters/");
     const filtersData = await data.json();
 
     return { props: { filtersData } };

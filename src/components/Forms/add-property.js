@@ -14,6 +14,7 @@ import {
 } from "antd";
 import { useEffect, useState } from "react";
 import UploadBlock from "@/components/Uploader/uploadBlock";
+import { apiURL } from "@/constants";
 
 const { Option } = Select;
 
@@ -50,7 +51,7 @@ const AddProperyForm = () => {
     const [location, setLocation] = useState([residences]);
     const [estateOptions, setEstateOptions] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/address_data")
+        fetch(apiURL+"/address_data")
             .then(res => res.json())
             .then(response => {
                 response.data.forEach((value) => {
@@ -65,7 +66,7 @@ const AddProperyForm = () => {
             console.log(e);
         });
 
-        fetch("http://redoc/api/estate_options")
+        fetch(apiURL+"/estate_options")
             .then(res => res.json())
             .then(response => {
                 let estateOptionsData = [];

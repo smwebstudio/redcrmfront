@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ShareButtons from "@/components/Global/share-buttons";
+import { apiURL } from "@/constants";
 
 function BlogDetails(props) {
     const router = useRouter();
@@ -11,7 +12,7 @@ function BlogDetails(props) {
         if(router.isReady){
             const { id } = router.query;
             if (!id) return null;
-            fetch("http://redoc/api/blog/" + id)
+            fetch(apiURL+"/blog/" + id)
                 .then(res => res.json())
                 .then(data => {
                     setBlogData(data);

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
 import axios from "axios";
+import { apiURL } from "@/constants";
 
 function SelectFilter(props) {
     const [options, setOptions] = useState([]);
     const type = props.type;
     useEffect(() => {
         const results = [];
-        fetch("http://redoc/api/" + type)
+        fetch(apiURL + type)
             .then(res => res.json())
             .then(response => {
                 response.data.forEach((value) => {

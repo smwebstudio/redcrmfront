@@ -7,6 +7,7 @@ import ImageGallery from "react-image-gallery";
 import ShareButtons from "@/components/Global/share-buttons";
 import { Col, Row } from "antd";
 import { Space, Typography } from 'antd';
+import { apiURL } from "@/constants";
 
 const { Text, Link } = Typography;
 
@@ -21,7 +22,7 @@ function EstateDetailsSection() {
         if(router.isReady){
             const { id } = router.query;
             if (!id) return null;
-            fetch("http://redoc/api/estates/" + id)
+            fetch(apiURL+"/estates/" + id)
                 .then(res => res.json())
                 .then(data => {
                     setEstateData(data);

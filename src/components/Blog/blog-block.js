@@ -4,6 +4,7 @@ import Professional from "@/components/Professionals/professional";
 import BlogItem from "@/components/Blog/blog-item";
 import BlogSmallItem from "@/components/Blog/blog-small-item";
 import BlogMidItem from "@/components/Blog/blog-mid-item";
+import { apiURL } from "@/constants";
 
 export function BlogBlock(props) {
 
@@ -11,7 +12,7 @@ export function BlogBlock(props) {
     const articleType = props.type;
     const [blogData, setBlogData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/blog/"+articleType)
+        fetch(apiURL+"/blog/"+articleType)
             .then(res => res.json())
             .then(data => {
                 setBlogData(data);

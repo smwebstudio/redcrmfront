@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import EstateLargeItem from "@/components/Estate/estate-large-item";
 import { Button, Col, Row } from "antd";
+import { apiURL } from "@/constants";
 
 
 export function EstateProfessionalList(props) {
@@ -9,7 +10,7 @@ export function EstateProfessionalList(props) {
     const [estatesData, setEstatesData] = useState([]);
     const estatesCount = props.estatesCount;
     useEffect(() => {
-        fetch("http://redoc/api/estates/professional/"+props.id)
+        fetch(apiURL+"/estates/professional/"+props.id)
             .then(res => res.json())
             .then(data => {
                 setEstatesData(data);
@@ -48,7 +49,7 @@ export async function getNewPostsFromApi(id) {
 
 console.error(id);
     // Fetch data from external API
-    const data = await fetch("http://redoc/api/estates/professional/"+id)
+    const data = await fetch(apiURL+"/estates/professional/"+id)
         .then(res => res.json())
         .then(data => {
             return data;

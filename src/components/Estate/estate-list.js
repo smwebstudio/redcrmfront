@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import EstateLargeItem from "@/components/Estate/estate-large-item";
 import { Col, Row } from "antd";
+import { apiURL } from "@/constants";
 
 
 export function EstateList(props) {
@@ -11,7 +12,7 @@ export function EstateList(props) {
     const changeEstatesFoundCount = props.changeEstatesFoundCount;
     const [estatesData, setEstatesData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/estates/"+props.type)
+        fetch(apiURL+"/estates/"+props.type)
             .then(res => res.json())
             .then(data => {
                 setEstatesData(data);

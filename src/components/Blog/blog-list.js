@@ -3,13 +3,14 @@ import Link from "next/link";
 import Professional from "@/components/Professionals/professional";
 import BlogItem from "@/components/Blog/blog-item";
 import BlogSmallItem from "@/components/Blog/blog-small-item";
+import { apiURL } from "@/constants";
 
 export function BlogList(props, type) {
 
     const title = props.title;
     const [blogData, setBlogData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/blog/"+props.type)
+        fetch(apiURL+"/blog/"+props.type)
             .then(res => res.json())
             .then(data => {
                 setBlogData(data);

@@ -4,6 +4,7 @@ import parse from "html-react-parser";
 import Link from "next/link";
 import api from "@/hooks/api";
 import { Tabs } from "antd";
+import { apiURL } from "@/constants";
 
 const onChange = (key) => {
     console.log(key);
@@ -22,7 +23,7 @@ export function EstateItems(props) {
     const changeEstatesFoundCount = props.changeEstatesFoundCount;
     const [estatesData, setEstatesData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/estates/"+props.type)
+        fetch(apiURL+"/estates/"+props.type)
             .then(res => res.json())
             .then(data => {
                 setEstatesData(data);

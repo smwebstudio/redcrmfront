@@ -3,6 +3,7 @@ import { Carousel } from "antd";
 import EstateItem from "@/components/Estate/estate-item";
 import NextArrow from "@/components/Carousel/NextArrow";
 import PrevArrow from "@/components/Carousel/PrevArrow";
+import { apiURL } from "@/constants";
 
 const contentStyle = {
     margin: 0,
@@ -25,7 +26,7 @@ export function EstateCarousel(props) {
 
     const [estatesData, setEstatesData] = useState([]);
     useEffect(() => {
-        fetch("http://redoc/api/estates/" + props.type)
+        fetch(apiURL+"/estates/" + props.type)
             .then(res => res.json())
             .then(data => {
                 setEstatesData(data);

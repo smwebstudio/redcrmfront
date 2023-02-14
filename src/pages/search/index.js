@@ -3,6 +3,7 @@ import Footer from "@/components/React/global-components/footer";
 import React from "react";
 import Topbar from "@/components/React/global-components/topbar";
 import EstateSearchList from "@/components/Estate/estate-search-list";
+import { apiURL } from "@/constants";
 
 
 function SearchResults ({searchData, searchDataURL}) {
@@ -33,9 +34,9 @@ export async function getServerSideProps(context) {
         }
     });
 
-    const data = await fetch("http://redoc/api/estates/filter/estates?" + queryURL);
+    const data = await fetch(apiURL+"/estates/filter/estates?" + queryURL);
     const searchData = await data.json();
-    const searchDataURL = "http://redoc/api/estates/filter/estates?" + queryURL;
+    const searchDataURL = apiURL+"/estates/filter/estates?" + queryURL;
 
     console.error(searchDataURL);
     return { props: { searchData, searchDataURL } };
