@@ -10,6 +10,7 @@ const Blog = () => {
     return <div>
         <Topbar />
         <Navbar />
+        <BlogNavbar />
         <BlogBanner />
         <BlogBlock type="news" title="Նորություններ"/>
         <BlogBlock type="articles" title="Հոդվածներ"/>

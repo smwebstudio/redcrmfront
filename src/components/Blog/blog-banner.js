@@ -15,9 +15,9 @@ class BlogBanner extends Component {
 
 
 
-        return <div className="banner-area pd-top-100" style={inlineStyle}>
+        return <div className="pt-5 mb-3 mb-sm-5 " style={inlineStyle}>
             <div className="container">
-                <div className="pd-top-100 pd-bottom-120 text-center">
+                <div className="pt-5 pd-bottom-120 text-center">
                     <div className="row align-self-center">
                         <div className="col-12 ">
                             <div className="banner-inner text-center align-self-center mt-5">

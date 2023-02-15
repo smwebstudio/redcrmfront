@@ -558,6 +558,11 @@
 	.single-leading-feature .details span {
 	    font-size: 13px;
 	}
+
+    .blog-nav {
+        overflow-x: scroll;
+    }
+
 	.footer-logo {
 		display: block;
 		margin-bottom: 28px;

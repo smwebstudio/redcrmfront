@@ -51,13 +51,13 @@ function Navbar() {
                                     </div>
                                 </Col>
 
-                                <Col xs={18} sm={6}>
+                                <Col xs={18} sm={3} md={6} lg={4}>
                                     <div className="logo readeal-top">
                                         <Link href="/"><a><img src={"/assets/img/logo-pc.svg"} alt="logo" /></a></Link>
                                     </div>
                                 </Col>
 
-                                <Col xs={0} sm={16}>
+                                <Col xs={0} sm={21} md={18} lg={18}>
                                     <div className="collapse navbar-collapse">
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li><Link href="/estates"><a>Գնել</a></Link></li>
@@ -71,8 +71,7 @@ function Navbar() {
                                         </ul>
                                     </div>
                                 </Col>
-                                <Col xs={2} sm={2}>
-
+                                <Col xs={0} sm={0} md={0} lg={2}>
                                     <div className="nav-right-part nav-right-part-desktop readeal-top">
                                         <Link href="/add-property"><a className="btn btn-main-transparent pr-1 pl-1"><i
                                             className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>

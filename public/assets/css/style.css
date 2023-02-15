@@ -1904,8 +1904,7 @@ ul {
 }
 
 .navbar-area .nav-container .navbar-collapse .navbar-nav > li {
-    padding-right: 15px;
-    margin-right: 3px;
+    padding-right: 10px;
 }
 
 .navbar-area-fixed {
@@ -2230,9 +2229,9 @@ ul {
 
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-    .navbar-area .nav-container {
-        max-width: 95%;
-    }
+    /*.navbar-area .nav-container {*/
+    /*    max-width: 95%;*/
+    /*}*/
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

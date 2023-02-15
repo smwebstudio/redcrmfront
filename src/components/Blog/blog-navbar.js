@@ -1,28 +1,17 @@
 import React, { Component, useEffect } from "react";
 import Link from "next/link";
-import { Select } from "antd";
+import { Menu, Select } from "antd";
 import { useRouter } from "next/router";
 
 function BlogNavbar() {
 
-    useEffect(() => {
-        window.addEventListener("scroll", isSticky);
-        return () => {
-            window.removeEventListener("scroll", isSticky);
-        };
-    }, []);
-    const isSticky = (e) => {
-        const header = document.querySelector(".sticked");
-        const scrollTop = window.scrollY;
-        scrollTop >= 60 ? header.classList.add("is-sticky") : header.classList.remove("is-sticky");
-    };
+
     const router = useRouter();
 
     const newsActive = router.asPath.includes("/blog/news", 0);
     const articlesActive = router.asPath.includes("/blog/articles", 0);
     const statisticsActive = router.asPath.includes("/blog/statistics", 0);
     const pricesActive = router.asPath.includes("/blog/prices", 0);
-
 
     return (
         <div className="">
