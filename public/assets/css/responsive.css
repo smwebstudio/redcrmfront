@@ -218,9 +218,13 @@
 	}
 
 
+    .banner-area {
+        padding-top: 0px !important;
+    }
+
 	.banner-inner-wrap {
-	    height: auto;
-	    padding: 170px 0 100px 0;
+	    height: auto !important;
+	    padding: 20px 0 20px 0;
 	}
 	.h1-service-slider-area {
 	    margin-top: 80px;
@@ -374,7 +378,7 @@
 	    font-size: 22px !important;
 	}
 	.banner-inner .title {
-	    font-size: 35px;
+	    font-size: 13px;
 	}
 	.single-explore .details {
 	    padding: 23px 15px;
@@ -409,6 +413,11 @@
 	.single-follow-dream .media-body {
 		font-size: 14px;
 	}
+
+    .footer-area {
+    padding-top: 30px !important;
+    }
+
 	.footer-area.style-two {
 	    margin-top: 160px;
 	}

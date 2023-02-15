@@ -91,7 +91,7 @@ export default function MainFilter(props) {
             <Form form={form} onFinish={onFinish} action="/search" method="get"
                   className="bg-white text-gray-50 ">
                 <Row>
-                <Col span={3} className="field-item d-flex flex-column">
+                <Col xs={12} sm={3} className="field-item d-flex flex-column">
                     <small className="pl-2">Տեսակ</small>
                     <Form.Item
                         name="estate_type_id">
@@ -107,7 +107,7 @@ export default function MainFilter(props) {
 
 
                 </Col>
-                <Col span={3} className="field-item d-flex flex-column">
+                <Col xs={12} sm={3} className="field-item d-flex flex-column">
                     <small className="pl-2">Մարզ</small>
                     <Form.Item
                         name="location_province_id"
@@ -125,7 +125,7 @@ export default function MainFilter(props) {
                         />
                     </Form.Item>
                 </Col>
-                <Col span={3} className="field-item d-flex flex-column">
+                <Col xs={12} sm={3} className="field-item d-flex flex-column">
                     <small className="pl-2">Համայնք</small>
                     <Form.Item
                         name="location_city_id"
@@ -142,7 +142,7 @@ export default function MainFilter(props) {
                         />
                     </Form.Item>
                 </Col>
-                <Col span={3} className="field-item d-flex flex-column">
+                <Col xs={12} sm={3} className="field-item d-flex flex-column">
                     <small className="pl-2">Գին</small>
                     <Form.Item
                         name="prices"
@@ -157,7 +157,7 @@ export default function MainFilter(props) {
                         />
                     </Form.Item>
                 </Col>
-                <Col span={2} className="field-item d-flex flex-column">
+                <Col xs={12} sm={2} className="field-item d-flex flex-column">
                     <small className="pl-2">Արժույթ</small>
                     <Form.Item
                         name="currency">
@@ -171,7 +171,7 @@ export default function MainFilter(props) {
                         />
                     </Form.Item>
                 </Col>
-                <Col span={2} className="field-item d-flex flex-column">
+                <Col xs={12} sm={2} className="field-item d-flex flex-column">
                     <small className="pl-2">Սենյակ</small>
                     <Form.Item
                         name="room_count"
@@ -185,13 +185,13 @@ export default function MainFilter(props) {
                         />
                     </Form.Item>
                 </Col>
-                <Col span={4} className="field-item pl-3 pr-3">
+                <Col xs={12} sm={4} className="field-item pl-3 pr-3">
                     <Button
                         className="btn  bg-white hover-primary w-100" size="large">
                         Լրացուցիչ
                     </Button>
                 </Col>
-                    <Col span={4} className="field-item   ">
+                    <Col xs={12} sm={4} className="field-item   ">
                         <Button htmlType="submit"
                                 className="btn btn-main w-100"
                                 size="large">

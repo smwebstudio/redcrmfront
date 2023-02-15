@@ -381,6 +381,10 @@ code {
     border-bottom: 1px solid var(--main-color-one);
 }
 
+.bg-main {
+    background: var(--main-color-one);;
+}
+
 .bg-gray {
     background: #F6F7FB;
 }
@@ -1119,13 +1123,13 @@ ul {
     display: inline-block;
     text-align: center;
     line-height: 38px;
-    color: #fff;
+    color: #fff !important;
     background: #18181A;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    border: 1px solid #ffffff3b;
+    border: 2px solid #ffffff;
     font-size: 15px;
 }
 
@@ -1522,7 +1526,7 @@ ul {
 }
 
 .widget_nav_menu ul li a {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-size: 12px;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
@@ -1686,7 +1690,7 @@ ul {
     # Top bar
 ----------------------------------------------*/
 .topbar-area {
-    padding: 16px 15px;
+    padding: 16px 0px;
     background: #ffffff;
     width: 100%;
     /* top: 0; */
@@ -2008,11 +2012,11 @@ ul {
         text-align: left;
         line-height: 30px;
         padding: 10px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .navbar-area .nav-container .navbar-collapse .navbar-nav li a {
         display: block;
+        color: #414141;
     }
 
     .navbar-area .nav-container .navbar-collapse .navbar-nav li:last-child {
@@ -2286,9 +2290,16 @@ ul {
 
     .navbar-collapse {
         background: #fff;
-        padding-left: 35px;
+        padding-left: 15px;
+        padding-top:20px;
+        margin-top:20px;
+        border-top: 1px solid #F6F6F6;
         margin-top: 0px;
-        width: 100%;
+        width: 80vw;
+    }
+
+    .navbar-collapse.collapsing {
+        display:none !important;
     }
 
     .navbar-area .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children:before {

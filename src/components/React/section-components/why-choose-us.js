@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import sectiondata from 'data/sections.json';
+import { useMediaQuery } from "react-responsive";
 
 
 const WhyChooseUs = () => {
 
-    let publicUrl = process.env.PUBLIC_URL+'/'
-    let imagealt = 'image'
-    let data = sectiondata.whychooseus
+    let publicUrl = process.env.PUBLIC_URL+'/';
+    let imagealt = 'image';
+    let data = sectiondata.whychooseus;
 
     return (
-        <div className="why-choose-us-area bg-gray pd-top-90 pd-bottom-60">
+        <div className={"why-choose-us-area bg-gray pd-top-90 pd-bottom-60 text-xs-center"}>
             <div className="container">
                 <div className="row">
                     { data.items.map( ( item,i ) =>
                         <div key={ i } className={"col-xl-3 col-lg-4 col-sm-6 "+item.class}>
-                            <div className="single-intro text-lg-left text-left">
+                            <div className={"single-intro text-sm-left text-center"}>
                                 <div className="thumb">
                                     <img src={ publicUrl+item.icon } alt={ imagealt } />
                                 </div>

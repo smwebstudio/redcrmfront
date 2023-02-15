@@ -6,7 +6,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import ShareButtons from "@/components/Global/share-buttons";
 import { Col, Row } from "antd";
-import { Space, Typography } from 'antd';
+import { Space, Typography } from "antd";
 import { apiURL } from "@/constants";
 
 const { Text, Link } = Typography;
@@ -19,10 +19,10 @@ function EstateDetailsSection() {
     const [estateData, setEstateData] = useState([]);
 
     useEffect(() => {
-        if(router.isReady){
+        if (router.isReady) {
             const { id } = router.query;
             if (!id) return null;
-            fetch(apiURL+"/estates/" + id)
+            fetch(apiURL + "/estates/" + id)
                 .then(res => res.json())
                 .then(data => {
                     setEstateData(data);
@@ -44,17 +44,16 @@ function EstateDetailsSection() {
 
 
     let building_attributes = [];
-    if(estate) {
+    if (estate) {
         building_attributes = Object.entries(estate?.building_attributes);
         console.log(building_attributes);
     }
 
 
-
     let images = [];
     if (imagesData) {
         imagesData.forEach(item => {
-            images.push({original: publicCDN+item.path, thumbnail: publicCDN+item.path_thumb});
+            images.push({ original: publicCDN + item.path, thumbnail: publicCDN + item.path_thumb });
         });
     }
     return <div className="property-details-area pd-top-100">
@@ -88,27 +87,27 @@ function EstateDetailsSection() {
             </div>
         </div>
         <div className="container">
-                <div className="col-lg-9">
-                    <Row className="property-news-single-card border-bottom-yellow">
-                        <h4>Շենք</h4>
-                        <Row>
-                            <Col>
-                                <ul className="rld-list-style mb-3 mb-sm-0  d-flex flex-row flex-wrap">
-                                    {building_attributes?.map((item, i) =>
-                                        // item[1]['value'] &&
-                                            <li className={"pr-1 d-flex align-items-center font-size-13"}>
-                                                    <Text type="secondary" className={"pr-1 d-flex"}> {item[1]['label']}:</Text>
-                                                <Text strong className={"d-flex align-items-center"}>{item[1]['value']}</Text>
-                                            </li>
-                                        )}
-                                </ul>
+            <div className="col-lg-9">
+                <Row className="property-news-single-card border-bottom-yellow">
+                    <h4>Շենք</h4>
+                    <Row className="mb-3 mb-sm-0  d-flex flex-row flex-wrap">
+                        {building_attributes?.map((item, i) =>
+                            item[1]['value'] &&
+                            <Col xs={24} sm={12} className={"pr-1 d-flex  align-items-center font-size-13 mb-3"}>
+                                <Col xs={12} className={"d-flex flex-row align-items-center"}>
+                                    <span   style={{display: 'flex', width: '10px', height: '10px', borderRadius: '50%', background: '#D8002C'}}></span>
+                                    <Text type="secondary" className={"ml-2 pr-1 d-flex"}> {item[1]["label"]}:</Text>
+                                </Col>
+                                <Col xs={12}>
+                                    <Text strong className={"d-flex align-items-center"}>{item[1]["value"]}</Text>
+                                </Col>
                             </Col>
-                        </Row>
+                        )}
                     </Row>
+                </Row>
 
 
-
-                </div>
+            </div>
         </div>
     </div>;
 

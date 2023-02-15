@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import footerdata from "data/footerdata.json";
 import Image from "next/image";
+import { Col, Row } from "antd";
 
 class Footer_v1 extends Component {
 
@@ -27,13 +28,14 @@ class Footer_v1 extends Component {
             <footer className="footer-area">
                 <div className="container">
                     <div className="footer-top">
-                        <div className="row">
-                            <div className="col-sm-4">
-                                <a className="footer-logo" href="#"><img src={publicUrl + footerdata.footerlogo}
-                                                                         alt={imgattr} /></a>
-                            </div>
-                            <div className="col-sm-8">
-                                <div className="footer-social text-sm-right">
+                        <Row  align={'middle'}>
+                            <Col xs={24} sm={8} className={"text-center text-sm-left"}>
+                                <a className="footer-logo" href="#">
+                                    <img src={publicUrl + footerdata.footerlogo}  alt={imgattr} />
+                                </a>
+                            </Col>
+                            <Col  xs={24} sm={16}>
+                                <div className="footer-social text-center text-sm-right">
                                     <ul className="social-icon">
                                         <li>
                                             <a href="#" target="_blank">
@@ -62,12 +64,12 @@ class Footer_v1 extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                        </div>
+                            </Col>
+                        </Row>
                     </div>
                     <div className="footer-bottom">
-                        <div className="row">
-                            <div className="col-lg-3 col-sm-6">
+                        <Row gutter={16}>
+                            <Col xs={12} sm={6}>
                                 <div className="widget widget_nav_menu">
                                     <p className="mb-4">Անշարժ գույք</p>
                                     <ul className={"font-size-12"}>
@@ -78,8 +80,8 @@ class Footer_v1 extends Component {
                                         <li className=""><a href="/">Նորակառույց</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 col-sm-6">
+                            </Col>
+                            <Col sm={6}>
                                 <div className="widget widget_nav_menu">
                                     <p className="mb-4">Մեր ընկերությունը</p>
                                     <ul className={"font-size-12"}>
@@ -89,8 +91,8 @@ class Footer_v1 extends Component {
                                         <li className=""><a href="/">Կապ</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 col-sm-6">
+                            </Col>
+                            <Col sm={6}>
                                 <div className="widget widget_nav_menu">
                                     <p className="mb-4">Ծառայություններ</p>
                                     <ul className={"font-size-12"}>
@@ -99,8 +101,8 @@ class Footer_v1 extends Component {
                                         <li className=""><a href="/">Անձնական էջ</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div className="col-lg-3 col-sm-6">
+                            </Col>
+                            <Col sm={6}>
                                 <div className="widget widget_nav_menu">
                                     <p className="">Ինֆոգրուպ ՍՊԸ</p>
                                     <ul>
@@ -116,10 +118,8 @@ class Footer_v1 extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-
-
-                        </div>
+                            </Col>
+                        </Row>
                     </div>
                     <div className="copy-right text-white text-left"
                          dangerouslySetInnerHTML={{ __html: footerdata.copyrighttext }}></div>

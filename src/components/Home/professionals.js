@@ -22,17 +22,17 @@ function Professionals(props) {
 
     return (
         <div className="container mt-5 mb-5">
-            <h5 className="text-dark font-bold mb-3">Առաջատար մասնագետներ</h5>
+            <h5 className="text-dark font-bold mb-3 text-center text-sm-left">Առաջատար մասնագետներ</h5>
             <Row gutter={32}>
                 {professionals?.map((item, i) =>
-                    <Col span={8} className="" key={i}>
+                    <Col xs={24} sm={8} className="" key={i}>
                         <div className={"border border-light"}>
                             <Professional professional={item} key={i} />
                         </div>
                     </Col>
                 )
                 }
-                <div className="col-12 mt-3 text-right">
+                <div className="col-12 mt-3 text-center text-right">
                     <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
                 </div>
             </Row>

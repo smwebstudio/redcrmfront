@@ -4,25 +4,24 @@ import EstateItem from "@/components/Estate/estate-item";
 import NextArrow from "@/components/Carousel/NextArrow";
 import PrevArrow from "@/components/Carousel/PrevArrow";
 import { apiURL } from "@/constants";
+import { useMediaQuery } from 'react-responsive'
 
-const contentStyle = {
-    margin: 0,
-    height: "360px",
-    color: "#fff",
-    lineHeight: "160px",
-    textAlign: "center",
-    background: "#364d79"
-};
 
-const settings = {
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
-};
+
 
 export function EstateCarousel(props) {
     const onChange = (currentSlide) => {
         console.log(currentSlide);
     };
+
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
+    const slidesToShow = isTabletOrMobile ? 1 : 3;
+
+    const settings = {
+        nextArrow: isTabletOrMobile ? '' : <NextArrow />,
+        prevArrow: isTabletOrMobile ? '' : <PrevArrow />
+    };
+
 
     const [estatesData, setEstatesData] = useState([]);
     useEffect(() => {
@@ -36,7 +35,7 @@ export function EstateCarousel(props) {
     }, []);
 
     return (
-            <Carousel className="mt-3 " slidesToShow={3} centerPadding={"0px"}  centerMode={true}  afterChange={onChange} arrows {...settings}>
+            <Carousel className="mt-3 " slidesToShow={slidesToShow} centerPadding={"0px"}  centerMode={true}  afterChange={onChange} arrows {...settings}>
                 {estatesData.data?.map((item, index) => (
                     <EstateItem key={index} item={item} />
                 ))}
