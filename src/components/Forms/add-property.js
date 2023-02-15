@@ -49,10 +49,7 @@ const formItemLayout = {
 const AddProperyForm = () => {
 
     const { t, lang } = useTranslation('common')
-    const example = t('buildingType')
-
-    console.log('sdfgdsfsf');
-    console.log(t('buildingType'));
+    console.log(t('label.buildingType'));
 
     const locationOptions = [];
     let estateOptionsData = [];
@@ -160,7 +157,7 @@ const AddProperyForm = () => {
                                     <h4 className={"mb-3 font-bold font-size-13"}>Անձնական տվյալներ</h4>
 
                                 </Col>
-                                <Col span={8}>
+                                <Col xs={24} sm={8}>
 
                                     <Form.Item
                                         name="full_name"
@@ -178,7 +175,7 @@ const AddProperyForm = () => {
 
                                 </Col>
 
-                                <Col span={8}>
+                                <Col xs={24} sm={8}>
 
 
                                     <Form.Item
@@ -201,7 +198,7 @@ const AddProperyForm = () => {
 
                                 </Col>
 
-                                <Col span={8}>
+                                <Col xs={24} sm={8}>
                                     <Form.Item
                                         name="email"
                                         label="Էլ.հասցե"
@@ -336,7 +333,7 @@ const AddProperyForm = () => {
                                         />
                                     </Form.Item>
                                 </Col>
-                                <Col span={4}>
+                                <Col xs={12} sm={4}>
                                     <Form.Item name="building" label="Շենք"
                                                rules={[
                                                    {
@@ -349,7 +346,7 @@ const AddProperyForm = () => {
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                                <Col span={4}>
+                                <Col xs={12} sm={4}>
                                     <Form.Item name="apartment" label="Բնակարան"
                                                rules={[
                                                    {
@@ -362,22 +359,22 @@ const AddProperyForm = () => {
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                                <Col span={4}>
+                                <Col xs={12} sm={4}>
                                     <Form.Item name="floor" label="Հարկ">
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                                <Col span={4}>
+                                <Col xs={12} sm={4}>
                                     <Form.Item name="floor_count" label="Շենքի հարկ">
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                                <Col span={4}>
+                                <Col xs={12} sm={4}>
                                     <Form.Item name="ceil_height" label="Առաստաղ">
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                                <Col span={4}>
+                                <Col xs={12} sm={4}>
                                     <Form.Item name="area" wrapperCol={24} label="Մակերես">
                                         <Input />
                                     </Form.Item>
@@ -403,8 +400,9 @@ const AddProperyForm = () => {
                                 </Col>
 
                                     {buildingOptions.map((item, index) => (
-                                        <Col span={8} key={index}>
-                                        <Form.Item name={item.name} wrapperCol={24} >
+                                        <Col sm={8} xs={24} key={index}>
+
+                                        <Form.Item name={item.name} wrapperCol={24} label={t('label.'+item.name)} >
                                             <Select  options={item.options}/>
                                         </Form.Item>
                                         </Col>

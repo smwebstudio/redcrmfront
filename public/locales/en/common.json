@@ -1,7 +1,7 @@
 {
     "title": "Hello world վարձակալել",
     "variable-example": "վարձակալել a variable {{count}}",
-    "buildingType": "Արտաքին պատերsdfssdfsdfd",
+    "label.buildingType": "Արտաքին պատեր",
     "label.repairingType": "Վերանորոգման տեսակ",
     "label.newConstruction": "Նորակառույց",
     "label.apartmentConstruction": "Կառուցապատողից",
@@ -9,5 +9,21 @@
     "label.landAreaTotal": "Հողամասի մակերես",
     "label.areaResidential": "Բնակելի մակերես",
     "label.areaBuilding": "Շինության մակերես",
-    "label.registeredRight": "Գրանցման իրավունք"
+    "label.registeredRight": "Գրանցման իրավունք",
+    "label.commercialPurposeUseType": "Կոմերցիոն օգտ. տեսակ",
+    "label.purposeType": "Նպատակային օգտ. տեսակ",
+    "label.buildingProjectType": "Շենքի նախագիծը",
+    "label.exteriorDesignType": "Շենքը արտաքինից",
+    "label.courtyardImprovement": "Շենքի բակի բարեկարգում",
+    "label.distancePublicObjects": "Հեռ. հասարակական օբյեկտներից",
+    "label.elevatorType": "Վերելակի տեսակ",
+    "label.year": "Կառուցման տարեթիվը",
+    "label.heatingSystemType": "Ջեռ. համակարգ",
+    "label.parkingType": "Ավտոկանգառի տեսակ",
+    "label.serviceFeeType": "Սպասարկման վճարի տեսակ",
+    "label.serviceFeeAmount": "Սպասարկման վճար",
+    "label.windowsView": "Պատուհանների դիրք",
+    "label.buildingWindowCount": "Բն. արտաքին պատուհանների քանակ",
+    "label.entranceDoorType": "Մուտքի դռան տեսակ",
+    "label.entranceDoorPosition": "Բն. դռան դիրքը աստիճանավանդակից"
 }
