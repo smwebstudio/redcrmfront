@@ -11,10 +11,14 @@ import EstateEstimate from "@/components/Home/estate-estimate";
 import Professionals from "@/components/Home/professionals";
 import ScrollToTop from "@/components/Global/scroll-to-top";
 import { apiURL } from "@/constants";
-
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function Home({filtersData}) {
+    const { t, lang } = useTranslation('common')
+    const example = t('buildingType')
 
+    console.error(example);
     return (
         <>
             <Head>
@@ -26,7 +30,7 @@ export default function Home({filtersData}) {
                 <Navbar />
                 <Banner filtersData={filtersData}/>
                 <EstateMainTabs />
-                <EstateEstimate />
+                <EstateEstimate filtersData={filtersData}/>
                 <Professionals />
                 <EstateMainHot />
                 <WhyChooseUs />
@@ -37,10 +41,13 @@ export default function Home({filtersData}) {
     )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
 
     const data = await fetch(apiURL+"/filters/");
     const filtersData = await data.json();
 
-    return { props: { filtersData } };
+    return { props: { ...(await serverSideTranslations(locale, [
+                'common',
+                'footer',
+            ])),filtersData } };
 }

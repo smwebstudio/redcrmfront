@@ -1,0 +1,13 @@
+{
+    "title": "Hello world վարձակալել",
+    "variable-example": "վարձակալել a variable {{count}}",
+    "buildingType": "Արտաքին պատեր",
+    "label.repairingType": "Վերանորոգման տեսակ",
+    "label.newConstruction": "Նորակառույց",
+    "label.apartmentConstruction": "Կառուցապատողից",
+    "label.areaTotal": "Ընդհանուր մակերես",
+    "label.landAreaTotal": "Հողամասի մակերես",
+    "label.areaResidential": "Բնակելի մակերես",
+    "label.areaBuilding": "Շինության մակերես",
+    "label.registeredRight": "Գրանցման իրավունք"
+}

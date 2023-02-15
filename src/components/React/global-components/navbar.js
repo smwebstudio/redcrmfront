@@ -1,26 +1,27 @@
 import React, { Component, useEffect } from "react";
 import Link from "next/link";
-import { Select } from "antd";
+import { Affix, Select } from "antd";
 
 function Navbar() {
 
-    useEffect(() => {
-        window.addEventListener("scroll", isSticky);
-        return () => {
-            window.removeEventListener("scroll", isSticky);
-        };
-    }, []);
-    const isSticky = (e) => {
-        const header = document.querySelector(".sticked");
-        const scrollTop = window.scrollY;
-        scrollTop >= 60 ? header.classList.add("is-sticky") : header.classList.remove("is-sticky");
-    };
+    // useEffect(() => {
+    //     window.addEventListener("scroll", isSticky);
+    //     return () => {
+    //         window.removeEventListener("scroll", isSticky);
+    //     };
+    // }, []);
+    // const isSticky = (e) => {
+    //     const header = document.querySelector(".sticked");
+    //     const scrollTop = window.scrollY;
+    //     scrollTop >= 60 ? header.classList.add("is-sticky") : header.classList.remove("is-sticky");
+    // };
 
 
 
     return (
         <div className="">
-            <div className="navbar-area sticked">
+        <Affix offsetTop={0}>
+            <div className="navbar-area ">
                 <nav className="navbar navbar-area navbar-expand-lg">
                     <div className="container nav-container">
                         <div className="responsive-mobile-menu">
@@ -58,6 +59,7 @@ function Navbar() {
                     </div>
                 </nav>
             </div>
+        </Affix>
         </div>
     );
 

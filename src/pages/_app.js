@@ -1,6 +1,6 @@
 // import 'tailwindcss/tailwind.css'
 import '/src/styles/red_theme.css'
-
+import { appWithTranslation } from 'next-i18next'
 const App = ({ Component, pageProps }) => <Component {...pageProps} />
 
-export default App
+export default appWithTranslation(App)

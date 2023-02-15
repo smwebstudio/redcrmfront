@@ -29,7 +29,7 @@ export function EstateItem(props) {
                             <div className="row mb-3">
                                 <div className="col-6">
                                     <h6 className="price">{item.price}</h6>
-                                    <del>{item.old_price}</del>
+                                    {/*<del>{item.old_price}</del>*/}
                                 </div>
                                 <div className="col-6 text-right justify-content-end d-flex">
                                     <Link className="p-3" href="/">

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import sectiondata from "data/sections.json";
-import withTranslation from "next-translate/withTranslation";
 
 class AboutBanner extends Component {
 
@@ -14,8 +13,6 @@ class AboutBanner extends Component {
         const inlineStyle = {
             backgroundImage: "url(" + publicUrl + "/assets/img/banner/main-banner.jpg)"
         };
-        const { t, am } = this.props.i18n;
-        const title = t("title");
 
 
         return <div className="banner-area pd-top-100" style={inlineStyle}>
@@ -36,4 +33,4 @@ class AboutBanner extends Component {
     }
 }
 
-export default withTranslation(AboutBanner, "about");
+export default AboutBanner

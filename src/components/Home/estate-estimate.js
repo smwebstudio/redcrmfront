@@ -1,6 +1,7 @@
 import { Button, Select } from "antd";
 import React from "react";
 import SelectFilter from "@/components/Filters/select-filter";
+import EvaluationForm from "@/components/Filters/evaluation-form";
 
 function EstateEstimate(props) {
     return (
@@ -15,26 +16,7 @@ function EstateEstimate(props) {
                 </div>
                 <div className="row">
                     <div className="col-6">
-                        <form className="bg-white d-flex p-3 mt-5 text-gray-50">
-                            <div className="field-item border-right">
-                                <small className="pl-2">Համայնք</small>
-                                <SelectFilter type="evaluation_locations"/>
-                            </div>
-                            <div className="field-item border-right">
-                                <small className="pl-2">Նախագիծ</small>
-                                <SelectFilter type="evaluation_building_projects"/>
-                            </div>
-                            <div className="field-item border-right">
-                                <small className="pl-2">Հարկ</small>
-                                <SelectFilter type="evaluation_building_floors"/>
-                            </div>
-                            <div className="field-item pr-2 pl-2">
-                                <Button
-                                className="btn btn-main border-0 h-100 pr-5 pl-5">
-                                    Գնահատել
-                                </Button>
-                            </div>
-                        </form>
+                        <EvaluationForm filtersData={props.filtersData}/>
                     </div>
                 </div>
 

@@ -1,14 +1,17 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-
+// import i18nextConfig from '../next-i18next.config'
 class MyDocument extends Document {
-    static async getInitialProps(ctx) {
-        const initialProps = await Document.getInitialProps(ctx);
-        return { ...initialProps };
-    }
+    // static async getInitialProps(ctx) {
+    //     const initialProps = await Document.getInitialProps(ctx);
+    //     return { ...initialProps };
+    // }
+
+
 
     render() {
+        const currentLocale =  this.props.__NEXT_DATA__.locale ?? 'en';
         return (
-            <Html>
+            <Html lang={currentLocale}>
                 <Head>
 
                     <script src="https://api-maps.yandex.ru/2.1/?apikey=98976ac2-1627-4fc8-ac83-e4d35764b12c&lang=en_US"></script>

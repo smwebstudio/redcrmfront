@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import sectiondata from "data/sections.json";
-import withTranslation from "next-translate/withTranslation";
-import SelectFilter from "@/components/Filters/select-filter";
-import { Button, Cascader, Form, Input } from "antd";
 import MainFilter from "@/components/Filters/main-filter";
 import MainSearch from "@/components/Filters/main-search";
 
@@ -32,7 +28,7 @@ function Banner(props) {
             </div>
         </div>
         <div className={"container"}>
-            <div className="col-12 main-search-tabs">
+            <div className="main-search-tabs">
                 <div className="banner-search-wrap">
                     <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
                         <li className="nav-item">
@@ -81,4 +77,4 @@ function Banner(props) {
 
 }
 
-export default withTranslation(Banner, "home");
+export default Banner

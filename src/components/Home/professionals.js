@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Professional from "@/components/Professionals/professional";
 import Link from "next/link";
 import { apiURL } from "@/constants";
+import { Col, Row } from "antd";
 
 
 
@@ -21,18 +22,20 @@ function Professionals(props) {
 
     return (
         <div className="container mt-5 mb-5">
-            <h5 className="text-dark">Առաջատար մասնագետներ</h5>
-            <div className="row">
+            <h5 className="text-dark font-bold mb-3">Առաջատար մասնագետներ</h5>
+            <Row gutter={32}>
                 {professionals?.map((item, i) =>
-                    <div className="col-4 pl-5 pr-5" key={i}>
-                        <Professional professional={item} key={i} />
-                    </div>
+                    <Col span={8} className="" key={i}>
+                        <div className={"border border-light"}>
+                            <Professional professional={item} key={i} />
+                        </div>
+                    </Col>
                 )
                 }
-                <div className="col-12 text-right">
-                    <Link href="/estates"><a className="text-main hover-underline">Տեսնել բոլորը</a></Link>
+                <div className="col-12 mt-3 text-right">
+                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
                 </div>
-            </div>
+            </Row>
         </div>
     );
 }

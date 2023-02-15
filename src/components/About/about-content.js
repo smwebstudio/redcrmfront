@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import withTranslation from "next-translate/withTranslation";
 
 class AboutContent extends Component {
 
@@ -144,4 +143,4 @@ class AboutContent extends Component {
     }
 }
 
-export default withTranslation(AboutContent, "about");
+export default AboutContent;

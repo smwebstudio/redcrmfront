@@ -35,6 +35,7 @@ export default function MainFilter(props) {
         });
     });
 
+
     filtersData.data.locations.forEach((value) => {
         provinces.push({
             value: value.id,

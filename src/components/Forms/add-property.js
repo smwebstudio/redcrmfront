@@ -10,11 +10,13 @@ import {
     Radio,
     Row,
     Select,
-    Divider
+    Divider, Steps, Affix
 } from "antd";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UploadBlock from "@/components/Uploader/uploadBlock";
 import { apiURL } from "@/constants";
+import { CheckCircleOutlined, CheckOutlined } from "@ant-design/icons";
+import { useTranslation } from 'next-i18next'
 
 const { Option } = Select;
 
@@ -23,7 +25,7 @@ const filter = (inputValue, path) =>
     path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
 
 
-const residences = [];
+
 const formItemLayout = {
     labelCol: {
         xs: {
@@ -46,46 +48,88 @@ const formItemLayout = {
 
 const AddProperyForm = () => {
 
-    const [form] = Form.useForm();
+    const { t, lang } = useTranslation('common')
+    const example = t('buildingType')
 
-    const [location, setLocation] = useState([residences]);
+    console.log('sdfgdsfsf');
+    console.log(t('buildingType'));
+
+    const locationOptions = [];
+    let estateOptionsData = [];
+    let buildingOptionsData = [];
+
+    const [form] = Form.useForm();
+    const [location, setLocation] = useState([locationOptions]);
     const [estateOptions, setEstateOptions] = useState([]);
+    const [buildingOptions, setBuildingOptions] = useState([]);
     useEffect(() => {
-        fetch(apiURL+"/address_data")
+
+        fetch(apiURL + "/options")
             .then(res => res.json())
             .then(response => {
-                response.data.forEach((value) => {
-                    residences.push({
+                console.error(response);
+
+                response.data.locationData.forEach((value) => {
+                    locationOptions.push({
                         value: value.id,
                         label: value.name,
                         children: value.cities
                     });
                 });
-                setLocation([...residences]);
-            }).catch((e) => {
-            console.log(e);
-        });
 
-        fetch(apiURL+"/estate_options")
-            .then(res => res.json())
-            .then(response => {
-                let estateOptionsData = [];
-                response.data.forEach((value) => {
+
+
+                response.data.estateOptionsData.forEach((value) => {
                     estateOptionsData.push({
                         value: value.id,
                         label: value.label
                     });
                 });
 
+                // response.data.buildingOptionsData.forEach((value) => {
+                //     buildingOptionsData.push([value] );
+                // });
+
+                buildingOptionsData = Object.entries(response.data.buildingOptionsData).map(([name, values]) => ({name,values}));
+
+                let buildingLists = [];
+
+                buildingOptionsData.forEach((list) => {
+                    console.error('value');
+                    console.error(list);
+
+                    buildingLists.push({
+                        name: list.name,
+                        options: list.values
+                    });
+
+                });
+
+                console.error('buildingLists');
+                console.error(buildingLists);
+
+                setLocation([...locationOptions]);
                 setEstateOptions([...estateOptionsData]);
+                setBuildingOptions([...buildingLists]);
+
+
+
             }).catch((e) => {
             console.log(e);
         });
-    }, []);
 
+
+    }, []);
 
     const onFinish = (values) => {
         console.log("Received values of form: ", values);
+    };
+
+    const [current, setCurrent] = useState(0);
+    const onStepChange = (value) => {
+        console.log("onChange:", current);
+        console.log("value:", value);
+        setCurrent(value);
     };
 
 
@@ -96,11 +140,10 @@ const AddProperyForm = () => {
                 <h3 className={"text-dark font-bold"}>Նոր հայտ</h3>
             </Row>
 
-            <Row>
+            <Row gutter={32}>
 
                 <Col span={18}>
                     <div className={"add_property_wrapper mt-2"}>
-
 
                         <Form
                             {...formItemLayout}
@@ -199,7 +242,7 @@ const AddProperyForm = () => {
                                             }
                                         ]}
                                     >
-                                        <Radio.Group  buttonStyle="solid" size="large"
+                                        <Radio.Group buttonStyle="solid" size="large"
                                                      style={{ width: "100%" }}>
                                             <Radio.Button value="a" style={{
                                                 width: "25%",
@@ -244,7 +287,7 @@ const AddProperyForm = () => {
                                             }
                                         ]}
                                     >
-                                        <Radio.Group  buttonStyle="solid" size="large"
+                                        <Radio.Group buttonStyle="solid" size="large"
                                                      style={{ width: "100%" }}>
                                             <Radio.Button value="aa" style={{
                                                 width: "33%",
@@ -267,13 +310,12 @@ const AddProperyForm = () => {
                             </Row>
 
 
-                            <Row>
+                            <Row gutter={24}>
                                 <Col span={24}>
                                     <h4 className={"mb-3 font-bold font-size-13"}>Հիմնական</h4>
 
                                 </Col>
                                 <Col span={24}>
-
                                     <Form.Item
                                         name="residence"
                                         label="Մարզ / քաղաք / փողոց"
@@ -294,6 +336,52 @@ const AddProperyForm = () => {
                                         />
                                     </Form.Item>
                                 </Col>
+                                <Col span={4}>
+                                    <Form.Item name="building" label="Շենք"
+                                               rules={[
+                                                   {
+                                                       required: true,
+                                                       message: "Please input!",
+                                                       whitespace: true
+                                                   }
+                                               ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={4}>
+                                    <Form.Item name="apartment" label="Բնակարան"
+                                               rules={[
+                                                   {
+                                                       required: true,
+                                                       message: "Please input!",
+                                                       whitespace: true
+                                                   }
+                                               ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={4}>
+                                    <Form.Item name="floor" label="Հարկ">
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={4}>
+                                    <Form.Item name="floor_count" label="Շենքի հարկ">
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={4}>
+                                    <Form.Item name="ceil_height" label="Առաստաղ">
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={4}>
+                                    <Form.Item name="area" wrapperCol={24} label="Մակերես">
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
 
                                 <Divider />
                             </Row>
@@ -309,12 +397,28 @@ const AddProperyForm = () => {
                                 <Divider />
                             </Row>
 
+                            <Row gutter={24}>
+                                <Col span={24}>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>Շենք | Բնակարան</h4>
+                                </Col>
+
+                                    {buildingOptions.map((item, index) => (
+                                        <Col span={8} key={index}>
+                                        <Form.Item name={item.name} wrapperCol={24} >
+                                            <Select  options={item.options}/>
+                                        </Form.Item>
+                                        </Col>
+
+                                    ))}
+                                <Divider />
+                            </Row>
+
                             <Row>
                                 <Col span={24}>
                                     <h4 className={"mb-3 font-bold font-size-13"}>Այլ</h4>
                                 </Col>
                                 <Col span={24}>
-                                    <Checkbox.Group options={estateOptions}  />
+                                    <Checkbox.Group options={estateOptions} />
                                 </Col>
                                 <Divider />
                             </Row>
@@ -334,8 +438,45 @@ const AddProperyForm = () => {
                         </Form>
                     </div>
                 </Col>
-                <Col span={6}>
-
+                <Col span={6} className={"pt-5 shadow"}>
+                    <Affix offsetTop={150}>
+                        <Steps
+                            direction="vertical"
+                            onChange={onStepChange}
+                            current={current}
+                            items={[
+                                {
+                                    title: "Անձնական տվյալներ",
+                                    icon: <CheckCircleOutlined />
+                                },
+                                {
+                                    title: "Գույքի տեսակ",
+                                    icon: <CheckCircleOutlined />
+                                },
+                                {
+                                    title: "Կոնտրակտի տեսակ",
+                                    icon: <CheckCircleOutlined />
+                                },
+                                {
+                                    title: "Հիմնական",
+                                    icon: <CheckCircleOutlined />
+                                },
+                                {
+                                    title: "Շենք | Բնակարան",
+                                    icon: <CheckCircleOutlined />
+                                },
+                                {
+                                    title: "Այլ",
+                                    icon: <CheckCircleOutlined />
+                                },
+                                {
+                                    title: "Քարտեզ",
+                                    icon: <CheckCircleOutlined />
+                                }
+                            ]}
+                        />
+                        <Button className={"mt-5"} style={{ width: "100%" }}>Սկսել նորից</Button>
+                    </Affix>
                 </Col>
             </Row>
 

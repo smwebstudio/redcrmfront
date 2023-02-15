@@ -11,14 +11,14 @@ const onChange = (key) => {
 function EstateMainHot(props) {
     return (
 
-        <div className="container   mt-5">
+        <div className="container   mt-5 mb-5">
             <div className="row main-featured min-h-fit">
                 <div className="col-12">
-                    <h5 className="mb-5 text-dark">Շտապ առաջարկներ</h5>
+                    <h5 className="mb-5 text-dark font-bold">Շտապ առաջարկներ</h5>
                     <EstateCarousel type="hot"/>
                 </div>
                 <div className="col-12 text-right">
-                    <Link href="/estates"><a className="text-main hover-underline">Տեսնել բոլորը</a></Link>
+                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
                 </div>
             </div>
         </div>

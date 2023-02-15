@@ -19,9 +19,9 @@ function EstateMainTabs(props) {
     return (
 
         <div className="container  pt-5 mt-5 mb-5">
-            <div className="row main-featured min-h-fit">
+            <div className="row main-featured min-h-fit mt-5">
                 <div className="col-12 ">
-                    <h5 className="text-dark">Լավագույն առաջարկներ</h5>
+                    <h5 className="text-dark font-bold pb-3">Լավագույն առաջարկներ</h5>
                         <Tabs
                             defaultActiveKey="1"
                             centered={true}
@@ -47,7 +47,7 @@ function EstateMainTabs(props) {
                         />
                 </div>
                 <div className="col-12 text-right">
-                    <Link href="/estates"><a className="text-main hover-underline">Տեսնել բոլորը</a></Link>
+                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
                 </div>
             </div>
         </div>
