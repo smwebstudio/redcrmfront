@@ -5,6 +5,7 @@ import Topbar from "@/components/React/global-components/topbar";
 import ProfessionalTabs from "@/components/Professionals/professional-tabs";
 import BlogNavbar from "@/components/Blog/blog-navbar";
 import BlogList from "@/components/Blog/blog-list";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const News = () => {
     return <div>
@@ -16,4 +17,15 @@ const News = () => {
     </div>
 }
 
+export async function getServerSideProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, [
+                'common',
+                'footer',
+            ])),
+            // Will be passed to the page component as props
+        },
+    }
+}
 export default News

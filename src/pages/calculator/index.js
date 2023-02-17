@@ -5,6 +5,7 @@ import EstateTabs from "@/components/Estate/estate-tabs";
 import Topbar from "@/components/React/global-components/topbar";
 import { Button, Form, Input } from "antd";
 import LoanSchedule from "loan-schedule.js";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 
 
@@ -53,5 +54,17 @@ const Calculator = () => {
         <Footer />
     </div>;
 };
+
+export async function getServerSideProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, [
+                'common',
+                'footer',
+            ])),
+            // Will be passed to the page component as props
+        },
+    }
+}
 
 export default Calculator;

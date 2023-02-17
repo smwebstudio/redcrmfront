@@ -6,6 +6,7 @@ import ProfessionalDetails from "@/components/Professionals/professional-details
 import ProfessionalBanner from "@/components/Professionals/professional-banner";
 import { useRouter } from "next/router";
 import { apiURL } from "@/constants";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function ProfessionalItem({professionalItem}) {
     return <div>
@@ -17,18 +18,22 @@ function ProfessionalItem({professionalItem}) {
     </div>
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context ) {
 
     const { id } = context.query;
 
-    console.log("id");
-    console.log(id);
-    // Fetch data from external API
     const data = await fetch(apiURL+"/professionals/" + id);
     const professionalItem = await data.json();
 
     // Pass data to the page via props
-    return { props: { professionalItem } };
+    return { props: {
+            ...(await serverSideTranslations(context.locale, [
+                'common',
+                'footer',
+            ])), professionalItem
+            // Will be passed to the page component as props
+        }, };
 }
+
 
 export default ProfessionalItem
