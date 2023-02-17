@@ -14,6 +14,7 @@ import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import api from "@/hooks/api";
+import { useAuth } from "@/hooks/auth";
 
 export default function Home({filtersData}) {
     return (
@@ -40,7 +41,7 @@ export default function Home({filtersData}) {
 
 export async function getServerSideProps({ locale }) {
 
-    const response = await api(locale).post("/filters", {})
+    const response = await api(locale).post("/api/filters", {})
     const filtersData =response.data;
 
     return { props: { ...(await serverSideTranslations(locale, [

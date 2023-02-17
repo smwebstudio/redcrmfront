@@ -21,7 +21,7 @@ const Login = () => {
 
     const { login } = useAuth({
         middleware: "guest",
-        redirectIfAuthenticated: "/"
+        redirectIfAuthenticated: "/estimate"
     });
 
     const [email, setEmail] = useState("");

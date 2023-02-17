@@ -5,25 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/login88.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/locales/en/home.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/en/home.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/locales/hy/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/hy/common.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/ru/common.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru/common.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/locales/ru/home.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru/home.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/about.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/about.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/articles/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/articles/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/articles/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/articles/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/news/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/news/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/news/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/news/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/prices/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/prices/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/prices/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/prices/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/statistics/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/statistics/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/statistics/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/statistics/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/calculator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/calculator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/estates/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/estates/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/professionals/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/professionals/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/professionals/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/professionals/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Filters/main-filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filters/main-filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/add-property.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/add-property.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/estimate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/estimate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layouts/Navigation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/React/global-components/topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/global-components/topbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/dashboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/verify-email.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/verify-email.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +64,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.18.0",
     "javascript.nodejs.core.library.typings.version": "16.18.0",
-    "last_opened_file_path": "/var/www/html/redfront/public/locales",
+    "last_opened_file_path": "/var/www/html/redfront/src/pages",
     "list.type.of.created.stylesheet": "Less",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -86,11 +83,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/public/locales" />
       <recent name="$PROJECT_DIR$/src/data" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/components/Blog" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -154,7 +151,7 @@
       <workItem from="1676446882295" duration="23254000" />
       <workItem from="1676533572828" duration="21040000" />
       <workItem from="1676560872030" duration="6051000" />
-      <workItem from="1676622036037" duration="19240000" />
+      <workItem from="1676622036037" duration="25706000" />
     </task>
     <servers />
   </component>

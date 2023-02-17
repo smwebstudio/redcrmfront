@@ -36,6 +36,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const login = async ({ setErrors, setStatus, ...props }) => {
         await csrf()
+
         setErrors([])
         setStatus(null)
 
@@ -89,7 +90,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const logout = async () => {
         if (! error) {
-            await axios
+            await axiosAPI
                 .post('/logout')
                 .then(() => mutate())
         }

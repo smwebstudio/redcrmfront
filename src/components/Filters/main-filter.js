@@ -30,6 +30,7 @@ export default function MainFilter(props) {
         {value: 'RUR', label: 'RUR'},
     ];
 
+    console.log(filtersData);
 
 
     filtersData.data.estate_types.forEach((value) => {
@@ -43,7 +44,7 @@ export default function MainFilter(props) {
     filtersData.data.locations.forEach((value) => {
         provinces.push({
             value: value.id,
-            label: value.name,
+            label: value.label,
         });
     });
 

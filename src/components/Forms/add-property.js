@@ -65,7 +65,7 @@ const AddProperyForm = () => {
     const [buildingOptions, setBuildingOptions] = useState([]);
     useEffect(() => {
 
-        api(locale).post("/options", {})
+        api(locale).post("/api/options", {})
             .then(response => {
 
                 const data = response.data.data;

@@ -49,7 +49,7 @@ const EstimateForm = () => {
     const [evaluationOptions, setEvaluationOptions] = useState([]);
     useEffect(() => {
 
-        api(locale).post("/evaluationOptions", {})
+        api(locale).post("/api/evaluationOptions", {})
             .then(response => {
 
                     const data = response.data.data;
@@ -103,7 +103,7 @@ const EstimateForm = () => {
         const data = new FormData();
         data.append("json", JSON.stringify(values));
 
-        api(locale).post("/evaluate", values)
+        api(locale).post("/api/evaluate", values)
             .then(response => {
                 let priceAMD = response.data * 400;
                 setPrice(priceAMD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));

@@ -16,7 +16,7 @@ import LoginFooter from "@/components/LoginFooter";
 const Register = () => {
     const { register } = useAuth({
         middleware: "guest",
-        redirectIfAuthenticated: "/dashboard"
+        redirectIfAuthenticated: "/"
     });
 
     const [name, setName] = useState("");
