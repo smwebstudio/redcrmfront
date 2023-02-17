@@ -17,6 +17,7 @@ import UploadBlock from "@/components/Uploader/uploadBlock";
 import { apiURL } from "@/constants";
 import { CheckCircleOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from 'next-i18next'
+import { useRouter } from "next/router";
 
 const { Option } = Select;
 
@@ -48,8 +49,7 @@ const formItemLayout = {
 
 const AddProperyForm = () => {
 
-    const { t, lang } = useTranslation('common')
-    console.log(t('label.buildingType'));
+    const { t } = useTranslation('common')
 
     const locationOptions = [];
     let estateOptionsData = [];
@@ -64,7 +64,6 @@ const AddProperyForm = () => {
         fetch(apiURL + "/options")
             .then(res => res.json())
             .then(response => {
-                console.error(response);
 
                 response.data.locationData.forEach((value) => {
                     locationOptions.push({
@@ -83,9 +82,6 @@ const AddProperyForm = () => {
                     });
                 });
 
-                // response.data.buildingOptionsData.forEach((value) => {
-                //     buildingOptionsData.push([value] );
-                // });
 
                 buildingOptionsData = Object.entries(response.data.buildingOptionsData).map(([name, values]) => ({name,values}));
 
@@ -102,8 +98,6 @@ const AddProperyForm = () => {
 
                 });
 
-                console.error('buildingLists');
-                console.error(buildingLists);
 
                 setLocation([...locationOptions]);
                 setEstateOptions([...estateOptionsData]);
@@ -124,15 +118,12 @@ const AddProperyForm = () => {
 
     const [current, setCurrent] = useState(0);
     const onStepChange = (value) => {
-        console.log("onChange:", current);
-        console.log("value:", value);
         setCurrent(value);
     };
 
 
     return (
         <div className={"container mt-5 mb-5"}>
-
             <Row>
                 <h3 className={"text-dark font-bold"}>Նոր հայտ</h3>
             </Row>

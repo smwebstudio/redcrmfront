@@ -4,6 +4,7 @@ import React from "react";
 import EstateTabs from "@/components/Estate/estate-tabs";
 import Topbar from "@/components/React/global-components/topbar";
 import { apiURL } from "@/constants";
+import LanguageSwitcher from "@/components/Language/language-switcher";
 
 const Estates = ({ estatesData, pageDataURL, filtersData }) => {
     return <div>

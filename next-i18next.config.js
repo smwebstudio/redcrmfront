@@ -6,8 +6,11 @@
 module.exports = {
     i18n: {
         defaultLocale: 'en',
-        locales: ['en', 'de'],
+        locales: ['en', 'hy'],
     },
-    reloadOnPrerender: true
+    reloadOnPrerender: true,
+    fallbackLng: {
+        default: ['en'],
+    },
 }
 

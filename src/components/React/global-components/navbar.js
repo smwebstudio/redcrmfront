@@ -1,20 +1,11 @@
 import React, { Component, useEffect } from "react";
 import Link from "next/link";
 import { Affix, Col, Row, Select } from "antd";
+import { useTranslation } from "next-i18next";
 
 function Navbar() {
 
-    // useEffect(() => {
-    //     window.addEventListener("scroll", isSticky);
-    //     return () => {
-    //         window.removeEventListener("scroll", isSticky);
-    //     };
-    // }, []);
-    // const isSticky = (e) => {
-    //     const header = document.querySelector(".sticked");
-    //     const scrollTop = window.scrollY;
-    //     scrollTop >= 60 ? header.classList.add("is-sticky") : header.classList.remove("is-sticky");
-    // };
+    const { t } = useTranslation('common')
 
 
     return (
@@ -35,8 +26,8 @@ function Navbar() {
                                     </div>
                                     <div className="collapse navbar-collapse mt-5" id="realdeal_main_menu" >
                                         <ul className="navbar-nav menu-open readeal-top" style={{height:"100vh"}}>
-                                            <li><Link href="/estates"><a>Գնել</a></Link></li>
-                                            <li><Link href="/estates"><a>Վարձակալել</a></Link></li>
+                                            <li><Link href="/estates"><a>{t('menu.buy')}</a></Link></li>
+                                            <li><Link href="/estates"><a>{t('menu.rent')}</a></Link></li>
                                             <li><Link href="/about"><a>Մեր մասին</a></Link></li>
                                             <li><Link href="/professionals"><a>Մասնագետներ</a></Link></li>
                                             <li><Link href="/blog"><a>Բլոգ</a></Link></li>
@@ -60,14 +51,14 @@ function Navbar() {
                                 <Col xs={0} sm={21} md={18} lg={18}>
                                     <div className="collapse navbar-collapse">
                                         <ul className="navbar-nav menu-open readeal-top">
-                                            <li><Link href="/estates"><a>Գնել</a></Link></li>
-                                            <li><Link href="/estates"><a>Վարձակալել</a></Link></li>
-                                            <li><Link href="/about"><a>Մեր մասին</a></Link></li>
-                                            <li><Link href="/professionals"><a>Մասնագետներ</a></Link></li>
-                                            <li><Link href="/blog"><a>Բլոգ</a></Link></li>
-                                            <li><Link href="/contact"><a>Կապ</a></Link></li>
-                                            <li><Link href="/contact"><a>Գնահատում</a></Link></li>
-                                            <li><Link href="/contact"><a>Կառուցապատողներ</a></Link></li>
+                                            <li><Link href="/estates"><a>{t('menu.buy')}</a></Link></li>
+                                            <li><Link href="/estates"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/about"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/professionals"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/blog"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/contact"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/contact"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/contact"><a>{t('menu.buildDevelopers')}</a></Link></li>
                                         </ul>
                                     </div>
                                 </Col>
