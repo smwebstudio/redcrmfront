@@ -18,6 +18,7 @@ import { apiURL } from "@/constants";
 import { CheckCircleOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from 'next-i18next'
 import { useRouter } from "next/router";
+import api from "@/hooks/api";
 
 const { Option } = Select;
 
@@ -54,6 +55,9 @@ const AddProperyForm = () => {
     const locationOptions = [];
     let estateOptionsData = [];
     let buildingOptionsData = [];
+    const router = useRouter();
+    const { locale } = router;
+
 
     const [form] = Form.useForm();
     const [location, setLocation] = useState([locationOptions]);
@@ -61,21 +65,24 @@ const AddProperyForm = () => {
     const [buildingOptions, setBuildingOptions] = useState([]);
     useEffect(() => {
 
-        fetch(apiURL + "/options")
-            .then(res => res.json())
+        api(locale).post("/options", {})
             .then(response => {
 
-                response.data.locationData.forEach((value) => {
+                const data = response.data.data;
+
+                console.log(data);
+
+                data.locationData.forEach((value) => {
                     locationOptions.push({
                         value: value.id,
-                        label: value.name,
+                        label: value.label,
                         children: value.cities
                     });
                 });
 
 
 
-                response.data.estateOptionsData.forEach((value) => {
+                data.estateOptionsData.forEach((value) => {
                     estateOptionsData.push({
                         value: value.id,
                         label: value.label
@@ -83,7 +90,7 @@ const AddProperyForm = () => {
                 });
 
 
-                buildingOptionsData = Object.entries(response.data.buildingOptionsData).map(([name, values]) => ({name,values}));
+                buildingOptionsData = Object.entries(data.buildingOptionsData).map(([name, values]) => ({name,values}));
 
                 let buildingLists = [];
 
@@ -110,7 +117,7 @@ const AddProperyForm = () => {
         });
 
 
-    }, []);
+    }, [locale]);
 
     const onFinish = (values) => {
         console.log("Received values of form: ", values);
@@ -125,7 +132,7 @@ const AddProperyForm = () => {
     return (
         <div className={"container mt-5 mb-5"}>
             <Row>
-                <h3 className={"text-dark font-bold"}>Նոր հայտ</h3>
+                <h3 className={"text-dark font-bold"}>{t('label.addNewAnnouncement')}</h3>
             </Row>
 
             <Row gutter={32}>
@@ -145,14 +152,14 @@ const AddProperyForm = () => {
 
                             <Row>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Անձնական տվյալներ</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.newAnouncTitle1')}</h4>
 
                                 </Col>
                                 <Col xs={24} sm={8}>
 
                                     <Form.Item
                                         name="full_name"
-                                        label="Անուն Ազգանուն"
+                                        label={t('label.firstNameConact')}
                                         rules={[
                                             {
                                                 required: true,
@@ -171,7 +178,7 @@ const AddProperyForm = () => {
 
                                     <Form.Item
                                         name="phone"
-                                        label="Հեռախոս"
+                                        label={t('label.yourPhone')}
                                         rules={[
                                             {
                                                 required: true,
@@ -192,7 +199,7 @@ const AddProperyForm = () => {
                                 <Col xs={24} sm={8}>
                                     <Form.Item
                                         name="email"
-                                        label="Էլ.հասցե"
+                                        label={t('label.email.address')}
                                         rules={[
                                             {
                                                 type: "email",
@@ -213,7 +220,7 @@ const AddProperyForm = () => {
 
                             <Row>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Գույքի տեսակ</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.estateType')}</h4>
 
                                 </Col>
                                 <Col span={24}>
@@ -235,19 +242,19 @@ const AddProperyForm = () => {
                                             <Radio.Button value="a" style={{
                                                 width: "25%",
                                                 textAlign: "center"
-                                            }}>Բնակարան</Radio.Button>
+                                            }}>{t('label.apartment')}</Radio.Button>
                                             <Radio.Button value="b" style={{
                                                 width: "25%",
                                                 textAlign: "center"
-                                            }}>Առանձնատուն</Radio.Button>
+                                            }}>{t('label.house')}</Radio.Button>
                                             <Radio.Button value="c" style={{
                                                 width: "25%",
                                                 textAlign: "center"
-                                            }}>Կոմերցիոն</Radio.Button>
+                                            }}>{t('label.commercial')}</Radio.Button>
                                             <Radio.Button value="d" style={{
                                                 width: "25%",
                                                 textAlign: "center"
-                                            }}>Հող</Radio.Button>
+                                            }}>{t('label.land')}</Radio.Button>
                                         </Radio.Group>
                                     </Form.Item>
 
@@ -258,7 +265,7 @@ const AddProperyForm = () => {
 
                             <Row>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Կոնտրակտի տեսակ</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.contract')}</h4>
 
                                 </Col>
                                 <Col span={24}>
@@ -280,15 +287,15 @@ const AddProperyForm = () => {
                                             <Radio.Button value="aa" style={{
                                                 width: "33%",
                                                 textAlign: "center"
-                                            }}>Վաճառք</Radio.Button>
+                                            }}>{t('button.sale')}</Radio.Button>
                                             <Radio.Button value="bb" style={{
                                                 width: "33%",
                                                 textAlign: "center"
-                                            }}>Վարձակալություն</Radio.Button>
+                                            }}>{t('button.rent')}</Radio.Button>
                                             <Radio.Button value="cc" style={{
                                                 width: "33%",
                                                 textAlign: "center"
-                                            }}>Օրավարձ</Radio.Button>
+                                            }}>{t('label.title.fee.normal')}</Radio.Button>
                                         </Radio.Group>
                                     </Form.Item>
 
@@ -300,13 +307,13 @@ const AddProperyForm = () => {
 
                             <Row gutter={24}>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Հիմնական</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.general')}</h4>
 
                                 </Col>
                                 <Col span={24}>
                                     <Form.Item
                                         name="residence"
-                                        label="Մարզ / քաղաք / փողոց"
+                                        label={t('label.address')}
                                         wrapperCol={{ sm: 24 }}
                                         rules={[
                                             {
@@ -325,7 +332,7 @@ const AddProperyForm = () => {
                                     </Form.Item>
                                 </Col>
                                 <Col xs={12} sm={4}>
-                                    <Form.Item name="building" label="Շենք"
+                                    <Form.Item name="building" label={t('label.building')}
                                                rules={[
                                                    {
                                                        required: true,
@@ -338,7 +345,7 @@ const AddProperyForm = () => {
                                     </Form.Item>
                                 </Col>
                                 <Col xs={12} sm={4}>
-                                    <Form.Item name="apartment" label="Բնակարան"
+                                    <Form.Item name="apartment" label={t('label.apartment')}
                                                rules={[
                                                    {
                                                        required: true,
@@ -351,22 +358,22 @@ const AddProperyForm = () => {
                                     </Form.Item>
                                 </Col>
                                 <Col xs={12} sm={4}>
-                                    <Form.Item name="floor" label="Հարկ">
+                                    <Form.Item name="floor" label={t('label.floor')}>
                                         <Input />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={12} sm={4}>
-                                    <Form.Item name="floor_count" label="Շենքի հարկ">
+                                    <Form.Item name="floor_count" label={t('label.buildingFloorCount')}>
                                         <Input />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={12} sm={4}>
-                                    <Form.Item name="ceil_height" label="Առաստաղ">
+                                    <Form.Item name="ceil_height" label={t('label.ceilingHeight')}>
                                         <Input />
                                     </Form.Item>
                                 </Col>
                                 <Col xs={12} sm={4}>
-                                    <Form.Item name="area" wrapperCol={24} label="Մակերես">
+                                    <Form.Item name="area" wrapperCol={24} label={t('label.area')}>
                                         <Input />
                                     </Form.Item>
                                 </Col>
@@ -376,7 +383,7 @@ const AddProperyForm = () => {
 
                             <Row>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Նկարներ</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.images')}</h4>
 
                                 </Col>
                                 <Col span={24}>
@@ -387,7 +394,7 @@ const AddProperyForm = () => {
 
                             <Row gutter={24}>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Շենք | Բնակարան</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.buildingApartment')}</h4>
                                 </Col>
 
                                     {buildingOptions.map((item, index) => (
@@ -404,7 +411,7 @@ const AddProperyForm = () => {
 
                             <Row>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Այլ</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.other')}</h4>
                                 </Col>
                                 <Col span={24}>
                                     <Checkbox.Group options={estateOptions} />
@@ -418,7 +425,7 @@ const AddProperyForm = () => {
                                         wrapperCol={{ sm: 24 }}
                                     >
                                         <Button type="primary" htmlType="submit">
-                                            Ուղարկել
+                                            {t('button.send')}
                                         </Button>
                                     </Form.Item>
                                 </Col>
@@ -435,36 +442,36 @@ const AddProperyForm = () => {
                             current={current}
                             items={[
                                 {
-                                    title: "Անձնական տվյալներ",
+                                    title: t('label.newAnnouncement.personalInfo'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Գույքի տեսակ",
+                                    title: t('common\:label.estateType'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Կոնտրակտի տեսակ",
+                                    title: t('common\:label.contract'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Հիմնական",
+                                    title: t('common\:label.general'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Շենք | Բնակարան",
+                                    title: t('common\:label.buildingApartment'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Այլ",
+                                    title: t('common\:label.other'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Քարտեզ",
+                                    title: t('common\:label.map'),
                                     icon: <CheckCircleOutlined />
                                 }
                             ]}
                         />
-                        <Button className={"mt-5"} style={{ width: "100%" }}>Սկսել նորից</Button>
+                        <Button className={"mt-5"} style={{ width: "100%" }}>{t('common\:button.reset')}</Button>
                     </Affix>
                 </Col>
             </Row>

@@ -13,12 +13,9 @@ import ScrollToTop from "@/components/Global/scroll-to-top";
 import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import api from "@/hooks/api";
 
 export default function Home({filtersData}) {
-    const { t, lang } = useTranslation('common')
-    const example = t('buildingType')
-
-    console.error(example);
     return (
         <>
             <Head>
@@ -43,8 +40,8 @@ export default function Home({filtersData}) {
 
 export async function getServerSideProps({ locale }) {
 
-    const data = await fetch(apiURL+"/filters/");
-    const filtersData = await data.json();
+    const response = await api(locale).post("/filters", {})
+    const filtersData =response.data;
 
     return { props: { ...(await serverSideTranslations(locale, [
                 'common',

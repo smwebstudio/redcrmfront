@@ -1,6 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Modal, Upload } from "antd";
 import { useState } from 'react';
+import { useTranslation } from "next-i18next";
 const getBase64 = (file) =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -29,6 +30,7 @@ const props = {
 };
 
 const UploadBlock = () => {
+    const { t } = useTranslation('common')
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -62,7 +64,7 @@ const UploadBlock = () => {
                     marginTop: 8,
                 }}
             >
-                <Button danger type={"danger"}>Ավելացնել նկարներ</Button>
+                <Button danger type={"danger"}>{t('label.uploadImage')}</Button>
             </div>
         </div>
     );

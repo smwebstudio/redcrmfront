@@ -1,30 +1,18 @@
 import {
-    AutoComplete,
     Button,
-    Cascader,
-    Checkbox,
     Col,
     Form,
     Input,
-    InputNumber,
-    Radio,
     Row,
     Select,
     Divider, Steps, Affix
 } from "antd";
 import React, { useEffect, useState } from "react";
-import UploadBlock from "@/components/Uploader/uploadBlock";
-import { apiURL } from "@/constants";
 import { CheckCircleOutlined, CheckOutlined } from "@ant-design/icons";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-
-const { Option } = Select;
-
-
-const filter = (inputValue, path) =>
-    path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
-
+import { useRouter } from "next/router";
+import api from "@/hooks/api";
 
 const formItemLayout = {
     labelCol: {
@@ -50,6 +38,9 @@ const EstimateForm = () => {
 
     const { t, lang } = useTranslation("common");
 
+    const router = useRouter();
+    const { locale } = router;
+
     const communitiesOptions = [];
     let evaluationOptionsData = [];
 
@@ -58,42 +49,41 @@ const EstimateForm = () => {
     const [evaluationOptions, setEvaluationOptions] = useState([]);
     useEffect(() => {
 
-        fetch(apiURL + "/evaluationOptions")
-            .then(res => res.json())
+        api(locale).post("/evaluationOptions", {})
             .then(response => {
-                response.data.evaluationOptionsData.locationCommunity.forEach((community) => {
-                    communitiesOptions.push({
-                        value: community.value,
-                        label: community.label
+
+                    const data = response.data.data;
+                    let evaluationOptions = [];
+
+                    data.evaluationOptionsData.locationCommunity.forEach((community) => {
+                        communitiesOptions.push({
+                            value: community.value,
+                            label: community.label
+                        });
                     });
-                });
 
-                evaluationOptionsData = Object.entries(response.data.evaluationOptionsData).map(([name, values]) => ({
-                    name,
-                    values
-                }));
+                    evaluationOptionsData = Object.entries(data.evaluationOptionsData).map(([name, values]) => ({
+                        name,
+                        values
+                    }));
 
-                let evaluationOptions = [];
 
-                evaluationOptionsData.forEach((list) => {
-                    evaluationOptions.push({
-                        name: list.name,
-                        options: list.values
+                    evaluationOptionsData.forEach((list) => {
+                        evaluationOptions.push({
+                            name: list.name,
+                            options: list.values
+                        });
                     });
-                });
 
-                console.table(evaluationOptions);
+                    setCommunities([...communitiesOptions]);
+                    setEvaluationOptions([...evaluationOptions]);
+                }
+            )
+            .catch(error => {
+                // if (error.response.status !== 422) throw error;
+            });
 
-                setCommunities([...communitiesOptions]);
-                setEvaluationOptions([...evaluationOptions]);
-
-
-            }).catch((e) => {
-            console.log(e);
-        });
-
-
-    }, []);
+    }, [locale]);
 
 
     const [showResult, setShowResult] = useState(false);
@@ -109,33 +99,16 @@ const EstimateForm = () => {
     };
 
     const onFinish = (values) => {
-        console.error("values");
-        console.error(JSON.stringify(values));
-        console.table(values);
 
         const data = new FormData();
         data.append("json", JSON.stringify(values));
 
-        fetch(apiURL + "/evaluate", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(values)
-        })
+        api(locale).post("/evaluate", values)
             .then(response => {
-                console.error("response");
-                console.table(response);
+                let priceAMD = response.data * 400;
+                setPrice(priceAMD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
                 setShowResult(true);
-                console.error(showResult);
-                return response.json();
-            }).then(jsonResponse => {
-            console.table(jsonResponse);
-            let priceAMD = jsonResponse * 400;
-            setPrice(priceAMD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
-            setShowResult(true);
-        }).catch((e) => {
+            }).catch((e) => {
             console.log(e);
         });
     };
@@ -154,9 +127,8 @@ const EstimateForm = () => {
 
             <Row>
                 <Col xs={24} sm={16}>
-                    <h3 className={"text-dark font-bold"}>Բնակարանի գնահատում Երևանում</h3>
-                    <p>Անշարժ գույքի գնահատման լավագույն մասնագետների կողմից ստեղծված այս հաշվիչը, հնարավորություն է
-                        տալիս որոշել Ձեր բնակարանի Վաճառքի/Շուկայական գինը</p>
+                    <h3 className={"text-dark font-bold"}>{t('label.EvaluatHous')}</h3>
+                    <p>{t('label.evaluation.smallText')}</p>
                 </Col>
             </Row>
 
@@ -177,13 +149,13 @@ const EstimateForm = () => {
 
                             <Row>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Հիմնական</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.general')}</h4>
 
                                 </Col>
                                 <Col xs={24} sm={8}>
                                     <Form.Item
                                         name="locationCommunity"
-                                        label={"Համայնք"}
+                                        label={t('label.locationCommunity')}
                                         rules={[
                                             {
                                                 required: true,
@@ -194,7 +166,7 @@ const EstimateForm = () => {
                                         <Select
                                             showSearch
                                             options={communities}
-                                            placeholder="Ընտրել"
+                                            placeholder={t('button.pick')}
                                             style={{ width: "100%" }}
                                             dropdownMatchSelectWidth={false}
                                         />
@@ -215,7 +187,7 @@ const EstimateForm = () => {
                                             ]}
                                         >
                                             <Select
-                                                placeholder="Ընտրել"
+                                                placeholder={t('button.pick')}
                                                 dropdownMatchSelectWidth={false}
                                                 options={item.options}
                                             />
@@ -228,7 +200,7 @@ const EstimateForm = () => {
                                 <Col xs={24} sm={8}>
                                     <Form.Item
                                         name="area"
-                                        label="Մակերես"
+                                        label={t('label.area')}
                                         rules={[
                                             {
                                                 required: true,
@@ -245,7 +217,7 @@ const EstimateForm = () => {
 
                             <Row gutter={24}>
                                 <Col span={24}>
-                                    <h4 className={"mb-3 font-bold font-size-13"}>Բնակարան</h4>
+                                    <h4 className={"mb-3 font-bold font-size-13"}>{t('label.apartment')}</h4>
                                 </Col>
                                 {evaluationOptions.map((item, index) => (
                                     item.name !== "buildingProject" &&
@@ -264,7 +236,7 @@ const EstimateForm = () => {
                                         >
                                             <Select
                                                 dropdownMatchSelectWidth={false}
-                                                placeholder="Ընտրել"
+                                                placeholder={t('button.pick')}
                                                 options={item.options}
                                             />
                                         </Form.Item>
@@ -281,7 +253,7 @@ const EstimateForm = () => {
                                     >
                                         {!showResult &&
                                             <Button type="primary" htmlType="submit">
-                                                Ուղարկել
+                                                {t('button.send')}
                                             </Button>
                                         }
                                     </Form.Item>
@@ -304,7 +276,7 @@ const EstimateForm = () => {
                                                 fontWeight: "700",
                                                 color: "#414141"
                                             }}>
-                                                Շուկայական արժեք
+                                                {t('label.evaluation.buildingMarketValue')}
                                             </h3>
                                             <p style={{
                                                 fontSize: "40px",
@@ -321,30 +293,24 @@ const EstimateForm = () => {
                                 </Col>
                                 <Col xs={24}>
                                     <p>
-                                        Հաշվարկը կատարելիս հաշվի են առնվել վերջին եռամսյակի՝ Երևան քաղաքում բնակարանների
-                                        վաճառքի գների պաշտոնական տվյալները, ինչպես նաև՝ Red Invest Group թիմի
-                                        վերլուծությունների արդյունքում ստացված տվյալները:
+                                        {t('label.Ev.to.newAnounc')}
                                     </p>
                                     <p>
-                                        Ձեր բնակարանի վաճառքի / վարձակալության հայտը կայքում գրանցելու համար սեղմե՛ք
-                                        հղման վրա:
+                                        {t('label.Ev.to.newAnounc5')}
                                     </p>
                                     <p>
-                                        Ձեր բնակարանի արժեքի հետ կապված ավելի մանրամասն հարցեր կարող եք քննարկել կայքում
-                                        գրանցված ՝
-                                        <Link href={'/professionals'}><a className={'text-main'}>գնահատման գրասենյակների մասնագետների </a></Link>
-                                        հետ:
+                                        {t('label.Ev.to.newAnounc3')}
+                                        <Link href={"/professionals"}><a className={"text-main"}> {t('label.Ev.to.newAnounc3.1')} </a></Link>
                                     </p>
                                     <p>
-                                        Հարցերի համար կարող եք կապվել կայքի ադմինիստրատորի հետ հետադարձ կապի միջոցով :
-                                        Շնորհակալություն Red Invest Group համակարգից օգտվելու համար:
+                                        {t('label.Ev.to.newAnounc4')}
                                     </p>
                                     <Divider />
                                 </Col>
 
                                 <Col xs={24} className={"d-flex justify-content-end"}>
                                     <Button type="primary" onClick={onRenew}>
-                                        Նորից գնահատել
+                                        {t('label.button.newEvaluation')}
                                     </Button>
                                 </Col>
                             </Row>
@@ -361,15 +327,15 @@ const EstimateForm = () => {
                             current={current}
                             items={[
                                 {
-                                    title: "Հիմնական",
+                                    title: t('label.general'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Բնակարան",
+                                    title:  t('label.apartment'),
                                     icon: <CheckCircleOutlined />
                                 },
                                 {
-                                    title: "Շուկայական արժեք",
+                                    title: t('label.evaluation.buildingMarketValue'),
                                     icon: <CheckCircleOutlined />
                                 }
                             ]}

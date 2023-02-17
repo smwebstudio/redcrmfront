@@ -5,6 +5,7 @@ import EstateTabs from "@/components/Estate/estate-tabs";
 import Topbar from "@/components/React/global-components/topbar";
 import { apiURL } from "@/constants";
 import LanguageSwitcher from "@/components/Language/language-switcher";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Estates = ({ estatesData, pageDataURL, filtersData }) => {
     return <div>
@@ -15,7 +16,7 @@ const Estates = ({ estatesData, pageDataURL, filtersData }) => {
     </div>
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ locale }) {
     const data = await  fetch(apiURL+"/estates/all");
     const estatesData = await data.json();
     const pageDataURL = apiURL+"/estates/all";
@@ -25,8 +26,12 @@ export async function getServerSideProps(context) {
 
     console.error(filtersData);
 
-    return { props: { estatesData, pageDataURL, filtersData } };
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, [
+                'common',
+            ])), estatesData, pageDataURL, filtersData},
+    }
 }
-
 
 export default Estates

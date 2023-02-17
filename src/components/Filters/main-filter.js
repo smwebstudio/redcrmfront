@@ -1,7 +1,7 @@
 import { Button, Cascader, Col, Form, Row, Select } from "antd";
-import SelectFilter from "@/components/Filters/select-filter";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const filter = (inputValue, path) =>
     path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
@@ -12,11 +12,13 @@ export default function MainFilter(props) {
     const filtersData = props.filtersData;
 
 
+    const { t } = useTranslation('common');
+
+
     let initialProvince = filtersData.data.locations.find(x => x.id === 1);
 
     const [cities, setCities] = useState(initialProvince.cities);
 
-    console.error(filtersData);
 
     let estateTypeOptions = [];
     let provinces = [];
@@ -28,10 +30,12 @@ export default function MainFilter(props) {
         {value: 'RUR', label: 'RUR'},
     ];
 
+
+
     filtersData.data.estate_types.forEach((value) => {
         estateTypeOptions.push({
             value: value.id,
-            label: value.name_arm
+            label: value.label
         });
     });
 
@@ -45,15 +49,17 @@ export default function MainFilter(props) {
 
     filtersData.data.prices.forEach((value) => {
         prices.push({
-            value: value.name_arm,
-            label: value.name_arm
+            value: value.label,
+            label: value.label
         });
     });
+
+    console.log(filtersData);
 
     filtersData.data.rooms.forEach((value) => {
         rooms.push({
             value: value.id,
-            label: value.name_arm
+            label: value.label
         });
     });
 
@@ -92,12 +98,12 @@ export default function MainFilter(props) {
                   className="bg-white text-gray-50 ">
                 <Row>
                 <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">Տեսակ</small>
+                    <small className="pl-2">{t('label.type')}</small>
                     <Form.Item
                         name="estate_type_id">
                         <Select
                             showSearch
-                            placeholder="Տեսակ"
+                            placeholder={t('label.type')}
                             defaultValue={1}
                             bordered={false}
                             optionFilterProp="children"
@@ -108,13 +114,13 @@ export default function MainFilter(props) {
 
                 </Col>
                 <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">Մարզ</small>
+                    <small className="pl-2">{t('label.locationProvince')}</small>
                     <Form.Item
                         name="location_province_id"
                     >
                         <Select
                             showSearch
-                            placeholder="Մարզ"
+                            placeholder={t('label.locationProvince')}
                             defaultValue={1}
                             bordered={false}
                             optionFilterProp="children"
@@ -126,13 +132,13 @@ export default function MainFilter(props) {
                     </Form.Item>
                 </Col>
                 <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">Համայնք</small>
+                    <small className="pl-2">{t('label.locationCommunity')}</small>
                     <Form.Item
                         name="location_city_id"
                     >
                         <Select
                             showSearch
-                            placeholder="Ընտրել"
+                            placeholder={t('button.pick')}
                             bordered={false}
                             optionFilterProp="children"
                             style={{ width: '100%' }}
@@ -143,13 +149,13 @@ export default function MainFilter(props) {
                     </Form.Item>
                 </Col>
                 <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">Գին</small>
+                    <small className="pl-2">{t('label.price.Additional')}</small>
                     <Form.Item
                         name="prices"
                     >
                         <Select
                             showSearch
-                            placeholder="Ընտրել"
+                            placeholder={t('button.pick')}
                             bordered={false}
                             optionFilterProp="children"
                             options={prices}
@@ -158,12 +164,12 @@ export default function MainFilter(props) {
                     </Form.Item>
                 </Col>
                 <Col xs={12} sm={2} className="field-item d-flex flex-column">
-                    <small className="pl-2">Արժույթ</small>
+                    <small className="pl-2">{t('label.currency')}</small>
                     <Form.Item
                         name="currency">
                         <Select
                             showSearch
-                            placeholder="Ընտրել"
+                            placeholder={t('button.pick')}
                             defaultValue={'AMD'}
                             bordered={false}
                             optionFilterProp="children"
@@ -172,13 +178,13 @@ export default function MainFilter(props) {
                     </Form.Item>
                 </Col>
                 <Col xs={12} sm={2} className="field-item d-flex flex-column">
-                    <small className="pl-2">Սենյակ</small>
+                    <small className="pl-2">{t('label.design.room')}</small>
                     <Form.Item
                         name="room_count"
                     >
                         <Select
                             showSearch
-                            placeholder="Ընտրել"
+                            placeholder={t('button.pick')}
                             bordered={false}
                             optionFilterProp="children"
                             options={rooms}
@@ -188,14 +194,14 @@ export default function MainFilter(props) {
                 <Col xs={12} sm={4} className="field-item pl-3 pr-3">
                     <Button
                         className="btn  bg-white hover-primary w-100" size="large">
-                        Լրացուցիչ
+                        {t('label.additional')}
                     </Button>
                 </Col>
                     <Col xs={12} sm={4} className="field-item   ">
                         <Button htmlType="submit"
                                 className="btn btn-main w-100"
                                 size="large">
-                            Փնտրել
+                            {t('button.search')}
                         </Button>
                     </Col>
                 </Row>

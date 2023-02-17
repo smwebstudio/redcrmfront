@@ -32,8 +32,8 @@ function Navbar() {
                                             <li><Link href="/professionals"><a>Մասնագետներ</a></Link></li>
                                             <li><Link href="/blog"><a>Բլոգ</a></Link></li>
                                             <li><Link href="/contact"><a>Կապ</a></Link></li>
-                                            <li><Link href="/contact"><a>Գնահատում</a></Link></li>
-                                            <li><Link href="/contact"><a>Կառուցապատողներ</a></Link></li>
+                                            <li><Link href="/evaluate"><a>Գնահատում</a></Link></li>
+                                            <li><Link href="/builders"><a>Կառուցապատողներ</a></Link></li>
                                             <li>
                                                 <Link href="/add-property"><a className="btn btn-main-transparent"><i
                                                     className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
@@ -53,11 +53,11 @@ function Navbar() {
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li><Link href="/estates"><a>{t('menu.buy')}</a></Link></li>
                                             <li><Link href="/estates"><a>{t('menu.rent')}</a></Link></li>
-                                            <li><Link href="/about"><a>{t('menu.rent')}</a></Link></li>
-                                            <li><Link href="/professionals"><a>{t('menu.rent')}</a></Link></li>
-                                            <li><Link href="/blog"><a>{t('menu.rent')}</a></Link></li>
-                                            <li><Link href="/contact"><a>{t('menu.rent')}</a></Link></li>
-                                            <li><Link href="/contact"><a>{t('menu.rent')}</a></Link></li>
+                                            <li><Link href="/about"><a>{t('menu.about')}</a></Link></li>
+                                            <li><Link href="/professionals"><a>{t('menu.professional')}</a></Link></li>
+                                            <li><Link href="/blog"><a>{t('menu.blog')}</a></Link></li>
+                                            <li><Link href="/contact"><a>{t('menu.contact')}</a></Link></li>
+                                            <li><Link href="/contact"><a>{t('menu.evaluate')}</a></Link></li>
                                             <li><Link href="/contact"><a>{t('menu.buildDevelopers')}</a></Link></li>
                                         </ul>
                                     </div>
@@ -65,7 +65,7 @@ function Navbar() {
                                 <Col xs={0} sm={0} md={0} lg={2}>
                                     <div className="nav-right-part nav-right-part-desktop readeal-top">
                                         <Link href="/add-property"><a className="btn btn-main-transparent pr-1 pl-1"><i
-                                            className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
+                                            className="la la-plus" /> {t('label.addNewAnnouncement')} <span className="right"></span></a></Link>
                                     </div>
                                 </Col>
 
