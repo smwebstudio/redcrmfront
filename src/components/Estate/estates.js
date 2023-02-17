@@ -1,6 +1,11 @@
 import React, { Component, useEffect, useState } from "react";
 import Link from "next/link";
 import { apiURL } from "@/constants";
+import EstateItem from "@/components/Estate/estate-item";
+import { Button, Col, Divider, Pagination, Row, Skeleton } from "antd";
+import axios from "axios";
+import MainFilter from "@/components/Filters/main-filter";
+import EstateSearch from "@/components/Filters/estate-search";
 
 const onChange = (key) => {
     console.log(key);
@@ -9,77 +14,124 @@ const onChange = (key) => {
 export function EstatesSection(props) {
 
     let mapState = props.mapState ? props.mapState : false;
-    let colClass = mapState ? "col-12" : "col-lg-4 col-sm-6";
+    let rowColCount = mapState ? 24 : 8;
 
+    const [loading, setLoading] = useState(false);
     const changeEstatesFoundCount = props.changeEstatesFoundCount;
-    const [estatesData, setEstatesData] = useState([]);
-    useEffect(() => {
-        fetch(apiURL+"/estates/"+props.type)
-            .then(res => res.json())
-            .then(data => {
-                setEstatesData(data);
-                changeEstatesFoundCount(data.meta.total)
-            }).catch((e) => {
-            console.log(e);
-        });
-    }, []);
+    const [estatesData, setEstatesData] = useState(props.estatesData);
+    const [filtersData, setFiltersData] = useState(props.filtersData);
+    const [sortType, setSortType] = useState('created_on');
+    const [pageDataURL, setPageDataURL] = useState(props.pageDataURL + "?");
 
-    let publicUrl = process.env.PUBLIC_URL + "/";
-    let imagealt = "image";
+    const pageSize = estatesData.meta.per_page;
+    const handlePageChange = (page, pageSize) => {
+        setLoading(true);
+        const exactPageUrl = pageDataURL + "page=" + page + "&page_size=" + pageSize+"&sort="+sortType;
+        axios.get(exactPageUrl).then(response => {
+            console.error("response");
+            console.error(response.data);
+            setEstatesData(response.data);
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
+        });
+    };
+
+    const sortEstates = (sortBy) => {
+        setLoading(true);
+        const exactPageUrl = pageDataURL + "sort="+sortBy;
+        axios.get(exactPageUrl).then(response => {
+            setEstatesData(response.data);
+            setSortType(sortBy);
+            setTimeout(() => {
+                setLoading(false);
+            }, 300);
+        });
+    };
+
+
     return (
         <>
-            <div className="property-area min-vh-100 pt-5">
-                <div className="">
-                    {/*Property filter Start*/}
-                    <div className="property-filter-area_changed row custom-gutter">
-                        {/*property item Start*/}
-                        {estatesData.data?.map((item, i) =>
-                            <div key={i} className={"rld-filter-item  cat "+ colClass + " " + item.contract_type_id}>
-                                <div className="single-feature">
-                                    <div className="thumb">
-                                        <Link href={"estates/" + item.id}>
-                                            <a><img src={item.image} alt="img" /></a>
-                                        </Link>
-                                    </div>
-                                    <div className="details">
+            <div className="property-area min-vh-100">
+                <Row>
+                    <Col xs={24}>
+                        <EstateSearch
+                            filtersData={filtersData}
+                            changeEstatesData={setEstatesData}
+                            setLoading={setLoading}
+                            setPageDataURL={setPageDataURL}
+                        />
+                    </Col>
 
-                                        <div className="row mb-3">
-                                            <div className="col-6">
-                                                <h6 className="price">{item.price}</h6>
-                                                <del>{item.old_price}</del>
-                                            </div>
-                                            <div className="col-6 text-right">
-                                                <Link className="p-3" href="/">
-                                                    <a className="ml-3"><img src={"/assets/img/svg/compare.svg"} alt="logo" /></a>
-                                                </Link>
-                                                <Link className="p-3" href="/">
-                                                    <a className="ml-3"><img src={"/assets/img/svg/favorites.svg"} alt="logo" /></a>
-                                                </Link>
-                                            </div>
-                                        </div>
+                    <Divider />
+                </Row>
+                <Row>
+                    <h4 className={"mb-5"}>
+                        Բնակարաններ Երևանում
+                        <small className={"text-secondary ml-3 font-size-13"}>
+                            / Որոնման արդյունքներ </small>
+                        <strong className={"text-dark font-size-13"}> {estatesData.meta.total}</strong>
+                    </h4>
+                </Row>
+                <Row className={"mb-5"}>
+                    <Col xs={24}>
+                        <Button className={"sortButton"} onClick={() => sortEstates('')}>
+                            Բոլորը
+                        </Button>
+                        <Button className={"sortButton"} onClick={() => sortEstates('created_on')}>
+                            Նոր ավելացված
+                        </Button>
+                        <Button className={"sortButton"} onClick={() => sortEstates('-visits_count')}>
+                            Ամենադիտված
+                        </Button>
+                        <Button className={"sortButton"} onClick={() => sortEstates('-room_count')}>
+                            Շտապ
+                        </Button>
 
-                                        <div className="row">
-                                            <div className="col-9">
-                                                <p className="address d-flex">
-                                                    <span><img src={"/assets/img/svg/location.svg"} alt="logo" /></span>
-                                                    <span className="ml-2">{item.full_address}</span>
-                                                </p>
-                                            </div>
-                                        </div>
+                    </Col>
+                </Row>
 
-                                        <ul className="info-list">
-                                                <li className="mr-4"><img src={"/assets/img/svg/doors.svg"} alt="logo" />{item.floor}</li>
-                                                <li className="mr-4"><img src={"/assets/img/svg/floor.svg"} alt="logo" />{item.floor} / {item.building_floor_count}</li>
-                                                <li className="mr-3"><img src={"/assets/img/svg/area.svg"} alt="logo" />{Math.round(item.area_total)} քմ</li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
+                <Row className="">
+                    {!loading &&
+                        estatesData.data?.map((item, index) =>
+                            <Col xs={24} sm={rowColCount} className={"pr-3 pl-3"}>
+                                <EstateItem key={index} item={item} />
+                            </Col>
                         )
-                        }
-                    </div>
-                </div>
+
+
+                    }
+                </Row>
+                {loading &&
+                    <Row className={"mt-5 mb-5"}>
+                        <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
+                            <Skeleton />
+                            <Skeleton />
+                            <Skeleton />
+                        </Col>
+
+                        <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
+                            <Skeleton />
+                            <Skeleton />
+                            <Skeleton />
+                        </Col>
+
+                        <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
+                            <Skeleton />
+                            <Skeleton />
+                            <Skeleton />
+                        </Col>
+                    </Row>
+                }
+                <Row className={"mb-5 d-flex align-items-center justify-content-center"}>
+                    <Pagination
+                        pageSize={pageSize}
+                        defaultCurrent={1}
+                        total={estatesData.meta.total}
+                        pageSizeOptions={[6, 9, 12, 24]}
+                        locale={{ items_per_page: "" }}
+                        onChange={handlePageChange} />
+                </Row>
             </div>
         </>
     );

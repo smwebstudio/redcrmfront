@@ -5487,3 +5487,20 @@ h1.blog_title {
     max-width: 100%;
     object-fit: cover;
 }
+
+
+/*Buttons custom styles*/
+
+.sortButton {
+    padding: 5px 16px 15px 16px !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    border-bottom: 5px solid #eee !important;
+    height: auto !important;
+    background: transparent !important;
+}
+
+.sortButton:hover, .sortButton:active, .sortButton:focus, .sortButton.active  {
+    border-bottom: 5px solid #D8002C !important;
+}

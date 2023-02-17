@@ -1,11 +1,15 @@
-import { Tabs } from "antd";
 import React, { Component, useState } from "react";
 import EstatesSection from "@/components/Estate/estates";
 import EstatesMap from "@/components/Estate/estates-map";
+import { Affix, Col, Layout, Row } from "antd";
 
 
 function EstateTabs(props) {
 
+    const estatesData = props.estatesData;
+    const filtersData = props.filtersData;
+    const pageDataURL = props.pageDataURL;
+    const totalCount = estatesData.meta.total;
     const [estatesCount, setEstatesCount] = useState([]);
     const [mapState, setMapState] = useState(false);
     const changeEstatesFoundCount = (estatesCount) => {
@@ -19,65 +23,33 @@ function EstateTabs(props) {
     }
 
 
-
     return (
 
         <div className={mapState.opened ? "container-fluid mt-5" : "mt-5"}>
             <div className={mapState.opened ? "row" : ""}>
 
-                <div className={mapState.opened ? "col-8 map-container-opened" : "map-container"}>
-                    <EstatesMap toggleMap={onToggleMapClicked} />
-                </div>
-                <div className={mapState.opened ? "col-4" : "container  pt-5 mt-5 border-top"}>
-                    <div className="row ">
-                        <div className="col-8">
-                            <h4>Բնակարաններ Երևանում<small className="text-secondary ml-3 font-size-13">/ Որոնման
-                                արդյունքներ <strong className={"text-dark"}>{estatesCount}</strong> </small></h4>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <Tabs
-                                defaultActiveKey="1"
-                                onChange={changeEstatesFoundCount}
-                                items={[
-                                    {
-                                        label: `Բոլորը`,
-                                        key: "1",
-                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
-                                                                  type="all"
-                                                                  mapState={mapState.opened}
-                                        />
-                                    },
-                                    {
-                                        label: `Նոր ավելացված`,
-                                        key: "2",
-                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
-                                                                  type="latest"
-                                                                  mapState={mapState.opened}
-                                        />
-                                    },
-                                    {
-                                        label: `Ամենադիտված`,
-                                        key: "3",
-                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
-                                                                  type="most_hits"
-                                                                  mapState={mapState.opened}
-                                        />
-                                    },
-                                    {
-                                        label: `Շտապ`,
-                                        key: "4",
-                                        children: <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
-                                                                  type="hot"
-                                                                  itemColClass={mapState.opened}
-                                        />
-                                    }
-                                ]}
-                            />
-                        </div>
-                    </div>
-                </div>
+                {/*<div className={mapState.opened ? "col-8 map-container-opened" : "map-container"}>*/}
+                {/*    <EstatesMap toggleMap={onToggleMapClicked} />*/}
+                {/*</div>*/}
+                <Row>
+                    <Col xs={4} sm={mapState.opened ? 16 : 4} className={""}
+                         style={{ overflow: "hidden" }}>
+                        <Affix offsetTop={30} className={"map-overflow-hidden "}
+                               style={{ overflow: "hidden", }}>
+                            <EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />
+                        </Affix>
+                    </Col>
+
+                    <Col offset={mapState.opened ? 0 : 1} xs={mapState.opened ? 7 : 16}>
+                        <EstatesSection changeEstatesFoundCount={changeEstatesFoundCount}
+                                        type="all"
+                                        mapState={mapState.opened}
+                                        estatesData={estatesData}
+                                        filtersData={filtersData}
+                                        pageDataURL={pageDataURL}
+                        />
+                    </Col>
+                </Row>
             </div>
 
         </div>

@@ -228,6 +228,10 @@ html, body {
     padding-right: 30px;
 }
 
+.map-overflow-hidden .ant-affix {
+    overflow: hidden !important;
+}
+
 .estates-map {
     min-height: calc(100vh - 100px);
     width: 64vw;

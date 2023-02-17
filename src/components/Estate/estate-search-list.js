@@ -18,10 +18,7 @@ export function EstateSearchList(props) {
     const totalCount = searchData.meta.total;
     const pageSize = searchData.meta.per_page;
 
-    console.error("searchData");
-    console.error(searchData);
     const handlePageChange = (page, pageSize) => {
-
         setLoading(true);
         console.error("searchDataURL");
         console.error(searchDataURL);
@@ -37,7 +34,6 @@ export function EstateSearchList(props) {
             }, 500);
         });
     };
-    console.error("searchData");
 
 
     return (

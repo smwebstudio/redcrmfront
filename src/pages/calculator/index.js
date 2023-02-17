@@ -4,8 +4,7 @@ import React from "react";
 import EstateTabs from "@/components/Estate/estate-tabs";
 import Topbar from "@/components/React/global-components/topbar";
 import { Button, Form, Input } from "antd";
-
-const LoanSchedule = require("loan-schedule.js");
+import LoanSchedule from "loan-schedule.js";
 
 
 
