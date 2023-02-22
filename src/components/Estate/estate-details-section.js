@@ -22,7 +22,7 @@ function EstateDetailsSection() {
         if (router.isReady) {
             const { id } = router.query;
             if (!id) return null;
-            fetch(apiURL + "/estates/" + id)
+            fetch(apiURL + "api/estates/" + id)
                 .then(res => res.json())
                 .then(data => {
                     setEstateData(data);

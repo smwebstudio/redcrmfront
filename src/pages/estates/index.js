@@ -4,8 +4,9 @@ import React from "react";
 import EstateTabs from "@/components/Estate/estate-tabs";
 import Topbar from "@/components/React/global-components/topbar";
 import { apiURL } from "@/constants";
-import LanguageSwitcher from "@/components/Language/language-switcher";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import api from "@/hooks/api";
+import axios from "axios";
 
 const Estates = ({ estatesData, pageDataURL, filtersData }) => {
     return <div>
@@ -17,14 +18,16 @@ const Estates = ({ estatesData, pageDataURL, filtersData }) => {
 }
 
 export async function getServerSideProps({ locale }) {
-    const data = await  fetch(apiURL+"/estates/all");
-    const estatesData = await data.json();
-    const pageDataURL = apiURL+"/estates/all";
 
-    const filtersDataRequest = await fetch(apiURL+"/filters/");
-    const filtersData = await filtersDataRequest.json();
 
-    console.error(filtersData);
+    const filtersDataRequest = await api(locale).post(apiURL+"api/filters/", {});
+    const filtersData = filtersDataRequest.data;
+
+    const data = await  api(locale).get(apiURL+"api/estates/filter/estates?sort=created_on");
+    const estatesData = data.data;
+    const pageDataURL = apiURL+"api/estates/filter/estates";
+
+
 
     return {
         props: {

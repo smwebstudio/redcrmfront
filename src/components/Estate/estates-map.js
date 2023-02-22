@@ -15,7 +15,7 @@ export function EstatesMap(props) {
 
     useEffect(() => {
         // Update the document title using the browser API
-        document.title = `loaded`;
+        document.title = `Red Group Map`;
 
         ymaps.ready(init());
 

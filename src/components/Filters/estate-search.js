@@ -3,6 +3,7 @@ import SelectFilter from "@/components/Filters/select-filter";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { apiURL } from "@/constants";
+import api from "@/hooks/api";
 
 const filter = (inputValue, path) =>
     path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
@@ -10,10 +11,14 @@ const filter = (inputValue, path) =>
 export default function EstateSearch(props) {
     const [form] = Form.useForm();
     const router = useRouter();
+    const { locale } = router;
     const filtersData = props.filtersData;
     const changeEstatesData = props.changeEstatesData;
     const setLoading = props.setLoading;
     const setPageDataURL = props.setPageDataURL;
+
+    console.log('props');
+    console.log(props);
 
 
     let initialProvince = filtersData.data.locations.find(x => x.id === 1);
@@ -34,22 +39,24 @@ export default function EstateSearch(props) {
     filtersData.data.estate_types.forEach((value) => {
         estateTypeOptions.push({
             value: value.id,
-            label: value.name_arm
+            label: value.label
         });
     });
+
+    console.log(filtersData);
 
 
     filtersData.data.locations.forEach((value) => {
         provinces.push({
             value: value.id,
-            label: value.name,
+            label: value.label,
         });
     });
 
     filtersData.data.prices.forEach((value) => {
         prices.push({
-            value: value.name_arm,
-            label: value.name_arm
+            value: value.label,
+            label: value.label
         });
     });
 
@@ -88,10 +95,10 @@ export default function EstateSearch(props) {
             }
         });
 
-        setPageDataURL(apiURL + "/estates/filter/estates?" + queryURL);
+        setPageDataURL(apiURL + "api/estates/filter/estates?" + queryURL);
 
-        const data = await fetch(apiURL + "/estates/filter/estates?" + queryURL);
-        const estatesData = await data.json();
+        const estatesFilteredResponse = await api(locale).get(apiURL + "api/estates/filter/estates?" + queryURL);
+        const estatesData = estatesFilteredResponse.data;
 
         changeEstatesData(estatesData);
         setLoading(false);

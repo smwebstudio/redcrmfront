@@ -11,6 +11,8 @@ export default function MainFilter(props) {
     const router = useRouter();
     const filtersData = props.filtersData;
 
+    console.log('props');
+    console.log(props);
 
     const { t } = useTranslation('common');
 

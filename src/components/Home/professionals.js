@@ -9,7 +9,7 @@ import { Col, Row } from "antd";
 function Professionals(props) {
     const [professionalsData, setProfessionalsData] = useState([]);
     useEffect(() => {
-        fetch(apiURL + "/brokers/best")
+        fetch(apiURL + "api/brokers/best")
             .then(res => res.json())
             .then(data => {
                 setProfessionalsData(data);

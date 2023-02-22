@@ -6,6 +6,7 @@ import { Button, Col, Divider, Pagination, Row, Skeleton } from "antd";
 import axios from "axios";
 import MainFilter from "@/components/Filters/main-filter";
 import EstateSearch from "@/components/Filters/estate-search";
+import { useTranslation } from "next-i18next";
 
 const onChange = (key) => {
     console.log(key);
@@ -15,11 +16,15 @@ export function EstatesSection(props) {
 
     let mapState = props.mapState ? props.mapState : false;
     let rowColCount = mapState ? 24 : 8;
+    const { t } = useTranslation('common');
 
     const [loading, setLoading] = useState(false);
     const changeEstatesFoundCount = props.changeEstatesFoundCount;
     const [estatesData, setEstatesData] = useState(props.estatesData);
-    const [filtersData, setFiltersData] = useState(props.filtersData);
+    // const [filtersData, setFiltersData] = useState(props.filtersData);
+    const filtersData = props.filtersData;
+
+
     const [sortType, setSortType] = useState('created_on');
     const [pageDataURL, setPageDataURL] = useState(props.pageDataURL + "?");
 
@@ -76,7 +81,7 @@ export function EstatesSection(props) {
                 <Row className={"mb-5"}>
                     <Col xs={24}>
                         <Button className={"sortButton"} onClick={() => sortEstates('')}>
-                            Բոլորը
+                            {t('common\:label.all')}
                         </Button>
                         <Button className={"sortButton"} onClick={() => sortEstates('created_on')}>
                             Նոր ավելացված
