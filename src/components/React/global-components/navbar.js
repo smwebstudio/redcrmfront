@@ -57,8 +57,8 @@ function Navbar() {
                                             <li><Link href="/professionals"><a>{t('menu.professional')}</a></Link></li>
                                             <li><Link href="/blog"><a>{t('menu.blog')}</a></Link></li>
                                             <li><Link href="/contact"><a>{t('menu.contact')}</a></Link></li>
-                                            <li><Link href="/contact"><a>{t('menu.evaluate')}</a></Link></li>
-                                            <li><Link href="/contact"><a>{t('menu.buildDevelopers')}</a></Link></li>
+                                            <li><Link href="/estimate"><a>{t('menu.evaluate')}</a></Link></li>
+                                            <li><Link href="/builders"><a>{t('menu.buildDevelopers')}</a></Link></li>
                                         </ul>
                                     </div>
                                 </Col>
