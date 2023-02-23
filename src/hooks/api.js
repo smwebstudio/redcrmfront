@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { apiURL } from "@/constants";
 
 export default function api(locale) {
 
     const api = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+        baseURL: apiURL,
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
             "Accept": "application/json",
