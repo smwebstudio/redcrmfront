@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/05_npm_run_backend.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +139,7 @@
       <workItem from="1676622036037" duration="25706000" />
       <workItem from="1676961489156" duration="14647000" />
       <workItem from="1677060325490" duration="18560000" />
-      <workItem from="1677132853286" duration="4377000" />
+      <workItem from="1677132853286" duration="5080000" />
     </task>
     <servers />
   </component>
