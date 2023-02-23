@@ -81,6 +81,9 @@ export default function EstateSearch(props) {
 
     const onFinish = async (values) => {
 
+        console.log('valuesFinish');
+        console.log(values);
+
         setLoading(true);
         const queryData = Object.entries(values);
         let queryURL = '';
@@ -104,9 +107,38 @@ export default function EstateSearch(props) {
         setLoading(false);
     };
 
+    const onFormChange = async (changedFields, values) => {
+
+        console.log('valuesChange');
+        console.log(values);
+
+        setLoading(true);
+        const queryData = Object.entries(values);
+        let queryURL = '';
+        queryData.forEach(function(param) {
+            if (param[0] === 'prices' && param[1]) {
+                let pricesRange = param[1].split('-');
+                console.error('pricesRange');
+                console.error(pricesRange);
+                queryURL += 'filter[price_from]=' + pricesRange[0] + '&' + 'filter[price_to]=' + pricesRange[1] + '&';
+            } else if (param[1]) {
+                queryURL += 'filter[' + param[0] + ']' + '=' + param[1] + '&';
+            }
+        });
+
+        setPageDataURL(apiURL + "api/estates/filter/estates?" + queryURL);
+
+        const estatesFilteredResponse = await api(locale).get(apiURL + "api/estates/filter/estates?" + queryURL);
+        const estatesData = estatesFilteredResponse.data;
+
+        changeEstatesData(estatesData);
+        setLoading(false);
+    };
+
+
     return (
         <>
-            <Form form={form} onFinish={onFinish}
+            <Form form={form} onFinish={onFinish} onValuesChange={onFormChange}
                   className="bg-white text-gray-50 ">
                 <Row>
                     <Col xs={12} sm={3} className="field-item d-flex flex-column">

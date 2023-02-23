@@ -13,7 +13,7 @@ export function BlogBlock(props) {
     const articleType = props.type;
     const [blogData, setBlogData] = useState([]);
     useEffect(() => {
-        fetch(apiURL+"/blog/"+articleType)
+        fetch(apiURL+"api/blog/"+articleType)
             .then(res => res.json())
             .then(data => {
                 setBlogData(data);

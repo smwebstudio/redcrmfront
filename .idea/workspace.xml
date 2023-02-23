@@ -6,10 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/React/global-components/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Blog/blog-block.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Blog/blog-block.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Blog/blog-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Blog/blog-details.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Blog/blog-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Blog/blog-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/EstateItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/EstateItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-details-section.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-details-section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estate-professional-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estate-professional-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estates-map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estates-map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Estate/estates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Estate/estates.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Filters/estate-search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filters/estate-search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Professionals/professional-section.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Professionals/professional-section.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/estates/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/estates/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/professionals/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/professionals/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/search/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +157,7 @@
       <workItem from="1676560872030" duration="6051000" />
       <workItem from="1676622036037" duration="25706000" />
       <workItem from="1676961489156" duration="14647000" />
-      <workItem from="1677060325490" duration="14873000" />
+      <workItem from="1677060325490" duration="18560000" />
     </task>
     <servers />
   </component>
@@ -159,16 +174,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Estate/estate-details-section.js</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

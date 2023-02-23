@@ -8,7 +8,7 @@ export function ProfessionalSection(props, type) {
 
     const [profData, setProfData] = useState([]);
     useEffect(() => {
-        fetch(apiURL + "/brokers/profession/"+props.type)
+        fetch(apiURL + "api/brokers/profession/"+props.type)
             .then(res => res.json())
             .then(data => {
                 setProfData(data);
@@ -21,9 +21,7 @@ export function ProfessionalSection(props, type) {
         <>
             <div className="property-area min-vh-100 pt-5">
                 <div className="">
-
                     <div className="property-filter-area_changed row custom-gutter">
-
                         {profData.data?.map((item, i) =>
                             <Col sm={12} xs={24} key={i} className={item.contract_type_id}>
                                 <Professional professional={item} />

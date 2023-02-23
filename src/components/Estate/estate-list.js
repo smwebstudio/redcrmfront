@@ -12,7 +12,7 @@ export function EstateList(props) {
     const changeEstatesFoundCount = props.changeEstatesFoundCount;
     const [estatesData, setEstatesData] = useState([]);
     useEffect(() => {
-        fetch(apiURL+"/estates/"+props.type)
+        fetch(apiURL+"api/estates/"+props.type)
             .then(res => res.json())
             .then(data => {
                 setEstatesData(data);

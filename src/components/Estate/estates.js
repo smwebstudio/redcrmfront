@@ -79,7 +79,7 @@ export function EstatesSection(props) {
                     </h4>
                 </Row>
                 <Row className={"mb-5"}>
-                    <Col xs={24}>
+                    <Col xs={24} className={"sortButtonsWrapper"}>
                         <Button className={"sortButton"} onClick={() => sortEstates('')}>
                             {t('common\:label.all')}
                         </Button>

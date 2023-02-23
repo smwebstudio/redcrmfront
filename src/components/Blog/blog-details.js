@@ -12,7 +12,7 @@ function BlogDetails(props) {
         if(router.isReady){
             const { id } = router.query;
             if (!id) return null;
-            fetch(apiURL+"/blog/" + id)
+            fetch(apiURL+"api/blog/" + id)
                 .then(res => res.json())
                 .then(data => {
                     setBlogData(data);

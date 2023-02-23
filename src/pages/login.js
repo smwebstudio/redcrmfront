@@ -15,9 +15,12 @@ import Navbar from "@/components/React/global-components/navbar";
 import LoginFooter from "@/components/LoginFooter";
 import Footer from "@/components/React/global-components/footer";
 import Topbar from "@/components/React/global-components/topbar";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const Login = () => {
     const router = useRouter();
+    const {t} = useTranslation()
 
     const { login } = useAuth({
         middleware: "guest",
@@ -64,11 +67,11 @@ const Login = () => {
                         {/* Session Status */}
                         <AuthSessionStatus className="mb-4" status={status} />
 
-                        <h5 className="mb-5 text-left text-dark"><strong>Մուտք</strong></h5>
+                        <h5 className="mb-5 text-left text-dark"><strong>{t('common\:label.login')}</strong></h5>
                         <form onSubmit={submitForm}>
                             {/* Email Address */}
                             <div className="d-flex flex-column">
-                                <Label htmlFor="email"><p>Օգտանուն <span className={"text-main"}>*</span></p></Label>
+                                <Label htmlFor="email"><p>{t('common\:label.username')} <span className={"text-main"}>*</span></p></Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -84,7 +87,7 @@ const Login = () => {
 
                             {/* Password */}
                             <div className="mt-4 d-flex flex-column">
-                                <Label htmlFor="password"><p>Գաղտնաբառ <span className={"text-main"}>*</span></p></Label>
+                                <Label htmlFor="password"><p>{t('common\:label.password')} <span className={"text-main"}>*</span></p></Label>
 
                                 <Input
                                     id="password"
@@ -117,16 +120,16 @@ const Login = () => {
                             </span>
                                 </label>
                             </div>
-                            <Button className="btn btn-block  btn-main p-2 mt-3">Մուտք</Button>
+                            <Button className="btn btn-block  btn-main p-2 mt-3">{t('common\:label.login')}</Button>
                             <div className="d-flex items-center flex-column justify-end text-center mt-4">
                                 <Link href="/forgot-password">
                                     <a className="underline text-sm w-100 hover:text-gray-900">
-                                        Մոռացել եք գաղտնաբառը?
+                                        {t('common\:label.loginForgotPass')}
                                     </a>
                                 </Link>
                                 <Link href="/register">
                                     <a className="underline mt-5 text-sm  hover:text-gray-900">
-                                        Գրանցված չեք? <span className={"ml-3 text-main text-underline"}>Ստեղծել հաշիվ</span>
+                                        Գրանցված չեք? <span className={"ml-3 text-main text-underline"}>{t('common\:button.register')}</span>
                                     </a>
                                 </Link>
 
@@ -143,5 +146,17 @@ const Login = () => {
         </GuestLayout>
     );
 };
+
+export async function getServerSideProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, [
+                'common',
+                'footer',
+            ])),
+            // Will be passed to the page component as props
+        },
+    }
+}
 
 export default Login;

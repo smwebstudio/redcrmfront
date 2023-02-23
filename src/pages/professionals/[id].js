@@ -22,7 +22,7 @@ export async function getServerSideProps(context ) {
 
     const { id } = context.query;
 
-    const data = await fetch(apiURL+"/professionals/" + id);
+    const data = await fetch(apiURL+"api/professionals/" + id);
     const professionalItem = await data.json();
 
     // Pass data to the page via props

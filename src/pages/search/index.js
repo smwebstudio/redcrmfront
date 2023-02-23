@@ -34,9 +34,9 @@ export async function getServerSideProps(context) {
         }
     });
 
-    const data = await fetch(apiURL+"/estates/filter/estates?" + queryURL);
+    const data = await fetch(apiURL+"api/estates/filter/estates?" + queryURL);
     const searchData = await data.json();
-    const searchDataURL = apiURL+"/estates/filter/estates?" + queryURL;
+    const searchDataURL = apiURL+"api/estates/filter/estates?" + queryURL;
 
     console.error(searchDataURL);
     return { props: { searchData, searchDataURL } };

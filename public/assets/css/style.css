@@ -5501,6 +5501,10 @@ h1.blog_title {
 
 /*Buttons custom styles*/
 
+.sortButtonsWrapper {
+    border-bottom: 5px solid #eee !important;
+}
+
 .sortButton {
     padding: 5px 16px 15px 16px !important;
     border-right: 0 !important;
@@ -5509,6 +5513,8 @@ h1.blog_title {
     border-bottom: 5px solid #eee !important;
     height: auto !important;
     background: transparent !important;
+    position: relative;
+    top: 5px;
 }
 
 .sortButton:hover, .sortButton:active, .sortButton:focus, .sortButton.active  {

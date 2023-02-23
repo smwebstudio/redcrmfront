@@ -10,7 +10,7 @@ export function EstateProfessionalList(props) {
     const [estatesData, setEstatesData] = useState([]);
     const estatesCount = props.estatesCount;
     useEffect(() => {
-        fetch(apiURL+"/estates/professional/"+props.id)
+        fetch(apiURL+"api/estates/professional/"+props.id)
             .then(res => res.json())
             .then(data => {
                 setEstatesData(data);
@@ -49,7 +49,7 @@ export async function getNewPostsFromApi(id) {
 
 console.error(id);
     // Fetch data from external API
-    const data = await fetch(apiURL+"/estates/professional/"+id)
+    const data = await fetch(apiURL+"api/estates/professional/"+id)
         .then(res => res.json())
         .then(data => {
             return data;

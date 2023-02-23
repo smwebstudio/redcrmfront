@@ -21,13 +21,11 @@ import {
 
 const { Text, Link } = Typography;
 
-const images = [];
 
-function EstateDetailsSection() {
+function EstateDetailsSection(props) {
 
     const { t } = useTranslation("common");
-    const router = useRouter();
-    const [estateData, setEstateData] = useState([]);
+    const estateData = props.estateData;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
@@ -40,32 +38,14 @@ function EstateDetailsSection() {
         setIsModalOpen(false);
     };
 
-    useEffect(() => {
-        if (router.isReady) {
-            const { id } = router.query;
-            if (!id) return null;
-            fetch(apiURL + "api/estates/" + id)
-                .then(res => res.json())
-                .then(data => {
-                    setEstateData(data);
-
-                }).catch((e) => {
-                console.info(e);
-            });
-        }
-
-
-    }, [router.isReady]);
-
     let publicCDN = "https://proinfo.am/uploadsWithWaterMark/";
-
-    let estate = estateData.data;
-    let imagesData = estate?.images;
+    let estate = estateData.estateData.data;
+    let imagesData = estate.images;
 
 
     let building_attributes = [];
     if (estate) {
-        building_attributes = Object.entries(estate?.building_attributes);
+        building_attributes = Object.entries(estate.building_attributes);
     }
 
     const waitTime = (time = 100) => {
