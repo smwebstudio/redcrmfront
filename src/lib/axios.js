@@ -1,7 +1,8 @@
 import Axios from 'axios'
+import { apiURL } from "@/constants";
 
 const axiosAPI = Axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    baseURL: apiURL,
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
     },
