@@ -5335,7 +5335,7 @@ h1.blog_title {
     flex-direction: column;
     position: absolute;
     left: -50px;
-    top: 200px;
+    top: 0px;
 }
 
 .shareButtons button {

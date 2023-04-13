@@ -57,7 +57,7 @@ const ContactSimpleForm = () => {
 
 
     return (
-        <div className={"container  mb-5"}>
+        <div className={"container"}>
             <Row>
 
                 <Col span={24}>
@@ -160,9 +160,6 @@ const ContactSimpleForm = () => {
 
                         </Form>
                     </div>
-                </Col>
-                <Col span={6}>
-
                 </Col>
             </Row>
 

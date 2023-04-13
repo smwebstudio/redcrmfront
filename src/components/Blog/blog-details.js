@@ -37,7 +37,7 @@ function BlogDetails(props) {
             <div className={"row"}>
                 <div className={"col-8 offset-2"}>
 
-                    <ShareButtons />
+
                     <div className={"row"}>
                         <p className="blog_created_at text-gray-800 mt-5 mb-5">
                             <img src={"/assets/img/svg/calendar_icon.svg"} alt="calendar" className={"mr-1"} /> {article?.created_at}թ․</p>
@@ -46,7 +46,8 @@ function BlogDetails(props) {
                         <h1 className="blog_title text-gray-800 text-dark mb-4">{article?.title}</h1>
                     </div>
                     <div className="row">
-                        <div className="BlogDetails-info justify-content-center">
+                        <div className="BlogDetails-info justify-content-center position-relative">
+                            <ShareButtons />
                             <div className="font-size-13 mb-1 text-gray-800 text-dark"
                                  dangerouslySetInnerHTML={{ __html: article?.content }}></div>
                         </div>

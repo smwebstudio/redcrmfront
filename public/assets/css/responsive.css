@@ -220,6 +220,8 @@
 
     .banner-area {
         padding-top: 0px !important;
+        margin-bottom: 0px !important;
+        height: 480px !important;
     }
 
 	.banner-inner-wrap {

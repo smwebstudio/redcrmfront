@@ -53,6 +53,10 @@ html, body {
     background: #FFFFFF !important;
 }
 
+.bg-dark {
+    background: #414141 !important;
+}
+
 .border-orange {
     border: 1px solid #FF8038 !important
 }
@@ -202,7 +206,11 @@ html, body {
     width: 200px !important;
 }
 
-/*.image-gallery-content:not(.fullscreen) {*/
+.image-gallery-slide.center {
+    background: #414141 !important;
+}
+
+    /*.image-gallery-content:not(.fullscreen) {*/
 /*    font-weight: bold;*/
 /*    display: flex;*/
 /*}*/

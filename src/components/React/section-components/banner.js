@@ -34,6 +34,8 @@ function Banner(props) {
         <div className={"container"}>
             <div className="main-search-tabs">
                 <div className="banner-search-wrap">
+                    <Col xs={0} sm={24}>
+
                     <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
                         <li className="nav-item">
                             <a className="nav-link active" data-toggle="tab" href="#tabs_1">{t('button.sale')}</a>
@@ -51,6 +53,8 @@ function Banner(props) {
                             <a className="nav-link" data-toggle="tab" href="#tabs_4">{t('label.search')}</a>
                         </li>
                     </ul>
+
+                    </Col>
                     <div className="tab-content">
                         <div className="tab-pane fade show active" id="tabs_1">
                             <div className="pt-4 pl-3 bg-white">

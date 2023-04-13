@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import ShareButtons from "@/components/Global/share-buttons";
-import { Button, Col, Form, Input, message, Modal, Popover, Row, Select } from "antd";
+import { Button, Card, Col, Divider, Form, Input, message, Modal, Popover, Row, Select } from "antd";
 import { Space, Typography } from "antd";
 import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
@@ -18,6 +18,7 @@ import {
     InfoCircleOutlined,
     SwapOutlined
 } from "@ant-design/icons";
+import ContactSimpleForm from "@/components/Forms/contact-simple-form";
 
 const { Text, Link } = Typography;
 
@@ -38,10 +39,12 @@ function EstateDetailsSection(props) {
         setIsModalOpen(false);
     };
 
-    let publicCDN = "https://proinfo.am/uploadsWithWaterMark/";
+    let publicUrl = process.env.PUBLIC_URL + "/";
     let estate = estateData.estateData.data;
     let imagesData = estate.images;
 
+    console.log('estate');
+    console.log(estate);
 
     let building_attributes = [];
     if (estate) {
@@ -65,7 +68,7 @@ function EstateDetailsSection(props) {
     let images = [];
     if (imagesData) {
         imagesData.forEach(item => {
-            images.push({ original: publicCDN + item.path, thumbnail: publicCDN + item.path_thumb });
+            images.push({ original: item, thumbnail: item });
         });
     }
 
@@ -76,184 +79,235 @@ function EstateDetailsSection(props) {
     ];
 
     const content = (
-            <p>{t('common\:label.SetAdHotOffersent1_2')}</p>
+        <p>{t("common\:label.SetAdHotOffersent1_2")}</p>
     );
 
 
     return <div className="property-details-area">
         <div className="bg-gray  pd-bottom-90">
 
-            <div className={"container-fluid bg-white pt-5 pb-5"}>
+            <div className={"container-fluid bg-white pt-5 pb-1"}>
                 <div className={"container"}>
                     <Row className={"mb-4"}>
                         <Col sm={16} className={"mb-4"}>
-                            <ShareButtons />
                             <h3>
                                 <span className="text-main font-bold mr-5 font-size-24">{estate?.price}</span>
                                 <span className="estate-code border p-1 pl-3 pr-3">{estate?.code}</span>
-                                <span className="estate-code p-1 pl-5 pr-5 border-orange text-white bg-orange">{t('common\:button.sale')}</span>
+                                <span
+                                    className="estate-code p-1 pl-5 pr-5 border-orange text-white bg-orange">{t("common\:button.sale")}</span>
                             </h3>
                         </Col>
                         <Col sm={8}>
                             <div className={"d-flex justify-content-end align-items-center"}>
-                                <EyeOutlined style={{fontSize: 24, marginRight: 10}}/> 362
-                                <SwapOutlined style={{fontSize: 24, marginRight: 30, marginLeft: 30}}/>
-                                <HeartOutlined style={{fontSize: 24}}/>
+                                <EyeOutlined style={{ fontSize: 24, marginRight: 10 }} /> 1362
+                                <SwapOutlined style={{ fontSize: 24, marginRight: 30, marginLeft: 30 }} />
+                                <HeartOutlined style={{ fontSize: 24 }} />
                             </div>
 
                         </Col>
-                        <Col sm={20}>
-                            <EnvironmentOutlined style={{fontSize: 24, marginRight: 10}}/> Վաճառվում է 3
-                            սենյականոց բնակարան {estate?.full_address}
+                        <Col sm={24} className={"d-flex align-items-center mb-4"}>
+                            <EnvironmentOutlined style={{ fontSize: 24, marginRight: 10 }} />{estate.public_text_arm} {estate.full_address}
                         </Col>
-                        <Col sm={4}>
-                            <Popover content={content}  >
-                                <Button type="secondary" onClick={showModal}>
-                                    {t("common\:label.offerANewPrice")} <InfoCircleFilled />
-                                </Button>
-                            </Popover>
-                            <Modal
-                                title={t("common\:label.offerANewPrice")}
-                                open={isModalOpen}
-                                onOk={handleOk}
-                                onCancel={handleCancel}
-                                width={700}
-                                footer={[
-                                    <Col>
-                                        <Button key="back" onClick={handleCancel}>
-                                            {t("common\:button.cancel")}
-                                        </Button>
-                                        <Button form="priceOffer" type="primary" key="submit" htmlType="submit">
-                                            {t("common\:button.send")}
-                                        </Button>
-                                    </Col>
-                                ]}>
 
-
-                                <Form
-                                    name="priceOffer"
-                                    layout="vertical"
-                                    style={{
-                                        maxWidth: 800
-                                    }}
-                                    onFinish={onFinish}
-                                >
-                                    <Row gutter={24}>
-
-                                        <Col xs={24} sm={12}>
-                                            <Form.Item
-                                                label={t("common\:label.firstLastName")}
-                                                name="full_name"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message: t("common\:validation.firstLastName.required")
-                                                    }
-                                                ]}
-                                            >
-                                                <Input />
-                                            </Form.Item>
+                            <Col sm={20}>
+                                <Row gutter={32} className="d-flex flex-row align-items-center">
+                                    {estate.room_count &&
+                                        <Col className="mr-4"><img className="mr-2" src={"/assets/img/svg/doors.svg"}
+                                                                   alt="logo" />{estate.room_count} {t('common\:label.design.room')}
                                         </Col>
+                                    }
 
-                                        <Col xs={24} sm={12}>
-                                            <Form.Item
-                                                label={t("common\:label.email")}
-                                                name="e_mail"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message: t("common\:validation.email.required")
-                                                    }
-                                                ]}
-                                            >
-                                                <Input />
-                                            </Form.Item>
+                                    {estate.floor &&
+                                        <Col className="mr-4"><img className="mr-2" src={"/assets/img/svg/floor.svg"}
+                                                                   alt="logo" />{estate.floor} / {estate.building_floor_count}
                                         </Col>
+                                    }
 
-                                        <Col xs={24} sm={12}>
-                                            <Form.Item
-                                                label={t("common\:label.phone")}
-                                                name="e_mail"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message: t("common\:validation.phone.fixed.required")
-                                                    }
-                                                ]}
-                                            >
-                                                <Input />
-                                            </Form.Item>
+                                    {estate.area_total &&
+
+                                        <Col className="mr-3"><img className="mr-2" src={"/assets/img/svg/area.svg"}
+                                                                   alt="logo" />{Math.round(estate.area_total)} քմ
                                         </Col>
+                                    }
+                                </Row>
 
-                                        <Col xs={18} sm={8}>
-                                            <Form.Item
-                                                label={t("common\:label.offeringPrice")}
-                                                name="offer_price"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message: t("common\:validation.price.required")
-                                                    }
-                                                ]}
-                                            >
-                                                <Input />
-                                            </Form.Item>
+                            </Col>
+                            <Col sm={4} className={""}>
+                                <Popover content={content}>
+                                    <Button type="primary" onClick={showModal} className={"d-flex align-items-center"}>
+                                        {t("common\:label.offerANewPrice")} <InfoCircleFilled />
+                                    </Button>
+                                </Popover>
+                                <Modal
+                                    title={t("common\:label.offerANewPrice")}
+                                    open={isModalOpen}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    width={700}
+                                    footer={[
+                                        <Col>
+                                            <Button key="back" onClick={handleCancel}>
+                                                {t("common\:button.cancel")}
+                                            </Button>
+                                            <Button form="priceOffer" type="primary" key="submit" htmlType="submit">
+                                                {t("common\:button.send")}
+                                            </Button>
                                         </Col>
-
-                                        <Col xs={6} sm={4}>
-                                            <Form.Item
-                                                label={t("common\:label.currency")}
-                                                name="offer_currency"
-                                            >
-                                                <Select
-                                                    defaultValue={"AMD"}
-                                                    options={currencies}
-                                                />
-                                            </Form.Item>
-                                        </Col>
-
-                                        <Col xs={24} sm={24}>
-                                            <Form.Item
-                                                label={t("common\:label.messageContact")}
-                                                name="message"
-                                            >
-                                                <TextArea />
-                                            </Form.Item>
-                                        </Col>
-
-                                    </Row>
-                                </Form>
+                                    ]}>
 
 
-                            </Modal>
-                        </Col>
+                                    <Form
+                                        name="priceOffer"
+                                        layout="vertical"
+                                        style={{
+                                            maxWidth: 800
+                                        }}
+                                        onFinish={onFinish}
+                                    >
+                                        <Row gutter={24}>
+
+                                            <Col xs={24} sm={12}>
+                                                <Form.Item
+                                                    label={t("common\:label.firstLastName")}
+                                                    name="full_name"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: t("common\:validation.firstLastName.required")
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                            </Col>
+
+                                            <Col xs={24} sm={12}>
+                                                <Form.Item
+                                                    label={t("common\:label.email")}
+                                                    name="e_mail"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: t("common\:validation.email.required")
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                            </Col>
+
+                                            <Col xs={24} sm={12}>
+                                                <Form.Item
+                                                    label={t("common\:label.phone")}
+                                                    name="e_mail"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: t("common\:validation.phone.fixed.required")
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                            </Col>
+
+                                            <Col xs={18} sm={8}>
+                                                <Form.Item
+                                                    label={t("common\:label.offeringPrice")}
+                                                    name="offer_price"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: t("common\:validation.price.required")
+                                                        }
+                                                    ]}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                            </Col>
+
+                                            <Col xs={6} sm={4}>
+                                                <Form.Item
+                                                    label={t("common\:label.currency")}
+                                                    name="offer_currency"
+                                                >
+                                                    <Select
+                                                        defaultValue={"AMD"}
+                                                        options={currencies}
+                                                    />
+                                                </Form.Item>
+                                            </Col>
+
+                                            <Col xs={24} sm={24}>
+                                                <Form.Item
+                                                    label={t("common\:label.messageContact")}
+                                                    name="message"
+                                                >
+                                                    <TextArea />
+                                                </Form.Item>
+                                            </Col>
+
+                                        </Row>
+                                    </Form>
+
+
+                                </Modal>
+                            </Col>
+
 
                     </Row>
                 </div>
             </div>
 
 
-
             <div className="container">
 
-                <div className="row ">
+                <Row gutter={64} className={"pt-5 "}>
+                    <Col xs={18}>
 
-                    <div className="col-xl-9 col-lg-8">
+                        <ShareButtons />
                         <ImageGallery
                             items={images}
                             showNav={true}
                             thumbnailPosition={"right"}
                             showPlayButton={false}
                         />
+                    </Col>
 
-                    </div>
+                    <Col xs={6} className={"pt-3  bg-white"}>
 
-                </div>
+                        <div className={"text-center mb-2"}>
+                            <Row className={"mb-1"}>
+                                <Col xs={24} sm={8}>
+                                    <img className={""} style={{borderRadius: '50%', width: 60, height: 60}}   src={estate.contact.profile_picture}  />
+                                </Col>
+                                <Col xs={24} sm={16} className={"text-left"}>
+                                    <h5  className="mt-2 ">{estate.contact.full_name}</h5>
+                                    <p  className="">{t('common\:label.broker')}</p>
+                                </Col>
+                            </Row>
+
+
+                            <Text className="d-flex mb-1 justify-content-start text-dark font-size-12">
+                                <img className="mr-2" src={publicUrl + "assets/img/svg/envelope.svg"} />
+                                <span className="align-self-center">{estate.contact.email}</span></Text>
+                            <Text className="d-flex justify-content-start text-dark font-size-12">
+                                <img className="mr-2" src={publicUrl + "assets/img/svg/mobile.svg"} />
+                                <span className="align-self-center">{estate.contact.phone_1}</span>
+                            </Text>
+                        </div>
+
+                        <Divider />
+                        <ContactSimpleForm />
+                    </Col>
+                </Row>
+
+
             </div>
         </div>
         <div className="container">
             <div className="col-lg-9">
-                <Row className="property-news-single-card border-bottom-yellow">
+                <Row className="property-news-single-card pt-5 border-bottom-yellow">
                     <h4>Շենք</h4>
                     <Row className="mb-3 mb-sm-0  d-flex flex-row flex-wrap">
                         {building_attributes?.map((item, i) =>
@@ -274,6 +328,16 @@ function EstateDetailsSection(props) {
                                 </Col>
                             </Col>
                         )}
+                    </Row>
+                    <Divider />
+                    <h4>Ընդհանուր</h4>
+                    <Row>
+                        {estate.public_text_arm}
+                    </Row>
+                    <Divider />
+                    <h4>Տեղը քարտեզով</h4>
+                    <Row>
+                        {estate.public_text_arm}
                     </Row>
                 </Row>
 
