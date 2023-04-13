@@ -33,7 +33,7 @@ class MyDocument extends Document {
                 <script src="/assets/js/vendor.js"></script>
                 </body>
             </Html>
-        );
+        )
     }
 }
 
