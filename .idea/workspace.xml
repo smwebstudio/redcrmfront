@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/01_delete_pm2_processes.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +50,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.18.0",
     "javascript.nodejs.core.library.typings.version": "16.18.0",
-    "last_opened_file_path": "/var/www/html/redfront",
+    "last_opened_file_path": "/var/www/html/redfront/.platform/hooks/postdeploy",
     "list.type.of.created.stylesheet": "Less",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -68,11 +69,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.platform/hooks/postdeploy" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/public/locales" />
       <recent name="$PROJECT_DIR$/src/data" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -143,6 +144,7 @@
       <workItem from="1680523948285" duration="10976000" />
       <workItem from="1680782738572" duration="5231000" />
       <workItem from="1681392576336" duration="4461000" />
+      <workItem from="1681742441771" duration="1395000" />
     </task>
     <servers />
   </component>
