@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd362c9c-3cdc-4456-a1a7-28f158210184" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.ebextensions/env.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.ebextensions/npm.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/01_delete_pm2_processes.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/02_remove_node_modules.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/03_remove_build.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/04_npm_install.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/05_npm_build_client.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/hooks/postdeploy/07_npm_run_client.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.platform/nginx/conf.d/elasticbeanstalk/meet.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_document.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +142,7 @@
       <workItem from="1677132853286" duration="12820000" />
       <workItem from="1680523948285" duration="10976000" />
       <workItem from="1680782738572" duration="5231000" />
-      <workItem from="1681392576336" duration="3215000" />
+      <workItem from="1681392576336" duration="4461000" />
     </task>
     <servers />
   </component>
