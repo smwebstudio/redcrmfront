@@ -234,7 +234,7 @@ html, body {
 /*Map*/
 
 .map-container {
-    width: 200px;
+    width: 100%;
     overflow: hidden;
     position: fixed;
     top: 160px;
@@ -255,7 +255,7 @@ html, body {
 
 .estates-map {
     min-height: calc(100vh - 100px);
-    width: 64vw;
+    width:100%;
 }
 
 .map-container-opened .estates-map {

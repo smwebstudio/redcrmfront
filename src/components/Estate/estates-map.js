@@ -37,7 +37,7 @@ export function EstatesMap(props) {
                         strokeOpacity: 0.6,
                         strokeWidth: 6,
                         fillColor: "#ff0000",
-                        fillOpacity: 0.3
+                        fillOpacity: 0.15
                     }
                 ];
 
@@ -100,153 +100,258 @@ export function EstatesMap(props) {
                         }
                         paintProcess = ymaps.ext.paintOnMap(map, e, { style: styles[currentIndex] });
 
-                        // Get and save html for appending after push reset button polygone
-                        let start_html = $(".searched-announcements").html();
-                        window.localStorage.setItem("oldData", start_html);
                     }
                 });
 
-                // Подпишемся на событие отпускания кнопки мыши.
+                function addGeoObjectToMap(map, coordinates) {
+                    let geoObject = button.isSelected() ?
+                        new ymaps.Polyline(coordinates, {}, styles[currentIndex]) :
+                        new ymaps.Polygon([coordinates], {}, styles[currentIndex]);
+
+                    map.geoObjects.add(geoObject);
+                    console.log(coordinates);
+                }
+
+                function removeGeoObjectsOutsidePolygon(polygon) {
+                    map.geoObjects.each(function(geoObject) {
+
+                        console.log('geoObject removing');
+                        console.log(geoObject);
+
+                        if(geoObject.geometry) {
+                            // Check if the geoObject is a placemark and its position is outside the polygon
+                            if (!polygon.geometry.contains(geoObject.geometry.getCoordinates())) {
+                                map.geoObjects.remove(geoObject);
+                            }
+                            // Check if the geoObject is a polyline or polygon and any of its vertices are outside the polygon
+                            else if ((geoObject.geometry.getType() === 'LineString' || geoObject.geometry.getType() === 'Polygon') &&
+                                geoObject.geometry.getCoordinates().some(function(coords) {
+                                    return !polygon.geometry.contains(coords);
+                                })) {
+                                map.geoObjects.remove(geoObject);
+                            }
+                        }
+
+                    });
+                }
+
+                function deleteMarkersOutsideRectangle(rectangle) {
+                    map.geoObjects.each(function(geoObject) {
+                        // Check if the geoObject is a marker
+                        if (geoObject instanceof ymaps.Placemark) {
+                            // Check if the marker is outside the rectangle
+                            if (!rectangle.geometry.contains(geoObject.geometry.getCoordinates())) {
+                                // Remove the marker from the map
+                                map.geoObjects.remove(geoObject);
+                            }
+                        }
+                    });
+                }
+
+                function performSearch(map, coordinates) {
+                    let filter = "{{ http_build_query(Request::all()) }}";
+                    let locale = "{{ app()->getLocale()  }}";
+                    let params = $("#load_more_button").data("params");
+                    let nextPage = "";
+
+                    // const polygon = new ymaps.Polygon([coordinates], {}, {
+                    //     fillColor: '#7df9ff33',
+                    //     strokeColor: '#0078ff',
+                    //     strokeWidth: 2,
+                    // });
+                    //
+                    // map.geoObjects.add(polygon);
+                    //
+                    // removeGeoObjectsOutsidePolygon(polygon);
+
+                    // Ajax
+                    let polygonCoordinates = coordinates;
+                    $.ajax({
+                        url: apiURL+"api/estates/map_search",
+                        method: "GET",
+                        dataType: "JSON",
+                        data: {
+                            "coords": polygonCoordinates,
+                            "filter": params,
+                            "locale": locale
+                        },
+                        success: function(response) {
+                            map.geoObjects.removeAll();
+                            let estates = response.data;
+
+                            const iconContentLayout = ymaps.templateLayoutFactory.createClass(
+                                '<div style="display:block; color: #FFFFFF; font-weight: bold; text-align: center; font-family: \'Montserrat arm\'; font-style: normal;  font-size: 12px; width: 100%;">$[properties.iconContent]</div>'
+                            );
+
+                            let geoObjects = [];
+
+                            Object.values(estates).forEach(item => {
+                                let position = [item.native_coords[1], item.native_coords[0]];
+                                let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src='+item?.main_image_file_path_thumb+'"></p></a>';
+                                let estateBaloon = new ymaps.Placemark(
+                                    position, {
+                                        // Контент метки.
+                                        iconContent: item.price+'֏',
+                                        balloonContentBody: iconContent,
+                                    }, {
+                                        iconLayout: 'default#imageWithContent',
+                                        iconContent: item.price,
+                                        iconImageHref: '/assets/img/svg/mapIcon.svg',
+                                        iconImageSize: [120, 40],
+                                        iconImageOffset: [-60, -20],
+                                        iconContentOffset: [30, 10],
+                                        iconContentLayout: iconContentLayout
+                                    });
+
+                                geoObjects.push(estateBaloon);
+                            });
+
+                            let clusterer = new ymaps.Clusterer({
+                                preset: 'islands#invertedRedClusterIcons',
+                            });
+
+
+                            clusterer.add(geoObjects);
+                            map.geoObjects.add(clusterer);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                }
+
                 map.events.add("mouseup", function(e) {
                     if (paintProcess) {
-                        $(".announcement.index .ajax-loader-block").show();
-
-                        // Получаем координаты отрисованного контура.
                         let coordinates = paintProcess.finishPaintingAt(e);
                         paintProcess = null;
-                        // В зависимости от состояния кнопки добавляем на карту многоугольник или линию с полученными координатами.
-                        let geoObject = button.isSelected() ?
-                            new ymaps.Polyline(coordinates, {}, styles[currentIndex]) :
-                            new ymaps.Polygon([coordinates], {}, styles[currentIndex]);
 
-                        map.geoObjects.add(geoObject);
-                        // console.log(coordinates);
-
-                        let filter = "{{ http_build_query(Request::all()) }}";
-                        let locale = "{{ app()->getLocale()  }}";
-                        let params = $("#load_more_button").data("params");
-                        let nextPage = "";
-
-                        // Ajax
-                        let polygonCoordinates = coordinates;
-                        $.ajax({
-                            url: apiURL+"api/estates/map_search",
-                            method: "GET",
-                            dataType: "JSON",
-                            data: {
-                                "coords": polygonCoordinates,
-                                "filter": params,
-                                "locale": locale
-                            },
-                            success: function(response) {
-
-                                let estates = response.data;
-
-                                const iconContentLayout = ymaps.templateLayoutFactory.createClass(
-                                    '<div style="display:block; color: #FFFFFF; font-weight: bold; text-align: center; font-family: \'Montserrat arm\'; font-style: normal;  font-size: 12px; width: 100%;">$[properties.iconContent]</div>'
-                                );
-
-
-
-                                let geoObjects = [];
-
-                                Object.values(estates).forEach(item => {
-
-
-                                    let position = [item.native_coords[1], item.native_coords[0]];
-                                    let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src="https://proinfo.am/uploadsWithWaterMark/'+item?.main_image_file_path_thumb+'"></p></a>';
-                                    let estateBaloon = new ymaps.Placemark(
-                                         position, {
-
-                                            // Контент метки.
-                                            iconContent: item.price+'֏',
-                                            balloonContentBody: iconContent,
-
-                                    }, {
-                                            iconLayout: 'default#imageWithContent',
-                                            iconContent: item.price,
-                                            iconImageHref: '/assets/img/svg/mapIcon.svg',
-                                            iconImageSize: [120, 40],
-                                            iconImageOffset: [-60, -20],
-                                            iconContentOffset: [30, 10],
-                                            iconContentLayout: iconContentLayout
-                                        });
-
-                                    geoObjects.push(estateBaloon);
-
-                                });
-
-                                let clusterer = new ymaps.Clusterer({
-                                    preset: 'islands#invertedRedClusterIcons',
-                                });
-
-                                clusterer.add(geoObjects);
-                                map.geoObjects.add(clusterer);
-
-                                console.error('cluster added');
-
-                                // $(".announcement.index .ajax-loader-block").hide();
-                                // let announcements = response.data;
-                                //
-                                // let buttonText = $("#load_more_button").text();
-                                //
-                                // if (response.current_page == response.last_page) {
-                                //     $("#load_more_button").remove();
-                                // } else {
-                                //     $("#load_more_button").text(buttonText);
-                                // }
-                                // $.each(announcements, function(index, announcement) {
-                                //     let parent = announcement.place ? announcement.place.parent.name : "";
-                                //     let place_name = announcement.place ? announcement.place.name : "";
-                                //     let code = announcement.currency_price ? announcement.currency_price.code : "";
-                                //
-                                //     let address = parent + "," + place_name;
-                                //     nextPage += "<div class=\"col-md-6 announcement-item\">";
-                                //     nextPage += "<a href=\"" + location.origin + "/announcement/" + announcement.code + "\">";
-                                //     nextPage += "<div class=\"thumbnail\">";
-                                //     nextPage += "<img src=\"" + announcement.thumbnail + "\" alt=\"\">";
-                                //     nextPage += "<span class=\"announcement-type\">" + announcement.announcement_type.title + "</span>";
-                                //     nextPage += "<p class=\"announcement-price\">";
-                                //     nextPage += "<span class=\"property-price\">" + announcement.price + " " + code + "</span>";
-                                //     nextPage += "</p>";
-                                //     nextPage += announcement.advertised ? "<span class=\"advertised\"><i class=\"fas fa-star\"></i></span>" : "";
-                                //     nextPage += "</div>";
-                                //     nextPage += "<div class=\"property-info\">";
-                                //     nextPage += "<span class=\"announcement-code\" title=\"{{ __(";
-                                //     common.code;
-                                //     ") }}\">" + announcement.code + "</span>";
-                                //     nextPage += "<h4>" + announcement.property_type.title + " " + address + "</h4>";
-                                //     nextPage += "<p class=\"address\">{{ __(";
-                                //     common.address;
-                                //     ") }} &#32;" + address + "</p>";
-                                //     nextPage += "<p>";
-                                //     nextPage += "<span class=\"rooms\">";
-                                //     nextPage += "<i class=\"far fa-moon\"></i>";
-                                //     nextPage += "<span class=\"mr-1\">{{ __(\"common.rooms\") }} </span>";
-                                //     nextPage += "<span class=\"rooms-count\">" + announcement.rooms.split("-")[0] < announcement.rooms_ext ? (announcement.rooms.split("-")[0] + "-" + announcement.rooms_ext) : announcement.rooms_ext + "</span>";
-                                //     nextPage += "</span>";
-                                //     nextPage += "<span class=\"area\">";
-                                //     nextPage += "<i class=\"fas fa-vector-square\"></i>";
-                                //     nextPage += "<span class=\"mr-1\">{{ __(\"common.area\") }} </span>";
-                                //     nextPage += "<span class=\"area-count\">" + Number((+announcement.area).toFixed(2)) + " {{ __(\"common.area_point\") }}</span>";
-                                //     nextPage += "</span>";
-                                //     nextPage += "</p>";
-                                //     nextPage += "</div>";
-                                //     nextPage += "</a>";
-                                //     nextPage += "</div>";
-                                // });
-                                // $(".searched-announcements").html(nextPage);
-                            },
-                            error: function(error) {
-                                console.log(error);
-                            }
-                        });
-
-                        // Forbit draw polygone
+                        addGeoObjectToMap(map, coordinates);
+                        performSearch(map, coordinates);
                         first_time = false;
                     }
                 });
 
+                map.events.add('boundschange', function (event) {
+                    console.log('boundschange');
+
+                    var windowOpenedRectangle = new ymaps.Rectangle([
+                        [55.75, 37.60],
+                        [55.80, 37.70]
+                    ], {}, {
+                        draggable: true,
+                        fillOpacity: 0,
+                        strokeWidth: 0
+                    });
+
+                    var newBounds = event.get('newBounds');
+
+                    windowOpenedRectangle.geometry.setCoordinates([
+                        [newBounds[0][0], newBounds[0][1]],
+                        [newBounds[1][0], newBounds[1][1]]
+                    ]);
+
+                    map.geoObjects.add(windowOpenedRectangle);
+                    console.log('windowOpenedRectangle');
+                    console.log(windowOpenedRectangle.geometry.getBounds());
+
+                    let coordinates = windowOpenedRectangle.geometry.getBounds();
+
+                    performSearch(map, coordinates);
+                    map.geoObjects.remove(windowOpenedRectangle);
+
+
+                })
+
+
+
+
+                // Подпишемся на событие отпускания кнопки мыши.
+                // map.events.add("mouseup", function(e) {
+                //     if (paintProcess) {
+                //
+                //         // Получаем координаты отрисованного контура.
+                //         let coordinates = paintProcess.finishPaintingAt(e);
+                //         paintProcess = null;
+                //         // В зависимости от состояния кнопки добавляем на карту многоугольник или линию с полученными координатами.
+                //         let geoObject = button.isSelected() ?
+                //             new ymaps.Polyline(coordinates, {}, styles[currentIndex]) :
+                //             new ymaps.Polygon([coordinates], {}, styles[currentIndex]);
+                //
+                //         map.geoObjects.add(geoObject);
+                //         console.log(coordinates);
+                //
+                //         let filter = "{{ http_build_query(Request::all()) }}";
+                //         let locale = "{{ app()->getLocale()  }}";
+                //         let params = $("#load_more_button").data("params");
+                //         let nextPage = "";
+                //
+                //         // Ajax
+                //         let polygonCoordinates = coordinates;
+                //         $.ajax({
+                //             url: apiURL+"api/estates/map_search",
+                //             method: "GET",
+                //             dataType: "JSON",
+                //             data: {
+                //                 "coords": polygonCoordinates,
+                //                 "filter": params,
+                //                 "locale": locale
+                //             },
+                //             success: function(response) {
+                //
+                //                 let estates = response.data;
+                //
+                //                 const iconContentLayout = ymaps.templateLayoutFactory.createClass(
+                //                     '<div style="display:block; color: #FFFFFF; font-weight: bold; text-align: center; font-family: \'Montserrat arm\'; font-style: normal;  font-size: 12px; width: 100%;">$[properties.iconContent]</div>'
+                //                 );
+                //
+                //
+                //
+                //                 let geoObjects = [];
+                //
+                //                 Object.values(estates).forEach(item => {
+                //
+                //
+                //                     let position = [item.native_coords[1], item.native_coords[0]];
+                //                     let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src='+item?.main_image_file_path_thumb+'"></p></a>';
+                //                     let estateBaloon = new ymaps.Placemark(
+                //                          position, {
+                //
+                //                             // Контент метки.
+                //                             iconContent: item.price+'֏',
+                //                             balloonContentBody: iconContent,
+                //
+                //                     }, {
+                //                             iconLayout: 'default#imageWithContent',
+                //                             iconContent: item.price,
+                //                             iconImageHref: '/assets/img/svg/mapIcon.svg',
+                //                             iconImageSize: [120, 40],
+                //                             iconImageOffset: [-60, -20],
+                //                             iconContentOffset: [30, 10],
+                //                             iconContentLayout: iconContentLayout
+                //                         });
+                //
+                //                     geoObjects.push(estateBaloon);
+                //
+                //                 });
+                //
+                //                 let clusterer = new ymaps.Clusterer({
+                //                     preset: 'islands#invertedRedClusterIcons',
+                //                 });
+                //
+                //                 clusterer.add(geoObjects);
+                //                 map.geoObjects.add(clusterer);
+                //
+                //             },
+                //             error: function(error) {
+                //                 console.log(error);
+                //             }
+                //         });
+                //
+                //         first_time = false;
+                //     }
+                // });
+
+;
 
             }).catch(console.error);
         }
@@ -258,7 +363,7 @@ export function EstatesMap(props) {
             var EVENTS_PANE_ZINDEX = 500;
 
             var DEFAULT_UNWANTED_BEHAVIORS = ["drag", "scrollZoom"];
-            var DEFAULT_STYLE = { strokeColor: "#0000ff", strokeWidth: 1, strokeOpacity: 1 };
+            var DEFAULT_STYLE = { strokeColor: "#0000ff", strokeWidth: 1, strokeOpacity: 0.1 };
             var DEFAULT_TOLERANCE = 16;
 
             var badFinishPaintingCall = function() {
@@ -285,7 +390,6 @@ export function EstatesMap(props) {
                     map.behaviors.disable(unwantedBehaviors);
                 }
 
-                // Создаём canvas-элемент.
                 var canvas = document.createElement("canvas");
                 var ctx2d = canvas.getContext("2d");
                 var rect = map.container.getParentElement().getBoundingClientRect();
@@ -322,7 +426,6 @@ export function EstatesMap(props) {
                     ctx2d.stroke();
                 }.bind(this);
 
-                // Создаём косвенное обращение, чтобы не сдерживать сборщик мусора.
                 var paintingProcess = {
                     finishPaintingAt: function(positionOrEvent) {
                         paintingProcess.finishPaintingAt = badFinishPaintingCall;
@@ -341,6 +444,11 @@ export function EstatesMap(props) {
                         if (tolerance) {
                             coordinates = simplify(coordinates, tolerance);
                         }
+
+
+                        console.log('coordinates 1');
+                        console.log(coordinates);
+
                         // Преобразовываем координаты canvas-элемента в геодезические координаты.
                         return coordinates.map(function(x) {
                             var lon = bounds[0][1] + (x[0] / canvas.width) * lonDiff;
@@ -349,6 +457,9 @@ export function EstatesMap(props) {
                         });
                     }
                 };
+
+                console.log('paintingProcess');
+                console.log(paintingProcess);
 
                 return paintingProcess;
             }
