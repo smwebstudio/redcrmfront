@@ -100,16 +100,12 @@ export function EstatesMap(props) {
                         }
                         paintProcess = ymaps.ext.paintOnMap(map, e, { style: styles[currentIndex] });
 
-                        // Get and save html for appending after push reset button polygone
-                        let start_html = $(".searched-announcements").html();
-                        window.localStorage.setItem("oldData", start_html);
                     }
                 });
 
                 // Подпишемся на событие отпускания кнопки мыши.
                 map.events.add("mouseup", function(e) {
                     if (paintProcess) {
-                        $(".announcement.index .ajax-loader-block").show();
 
                         // Получаем координаты отрисованного контура.
                         let coordinates = paintProcess.finishPaintingAt(e);
@@ -183,66 +179,12 @@ export function EstatesMap(props) {
                                 clusterer.add(geoObjects);
                                 map.geoObjects.add(clusterer);
 
-                                console.error('cluster added');
-
-                                // $(".announcement.index .ajax-loader-block").hide();
-                                // let announcements = response.data;
-                                //
-                                // let buttonText = $("#load_more_button").text();
-                                //
-                                // if (response.current_page == response.last_page) {
-                                //     $("#load_more_button").remove();
-                                // } else {
-                                //     $("#load_more_button").text(buttonText);
-                                // }
-                                // $.each(announcements, function(index, announcement) {
-                                //     let parent = announcement.place ? announcement.place.parent.name : "";
-                                //     let place_name = announcement.place ? announcement.place.name : "";
-                                //     let code = announcement.currency_price ? announcement.currency_price.code : "";
-                                //
-                                //     let address = parent + "," + place_name;
-                                //     nextPage += "<div class=\"col-md-6 announcement-item\">";
-                                //     nextPage += "<a href=\"" + location.origin + "/announcement/" + announcement.code + "\">";
-                                //     nextPage += "<div class=\"thumbnail\">";
-                                //     nextPage += "<img src=\"" + announcement.thumbnail + "\" alt=\"\">";
-                                //     nextPage += "<span class=\"announcement-type\">" + announcement.announcement_type.title + "</span>";
-                                //     nextPage += "<p class=\"announcement-price\">";
-                                //     nextPage += "<span class=\"property-price\">" + announcement.price + " " + code + "</span>";
-                                //     nextPage += "</p>";
-                                //     nextPage += announcement.advertised ? "<span class=\"advertised\"><i class=\"fas fa-star\"></i></span>" : "";
-                                //     nextPage += "</div>";
-                                //     nextPage += "<div class=\"property-info\">";
-                                //     nextPage += "<span class=\"announcement-code\" title=\"{{ __(";
-                                //     common.code;
-                                //     ") }}\">" + announcement.code + "</span>";
-                                //     nextPage += "<h4>" + announcement.property_type.title + " " + address + "</h4>";
-                                //     nextPage += "<p class=\"address\">{{ __(";
-                                //     common.address;
-                                //     ") }} &#32;" + address + "</p>";
-                                //     nextPage += "<p>";
-                                //     nextPage += "<span class=\"rooms\">";
-                                //     nextPage += "<i class=\"far fa-moon\"></i>";
-                                //     nextPage += "<span class=\"mr-1\">{{ __(\"common.rooms\") }} </span>";
-                                //     nextPage += "<span class=\"rooms-count\">" + announcement.rooms.split("-")[0] < announcement.rooms_ext ? (announcement.rooms.split("-")[0] + "-" + announcement.rooms_ext) : announcement.rooms_ext + "</span>";
-                                //     nextPage += "</span>";
-                                //     nextPage += "<span class=\"area\">";
-                                //     nextPage += "<i class=\"fas fa-vector-square\"></i>";
-                                //     nextPage += "<span class=\"mr-1\">{{ __(\"common.area\") }} </span>";
-                                //     nextPage += "<span class=\"area-count\">" + Number((+announcement.area).toFixed(2)) + " {{ __(\"common.area_point\") }}</span>";
-                                //     nextPage += "</span>";
-                                //     nextPage += "</p>";
-                                //     nextPage += "</div>";
-                                //     nextPage += "</a>";
-                                //     nextPage += "</div>";
-                                // });
-                                // $(".searched-announcements").html(nextPage);
                             },
                             error: function(error) {
                                 console.log(error);
                             }
                         });
 
-                        // Forbit draw polygone
                         first_time = false;
                     }
                 });
@@ -285,7 +227,6 @@ export function EstatesMap(props) {
                     map.behaviors.disable(unwantedBehaviors);
                 }
 
-                // Создаём canvas-элемент.
                 var canvas = document.createElement("canvas");
                 var ctx2d = canvas.getContext("2d");
                 var rect = map.container.getParentElement().getBoundingClientRect();
@@ -322,7 +263,6 @@ export function EstatesMap(props) {
                     ctx2d.stroke();
                 }.bind(this);
 
-                // Создаём косвенное обращение, чтобы не сдерживать сборщик мусора.
                 var paintingProcess = {
                     finishPaintingAt: function(positionOrEvent) {
                         paintingProcess.finishPaintingAt = badFinishPaintingCall;

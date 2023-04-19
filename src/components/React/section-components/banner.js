@@ -47,7 +47,7 @@ function Banner(props) {
                             <a className="nav-link" data-toggle="tab" href="#tabs_3">{t('label.title.fee.normal')}</a>
                         </li>
                         <li className="nav-item">
-                            <a className="btn btn-main" href="/estates">{t('label.searchMap')}</a>
+                            <a className="btn btn-main" href="/estates/map">{t('label.searchMap')}</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" data-toggle="tab" href="#tabs_4">{t('label.search')}</a>
