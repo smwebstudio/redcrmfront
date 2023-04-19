@@ -28,10 +28,9 @@ function EstateMap(props) {
 
                 <Row>
                     <Col xs={24} sm={24} className={""} style={{ overflow: "hidden" }}>
-                        <Affix offsetTop={80} className={"map-overflow-hidden "}
-                               style={{ overflow: "hidden", }}>
+
                             <EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />
-                        </Affix>
+
                     </Col>
 
 
