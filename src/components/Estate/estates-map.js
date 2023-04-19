@@ -154,7 +154,7 @@ export function EstatesMap(props) {
 
 
                                     let position = [item.native_coords[1], item.native_coords[0]];
-                                    let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src='item?.main_image_file_path_thumb'"></p></a>';
+                                    let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src='+item?.main_image_file_path_thumb+'"></p></a>';
                                     let estateBaloon = new ymaps.Placemark(
                                          position, {
 
