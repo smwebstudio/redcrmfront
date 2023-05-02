@@ -37,7 +37,7 @@ export function EstatesMap(props) {
                         strokeOpacity: 0.6,
                         strokeWidth: 6,
                         fillColor: "#ff0000",
-                        fillOpacity: 0.15
+                        fillOpacity: 0.001
                     }
                 ];
 
@@ -176,7 +176,7 @@ export function EstatesMap(props) {
                             "locale": locale
                         },
                         success: function(response) {
-                            map.geoObjects.removeAll();
+
                             let estates = response.data;
 
                             const iconContentLayout = ymaps.templateLayoutFactory.createClass(
@@ -234,21 +234,22 @@ export function EstatesMap(props) {
                 map.events.add('boundschange', function (event) {
                     console.log('boundschange');
 
+
+                    var newBounds = event.get('newBounds');
+
                     var windowOpenedRectangle = new ymaps.Rectangle([
-                        [55.75, 37.60],
-                        [55.80, 37.70]
+                        [newBounds[0][0], newBounds[0][1]],
+                        [newBounds[1][0], newBounds[1][1]]
                     ], {}, {
-                        draggable: true,
+                        draggable: false,
                         fillOpacity: 0,
                         strokeWidth: 0
                     });
 
-                    var newBounds = event.get('newBounds');
 
-                    windowOpenedRectangle.geometry.setCoordinates([
-                        [newBounds[0][0], newBounds[0][1]],
-                        [newBounds[1][0], newBounds[1][1]]
-                    ]);
+                    // windowOpenedRectangle.geometry.setCoordinates([
+                    //
+                    // ]);
 
                     map.geoObjects.add(windowOpenedRectangle);
                     console.log('windowOpenedRectangle');
@@ -257,7 +258,7 @@ export function EstatesMap(props) {
                     let coordinates = windowOpenedRectangle.geometry.getBounds();
 
                     performSearch(map, coordinates);
-                    map.geoObjects.remove(windowOpenedRectangle);
+                    // map.geoObjects.remove(windowOpenedRectangle);
 
 
                 })

@@ -1,7 +1,8 @@
 import React, { Component, useState } from "react";
 import EstatesSection from "@/components/Estate/estates";
 import EstatesMap from "@/components/Estate/estates-map";
-import { Affix, Col, Layout, Row } from "antd";
+import { Affix, Button, Col, Divider, Layout, Row } from "antd";
+import EstateSearch from "@/components/Filters/estate-search";
 
 
 function EstateMap(props) {
@@ -25,16 +26,35 @@ function EstateMap(props) {
 
     return (
 
+        <>
 
-                <Row>
-                    <Col xs={24} sm={24} className={""} style={{ overflow: "hidden" }}>
+            <Row className={"mb-5"}>
+                <Col xs={24} className={"sortButtonsWrapper"}>
 
-                            <EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />
+                    <Button className={"sortButton"} onClick={() => sortEstates("created_on")}>
+                        Նոր ավելացված
+                    </Button>
+                    <Button className={"sortButton"} onClick={() => sortEstates("-visits_count")}>
+                        Ամենադիտված
+                    </Button>
+                    <Button className={"sortButton"} onClick={() => sortEstates("-room_count")}>
+                        Շտապ
+                    </Button>
 
-                    </Col>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col xs={24} sm={24} className={""} style={{ overflow: "hidden" }}>
+
+                    <EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />
+
+                </Col>
 
 
-                </Row>
+            </Row>
+
+        </>
     );
 
 }
