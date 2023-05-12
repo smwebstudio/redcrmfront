@@ -187,7 +187,9 @@ export function EstatesMap(props) {
 
                             Object.values(estates).forEach(item => {
                                 let position = [item.native_coords[1], item.native_coords[0]];
-                                let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src='+item?.main_image_file_path_thumb+'"></p></a>';
+                                let imageSrc = item?.image ? item?.image : 'https://i0.wp.com/lanecdr.org/wp-content/uploads/2019/08/placeholder.png';
+
+                                let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.full_address+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="150px" height="auto" src='+imageSrc+'></p></a>';
                                 let estateBaloon = new ymaps.Placemark(
                                     position, {
                                         // Контент метки.
@@ -261,98 +263,7 @@ export function EstatesMap(props) {
                     // map.geoObjects.remove(windowOpenedRectangle);
 
 
-                })
-
-
-
-
-                // Подпишемся на событие отпускания кнопки мыши.
-                // map.events.add("mouseup", function(e) {
-                //     if (paintProcess) {
-                //
-                //         // Получаем координаты отрисованного контура.
-                //         let coordinates = paintProcess.finishPaintingAt(e);
-                //         paintProcess = null;
-                //         // В зависимости от состояния кнопки добавляем на карту многоугольник или линию с полученными координатами.
-                //         let geoObject = button.isSelected() ?
-                //             new ymaps.Polyline(coordinates, {}, styles[currentIndex]) :
-                //             new ymaps.Polygon([coordinates], {}, styles[currentIndex]);
-                //
-                //         map.geoObjects.add(geoObject);
-                //         console.log(coordinates);
-                //
-                //         let filter = "{{ http_build_query(Request::all()) }}";
-                //         let locale = "{{ app()->getLocale()  }}";
-                //         let params = $("#load_more_button").data("params");
-                //         let nextPage = "";
-                //
-                //         // Ajax
-                //         let polygonCoordinates = coordinates;
-                //         $.ajax({
-                //             url: apiURL+"api/estates/map_search",
-                //             method: "GET",
-                //             dataType: "JSON",
-                //             data: {
-                //                 "coords": polygonCoordinates,
-                //                 "filter": params,
-                //                 "locale": locale
-                //             },
-                //             success: function(response) {
-                //
-                //                 let estates = response.data;
-                //
-                //                 const iconContentLayout = ymaps.templateLayoutFactory.createClass(
-                //                     '<div style="display:block; color: #FFFFFF; font-weight: bold; text-align: center; font-family: \'Montserrat arm\'; font-style: normal;  font-size: 12px; width: 100%;">$[properties.iconContent]</div>'
-                //                 );
-                //
-                //
-                //
-                //                 let geoObjects = [];
-                //
-                //                 Object.values(estates).forEach(item => {
-                //
-                //
-                //                     let position = [item.native_coords[1], item.native_coords[0]];
-                //                     let iconContent = '<a class="item-in-baloon" href="/estates/'+item.id+'" target="_blank"><span class="ann-code"><p>Address: '+item.c_location_street?.name+' '+item.address_building+'</p><p>Code: '+item.code+'</p></span><p class="baloon-item-address">'+item.name_arm+'</p><p class="baloon-item-address"><img width="80px" height="60px" src='+item?.main_image_file_path_thumb+'"></p></a>';
-                //                     let estateBaloon = new ymaps.Placemark(
-                //                          position, {
-                //
-                //                             // Контент метки.
-                //                             iconContent: item.price+'֏',
-                //                             balloonContentBody: iconContent,
-                //
-                //                     }, {
-                //                             iconLayout: 'default#imageWithContent',
-                //                             iconContent: item.price,
-                //                             iconImageHref: '/assets/img/svg/mapIcon.svg',
-                //                             iconImageSize: [120, 40],
-                //                             iconImageOffset: [-60, -20],
-                //                             iconContentOffset: [30, 10],
-                //                             iconContentLayout: iconContentLayout
-                //                         });
-                //
-                //                     geoObjects.push(estateBaloon);
-                //
-                //                 });
-                //
-                //                 let clusterer = new ymaps.Clusterer({
-                //                     preset: 'islands#invertedRedClusterIcons',
-                //                 });
-                //
-                //                 clusterer.add(geoObjects);
-                //                 map.geoObjects.add(clusterer);
-                //
-                //             },
-                //             error: function(error) {
-                //                 console.log(error);
-                //             }
-                //         });
-                //
-                //         first_time = false;
-                //     }
-                // });
-
-;
+                });
 
             }).catch(console.error);
         }

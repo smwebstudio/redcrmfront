@@ -1,8 +1,6 @@
-// import 'tailwindcss/tailwind.css'
 import '/src/styles/red_theme.css'
 import { appWithTranslation } from 'next-i18next'
 import NextNProgress from 'nextjs-progressbar';
-// const App = ({ Component, pageProps }) => <Component {...pageProps} />
 
 
 const App =  ({ Component, pageProps }) => {

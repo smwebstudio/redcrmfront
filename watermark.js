@@ -1,46 +1,92 @@
-const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
-
-// Set up the watermark image
-const watermark = fs.readFileSync('./public/redwatermark.svg');
+const sharp = require("sharp");
+const fs = require("fs");
+const path = require("path");
 
 
-const inputDir = '/home/suren/Home/uploads';
-const outputDir = './output';
+const inputDir = "/home/suren/Home/tomcat-uploads/2014";
+const outputDir = "/home/suren/Home/uploadsWithWatermark";
 
 sharp.cache(false);
 
 // Set up the options for the watermark
 const watermarkOptions = {
-    blend: 'over',
-    tile: true,
+    left: 0,
+    top: 0,
+    blend: "over",
+    tile: true
 };
 
 
 function processFile(file) {
-    // Check if file name contains "thumb"
-    if (/thumb/i.test(file)) {
-        console.log(`Skipping ${file}...`);
-        return;
-    }
 
     const input = `${this}/${file}`;
     const output = `${outputDir}${this}/${file}`;
 
-    sharp(input)
-        .composite([{ input: watermark, ...watermarkOptions }])
-        .toFormat('jpeg')
-        .jpeg({ quality: 90 })
-        .toFile(output, (err, info) => {
-            if (err) throw err;
-            console.log(`${input} has been watermarked`);
+    // Set up the watermark image
+    let watermark = fs.readFileSync("./public/redwatermarkbig.svg");
+
+    // Check if file name contains "thumb"
+    // if (/thumb/i.test(file)) {
+    //     watermark = fs.readFileSync('./public/redwatermarkthumb.svg');
+    // }
+
+
+    // sharp(input)
+    //     .composite([{ input: watermark, ...watermarkOptions }])
+    //     .toFormat('jpeg')
+    //     .jpeg({ quality: 100 })
+    //     .toFile(output, (err, info) => {
+    //         if (err) throw err;
+    //         console.log(`${input} has been watermarked`);
+    //     });
+
+
+    try {
+        // Get image metadata
+        sharp(input).metadata((err, metadata) => {
+
+            console.error(`processing without metadata ${file}`);
+
+            if(metadata?.width) {
+
+                console.error(`processing with metadata ${file}`);
+
+                // Check image dimensions
+                if (metadata.width < 400) {
+                    watermark = fs.readFileSync("./public/redwatermarkthumb.svg");
+                    console.log('under 400');
+                } else if (metadata.width >= 400 && metadata.width < 700) {
+                    watermark = fs.readFileSync("./public/redwatermarkmd.svg");
+                    console.log('between 400 - 700');
+                } else if (metadata.width >= 900 && metadata.width < 2000) {
+                    watermark = fs.readFileSync("./public/redwatermarkbig.svg");
+                    console.log('between 900 - 2000');
+                } else if (metadata.width >= 2000) {
+                    watermark = fs.readFileSync("./public/redwatermarkxxl.svg");
+                    console.log('between 2000+');
+                }
+
+                // Process image
+                sharp(input)
+                    .composite([{ input: watermark, ...watermarkOptions }])
+                    .toFormat("jpeg")
+                    .jpeg({ quality: 70 })
+                    .toFile(output, (err, info) => {
+                        console.log(`${input} has been watermarked`);
+                    });
+
+            }
         });
+
+    } catch (err) {
+        console.error(`Error processing ${file}: ${err.message}`);
+    }
 }
 
 
 function processDirectory(directory) {
     // Create output directory if it doesn't exist
+
 
 
     fs.readdir(directory, (err, files) => {
@@ -68,19 +114,5 @@ function processDirectory(directory) {
 };
 
 
-
-
 processDirectory(inputDir);
 
-// // Loop through each image and apply the watermark
-// for (const image of images) {
-//     sharp(image)
-//         .composite([
-//             { input: watermark, ...watermarkOptions, left: 5, top: 5 }, // move 240 pixels to the right
-//         ]) // Apply the watermark
-//         .toFormat('jpeg')
-//         .toFile(`./uploadtest/${outputDir}/test48.jpg`, (err, info) => {
-//             if (err) throw err;
-//             console.log(`${image} has been watermarked`);
-//         });
-// }

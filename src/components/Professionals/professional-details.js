@@ -50,7 +50,7 @@ function ProfessionalDetails(props) {
                 <Divider />
                 <ContactSimpleForm />
             </Col>
-            <Col sm={18} className={"pl-5 pt-2"}>
+            <Col xs={24} sm={18} className={"pl-5 pt-2"}>
                 <Tabs
                     defaultActiveKey="1"
                     items={[
