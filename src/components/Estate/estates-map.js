@@ -233,37 +233,33 @@ export function EstatesMap(props) {
                     }
                 });
 
-                map.events.add('boundschange', function (event) {
-                    console.log('boundschange');
-
-
-                    var newBounds = event.get('newBounds');
-
-                    var windowOpenedRectangle = new ymaps.Rectangle([
-                        [newBounds[0][0], newBounds[0][1]],
-                        [newBounds[1][0], newBounds[1][1]]
-                    ], {}, {
-                        draggable: false,
-                        fillOpacity: 0,
-                        strokeWidth: 0
-                    });
-
-
-                    // windowOpenedRectangle.geometry.setCoordinates([
-                    //
-                    // ]);
-
-                    map.geoObjects.add(windowOpenedRectangle);
-                    console.log('windowOpenedRectangle');
-                    console.log(windowOpenedRectangle.geometry.getBounds());
-
-                    let coordinates = windowOpenedRectangle.geometry.getBounds();
-
-                    performSearch(map, coordinates);
-                    // map.geoObjects.remove(windowOpenedRectangle);
-
-
-                });
+                // map.events.add('boundschange', function (event) {
+                //     console.log('boundschange');
+                //
+                //
+                //     var newBounds = event.get('newBounds');
+                //
+                //     var windowOpenedRectangle = new ymaps.Rectangle([
+                //         [newBounds[0][0], newBounds[0][1]],
+                //         [newBounds[1][0], newBounds[1][1]]
+                //     ], {}, {
+                //         draggable: false,
+                //         fillOpacity: 0,
+                //         strokeWidth: 0
+                //     });
+                //
+                //
+                //     map.geoObjects.add(windowOpenedRectangle);
+                //     console.log('windowOpenedRectangle');
+                //     console.log(windowOpenedRectangle.geometry.getBounds());
+                //
+                //     let coordinates = windowOpenedRectangle.geometry.getBounds();
+                //
+                //     performSearch(map, coordinates);
+                //     // map.geoObjects.remove(windowOpenedRectangle);
+                //
+                //
+                // });
 
             }).catch(console.error);
         }

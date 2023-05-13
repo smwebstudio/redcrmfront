@@ -3,6 +3,8 @@ import EstatesSection from "@/components/Estate/estates";
 import EstatesMap from "@/components/Estate/estates-map";
 import { Affix, Button, Col, Divider, Layout, Row } from "antd";
 import EstateSearch from "@/components/Filters/estate-search";
+import estatesGoogleMap from "@/components/Estate/estatesGoogleMap";
+import EstatesGoogleMap from "@/components/Estate/estatesGoogleMap";
 
 
 function EstateMap(props) {
@@ -47,8 +49,9 @@ function EstateMap(props) {
             <Row>
                 <Col xs={24} sm={24} className={""} style={{ overflow: "hidden" }}>
 
-                    <EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />
+                    {/*<EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />*/}
 
+                    <EstatesGoogleMap  />
                 </Col>
 
 

@@ -1,5 +1,5 @@
 const RuOption = props => (
-        <span className={"d-flex flex-row"}>
+        <span className={"flex flex-row items-center justify-center"}>
             <span>
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6" width="18" height="12">
                    <rect fill="#fff" width="9" height="3"/>

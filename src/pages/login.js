@@ -51,7 +51,7 @@ const Login = () => {
         <GuestLayout>
             <Topbar />
             <Navbar />
-            <div className="container pd-top-100 pb-5">
+            <div className="container pb-5">
 
                 <div className="offset-4 col-4">
 

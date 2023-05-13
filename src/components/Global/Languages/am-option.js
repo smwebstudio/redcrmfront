@@ -1,5 +1,5 @@
 const AmOption = props => (
-        <span className={"d-flex flex-row"}>
+        <span className={"flex flex-row items-center justify-center"}>
             <span>
                 <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="18" height="4" fill="#D30012" />

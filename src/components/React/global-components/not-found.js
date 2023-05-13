@@ -1,21 +1,18 @@
 import React, { Component, useEffect, useState } from "react";
 import Link from "next/link";
+import { Col, Image, Row } from "antd";
 
 
 export function NotFound() {
     return (
         <div className="container text-center">
-            <div className="row">
-                <div className="col-12 mt-5 mb-5">
-                    <img src={"/assets/img/svg/404.svg"} alt="404" />
-                </div>
-                <div className="col-12 mb-3">
-                    <h3>Ցավոք էջը չի գտնվել</h3>
-                </div>
-                <div className="col-12 mb-5">
+            <Row >
+                <Col xs={24} className="mt-5 mb-5 text-center flex flex-col items-center">
+                    <Image preview={false} src={"/assets/img/svg/404.svg"} alt="404" />
+                    <h3 className={'mt-10 mb-4'}> Ցավոք էջը չի գտնվել</h3>
                     <Link href="/"><a className="btn btn-main">Գլխավոր </a></Link>
-                </div>
-            </div>
+                </Col>
+            </Row>
 
         </div>
     );

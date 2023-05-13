@@ -102,16 +102,16 @@ class Footer_v1 extends Component {
                                     </ul>
                                 </div>
                             </Col>
-                            <Col sm={6}>
+                            <Col xs={24} sm={6}>
                                 <div className="widget widget_nav_menu">
                                     <p className="">Ինֆոգրուպ ՍՊԸ</p>
                                     <ul>
-                                        <li className={"d-flex flex-col mb-3"}>
+                                        <li className={"d-flex flex-row mb-3"}>
                                             <Image src={"/assets/img/svg/location-white.svg"} width={"14px"}
                                                    height={"20px"} />
                                             <span className="ml-3 text-white font-size-11">"Էլիտ Պլազա" բիզնես կենտրոն 4-րդ հարկ 0010,<br /> ՀՀ, Երևան, Մ. Խորենացու փողոց, 15</span>
                                         </li>
-                                        <li className={"d-flex flex-col mb-3"}>
+                                        <li className={"d-flex flex-row mb-3"}>
                                             <Image src={"/assets/img/svg/mobile-white.svg"} width={"14px"}
                                                    height={"20px"} className={"align-self-top"} />
                                             <span className="ml-3 text-white font-size-11">+374 98 908 551 <br />+374 96 908 881</span>

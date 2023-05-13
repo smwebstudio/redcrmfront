@@ -137,7 +137,7 @@ const AddProperyForm = () => {
 
             <Row gutter={32}>
 
-                <Col span={18}>
+                <Col xs={24} xl={18}>
                     <div className={"add_property_wrapper mt-2"}>
 
                         <Form
@@ -398,7 +398,7 @@ const AddProperyForm = () => {
                                 </Col>
 
                                     {buildingOptions.map((item, index) => (
-                                        <Col sm={8} xs={24} key={index}>
+                                        <Col sm={8} xs={12} key={index}>
 
                                         <Form.Item name={item.name} wrapperCol={24} label={t('label.'+item.name)} >
                                             <Select  options={item.options}/>
@@ -434,7 +434,7 @@ const AddProperyForm = () => {
                         </Form>
                     </div>
                 </Col>
-                <Col span={6} className={"pt-5 shadow"}>
+                <Col xs={0} xl={6} className={"pt-5 shadow"}>
                     <Affix offsetTop={150}>
                         <Steps
                             direction="vertical"
