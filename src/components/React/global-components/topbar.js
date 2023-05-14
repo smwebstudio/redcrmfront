@@ -10,17 +10,17 @@ import { useAuth } from "@/hooks/auth";
 
 
 const Topbar = (props) => {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation("common");
 
 
-    const { logout, user } = useAuth()
+    const { logout, user } = useAuth();
 
     const router = useRouter();
     const { locale } = router;
 
-    const onChangeLanguage = (lang)  => {
-        router.push(router.asPath, undefined, { locale: lang.value })
-    }
+    const onChangeLanguage = (lang) => {
+        router.push(router.asPath, undefined, { locale: lang.value });
+    };
 
     return (
         <div className="">
@@ -35,14 +35,18 @@ const Topbar = (props) => {
                         </Col>
 
                         <Col xs={4} sm={3} className={"border-right"}>
-                            <Row gutter={4} justify="center" align="middle">
-                                <Col xs={24} sm={4} className={"text-center"}>
-                                    <img src={"/assets/img/svg/compare.svg"} alt="logo" />
-                                </Col>
-                                <Col xs={0} sm={20}>
-                                    <a>{t('label.compare')}</a>
-                                </Col>
-                            </Row>
+                            <Link href={"/compare"}>
+                                <a>
+                                    <Row gutter={4} justify="center" align="middle">
+                                        <Col xs={24} sm={4} className={"text-center"}>
+                                            <img src={"/assets/img/svg/compare.svg"} alt="logo" />
+                                        </Col>
+                                        <Col xs={0} sm={20}>
+                                            <a>{t("label.compare")}</a>
+                                        </Col>
+                                    </Row>
+                                </a>
+                            </Link>
                         </Col>
                         <Col xs={4} sm={3} className={"border-right"}>
                             <Row gutter={4} justify="center" align="middle">
@@ -50,7 +54,7 @@ const Topbar = (props) => {
                                     <img src={"/assets/img/svg/favorites.svg"} alt="logo" />
                                 </Col>
                                 <Col xs={0} sm={16}>
-                                    <a>{t('label.favorites')}</a>
+                                    <a>{t("label.favorites")}</a>
                                 </Col>
                             </Row>
                         </Col>
@@ -62,9 +66,9 @@ const Topbar = (props) => {
                                 {!user &&
                                     <Col xs={0} sm={19}>
                                         <span className="ml-1 pr-3 border-right">
-                                        <Link href="/login">{t('label.login')}</Link>
+                                        <Link href="/login">{t("label.login")}</Link>
                                     </span>
-                                        <span className="ml-1 pl-1"><Link href="/register">{t('button.register')}</Link></span>
+                                        <span className="ml-1 pl-1"><Link href="/register">{t("button.register")}</Link></span>
 
                                     </Col>
                                 }
@@ -75,11 +79,10 @@ const Topbar = (props) => {
                                         <Link href="#">{user.name}</Link>
                                     </span>
                                         <span className="ml-3" onClick={() => logout()}>
-                                            {t('common\:label.logout')}
+                                            {t("common\:label.logout")}
                                         </span>
                                     </Col>
                                 }
-
 
 
                             </Row>

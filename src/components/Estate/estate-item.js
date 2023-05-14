@@ -10,6 +10,19 @@ export function EstateItem(props) {
 
     let item = props.item;
 
+    function compare(item) {
+        let compareEstates = JSON.parse(localStorage.getItem('compareEstates')) || [];
+        const index = compareEstates.indexOf(item.id);
+
+        if (index === -1) {
+            compareEstates.push(item.id);
+        } else {
+            compareEstates.splice(index, 1);
+        }
+
+        localStorage.setItem('compareEstates', JSON.stringify(compareEstates));
+    }
+
     return (
         <div className="">
             <div key={item.id} className={" mb-5  cat" + item.contract_type_id}>
@@ -38,12 +51,8 @@ export function EstateItem(props) {
                                 {/*<del>{item.old_price}</del>*/}
                             </div>
                             <div className="col-6 text-right justify-content-end d-flex">
-                                <Link className="p-3" href="/">
-                                    <a className="ml-3"><img src={"/assets/img/svg/compare.svg"} alt="logo" /></a>
-                                </Link>
-                                <Link className="p-3" href="/">
-                                    <a className="ml-3"><img src={"/assets/img/svg/favorites.svg"} alt="logo" /></a>
-                                </Link>
+                                <span className={'cursor-pointer'} key={'compare_'+item.id} onClick={() => compare(item)}><img src={"/assets/img/svg/compare.svg"} alt="logo" /></span>
+                                <span className={'ml-4 cursor-pointer'} key={'add_to_favorites_'+item.id}><img src={"/assets/img/svg/favorites.svg"} alt="logo" /></span>
                             </div>
                         </div>
 
