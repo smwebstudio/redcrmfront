@@ -313,3 +313,9 @@ html, body {
 .estates-map .toggle-map:hover {
     border: 1px solid var(--main-color-one);
 }
+
+
+/*google maps*/
+
+.gm-style .gm-style-iw-c {border-radius: 0px !important}
+.gm-style-iw .gm-ui-hover-effect {display: none !important;}

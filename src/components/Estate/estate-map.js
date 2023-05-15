@@ -5,54 +5,55 @@ import { Affix, Button, Col, Divider, Layout, Row } from "antd";
 import EstateSearch from "@/components/Filters/estate-search";
 import estatesGoogleMap from "@/components/Estate/estatesGoogleMap";
 import EstatesGoogleMap from "@/components/Estate/estatesGoogleMap";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
+import MapFilters from "@/components/Filters/MapFilters";
 
 
 function EstateMap(props) {
 
-    const estatesData = props.estatesData;
     const filtersData = props.filtersData;
-    const pageDataURL = props.pageDataURL;
-    const totalCount = estatesData.meta.total;
-    const [estatesCount, setEstatesCount] = useState([]);
-    const [mapState, setMapState] = useState(false);
-    const changeEstatesFoundCount = (estatesCount) => {
-        setEstatesCount(estatesCount);
-    };
+    const queryData = props.queryData;
+    const queryDataParams = props.queryDataParams;
+    const [estatesData, setEstatesData] = useState(props.estatesData);
+    const [coords, setCoords] = useState([]);
+    const [sortType, setSortType] = useState("created_on");
+    const [pageDataURL, setPageDataURL] = useState(props.pageDataURL + "?");
 
-    function onToggleMapClicked() {
-        setMapState(prevState => ({
-            opened: !prevState.opened
-        }));
-    }
+    const [loading, setLoading] = useState(false);
 
 
     return (
 
         <>
 
-            <Row className={"mb-5"}>
-                <Col xs={24} className={"sortButtonsWrapper"}>
 
-                    <Button className={"sortButton"} onClick={() => sortEstates("created_on")}>
-                        Նոր ավելացված
-                    </Button>
-                    <Button className={"sortButton"} onClick={() => sortEstates("-visits_count")}>
-                        Ամենադիտված
-                    </Button>
-                    <Button className={"sortButton"} onClick={() => sortEstates("-room_count")}>
-                        Շտապ
-                    </Button>
-
-                </Col>
-            </Row>
-
-            <Row>
-                <Col xs={24} sm={24} className={""} style={{ overflow: "hidden" }}>
+            <Row gutter={48}>
+                <Col xs={16} sm={16} className={""} style={{ overflow: "hidden" }}>
 
                     {/*<EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />*/}
 
-                    <EstatesGoogleMap  />
+                    <EstatesGoogleMap estatesData={estatesData} changeCoords={setCoords}/>
                 </Col>
+
+
+                <Col xs={8}>
+                    <Row>
+                        <Col xs={24}>
+                            <MapFilters
+                                filtersData={filtersData}
+                                queryData={queryData}
+                                queryDataParams={queryDataParams}
+                                changeEstatesData={setEstatesData}
+                                coords={coords}
+                                setLoading={setLoading}
+                                setPageDataURL={setPageDataURL}
+                            />
+                        </Col>
+                    </Row>
+
+                </Col>
+
+                <Divider />
 
 
             </Row>
