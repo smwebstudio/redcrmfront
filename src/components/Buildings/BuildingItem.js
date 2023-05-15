@@ -27,10 +27,10 @@ export function BuildingItem(props) {
 
     return (
         <div className="">
-            <div key={item.id} className={" mb-5  cat" + item.contract_type_id}>
+            <div key={item.id} className={"mb-5"}>
                 <div className="single-feature">
                     <div className="thumb">
-                        <Link href={"estates/" + item.id}>
+                        <Link href={"developers/" + item.id}>
                             <a style={{ width: "100%" }}>
                                 <Image src={item.image}
                                        preview={false}

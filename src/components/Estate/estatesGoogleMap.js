@@ -20,7 +20,7 @@ const EstatesGoogleMap = ({}) => {
 
     const { isLoaded, loadError } = useJsApiLoader({
         id: "redgroup-script",
-        googleMapsApiKey: "AIzaSyCi0-3QkFGkcpGHEP2_FBEfkuCtyzKrkt8",
+        googleMapsApiKey: "AIzaSyCfSucQ9MNt5j0d4lc7hmqupvxdhMishMg",
         nonce: "map",
         libraries: ["drawing"]
     });
