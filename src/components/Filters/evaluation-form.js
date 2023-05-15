@@ -16,7 +16,7 @@ export default function EvaluationForm(props) {
 
     const [cities, setCities] = useState(initialProvince.cities);
 
-    console.error(filtersData);
+
 
     let estateTypeOptions = [];
     let provinces = [];
@@ -42,7 +42,7 @@ export default function EvaluationForm(props) {
         });
     });
 
-    filtersData.data.prices.forEach((value) => {
+    filtersData.data.prices.USD.forEach((value) => {
         prices.push({
             value: value.name_arm,
             label: value.name_arm
@@ -97,7 +97,6 @@ export default function EvaluationForm(props) {
                             <Select
                                 showSearch
                                 placeholder="Տեսակ"
-                                defaultValue={1}
                                 bordered={false}
                                 optionFilterProp="children"
                                 options={estateTypeOptions}
@@ -116,7 +115,6 @@ export default function EvaluationForm(props) {
                             <Select
                                 showSearch
                                 placeholder="Մարզ"
-                                defaultValue={1}
                                 bordered={false}
                                 optionFilterProp="children"
                                 options={provinces}

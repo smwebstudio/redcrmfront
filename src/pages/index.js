@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 import Navbar from "@/components/React/global-components/navbar";
 import Banner from "@/components/React/section-components/banner";
 import Footer from "@/components/React/global-components/footer";
@@ -12,11 +12,12 @@ import Professionals from "@/components/Home/professionals";
 import ScrollToTop from "@/components/Global/scroll-to-top";
 import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import api from "@/hooks/api";
 import { useAuth } from "@/hooks/auth";
+import SearchSection from "@/components/Search/SearchSection";
 
-export default function Home({filtersData}) {
+export default function Home({ filtersData, queryData }) {
     return (
         <>
             <Head>
@@ -26,9 +27,10 @@ export default function Home({filtersData}) {
             <div>
                 <Topbar />
                 <Navbar />
-                <Banner filtersData={filtersData}/>
+                <Banner />
+                <SearchSection filtersData={filtersData} queryData={queryData} />
                 <EstateMainTabs />
-                <EstateEstimate filtersData={filtersData}/>
+                <EstateEstimate filtersData={filtersData} />
                 <Professionals />
                 <EstateMainHot />
                 <WhyChooseUs />
@@ -36,16 +38,20 @@ export default function Home({filtersData}) {
                 <ScrollToTop />
             </div>
         </>
-    )
+    );
 }
 
 export async function getServerSideProps({ locale }) {
 
-    const response = await api(locale).post("/api/filters", {})
-    const filtersData =response.data;
-
-    return { props: { ...(await serverSideTranslations(locale, [
-                'common',
-                'footer',
-            ])),filtersData } };
+    const response = await api(locale).post("/api/filters", {});
+    const filtersData = response.data;
+    const queryData = "";
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, [
+                "common",
+                "footer"
+            ])), filtersData, queryData
+        }
+    };
 }

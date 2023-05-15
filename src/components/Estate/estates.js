@@ -14,8 +14,7 @@ const onChange = (key) => {
 
 export function EstatesSection(props) {
 
-    let mapState = props.mapState ? props.mapState : false;
-    let rowColCount = mapState ? 24 : 8;
+
     const { t } = useTranslation('common');
 
     const [loading, setLoading] = useState(false);
@@ -23,6 +22,8 @@ export function EstatesSection(props) {
     const [estatesData, setEstatesData] = useState(props.estatesData);
     // const [filtersData, setFiltersData] = useState(props.filtersData);
     const filtersData = props.filtersData;
+    const queryData = props.queryData;
+    const queryDataParams = props.queryDataParams;
 
 
     const [sortType, setSortType] = useState('created_on');
@@ -57,11 +58,13 @@ export function EstatesSection(props) {
 
     return (
         <>
-            <div className="property-area min-vh-100">
+            <div className="container property-area min-vh-100">
                 <Row>
                     <Col xs={24}>
                         <EstateSearch
                             filtersData={filtersData}
+                            queryData={queryData}
+                            queryDataParams={queryDataParams}
                             changeEstatesData={setEstatesData}
                             setLoading={setLoading}
                             setPageDataURL={setPageDataURL}
@@ -99,7 +102,7 @@ export function EstatesSection(props) {
                 <Row className="">
                     {!loading &&
                         estatesData.data?.map((item, index) =>
-                            <Col xs={24} sm={rowColCount} className={"pr-3 pl-3"}>
+                            <Col xs={24} sm={12} md={8} xl={6} className={"pr-3 pl-3"}>
                                 <EstateItem key={index} item={item} />
                             </Col>
                         )
@@ -121,6 +124,21 @@ export function EstatesSection(props) {
                             <Skeleton />
                         </Col>
 
+                        <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
+                            <Skeleton />
+                            <Skeleton />
+                            <Skeleton />
+                        </Col>
+                        <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
+                            <Skeleton />
+                            <Skeleton />
+                            <Skeleton />
+                        </Col>
+                        <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
+                            <Skeleton />
+                            <Skeleton />
+                            <Skeleton />
+                        </Col>
                         <Col lg={8} md={12} sm={24} xs={24} className={"pr-3 pl-3"}>
                             <Skeleton />
                             <Skeleton />

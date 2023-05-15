@@ -11,29 +11,33 @@ export default function MainFilter(props) {
     const router = useRouter();
     const filtersData = props.filtersData;
 
-    console.log('props');
-    console.log(props);
+
+    const [estateType, setEstateType] = useState(1);
+    const [locationProvince, setLocationProvince] = useState(1);
+    const [price, setPrice] = useState(null);
+    const [currency, setCurrency] = useState('AMD');
+    const [roomCount, setRoomCount] = useState(null);
 
     const { t } = useTranslation('common');
 
 
     let initialProvince = filtersData.data.locations.find(x => x.id === 1);
 
-    const [cities, setCities] = useState(initialProvince.cities);
+
 
 
     let estateTypeOptions = [];
     let provinces = [];
-    let prices = [];
     let rooms = [];
     let currencies = [
-        {value: 'AMD', label: 'AMD'},
-        {value: 'USD', label: 'USD'},
-        {value: 'RUR', label: 'RUR'},
+        { value: 3, label: "AMD" },
+        { value: 1, label: "USD" },
+        { value: 2, label: "RUR" }
     ];
 
     console.log(filtersData);
-
+    const [cities, setCities] = useState(initialProvince.cities);
+    const [prices, setPrices] = useState(filtersData.data.prices.USD);
 
     filtersData.data.estate_types.forEach((value) => {
         estateTypeOptions.push({
@@ -50,14 +54,14 @@ export default function MainFilter(props) {
         });
     });
 
-    filtersData.data.prices.forEach((value) => {
-        prices.push({
-            value: value.label,
-            label: value.label
-        });
-    });
 
-    console.log(filtersData);
+    // filtersData.data.prices.USD.forEach((value) => {
+    //     prices.push({
+    //         value: value.value,
+    //         label: value.label
+    //     });
+    // });
+
 
     filtersData.data.rooms.forEach((value) => {
         rooms.push({
@@ -66,7 +70,12 @@ export default function MainFilter(props) {
         });
     });
 
-
+    form.setFieldsValue({
+        estate_type_id: 1,
+        province: 1,
+        location_province_id: 1,
+        currency_id: 1,
+    });
 
     const handleProvinceChange = (value) => {
         let province = filtersData.data.locations.find(x => x.id === value);
@@ -74,14 +83,15 @@ export default function MainFilter(props) {
         setCities(province.cities);
     };
 
-
-
+    const handleCurrencyChange = (value, option) => {
+        setPrices(filtersData.data.prices[option.label]);
+        form.setFieldValue('prices', null);
+    };
 
 
     const onFinish = (values) => {
 
         const queryData = Object.entries(values);
-
         let query = {};
 
         queryData.forEach(function(param){
@@ -90,7 +100,7 @@ export default function MainFilter(props) {
 
 
         router.push({
-            pathname: "/search",
+            pathname: "/estates",
             query: query
         });
     };
@@ -107,7 +117,6 @@ export default function MainFilter(props) {
                         <Select
                             showSearch
                             placeholder={t('label.type')}
-                            defaultValue={1}
                             bordered={false}
                             optionFilterProp="children"
                             options={estateTypeOptions}
@@ -124,7 +133,6 @@ export default function MainFilter(props) {
                         <Select
                             showSearch
                             placeholder={t('label.locationProvince')}
-                            defaultValue={1}
                             bordered={false}
                             optionFilterProp="children"
                             options={provinces}
@@ -152,7 +160,7 @@ export default function MainFilter(props) {
                     </Form.Item>
                 </Col>
                 <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.price.Additional')}</small>
+                    <small className="pl-2">{t('label.price.Additional')} </small>
                     <Form.Item
                         name="prices"
                     >
@@ -169,14 +177,14 @@ export default function MainFilter(props) {
                 <Col xs={12} sm={2} className="field-item d-flex flex-column">
                     <small className="pl-2">{t('label.currency')}</small>
                     <Form.Item
-                        name="currency">
+                        name="currency_id">
                         <Select
                             showSearch
                             placeholder={t('button.pick')}
-                            defaultValue={'AMD'}
                             bordered={false}
                             optionFilterProp="children"
                             options={currencies}
+                            onChange={handleCurrencyChange}
                         />
                     </Form.Item>
                 </Col>

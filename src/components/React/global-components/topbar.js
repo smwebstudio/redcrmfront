@@ -13,7 +13,7 @@ const Topbar = (props) => {
     const { t } = useTranslation("common");
 
 
-    const { logout, user } = useAuth();
+    // const { logout, user } = useAuth();
 
     const router = useRouter();
     const { locale } = router;
@@ -42,7 +42,7 @@ const Topbar = (props) => {
                                             <img src={"/assets/img/svg/compare.svg"} alt="logo" />
                                         </Col>
                                         <Col xs={0} sm={20}>
-                                            <a>{t("label.compare")}</a>
+                                            {t("label.compare")}
                                         </Col>
                                     </Row>
                                 </a>
@@ -54,7 +54,9 @@ const Topbar = (props) => {
                                     <img src={"/assets/img/svg/favorites.svg"} alt="logo" />
                                 </Col>
                                 <Col xs={0} sm={16}>
-                                    <a>{t("label.favorites")}</a>
+                                    <Link href={"/test"}>
+                                        <a>{t("label.favorites")}</a>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Col>
@@ -63,26 +65,26 @@ const Topbar = (props) => {
                                 <Col xs={24} sm={4} className={"text-center"}>
                                     <img src={"/assets/img/svg/login.svg"} alt="logo" />
                                 </Col>
-                                {!user &&
-                                    <Col xs={0} sm={19}>
-                                        <span className="ml-1 pr-3 border-right">
-                                        <Link href="/login">{t("label.login")}</Link>
-                                    </span>
-                                        <span className="ml-1 pl-1"><Link href="/register">{t("button.register")}</Link></span>
+                                {/*{!user &&*/}
+                                {/*    <Col xs={0} sm={19}>*/}
+                                {/*        <span className="ml-1 pr-3 border-right">*/}
+                                {/*        <Link href="/login">{t("label.login")}</Link>*/}
+                                {/*    </span>*/}
+                                {/*        <span className="ml-1 pl-1"><Link href="/register">{t("button.register")}</Link></span>*/}
 
-                                    </Col>
-                                }
+                                {/*    </Col>*/}
+                                {/*}*/}
 
-                                {user &&
-                                    <Col xs={0} sm={19}>
-                                        <span className="ml-1 pr-3 border-right">
-                                        <Link href="#">{user.name}</Link>
-                                    </span>
-                                        <span className="ml-3" onClick={() => logout()}>
-                                            {t("common\:label.logout")}
-                                        </span>
-                                    </Col>
-                                }
+                                {/*{user &&*/}
+                                {/*    <Col xs={0} sm={19}>*/}
+                                {/*        <span className="ml-1 pr-3 border-right">*/}
+                                {/*        <Link href="#">{user.name}</Link>*/}
+                                {/*    </span>*/}
+                                {/*        <span className="ml-3" onClick={() => logout()}>*/}
+                                {/*            {t("common\:label.logout")}*/}
+                                {/*        </span>*/}
+                                {/*    </Col>*/}
+                                {/*}*/}
 
 
                             </Row>

@@ -161,6 +161,10 @@ html, body {
     background-color: #fff !important;
 }
 
+.ant-table-scroll-horizontal .ant-table-container .ant-table-content {
+    overflow-x: hidden !important;
+}
+
 /*End Ant*/
 
 .is-sticky {

@@ -3,6 +3,7 @@ import Navbar from "@/components/React/global-components/navbar";
 import Footer from "@/components/React/global-components/footer";
 import Topbar from "@/components/React/global-components/topbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import EstateCompareCarousel from "@/components/Estate/estate-compare-carousel";
 
 const Professionals = () => {
     return <div>

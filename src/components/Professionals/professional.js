@@ -4,7 +4,7 @@ import Link from "next/link";
 function Professional(props) {
     let publicUrl = process.env.PUBLIC_URL + "/";
     let professional = props.professional;
-    console.log(professional)
+
     return (
 
         <div className="professional-card d-flex flex-row pt-4 pb-4">
