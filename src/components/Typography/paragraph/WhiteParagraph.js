@@ -1,24 +1,22 @@
 import styled from "styled-components";
 import { Typography } from "antd";
-import React, {ReactNode} from "react";
-import {ParagraphProps} from "antd/es/typography/Paragraph";
+import React  from "react";
 
 const { Paragraph } = Typography;
 
 const WhiteParagraphStyled = styled(Paragraph)`
   &&& {
+      font-family: 'Montserrat arm', sans-serif;
     color: #ffffff !important;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 28px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
   }
 `;
 
-interface WhiteParagraphProps extends ParagraphProps {
-    children: ReactNode;
-}
 
-const WhiteParagraph: React.FC<WhiteParagraphProps> = ({ children, ...props }) => {
+
+const WhiteParagraph = ({ children, ...props }) => {
   return (
         <WhiteParagraphStyled {...props}>
           {children}

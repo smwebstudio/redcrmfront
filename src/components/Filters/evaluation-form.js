@@ -42,7 +42,7 @@ export default function EvaluationForm(props) {
         });
     });
 
-    filtersData.data.prices.USD.forEach((value) => {
+    filtersData.data.prices.sale.USD.forEach((value) => {
         prices.push({
             value: value.name_arm,
             label: value.name_arm
@@ -90,8 +90,8 @@ export default function EvaluationForm(props) {
             <Form form={form} onFinish={onFinish} action="/search" method="get"
                   className="bg-white text-gray-50  pl-3 pr-3 pt-3">
                 <Row className={"d-flex align-items-center"}>
-                    <Col span={6} className="field-item d-flex flex-column">
-                        <small className="pl-2">Տեսակ</small>
+                    <Col span={6} className="field-item flex flex-col">
+                        <small className="pl-2 text-black">Տեսակ</small>
                         <Form.Item
                             name="estate_type_id">
                             <Select
@@ -107,8 +107,8 @@ export default function EvaluationForm(props) {
                     </Col>
 
 
-                    <Col span={6} className="field-item d-flex flex-column">
-                        <small className="pl-2">Մարզ</small>
+                    <Col span={6} className="field-item flex flex-col">
+                        <small className="pl-2 text-black">Մարզ</small>
                         <Form.Item
                             name="location_province_id"
                         >
@@ -125,8 +125,8 @@ export default function EvaluationForm(props) {
                         </Form.Item>
                     </Col>
 
-                    <Col span={6} className="field-item d-flex flex-column">
-                        <small className="pl-2">Սենյակ</small>
+                    <Col span={6} className="field-item flex flex-col">
+                        <small className="pl-2 text-black">Սենյակ</small>
                         <Form.Item
                             name="room_count"
                         >

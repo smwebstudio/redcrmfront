@@ -1,7 +1,9 @@
-import { Tabs } from "antd";
+import { Col, Row, Tabs } from "antd";
 import React, { Component, useState } from "react";
 import EstateCarousel from "@/components/Estate/estate-carousel";
 import Link from "next/link";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
+import DarkHeading3 from "@/components/Typography/Heading3/DarkHeading3";
 
 
 const onChange = (key) => {
@@ -11,17 +13,17 @@ const onChange = (key) => {
 function EstateMainHot(props) {
     return (
 
-        <div className="container   mt-5 mb-5">
-            <div className="row main-featured min-h-fit">
-                <div className="col-12">
-                    <h5 className="mb-5 text-dark text-center text-sm-left font-bold">Շտապ առաջարկներ</h5>
+        <ContainerBoxed className={'pt-10 pb-10'}>
+            <Row className="row main-featured min-h-fit">
+                <Col xs={24}>
+                    <DarkHeading3 className="mb-5 text-dark text-left font-bold">Շտապ առաջարկներ</DarkHeading3>
                     <EstateCarousel type="hot"/>
-                </div>
-                <div className="col-12 text-center text-sm-right">
+                </Col>
+                <Col xs={24} className={'text-right'}>
                     <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
-                </div>
-            </div>
-        </div>
+                </Col>
+            </Row>
+        </ContainerBoxed>
     );
 
 }

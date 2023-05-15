@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import sectiondata from 'data/sections.json';
 import { useMediaQuery } from "react-responsive";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
+import ContainerFluid from "@/components/Containers/ContainerFluid";
+import { Col, Row } from "antd";
 
 
 const WhyChooseUs = () => {
@@ -10,12 +13,12 @@ const WhyChooseUs = () => {
     let data = sectiondata.whychooseus;
 
     return (
-        <div className={"why-choose-us-area bg-gray pd-top-90 pd-bottom-60 text-xs-center"}>
-            <div className="container">
-                <div className="row">
+        <ContainerFluid className={"why-choose-us-area bg-gray pd-top-90 pd-bottom-60 text-xs-center"}>
+            <ContainerBoxed className="container">
+                <Row gutter={32}>
                     { data.items.map( ( item,i ) =>
-                        <div key={ i } className={"col-xl-3 col-lg-4 col-sm-6 "+item.class}>
-                            <div className={"single-intro text-sm-left text-center"}>
+                        <Col key={ i } xs={12} sm={8}>
+                            <div className={"single-intro text-left "}>
                                 <div className="thumb">
                                     <img src={ publicUrl+item.icon } alt={ imagealt } />
                                 </div>
@@ -24,11 +27,11 @@ const WhyChooseUs = () => {
                                     <p>{ item.content }</p>
                                 </div>
                             </div>
-                        </div>
+                        </Col>
                     ) }
-                </div>
-            </div>
-        </div>
+                </Row>
+            </ContainerBoxed>
+        </ContainerFluid>
     );
 };
 

@@ -2,6 +2,9 @@ import React, { Component, useEffect } from "react";
 import Link from "next/link";
 import { Affix, Col, Row, Select } from "antd";
 import { useTranslation } from "next-i18next";
+import Developers from "@/pages/developers";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
+import ContainerFluid from "@/components/Containers/ContainerFluid";
 
 function Navbar() {
 
@@ -9,11 +12,11 @@ function Navbar() {
 
 
     return (
-        <div className="">
+        <ContainerFluid>
             <Affix offsetTop={0}>
                 <div className="navbar-area ">
                     <nav className="navbar-area navbar-expand-lg">
-                        <div className="container nav-container">
+                        <ContainerBoxed className="container nav-container">
                             <Row justify="center" align="top">
                                 <Col offset={1} xs={2} sm={0}>
                                     <div className="responsive-mobile-menu">
@@ -28,12 +31,12 @@ function Navbar() {
                                         <ul className="navbar-nav menu-open readeal-top" style={{height:"100vh"}}>
                                             <li><Link href="/estates"><a>{t('menu.buy')}</a></Link></li>
                                             <li><Link href="/estates"><a>{t('menu.rent')}</a></Link></li>
-                                            <li><Link href="/about"><a>Մեր մասին</a></Link></li>
-                                            <li><Link href="/professionals"><a>Մասնագետներ</a></Link></li>
-                                            <li><Link href="/blog"><a>Բլոգ</a></Link></li>
-                                            <li><Link href="/contact"><a>Կապ</a></Link></li>
-                                            <li><Link href="/evaluate"><a>Գնահատում</a></Link></li>
-                                            <li><Link href="/builders"><a>Կառուցապատողներ</a></Link></li>
+                                            <li><Link href="/about"><a>{t('menu.about')}</a></Link></li>
+                                            <li><Link href="/professionals"><a>{t('menu.professional')}</a></Link></li>
+                                            <li><Link href="/blog"><a>{t('menu.blog')}</a></Link></li>
+                                            <li><Link href="/contact"><a>{t('menu.contact')}</a></Link></li>
+                                            <li><Link href="/evaluate"><a>{t('menu.evaluate')}</a></Link></li>
+                                            <li><Link href="/developers"><a>{t('menu.buildDevelopers')}</a></Link></li>
                                             <li>
                                                 <Link href="/add-property"><a className="btn btn-main-transparent"><i
                                                     className="la la-plus" /> ՆՈՐ ՀԱՅՏ <span className="right"></span></a></Link>
@@ -58,7 +61,7 @@ function Navbar() {
                                             <li><Link href="/blog"><a>{t('menu.blog')}</a></Link></li>
                                             <li><Link href="/contact"><a>{t('menu.contact')}</a></Link></li>
                                             <li><Link href="/estimate"><a>{t('menu.evaluate')}</a></Link></li>
-                                            <li><Link href="/builders"><a>{t('menu.buildDevelopers')}</a></Link></li>
+                                            <li><Link href="/developers"><a>{t('menu.buildDevelopers')}</a></Link></li>
                                         </ul>
                                     </div>
                                 </Col>
@@ -70,11 +73,11 @@ function Navbar() {
                                 </Col>
 
                             </Row>
-                        </div>
+                        </ContainerBoxed>
                     </nav>
                 </div>
             </Affix>
-        </div>
+        </ContainerFluid>
     );
 
 }

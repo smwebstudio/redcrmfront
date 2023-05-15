@@ -1,23 +1,20 @@
 import styled from "styled-components";
 import { Typography } from "antd";
-import React, {ReactNode} from "react";
-import {ParagraphProps} from "antd/es/typography/Paragraph";
+import React from "react";
 
 const { Paragraph } = Typography;
 
 const SmallParagraphStyled = styled(Paragraph)`
-  color: #272A3D !important;
+  color: #959595 !important;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 18px;
   margin-bottom: 0px !important;
 `;
 
-interface SmallParagraphProps extends ParagraphProps {
-    children: ReactNode;
-}
 
-const SmallParagraph: React.FC<SmallParagraphProps> = ({ children, ...props }) => {
+
+const SmallParagraph  = ({ children, ...props }) => {
     return (
         <SmallParagraphStyled {...props}>
             {children}

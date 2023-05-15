@@ -7,6 +7,7 @@ import RuOption from "@/components/Global/Languages/ru-option";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "@/hooks/auth";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
 
 
 const Topbar = (props) => {
@@ -23,7 +24,7 @@ const Topbar = (props) => {
     };
 
     return (
-        <div className="">
+        <ContainerBoxed>
             <div className="topbar-area">
                 <div className="container nav-container">
                     <Row gutter={8} justify="center" align="middle">
@@ -118,7 +119,7 @@ const Topbar = (props) => {
                 </div>
             </div>
 
-        </div>
+        </ContainerBoxed>
     );
 
 };

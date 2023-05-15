@@ -4,6 +4,7 @@ import EstateCarousel from "@/components/Estate/estate-carousel";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { useTranslation } from "next-i18next";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
 
 
 const onChange = (key) => {
@@ -17,7 +18,7 @@ function EstateMainTabs(props) {
 
     return (
 
-        <div className="container  pt-5 mt-5 mb-5">
+        <ContainerBoxed className="container  pt-5 mt-5 mb-5">
             <Row className={"main-featured min-h-fit mt-5"}>
                 <Col xs={24} sm={4}>
                     <h5 className={isTabletOrMobile ? "text-center text-dark  font-bold pb-3" : "text-dark  font-bold pb-3"}>{t('label.hotOffer')}</h5>
@@ -49,11 +50,11 @@ function EstateMainTabs(props) {
                 </Col>
             </Row>
             <Row>
-                <Col xs={24} className={"text-center text-sm-right"}>
+                <Col xs={24} className={"text-right"}>
                     <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
                 </Col>
             </Row>
-        </div>
+        </ContainerBoxed>
     );
 
 }

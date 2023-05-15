@@ -3,6 +3,7 @@ import Link from "next/link";
 import footerdata from "data/footerdata.json";
 import Image from "next/image";
 import { Col, Row } from "antd";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
 
 class Footer_v1 extends Component {
 
@@ -26,7 +27,7 @@ class Footer_v1 extends Component {
 
         return (
             <footer className="footer-area">
-                <div className="container">
+                <ContainerBoxed>
                     <div className="footer-top">
                         <Row  align={'middle'}>
                             <Col xs={24} sm={8} className={"text-center text-sm-left"}>
@@ -123,7 +124,7 @@ class Footer_v1 extends Component {
                     </div>
                     <div className="copy-right text-white text-left"
                          dangerouslySetInnerHTML={{ __html: footerdata.copyrighttext }}></div>
-                </div>
+                </ContainerBoxed>
             </footer>
 
         );
