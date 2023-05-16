@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import ShareButtons from "@/components/Global/share-buttons";
-import { Button, Card, Col, Divider, Form, Input, message, Modal, Popover, Row, Select } from "antd";
+import { Button, Image, Col, Divider, Form, Input, message, Modal, Popover, Row, Select } from "antd";
 import { Space, Typography } from "antd";
 import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
@@ -21,6 +21,9 @@ import {
 import ContactSimpleForm from "@/components/Forms/contact-simple-form";
 import LoanCalculator from "@/components/Forms/loan-calculator";
 import EstateCarousel from "@/components/Estate/estate-carousel";
+import DarkHeading3 from "@/components/Typography/Heading3/DarkHeading3";
+import SmallParagraph from "@/components/Typography/paragraph/SmallParagraph";
+import RedText from "@/components/Typography/text/RedText";
 
 const { Text, Link } = Typography;
 
@@ -68,10 +71,31 @@ function BuildingDetails(props) {
         console.log("Success:", values);
     };
 
+
+    const renderVideo = (item) => {
+        return (
+            <div className="video-wrapper">
+                <iframe
+                    width="100%"
+                    height="510px"
+                    src={item.embedUrl}
+                    frameBorder="0"
+                    allowFullScreen
+                    title="ex"
+                />
+            </div>
+        );
+    };
+
     let images = [];
     if (imagesData) {
         imagesData.forEach(item => {
-            images.push({ original: item, thumbnail: item });
+
+            if(item === '/assets/img/theview/video.png') {
+                images.push({ original: item, thumbnail: item,  embedUrl: 'https://www.youtube.com/embed/FuVbRdhCZLk', renderItem: renderVideo.bind(this) });
+            } else {
+                images.push({ original: item, thumbnail: item,  });
+            }
         });
     }
 
@@ -154,35 +178,30 @@ function BuildingDetails(props) {
 
                     <Col xs={6} className={"pt-3  bg-white"}>
 
-                        <div className={"text-center mb-2"}>
-                            {developerData.contact &&
+                        <div className={"text-left mb-2"}>
                                 <Row className={"mb-1"}>
-                                    <Col xs={24} sm={8}>
-                                        <img className={""} style={{ borderRadius: "50%", width: 60, height: 60 }}
-                                             src={developerData.contact.profile_picture} />
+                                    <Col xs={24} sm={24}>
+                                        <DarkHeading3><Image preview={false}  src={'/assets/img/svg/redCalendar.svg'} /><span className={'ml-4'}> Շինարարության մեկնարկ</span></DarkHeading3>
+                                        <SmallParagraph>01.12.2021թ</SmallParagraph>
+                                        <DarkHeading3 className={'mt-4'}>Շինարարության ավարտ</DarkHeading3>
+                                        <SmallParagraph>12.12.2024թ.</SmallParagraph>
+                                        <Divider />
+                                        <DarkHeading3><Image preview={false}  src={'/assets/img/svg/redBank.svg'} /><span className={'ml-4'}>Գործընկեր բանկեր </span></DarkHeading3>
+                                        <SmallParagraph>Արցախ բանկ, ID Bank, AEB</SmallParagraph>
+                                        <Divider />
+                                        <DarkHeading3><Image preview={false}  src={'/assets/img/svg/redSale.svg'} /><span className={'ml-4'}>Վաճառքի բացառիկ իրավունք </span></DarkHeading3>
+                                        <SmallParagraph>«ՌԷԴ Ինվեսթ Գրուպ» ՍՊԸ</SmallParagraph>
+                                        <Divider />
+                                        <DarkHeading3><Image preview={false}  src={'/assets/img/svg/mobile.svg'} /><span className={'ml-4'}>Կարեն Ավետիսյան</span></DarkHeading3>
+                                        <SmallParagraph>Վաճառքի պատասխանատու</SmallParagraph>
+                                        <SmallParagraph><RedText>+37495 908 909</RedText></SmallParagraph>
+                                        <Divider />
+                                        <DarkHeading3><Image preview={false}  src={'/assets/img/svg/mobile.svg'} /><span className={'ml-4'}>Վաճառքի գրասենյակ</span></DarkHeading3>
+                                        <SmallParagraph><RedText>+37495 908 909</RedText></SmallParagraph>
                                     </Col>
-                                    <Col xs={24} sm={16} className={"text-left"}>
-                                        <h5 className="mt-2 ">{developerData.contact.full_name}</h5>
-                                        <p className="">{t("common\:label.broker")}</p>
-                                    </Col>
-                                    <Text className="d-flex mb-1 justify-content-start text-dark font-size-12">
-                                        <img className="mr-2" src={publicUrl + "assets/img/svg/envelope.svg"} />
-                                        <span className="align-self-center">{developerData.contact.email}</span></Text>
-                                    <Text className="d-flex justify-content-start text-dark font-size-12">
-                                        <img className="mr-2" src={publicUrl + "assets/img/svg/mobile.svg"} />
-                                        <span className="align-self-center">{developerData.contact.phone_1}</span>
-                                    </Text>
                                 </Row>
-
-
-
-
-
-                            }
                         </div>
 
-                        <Divider />
-                        <ContactSimpleForm />
                     </Col>
                 </Row>
 
@@ -192,14 +211,36 @@ function BuildingDetails(props) {
         <div className="container">
             <div className="col-lg-9">
                 <Row className="property-news-single-card pt-5 border-bottom-yellow">
-                    <h4>Ընդհանուր</h4>
                     <Row>
-                        {developerData.public_text_arm}
-                    </Row>
-                    <Divider />
-                    <h4>Տեղը քարտեզով</h4>
-                    <Row>
-                        {developerData.public_text_arm}
+
+                       <Col xs={24}>
+
+                           <h4>Ընդհանուր</h4>
+                       </Col>
+                        <Col xs={24}>
+                            {imagesData.map((img, idx) => (
+                                <Image
+                                    key={idx}
+                                    width={100}
+                                    height={100}
+                                    src={img}
+                                    alt={`Image ${idx + 1}`}
+                                />
+                            ))}
+                        </Col>
+                        <Col xs={24}>
+                            <h4>Ընդհանուր</h4>
+                        </Col>
+                        <Col xs={24}>
+                            {developerData.public_text_arm}
+                        </Col>
+                        <Col xs={24}>
+                            <h4>Տեղը քարտեզով</h4>
+                        </Col>
+                        <Col xs={24}>
+                            {developerData.public_text_arm}
+                        </Col>
+
                     </Row>
                 </Row>
 
@@ -213,19 +254,6 @@ function BuildingDetails(props) {
             </div>
         </div>
 
-        <div className="container   mt-5 mb-5">
-            <Row gutter={32} className="main-featured min-h-fit">
-                <Col xs={24}>
-                    <h5 className="mb-5 text-dark text-center text-sm-left font-bold">Վերջին դիտվածներ</h5>
-                    <EstateCarousel type="hot"/>
-                </Col>
-
-                <Col xs={24}>
-                    <h5 className="mb-5 text-dark text-center text-sm-left font-bold">Նմատատիպ գույքեր</h5>
-                    <EstateCarousel type="hot"/>
-                </Col>
-            </Row>
-        </div>
     </div>;
 
 }

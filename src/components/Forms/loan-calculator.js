@@ -4,10 +4,10 @@ import {
     Form,
     Input,
     Row,
-    Divider,
+    Divider
 } from "antd";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import LoanData from "@/components/Tables/loanData";
 
@@ -18,7 +18,7 @@ const formItemLayout = {
             span: 24
         },
         sm: {
-            span: 20
+            span: 24
         }
     },
     wrapperCol: {
@@ -26,7 +26,7 @@ const formItemLayout = {
             span: 24
         },
         sm: {
-            span: 20
+            span: 22
         }
     }
 };
@@ -34,13 +34,13 @@ const formItemLayout = {
 const LoanSchedule = require("loan-schedule.js");
 
 const loanSchedule = new LoanSchedule({
-    DecimalDigit : 3,
+    DecimalDigit: 3,
     dateFormat: "DD.MM.YYYY",
     prodCalendar: "ru"
 });
 const LoanCalculator = (props) => {
 
-    const { t } = useTranslation('common')
+    const { t } = useTranslation("common");
     const router = useRouter();
     const [form] = Form.useForm();
 
@@ -56,25 +56,26 @@ const LoanCalculator = (props) => {
     };
     const handleDeposit = (event) => {
         const value = parseInt(event.target.value);
+
+        form.setFieldValue('price', price);
         setDeposit(value);
     };
 
 
     useEffect(() => {
         const mortgageSum = parseInt(price) - parseInt(deposit);
-        const depositPercent = parseInt(parseInt(deposit) * 100 / parseInt(price)) ;
-        form.setFieldsValue({ mortgageSum: mortgageSum, depositPercent:  depositPercent});
+        const depositPercent = parseInt(parseInt(deposit) * 100 / parseInt(price));
+        form.setFieldsValue({ price:price, mortgageSum: mortgageSum, depositPercent: depositPercent });
     }, [price, deposit]);
 
     const onFinish = (values) => {
-
         console.log(values);
         console.log(values.price);
 
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        const day = String(tomorrow.getDate()).padStart(2, '0');
-        const month = String(tomorrow.getMonth() + 1).padStart(2, '0'); // Months are zero indexed
+        const day = String(tomorrow.getDate()).padStart(2, "0");
+        const month = String(tomorrow.getMonth() + 1).padStart(2, "0"); // Months are zero indexed
         const year = tomorrow.getFullYear();
         const currentDate = `${day}.${month}.${year}`;
 
@@ -84,18 +85,17 @@ const LoanCalculator = (props) => {
             term: values.term * 12,
             paymentOnDay: 15,
             issueDate: currentDate,
-            scheduleType : LoanSchedule.ANNUITY_SCHEDULE
+            scheduleType: LoanSchedule.ANNUITY_SCHEDULE
         }).payments;
 
         setPayments(newPayments);
     };
 
 
-
     return (
         <div className={"container"}>
             <Row>
-                <h3 className={"text-dark font-bold"}>{t('label.mortgage')}</h3>
+                <h3 className={"text-dark font-bold"}>{t("label.mortgage")}</h3>
             </Row>
 
             <Row gutter={32}>
@@ -104,7 +104,7 @@ const LoanCalculator = (props) => {
 
                         <Form
                             {...formItemLayout}
-                            initialValues={{ price:price }}
+                            initialValues={{ price: price }}
                             form={form}
                             name="loan-calculate"
                             layout="vertical"
@@ -118,16 +118,10 @@ const LoanCalculator = (props) => {
 
                                     <Form.Item
                                         name="price"
-                                        label={t('label.estateMortgage.price')}
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: "Please input price!",
-                                                whitespace: true
-                                            }
-                                        ]}
+                                        label={t("label.estateMortgage.price")}
+                                        
                                     >
-                                        <Input onChange={handlePrice} value={price}/>
+                                        <Input onChange={handlePrice} value={price} />
                                     </Form.Item>
 
                                 </Col>
@@ -137,7 +131,7 @@ const LoanCalculator = (props) => {
 
                                     <Form.Item
                                         name="percent"
-                                        label={t('label.estateMortgage.percent')}
+                                        label={t("label.estateMortgage.percent")}
                                         rules={[
                                             {
                                                 required: true,
@@ -153,7 +147,8 @@ const LoanCalculator = (props) => {
                                 <Col xs={24} sm={8}>
                                     <Form.Item
                                         name="term"
-                                        label={t('label.estateMortgage.term')+' / '+t('label.estateMortgage.termYear')}
+                                        label={t("label.estateMortgage.term") + " / " + t("label.estateMortgage.termYear")}
+                                        wrapperCol={24}
                                         rules={[
                                             {
                                                 required: true,
@@ -168,21 +163,20 @@ const LoanCalculator = (props) => {
                             </Row>
 
 
-
                             <Row>
                                 <Col xs={24} sm={8}>
 
                                     <Form.Item
                                         name="deposit"
-                                        label={t('label.estateMortgage.deposit')}
+                                        label={t("label.estateMortgage.deposit")}
                                         rules={[
                                             {
                                                 required: true,
-                                                message: "Please input deposit!",
+                                                message: "Please input deposit!"
                                             }
                                         ]}
                                     >
-                                        <Input  onChange={handleDeposit} />
+                                        <Input onChange={handleDeposit} />
                                     </Form.Item>
 
                                 </Col>
@@ -192,7 +186,7 @@ const LoanCalculator = (props) => {
 
                                     <Form.Item
                                         name="depositPercent"
-                                        label={t('label.estateMortgage.deposit')+' '+t('label.estateMortgage.percent')}
+                                        label={t("label.estateMortgage.deposit") + " " + t("label.estateMortgage.percent")}
                                         rules={[
                                             {
                                                 required: true,
@@ -200,7 +194,7 @@ const LoanCalculator = (props) => {
                                             }
                                         ]}
                                     >
-                                        <Input disabled={true}/>
+                                        <Input disabled={true} />
                                     </Form.Item>
 
                                 </Col>
@@ -208,25 +202,27 @@ const LoanCalculator = (props) => {
                                 <Col xs={24} sm={8}>
                                     <Form.Item
                                         name="mortgageSum"
-                                        label={t('label.estateMortgage.mortgageSum')}
+                                        label={t("label.estateMortgage.mortgageSum")}
                                         rules={[
                                             {
                                                 required: true,
                                                 message: "Please input your E-mail!"
                                             }
                                         ]}
+                                        wrapperCol={24}
                                     >
-                                        <Input  disabled={true}/>
+                                        <Input disabled={true} />
                                     </Form.Item>
 
                                 </Col>
-                                    <Col span={4} offset={20}>
-                                        <Form.Item wrapperCol={{ sm: 24 }} >
-                                            <Button type="primary" size="large" htmlType="submit">
-                                                {t('button.send')}
-                                            </Button>
-                                        </Form.Item>
-                                    </Col>
+                                <Col span={24}>
+                                    <Form.Item wrapperCol={{ sm: 24 }}>
+                                        <Button type="primary" size="large" className={"w-100 h-50 mt-10"}
+                                                htmlType="submit">
+                                            {t("button.send")}
+                                        </Button>
+                                    </Form.Item>
+                                </Col>
 
                                 <Col xs={24}>
                                     {payments.length > 0 &&
@@ -235,8 +231,6 @@ const LoanCalculator = (props) => {
                                 </Col>
 
                             </Row>
-
-
 
 
                         </Form>

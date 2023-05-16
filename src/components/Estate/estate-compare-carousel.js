@@ -1,13 +1,10 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 import { Image, Col, Row, Table, Button } from "antd";
-import NextArrow from "@/components/Carousel/NextArrow";
-import PrevArrow from "@/components/Carousel/PrevArrow";
 import { apiURL } from "@/constants";
-import { useMediaQuery } from "react-responsive";
 import api from "@/hooks/api";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { RightOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import RedText from "@/components/Typography/text/RedText";
 
 
@@ -27,10 +24,10 @@ export function EstateCompareCarousel() {
         const compareIds = JSON.parse(localStorage.getItem("compareEstates") || []);
         setCompareCount(compareIds.length);
         const params = {
-            "filter[id]": compareIds.join(",")
+            "filter[id]": compareIds.join("|")
         };
 
-        const data = await api(locale).get(apiURL + "api/estates/filter/estates", { params });
+        const data = await api(locale).get(apiURL + "api/estates/compare/estates", { params });
         const estatesDataFromApi = data.data.data;
 
         console.log(estatesDataFromApi);
@@ -67,7 +64,7 @@ export function EstateCompareCarousel() {
                 attribute: "image",
                 ...Object.fromEntries(
                     estatesDataFromApi.map((item) => [item.id.toString(),
-                        item.image ? <Image preview={false} src={item.image} width={'100%'} height={'auto'} style={{maxHeight: '100%', maxWidth: '100%'}} /> : ''])
+                        item.image ? <Image preview={false} src={item.image} width={'175px'} height={'150px'} style={{maxHeight: '100%', maxWidth: '100%'}} /> : ''])
                 )
             },
             {
@@ -135,20 +132,39 @@ export function EstateCompareCarousel() {
         }
     };
 
+    const handleScrollLeft = () => {
+        const tableBody = document.querySelector(".ant-table-content");
+        const tableFixedColumn = document.querySelector(".ant-table-cell-fix-left");
+        if (tableBody) {
+            console.log(12)
+            const fixedColumnWidth = tableFixedColumn.clientWidth;
+            tableBody.scrollTo({
+                left: tableBody.scrollLeft - fixedColumnWidth,
+                behavior: "smooth"
+            });
+        }
+    };
+
     return (
         <div className={"container pt-10 pb-20"}>
             <Row>
 
                 <Col xs={24}>
-                    <h1>{t('label.compare')} / <RedText className={'text-2xl'}>{compareCount}</RedText></h1>
+                    <h1 className={'mb-6'}>{t('label.compare')} / <RedText className={'text-2xl'}>{compareCount}</RedText></h1>
                 </Col>
                 <Col xs={24}>
-                    <Button type="primary" shape="circle" onClick={handleScrollRight}>
-                        <RightOutlined />
-                    </Button>
-                    <Image />
+
                     {estatesData.length > 0 &&
-                        <Table  dataSource={dataSource} columns={columns} pagination={false} scroll={{ x: 1300 }} ref={tableRef} />
+                        <div className={'relative'}>
+                            <Button  shape="circle" onClick={handleScrollLeft} className={'flex justify-center items-center absolute z-40 left-60 top-20 bg-opacity-50 bg-gray-600'}>
+                                <LeftOutlined style={{color: '#FFFFFF'}}/>
+                            </Button>
+                            <Button  shape="circle" onClick={handleScrollRight} className={'flex justify-center items-center absolute z-40 right-3.5 top-20 bg-opacity-50 bg-gray-600'}>
+                                <RightOutlined style={{color: '#FFFFFF'}}/>
+                            </Button>
+                            <Table  showHeader={false} dataSource={dataSource} columns={columns} pagination={false} scroll={{ x: 1300 }} ref={tableRef} />
+                        </div>
+
                     }
 
                 </Col>

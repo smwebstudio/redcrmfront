@@ -182,7 +182,10 @@ export async function getServerSideProps(context) {
         "year": "1970-80 ականներ",
         "name_arm": "Անթերի բնակարան  բոլոր հարմարություններով:",
         "images": [
-            "/assets/img/theview/view1.gif",
+            "/assets/img/theview/video.png",
+            "/assets/img/theview/view2.gif",
+            "/assets/img/theview/view3.gif",
+            "/assets/img/theview/video.png",
             "/assets/img/theview/view2.gif",
             "/assets/img/theview/view3.gif",
         ],

@@ -1,28 +1,27 @@
 import styled from "styled-components";
 import { Typography } from "antd";
-import React, {ReactNode} from "react";
+import React  from "react";
 
 const { Title } = Typography;
 
-const DarkHeadingStyled = styled(Title)`
-  color: #272A3D !important;
-  font-weight: 600 !important;
-  font-size: 14px !important;
-  line-height: 22px !important;
+const DarkHeading4Styled = styled(Title)`
+    &&& {
+        color: #414141 !important;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 18px;
+    }
 `;
 
-interface DarkHeadingProps {
-    children: ReactNode;
-}
 
-const DarkHeading4:React.FC<DarkHeadingProps> = ({ children }) => {
-  return (
-      <div>
-        <DarkHeadingStyled level={4}>
-          {children}
-        </DarkHeadingStyled>
-      </div>
-  );
+const DarkHeading4  = ({ children, ...props }) => {
+    return (
+        <div>
+            <DarkHeading4Styled level={4} {...props}>
+                {children}
+            </DarkHeading4Styled>
+        </div>
+    );
 };
 
 export default  DarkHeading4

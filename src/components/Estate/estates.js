@@ -7,6 +7,7 @@ import axios from "axios";
 import MainFilter from "@/components/Filters/main-filter";
 import EstateSearch from "@/components/Filters/estate-search";
 import { useTranslation } from "next-i18next";
+import ContainerBoxed from "@/components/Containers/ContainerBoxed";
 
 const onChange = (key) => {
     console.log(key);
@@ -58,6 +59,7 @@ export function EstatesSection(props) {
 
     return (
         <>
+            <ContainerBoxed>
             <div className="container property-area min-vh-100">
                 <Row>
                     <Col xs={24}>
@@ -156,6 +158,9 @@ export function EstatesSection(props) {
                         onChange={handlePageChange} />
                 </Row>
             </div>
+
+
+            </ContainerBoxed>
         </>
     );
 

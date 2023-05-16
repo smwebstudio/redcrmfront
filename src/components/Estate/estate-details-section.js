@@ -11,6 +11,7 @@ import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
 import TextArea from "antd/lib/input/TextArea";
 import {
+    CheckOutlined,
     EnvironmentOutlined,
     EyeOutlined,
     HeartOutlined,
@@ -21,6 +22,8 @@ import {
 import ContactSimpleForm from "@/components/Forms/contact-simple-form";
 import LoanCalculator from "@/components/Forms/loan-calculator";
 import EstateCarousel from "@/components/Estate/estate-carousel";
+import DarkHeading3 from "@/components/Typography/Heading3/DarkHeading3";
+import EstatesGoogleMapSingle from "@/components/Estate/estatesGoogleMapSingle";
 
 const { Text, Link } = Typography;
 
@@ -49,8 +52,13 @@ function EstateDetailsSection(props) {
     console.log(estate);
 
     let building_attributes = [];
+    let estate_facilities = [];
     if (estate) {
         building_attributes = Object.entries(estate.building_attributes);
+
+        console.log(building_attributes);
+
+        estate_facilities = Object.entries(estate.estate_facilities);
     }
 
     const waitTime = (time = 100) => {
@@ -99,14 +107,14 @@ function EstateDetailsSection(props) {
                             </h3>
                         </Col>
                         <Col sm={8}>
-                            <div className={"d-flex justify-content-end align-items-center"}>
+                            <div className={"flex flex-row justify-content-end align-items-center"}>
                                 <EyeOutlined style={{ fontSize: 24, marginRight: 10 }} /> 1362
                                 <SwapOutlined style={{ fontSize: 24, marginRight: 30, marginLeft: 30 }} />
                                 <HeartOutlined style={{ fontSize: 24 }} />
                             </div>
 
                         </Col>
-                        <Col sm={24} className={"d-flex align-items-center mb-4"}>
+                        <Col sm={24} className={"flex align-items-center mb-10 mt-10"}>
                             <EnvironmentOutlined style={{
                                 fontSize: 24,
                                 marginRight: 10
@@ -114,22 +122,22 @@ function EstateDetailsSection(props) {
                         </Col>
 
                         <Col sm={20}>
-                            <Row gutter={32} className="d-flex flex-row align-items-center">
+                            <Row gutter={32} className="flex flex-row align-items-center">
                                 {estate.room_count &&
-                                    <Col className="mr-4"><img className="mr-2" src={"/assets/img/svg/doors.svg"}
+                                    <Col className="mr-4 flex flex-row"><img className="mr-2" src={"/assets/img/svg/doors.svg"}
                                                                alt="logo" />{estate.room_count} {t("common\:label.design.room")}
                                     </Col>
                                 }
 
                                 {estate.floor &&
-                                    <Col className="mr-4"><img className="mr-2" src={"/assets/img/svg/floor.svg"}
+                                    <Col className="mr-4 flex flex-row"><img className="mr-2" src={"/assets/img/svg/floor.svg"}
                                                                alt="logo" />{estate.floor} / {estate.building_floor_count}
                                     </Col>
                                 }
 
                                 {estate.area_total &&
 
-                                    <Col className="mr-3"><img className="mr-2" src={"/assets/img/svg/area.svg"}
+                                    <Col className="mr-3 flex flex-row"><img className="mr-2" src={"/assets/img/svg/area.svg"}
                                                                alt="logo" />{Math.round(estate.area_total)} քմ
                                     </Col>
                                 }
@@ -317,7 +325,9 @@ function EstateDetailsSection(props) {
         <div className="container">
             <div className="col-lg-9">
                 <Row className="property-news-single-card pt-5 border-bottom-yellow">
-                    <h4>Շենք</h4>
+                    <Row>
+                        <DarkHeading3 className={'mb-10'}>{t('label.building')}</DarkHeading3>
+                    </Row>
                     <Row className="mb-3 mb-sm-0  d-flex flex-row flex-wrap">
                         {building_attributes?.map((item, i) =>
                             item[1]["value"] &&
@@ -325,12 +335,12 @@ function EstateDetailsSection(props) {
                                 <Col xs={12} className={"d-flex flex-row align-items-center"}>
                                     <span style={{
                                         display: "flex",
-                                        width: "10px",
-                                        height: "10px",
+                                        width: "7px",
+                                        height: "7px",
                                         borderRadius: "50%",
                                         background: "#D8002C"
                                     }}></span>
-                                    <Text type="secondary" className={"ml-2 pr-1 d-flex"}> {item[1]["label"]}:</Text>
+                                    <Text type="secondary" className={"ml-2 pr-1 d-flex"}>{item[1]["label"]}:</Text>
                                 </Col>
                                 <Col xs={12}>
                                     <Text strong className={"d-flex align-items-center"}>{item[1]["value"]}</Text>
@@ -339,14 +349,37 @@ function EstateDetailsSection(props) {
                         )}
                     </Row>
                     <Divider />
-                    <h4>Ընդհանուր</h4>
+                    <Row>
+                        <DarkHeading3 className={'mb-10'}>{t('label.utility.facilities')}</DarkHeading3>
+                    </Row>
+                    <Row className="mb-3 mb-sm-0  d-flex flex-row flex-wrap">
+                        {estate_facilities?.map((item, i) =>
+                            item[1]["value"] &&
+                            <Col xs={24} sm={12} className={"pr-1 d-flex  align-items-center font-size-13 mb-3"}>
+                                <Col xs={12} className={"d-flex flex-row align-items-center"}>
+
+                                    <Text type="secondary" className={"ml-2 pr-1 d-flex"}> {item[1]["label"]}:</Text>
+                                </Col>
+                                <Col xs={12}>
+                                    <Text strong className={""}>{item[1]["value"]}</Text> <CheckOutlined />
+                                </Col>
+                            </Col>
+                        )}
+                    </Row>
+                    <Divider />
+                    <DarkHeading3 className={'mb-10'}>Ընդհանուր</DarkHeading3>
                     <Row>
                         {estate.public_text_arm}
                     </Row>
                     <Divider />
-                    <h4>Տեղը քարտեզով</h4>
+
                     <Row>
-                        {estate.public_text_arm}
+                        <Col xs={24}>
+                            <h4>Տեղը քարտեզով</h4>
+                        </Col>
+                        <Col xs={24}>
+                            <EstatesGoogleMapSingle marker={estate} />
+                        </Col>
                     </Row>
                 </Row>
 
@@ -361,14 +394,14 @@ function EstateDetailsSection(props) {
         </div>
 
         <div className="container   mt-5 mb-5">
-            <Row gutter={32} className="main-featured min-h-fit">
+            <Row gutter={32} className="main-featured min-h-fit ">
                 <Col xs={24}>
-                    <h5 className="mb-5 text-dark text-center text-sm-left font-bold">Վերջին դիտվածներ</h5>
+                    <h5 className="mb-5 text-dark text-left font-bold mt-20">Վերջին դիտվածներ</h5>
                     <EstateCarousel type="hot"/>
                 </Col>
 
                 <Col xs={24}>
-                    <h5 className="mb-5 text-dark text-center text-sm-left font-bold">Նմատատիպ գույքեր</h5>
+                    <h5 className="mb-5 text-dark text-left font-bold mt-20">Նմատատիպ գույքեր</h5>
                     <EstateCarousel type="hot"/>
                 </Col>
             </Row>

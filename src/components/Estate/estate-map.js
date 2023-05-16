@@ -28,28 +28,24 @@ function EstateMap(props) {
 
 
             <Row gutter={48}>
-                <Col xs={16} sm={16} className={""} style={{ overflow: "hidden" }}>
+                <Col xs={20} sm={18} className={""} style={{ overflow: "hidden" }}>
 
                     {/*<EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />*/}
 
-                    <EstatesGoogleMap estatesData={estatesData} changeCoords={setCoords}/>
+                    <EstatesGoogleMap estatesData={estatesData} changeCoords={setCoords} />
                 </Col>
 
 
-                <Col xs={8}>
-                    <Row>
-                        <Col xs={24}>
-                            <MapFilters
-                                filtersData={filtersData}
-                                queryData={queryData}
-                                queryDataParams={queryDataParams}
-                                changeEstatesData={setEstatesData}
-                                coords={coords}
-                                setLoading={setLoading}
-                                setPageDataURL={setPageDataURL}
-                            />
-                        </Col>
-                    </Row>
+                <Col xs={6}>
+                    <MapFilters
+                        filtersData={filtersData}
+                        queryData={queryData}
+                        queryDataParams={queryDataParams}
+                        changeEstatesData={setEstatesData}
+                        coords={coords}
+                        setLoading={setLoading}
+                        setPageDataURL={setPageDataURL}
+                    />
 
                 </Col>
 

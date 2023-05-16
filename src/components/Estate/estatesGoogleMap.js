@@ -34,7 +34,7 @@ const EstatesGoogleMap = (props) => {
     const [searchInfoBoxHidden, setSearchInfoBoxHidden] = useState(true);
 
     const [map, setMap] = useState(null);
-    const [coords, setCoords] = useState([]);
+    const [coords, setCoords] = useState([[41.33864326945792,47.69020142773721],[41.33864326945792,42.97157349804971],[38.47399202518743,42.97157349804971],[38.47399202518743,47.69020142773721]]);
     const centerInitial = {
         lat: 40.177628,
         lng: 44.512546
@@ -118,7 +118,7 @@ const EstatesGoogleMap = (props) => {
     const { locale } = router;
     const mapContainerStyle = {
         height: "calc(100vh - 200px)",
-        width: "calc(100vw - 52%)"
+        width: "calc(100vw - 35%)"
     };
 
 

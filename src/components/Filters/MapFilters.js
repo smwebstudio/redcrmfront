@@ -24,7 +24,8 @@ export default function MapFilters(props) {
     const { t } = useTranslation("common");
     console.log("propfdgdfgdfgs");
 
-
+console.log('filtersData');
+console.log(filtersData);
     let initialProvince = filtersData.data.locations.find(x => x.id === 1);
 
     let contract_type_id = [];
@@ -154,7 +155,7 @@ export default function MapFilters(props) {
 
 
         console.log(queryURL);
-        const estatesFilteredResponse = await api(locale).get(apiURL + "api/estates/filter/estates?fromMap=1&" + queryURL + 'filter[coordinates]=' + coords);
+        const estatesFilteredResponse = await api(locale).get(apiURL + "api/estates/filter/estates?fromMap=1&" + queryURL + "filter[coordinates]=" + coords);
         const estatesData = estatesFilteredResponse.data;
 
         changeEstatesData(estatesData);
@@ -169,9 +170,9 @@ export default function MapFilters(props) {
     return (
         <>
             <Form form={form} onFinish={onFinish}
-                  className="bg-white text-gray-50 ">
-                <Row gutter={32} >
-                    <Col xs={12} sm={8} className="field-item d-flex flex-column">
+                  className="bg-white text-gray-50 mt-10">
+                <Row gutter={32}>
+                    <Col xs={12} sm={12} className="field-item d-flex flex-column">
                         <SmallParagraph className="pl-2">{t("label.contract")}</SmallParagraph>
                         <Form.Item
                             name="contract_type_id">
@@ -187,7 +188,7 @@ export default function MapFilters(props) {
 
 
                     </Col>
-                    <Col xs={12} sm={8} className="field-item d-flex flex-column">
+                    <Col xs={12} sm={12} className="field-item d-flex flex-column">
                         <SmallParagraph className="pl-2">Տեսակ</SmallParagraph>
                         <Form.Item
                             name="estate_type_id">
@@ -203,7 +204,7 @@ export default function MapFilters(props) {
 
 
                     </Col>
-                    <Col xs={12} sm={8} className="field-item d-flex flex-column">
+                    <Col xs={12} sm={12} className="field-item d-flex flex-column">
                         <SmallParagraph className="pl-2">Մարզ</SmallParagraph>
                         <Form.Item
                             name="location_province_id"
@@ -220,44 +221,46 @@ export default function MapFilters(props) {
                             />
                         </Form.Item>
                     </Col>
-                    <Col xs={12} sm={8} className="field-item d-flex flex-column">
-                        <SmallParagraph className="pl-2">Համայնք</SmallParagraph>
-                        <Form.Item
-                            name="location_city_id"
-                        >
-                            <Select
-                                showSearch
-                                placeholder="Ընտրել"
-                                bordered={false}
-                                optionFilterProp="children"
-                                style={{ width: "100%" }}
-                                dropdownMatchSelectWidth={false}
-                                options={cities}
-                                allowClear
-                            />
-                        </Form.Item>
-                    </Col>
+                    {!showYerevanCommunities &&
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">Համայնք</SmallParagraph>
+                            <Form.Item
+                                name="location_city_id"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    style={{ width: "100%" }}
+                                    dropdownMatchSelectWidth={false}
+                                    options={cities}
+                                    allowClear
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+                    {showYerevanCommunities &&
 
-                        <Col xs={12} sm={8} className="field-item d-flex flex-column">
-                        <SmallParagraph className="pl-2">Համայնք</SmallParagraph>
-                        <Form.Item
-                            name="location_community_id"
-                        >
-                            <Select
-                                showSearch
-                                placeholder="Ընտրել"
-                                bordered={false}
-                                optionFilterProp="children"
-                                style={{ width: "100%" }}
-                                dropdownMatchSelectWidth={false}
-                                options={filtersData.data.location_community}
-                                allowClear
-                            />
-                        </Form.Item>
-                    </Col>
-
-                    {showAdditionalFilters &&
-                        <Col xs={12} sm={8} className="field-item d-flex flex-column">
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">Համայնք</SmallParagraph>
+                            <Form.Item
+                                name="location_community_id"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    style={{ width: "100%" }}
+                                    dropdownMatchSelectWidth={false}
+                                    options={filtersData.data.location_community}
+                                    allowClear
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
                             <SmallParagraph className="pl-2">Գին</SmallParagraph>
                             <Form.Item
                                 name="prices"
@@ -272,10 +275,7 @@ export default function MapFilters(props) {
                                 />
                             </Form.Item>
                         </Col>
-                    }
-
-                    {showAdditionalFilters &&
-                        <Col xs={12} sm={8} className="field-item d-flex flex-column">
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
                             <SmallParagraph className="pl-2">Արժույթ</SmallParagraph>
                             <Form.Item
                                 name="currency_id">
@@ -290,10 +290,8 @@ export default function MapFilters(props) {
                             </Form.Item>
                         </Col>
 
-                    }
-
                     {showAdditionalFilters &&
-                        <Col xs={12} sm={8} className="field-item d-flex flex-column">
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
                             <SmallParagraph className="pl-2">Սենյակ</SmallParagraph>
                             <Form.Item
                                 name="room_count"
@@ -309,10 +307,95 @@ export default function MapFilters(props) {
                         </Col>
                     }
 
+                    {showAdditionalFilters &&
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">{t('label.area')}</SmallParagraph>
+                            <Form.Item
+                                name="area_total"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    options={filtersData.data.area_total}
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+
+                    {showAdditionalFilters &&
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">{t('label.pricePerQwdMeter')}</SmallParagraph>
+                            <Form.Item
+                                name="prece_per_qwd"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    options={filtersData.data.prece_per_qwd}
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+
+                    {showAdditionalFilters &&
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">{t('label.buildingProjectType')}</SmallParagraph>
+                            <Form.Item
+                                name="building_project_type"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    options={filtersData.data.building_project_type}
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+
+                    {showAdditionalFilters &&
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">{t('label.buildingType')}</SmallParagraph>
+                            <Form.Item
+                                name="building_type"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    options={filtersData.data.building_type}
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+
+                    {showAdditionalFilters &&
+                        <Col xs={12} sm={12} className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">{t('label.repairingType')}</SmallParagraph>
+                            <Form.Item
+                                name="repairing_type"
+                            >
+                                <Select
+                                    showSearch
+                                    placeholder="Ընտրել"
+                                    bordered={false}
+                                    optionFilterProp="children"
+                                    options={filtersData.data.repairing_type}
+                                />
+                            </Form.Item>
+                        </Col>
+                    }
+
 
                 </Row>
                 <Row>
-                    <Col xs={12}  sm={12} className="field-item pl-3 pr-3">
+                    <Col xs={12} sm={12} className="field-item pl-3 pr-3">
                         <Button
                             className="btn  bg-white hover-primary w-100" size="large"
                             onClick={handleAdditionalFilters}>
