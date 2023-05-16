@@ -166,6 +166,14 @@ export default function EstateSearch(props) {
         setPrices(filtersData.data.prices[option.label]);
         form.setFieldValue("prices", null);
     };
+
+    const handleButtonMapClick = () => {
+        router.push({
+                pathname: "/estates/map"
+            },
+            undefined, { shallow: true }
+        );
+    };
     return (
         <>
             <Form form={form} onFinish={onFinish}
@@ -312,7 +320,7 @@ export default function EstateSearch(props) {
 
                             {showAdditionalFilters &&
                                 <Col xs={12} sm={4} className="field-item d-flex flex-column">
-                                    <SmallParagraph className="pl-2">{t('label.area')}</SmallParagraph>
+                                    <SmallParagraph className="pl-2">{t("label.area")}</SmallParagraph>
                                     <Form.Item
                                         name="area_total"
                                     >
@@ -330,7 +338,7 @@ export default function EstateSearch(props) {
 
                             {showAdditionalFilters &&
                                 <Col xs={12} sm={4} className="field-item d-flex flex-column">
-                                    <SmallParagraph className="pl-2">{t('label.pricePerQwdMeter')}</SmallParagraph>
+                                    <SmallParagraph className="pl-2">{t("label.pricePerQwdMeter")}</SmallParagraph>
                                     <Form.Item
                                         name="prece_per_qwd"
                                     >
@@ -348,7 +356,7 @@ export default function EstateSearch(props) {
 
                             {showAdditionalFilters &&
                                 <Col xs={12} sm={4} className="field-item d-flex flex-column">
-                                    <SmallParagraph className="pl-2">{t('label.buildingProjectType')}</SmallParagraph>
+                                    <SmallParagraph className="pl-2">{t("label.buildingProjectType")}</SmallParagraph>
                                     <Form.Item
                                         name="building_project_type"
                                     >
@@ -366,7 +374,7 @@ export default function EstateSearch(props) {
 
                             {showAdditionalFilters &&
                                 <Col xs={12} sm={4} className="field-item d-flex flex-column">
-                                    <SmallParagraph className="pl-2">{t('label.buildingType')}</SmallParagraph>
+                                    <SmallParagraph className="pl-2">{t("label.buildingType")}</SmallParagraph>
                                     <Form.Item
                                         name="building_type"
                                     >
@@ -384,7 +392,7 @@ export default function EstateSearch(props) {
 
                             {showAdditionalFilters &&
                                 <Col xs={12} sm={4} className="field-item d-flex flex-column">
-                                    <SmallParagraph className="pl-2">{t('label.repairingType')}</SmallParagraph>
+                                    <SmallParagraph className="pl-2">{t("label.repairingType")}</SmallParagraph>
                                     <Form.Item
                                         name="repairing_type"
                                     >
@@ -404,7 +412,7 @@ export default function EstateSearch(props) {
 
                     <Col xs={24} offset={1} sm={8}>
                         <Row gutter={32}>
-                            <Col xs={24}  sm={12} className="field-item">
+                            <Col xs={24} sm={12} className="field-item">
                                 <Button
                                     className="btn  bg-white hover-primary w-100" size="large"
                                     onClick={handleAdditionalFilters}>
@@ -423,14 +431,14 @@ export default function EstateSearch(props) {
                             </Col>
 
                             <Col xs={24} sm={24} className="field-item">
-                                <span  className="btn btn-main w-100 mt-4"  >
-                                    <Link href="/estates/map"><a className="text-white" href="/estates/map">{t("label.searchMap")}</a></Link>
-                                </span>
+                                <Form.Item>
+                                    <Button className="btn btn-main w-100 mt-4" size="large" onClick={handleButtonMapClick}>
+                                        {t("label.searchMap")}
+                                    </Button>
+                                </Form.Item>
                             </Col>
                         </Row>
                     </Col>
-
-
 
 
                 </Row>

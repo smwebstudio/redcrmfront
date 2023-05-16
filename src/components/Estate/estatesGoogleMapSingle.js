@@ -13,6 +13,7 @@ import RedMarker from "@/components/Map/RedMarker";
 import Link from "next/link";
 import { Col, Image, Row } from "antd";
 import { MagnifyingGlass } from "react-loader-spinner";
+import nextConfig from "../../../next.config";
 
 const libraries = ["drawing"];
 
@@ -21,7 +22,7 @@ const EstatesGoogleMapSingle = (props) => {
 
     const { isLoaded, loadError } = useJsApiLoader({
         id: "redgroup-script",
-        googleMapsApiKey: "AIzaSyCfSucQ9MNt5j0d4lc7hmqupvxdhMishMg",
+        googleMapsApiKey: nextConfig.env.GOOGLE_MAPS_API_KEY,
         nonce: "map",
         libraries: ["drawing"]
     });
@@ -93,8 +94,8 @@ const EstatesGoogleMapSingle = (props) => {
             {isLoaded &&
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
-                    center={center}
-                    zoom={13}
+                    center={marker.position}
+                    zoom={14}
                     onLoad={(map) => setMap(map)}
                 >
 

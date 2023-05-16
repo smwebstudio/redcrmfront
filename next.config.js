@@ -4,7 +4,8 @@ const nextConfig = {
     env: {
         NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
         API_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
-        PUBLIC_URL: 'http://localhost:3000'
+        GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+        PUBLIC_URL: 'http://localhost:3000',
     },
     i18n,
     reloadOnPrerender: true,

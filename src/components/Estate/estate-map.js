@@ -36,7 +36,7 @@ function EstateMap(props) {
                 </Col>
 
 
-                <Col xs={6}>
+                <Col xs={5}>
                     <MapFilters
                         filtersData={filtersData}
                         queryData={queryData}

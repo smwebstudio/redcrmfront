@@ -162,6 +162,13 @@ console.log(filtersData);
         setLoading(false);
     };
 
+    const handleButtonMapClick = () => {
+        router.push({
+                pathname: "/estates"
+            },
+            undefined, { shallow: true }
+        );
+    };
 
     const handleCurrencyChange = (value, option) => {
         setPrices(filtersData.data.prices[option.label]);
@@ -411,6 +418,14 @@ console.log(filtersData);
                                 size="large">
                             Փնտրել
                         </Button>
+                    </Col>
+
+                    <Col xs={24} sm={24} className="field-item">
+                        <Form.Item>
+                            <Button className="btn btn-main w-100 mt-4" size="large" onClick={handleButtonMapClick}>
+                               Փակել քարտեզը
+                            </Button>
+                        </Form.Item>
                     </Col>
                 </Row>
             </Form>

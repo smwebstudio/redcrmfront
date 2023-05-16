@@ -21,10 +21,14 @@ import {
 import ContactSimpleForm from "@/components/Forms/contact-simple-form";
 import LoanCalculator from "@/components/Forms/loan-calculator";
 import EstateCarousel from "@/components/Estate/estate-carousel";
+import DarkHeading2 from "@/components/Typography/Heading2/DarkHeading2";
 import DarkHeading3 from "@/components/Typography/Heading3/DarkHeading3";
 import SmallParagraph from "@/components/Typography/paragraph/SmallParagraph";
 import RedText from "@/components/Typography/text/RedText";
 import EstatesGoogleMapSingle from "@/components/Estate/estatesGoogleMapSingle";
+import EstateLargeItem from "@/components/Estate/estate-large-item";
+import EstateItem from "@/components/Estate/estate-item";
+import PlanItem from "@/components/Buildings/PlanItem";
 
 const { Text, Link } = Typography;
 
@@ -106,9 +110,177 @@ function BuildingDetails(props) {
         { value: "RUR", label: "RUR" }
     ];
 
-    const content = (
-        <p>{t("common\:label.SetAdHotOffersent1_2")}</p>
-    );
+    const plans = {
+        "data": [
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/1.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/2.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/3.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/4.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/5.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/1.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/2.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/3.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/4.png"
+            },
+            {
+                "id": 66,
+                "price": '50.000 $',
+                "price_monthly": ' / ամսական 465 $',
+                'area_total': 86,
+                'building_floor_count': 7,
+                'floor': 3,
+                'room_count': 4,
+                "full_address": "1-ին մ-շ | 1-ին մուտք ",
+                "native_coords": [
+                    44.5247957,
+                    40.1780461
+                ],
+                "name_arm": "The View Պրեմիում դասի բնակելի համալիր",
+                "image": "/assets/img/theview/plans/5.png"
+            },
+        ],
+        "links": {
+            "first": "http://redoc/api/estates/filter/estates?filter%5Bcontract_type_id%5D=2&filter%5Bestate_type_id%5D=1&page=1",
+            "last": "http://redoc/api/estates/filter/estates?filter%5Bcontract_type_id%5D=2&filter%5Bestate_type_id%5D=1&page=321",
+            "prev": null,
+            "next": "http://redoc/api/estates/filter/estates?filter%5Bcontract_type_id%5D=2&filter%5Bestate_type_id%5D=1&page=2"
+        },
+    };
+
 
 
     return <div className="property-details-area">
@@ -210,13 +382,20 @@ function BuildingDetails(props) {
             </div>
         </div>
         <div className="container">
-            <div className="col-lg-9">
+            <div>
                 <Row className="property-news-single-card pt-5 border-bottom-yellow">
                     <Row>
 
+                        <Col xs={24}>
+                            <DarkHeading2 className={'mt-10'}>Ընդհանուր</DarkHeading2>
+                        </Col>
+
+                        <Col xs={24}>
+                            {developerData.public_text_arm}
+                        </Col>
                        <Col xs={24}>
 
-                           <DarkHeading3 className={'mt-10'}>Կառուցապատման ընթացք</DarkHeading3>
+                           <DarkHeading2 className={'mt-10'}>Կառուցապատման ընթացք</DarkHeading2>
                        </Col>
                         <Col xs={24} className={'flex flex-row'}>
                             {imagesData.map((img, idx) => (
@@ -233,14 +412,20 @@ function BuildingDetails(props) {
                                 </div>
                             ))}
                         </Col>
+                        <Divider />
                         <Col xs={24}>
-                            <DarkHeading3 className={'mt-10'}>Ընդհանուր</DarkHeading3>
+                            <DarkHeading2 className={'mt-10 mb-10'}>Հատակագծեր</DarkHeading2>
                         </Col>
                         <Col xs={24}>
-                            {developerData.public_text_arm}
-                        </Col>
-                        <Col xs={24}>
-                            <DarkHeading3 className={'mt-10'}>Տեղը քարտեզով</DarkHeading3>
+                            <Row gutter={32}>
+                                {plans.data.map((item, index) => (
+                                    <Col span={8}>
+                                        <PlanItem key={index} item={item} />
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Col><Col xs={24}>
+                            <DarkHeading2 className={'mt-10'}>Տեղը քարտեզով</DarkHeading2>
                         </Col>
                         <Col xs={24}>
                             <EstatesGoogleMapSingle marker={developerData} />

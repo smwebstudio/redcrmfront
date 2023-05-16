@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Col, Image, Row, notification } from "antd";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import RedText from "@/components/Typography/text/RedText";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />;
 
-export function EstateItem(props) {
+export function PlanItem(props) {
 
     let item = props.item;
 
@@ -33,9 +34,8 @@ export function EstateItem(props) {
     }
 
     return (
-        <div className="">
-            <div key={item.id} className={" mb-5  cat" + item.contract_type_id}>
-                <div className="single-feature">
+            <div key={item.id} className={" mb-10 border-solid  border-gray-200 border"}>
+                <div className="single-feature mb-0">
                     <div className="thumb">
                         <Link href={"estates/" + item.id}>
                             <a style={{ width: "100%" }}>
@@ -53,10 +53,10 @@ export function EstateItem(props) {
                                        } /></a>
                         </Link>
                     </div>
-                    <div className="details">
+                    <div className="details bg-transparent border-solid  border-gray-200 border-t">
                         <Row className="mb-3">
                             <Col xs={12}>
-                                <h6 className="price">{item.price}</h6>
+                                <h6><RedText>{item.price}</RedText>  {item.price_monthly}</h6>
                                 {/*<del>{item.old_price}</del>*/}
                             </Col>
                             <Col xs={12} className="text-right justify-end content-end flex flex-row">
@@ -96,11 +96,10 @@ export function EstateItem(props) {
                     </div>
                 </div>
             </div>
-        </div>
     );
 
 
 };
 
 
-export default EstateItem;
+export default PlanItem;

@@ -30,8 +30,6 @@ export function EstateCompareCarousel() {
         const data = await api(locale).get(apiURL + "api/estates/compare/estates", { params });
         const estatesDataFromApi = data.data.data;
 
-        console.log(estatesDataFromApi);
-
         const dataHeaders = {
             id: 1,
             price: t("label.price"),

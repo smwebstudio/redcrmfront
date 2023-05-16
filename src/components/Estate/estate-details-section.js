@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import ShareButtons from "@/components/Global/share-buttons";
-import { Button, Card, Col, Divider, Form, Input, message, Modal, Popover, Row, Select } from "antd";
+import { Button, Card, Col, Divider, Form, Input, message, Modal, notification, Popover, Row, Select } from "antd";
 import { Space, Typography } from "antd";
 import { apiURL } from "@/constants";
 import { useTranslation } from "next-i18next";
@@ -93,6 +93,30 @@ function EstateDetailsSection(props) {
     );
 
 
+    function compare(item) {
+        let compareEstates = JSON.parse(localStorage.getItem('compareEstates')) || [];
+        const index = compareEstates.indexOf(item.id);
+
+        if (index === -1) {
+            compareEstates.push(item.id);
+            notification.open({
+                message: 'Ավելացվել է համեմատության համար',
+                duration: 1,
+            });
+        } else {
+            compareEstates.splice(index, 1);
+            notification.open({
+                message: 'Հանվել է համեմատելու ցանկից',
+                duration: 1,
+            });
+        }
+
+        localStorage.setItem('compareEstates', JSON.stringify(compareEstates));
+
+
+    }
+
+
     return <div className="property-details-area">
         <Divider />
         <div className="bg-gray  pd-bottom-90">
@@ -110,7 +134,7 @@ function EstateDetailsSection(props) {
                         <Col sm={8}>
                             <div className={"flex flex-row justify-content-end align-items-center"}>
                                 <EyeOutlined style={{ fontSize: 24, marginRight: 10 }} /> 1362
-                                <SwapOutlined style={{ fontSize: 24, marginRight: 30, marginLeft: 30 }} />
+                                <SwapOutlined style={{ fontSize: 24, marginRight: 30, marginLeft: 30 }} onClick={() => compare(estate)}/>
                                 <HeartOutlined style={{ fontSize: 24 }} />
                             </div>
 
@@ -299,13 +323,16 @@ function EstateDetailsSection(props) {
                                         <h5 className="mt-2 ">{estate.contact.full_name}</h5>
                                         <p className="">{t("common\:label.broker")}</p>
                                     </Col>
-                                    <Text className="d-flex mb-1 justify-content-start text-dark font-size-12">
-                                        <img className="mr-2" src={publicUrl + "assets/img/svg/envelope.svg"} />
-                                        <span className="align-self-center">{estate.contact.email}</span></Text>
-                                    <Text className="d-flex justify-content-start text-dark font-size-12">
-                                        <img className="mr-2" src={publicUrl + "assets/img/svg/mobile.svg"} />
-                                        <span className="align-self-center">{estate.contact.phone_1}</span>
-                                    </Text>
+                                    <Col xs={24} className={'flex flex-col'}>
+                                        <Text className="flex flex-row mb-1 justify-content-start text-dark font-size-12">
+                                            <img className="mr-2" src={publicUrl + "assets/img/svg/envelope.svg"} />
+                                            <span className="align-self-center">{estate.contact.email}</span></Text>
+                                        <Text className="flex flex-row justify-content-start text-dark font-size-12">
+                                            <img className="mr-2" src={publicUrl + "assets/img/svg/mobile.svg"} />
+                                            <span className="align-self-center">{estate.contact.phone_1}</span>
+                                        </Text>
+                                    </Col>
+
                                 </Row>
 
 

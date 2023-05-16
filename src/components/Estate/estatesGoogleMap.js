@@ -13,6 +13,7 @@ import RedMarker from "@/components/Map/RedMarker";
 import Link from "next/link";
 import { Col, Image, Row } from "antd";
 import { MagnifyingGlass } from "react-loader-spinner";
+import nextConfig from "../../../next.config";
 
 const libraries = ["drawing"];
 
@@ -21,7 +22,7 @@ const EstatesGoogleMap = (props) => {
 
     const { isLoaded, loadError } = useJsApiLoader({
         id: "redgroup-script",
-        googleMapsApiKey: "AIzaSyCfSucQ9MNt5j0d4lc7hmqupvxdhMishMg",
+        googleMapsApiKey: nextConfig.env.GOOGLE_MAPS_API_KEY,
         nonce: "map",
         libraries: ["drawing"]
     });
@@ -249,20 +250,23 @@ const EstatesGoogleMap = (props) => {
                     onClick={handleMapClick}
                     onZoomChanged={handleMapZoomChanged}
                     onResize={handleMapZoomChanged}
-                    // gestureHandling={'greedy'}
+                    options={{
+                        gestureHandling: 'greedy'
+                    }}
+                    gestureHandling={'greedy'}
                 >
 
                     {!searchInfoBoxHidden &&
                             <div style={{ backgroundColor: "transparent", opacity: 1, width: "160px" }}>
                                 <MagnifyingGlass
                                     visible={true}
-                                    height="160"
-                                    width="160"
+                                    height="80"
+                                    width="80"
                                     ariaLabel="MagnifyingGlass-loading"
-                                    wrapperStyle={{zIndex: '999999', width: '160px', height: '160px', position: 'absolute', left: '42%', top: '42%'}}
+                                    wrapperStyle={{zIndex: '999999', width: '80px', height: '80px', position: 'absolute', left: '45%', top: '42%'}}
                                     wrapperClass="MagnifyingGlass-wrapper"
-                                    glassColor="#D8002C"
-                                    color="#FFFFFF"
+                                    glassColor="#FFFFFF"
+                                    color="#777777"
                                 />
                             </div>
 
