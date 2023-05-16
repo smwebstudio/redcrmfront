@@ -56,7 +56,8 @@ const EstatesGoogleMapSingle = (props) => {
     console.log(marker);
 
 
-    const [selectedMarker, setSelectedMarker] = useState(props.marker);
+    const [selectedMarker, setSelectedMarker] = useState(markerChanged[0]);
+
     const [center, setCenter] = useState(centerInitial);
     const mapContainerStyle = {
         height: "500px",
@@ -64,11 +65,6 @@ const EstatesGoogleMapSingle = (props) => {
     };
 
 
-    const handleMapClick = () => {
-        if (selectedMarker) {
-            setSelectedMarker(null);
-        }
-    };
 
 
     const handleMarkerClick = (marker) => {
@@ -100,7 +96,6 @@ const EstatesGoogleMapSingle = (props) => {
                     center={center}
                     zoom={13}
                     onLoad={(map) => setMap(map)}
-                    onClick={handleMapClick}
                 >
 
 
@@ -117,16 +112,14 @@ const EstatesGoogleMapSingle = (props) => {
                             }}
                         />
 
-                    {selectedMarker && (
+
                         <InfoWindow
                             position={selectedMarker}
                             options={{ disableAutoPan: true, maxWidth: 350 }}
-                            anchor={selectedMarker}
                             onCloseClick={handleCloseClick}
-                            content={selectedMarker.id}
                         >
                             <div>
-                                <Link href={"/estates/" + selectedMarker.id}>
+
                                     <div className={"flex flex-row items-start"}>
                                         <div className={"mr-4"}>
                                             <Image preview={false} src={selectedMarker.image} height={100}
@@ -140,10 +133,8 @@ const EstatesGoogleMapSingle = (props) => {
                                         </div>
 
                                     </div>
-                                </Link>
                             </div>
                         </InfoWindow>
-                    )}
                 </GoogleMap>
 
             }

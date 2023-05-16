@@ -94,6 +94,7 @@ function EstateDetailsSection(props) {
 
 
     return <div className="property-details-area">
+        <Divider />
         <div className="bg-gray  pd-bottom-90">
             <div className={"container-fluid bg-white pt-5 pb-1"}>
                 <div className={"container"}>

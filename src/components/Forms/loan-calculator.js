@@ -119,7 +119,7 @@ const LoanCalculator = (props) => {
                                     <Form.Item
                                         name="price"
                                         label={t("label.estateMortgage.price")}
-                                        
+
                                     >
                                         <Input onChange={handlePrice} value={price} />
                                     </Form.Item>

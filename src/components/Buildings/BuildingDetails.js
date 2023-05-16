@@ -24,6 +24,7 @@ import EstateCarousel from "@/components/Estate/estate-carousel";
 import DarkHeading3 from "@/components/Typography/Heading3/DarkHeading3";
 import SmallParagraph from "@/components/Typography/paragraph/SmallParagraph";
 import RedText from "@/components/Typography/text/RedText";
+import EstatesGoogleMapSingle from "@/components/Estate/estatesGoogleMapSingle";
 
 const { Text, Link } = Typography;
 
@@ -215,10 +216,11 @@ function BuildingDetails(props) {
 
                        <Col xs={24}>
 
-                           <h4>Ընդհանուր</h4>
+                           <DarkHeading3 className={'mt-10'}>Կառուցապատման ընթացք</DarkHeading3>
                        </Col>
-                        <Col xs={24}>
+                        <Col xs={24} className={'flex flex-row'}>
                             {imagesData.map((img, idx) => (
+                                <div className={'mr-4'}>
                                 <Image
                                     key={idx}
                                     width={100}
@@ -226,19 +228,22 @@ function BuildingDetails(props) {
                                     src={img}
                                     alt={`Image ${idx + 1}`}
                                 />
+
+
+                                </div>
                             ))}
                         </Col>
                         <Col xs={24}>
-                            <h4>Ընդհանուր</h4>
+                            <DarkHeading3 className={'mt-10'}>Ընդհանուր</DarkHeading3>
                         </Col>
                         <Col xs={24}>
                             {developerData.public_text_arm}
                         </Col>
                         <Col xs={24}>
-                            <h4>Տեղը քարտեզով</h4>
+                            <DarkHeading3 className={'mt-10'}>Տեղը քարտեզով</DarkHeading3>
                         </Col>
                         <Col xs={24}>
-                            {developerData.public_text_arm}
+                            <EstatesGoogleMapSingle marker={developerData} />
                         </Col>
 
                     </Row>

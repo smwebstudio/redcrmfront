@@ -2,13 +2,14 @@ import React, { Component, useEffect, useState } from "react";
 import Link from "next/link";
 import { apiURL } from "@/constants";
 import EstateItem from "@/components/Estate/estate-item";
-import { Button, Col, Divider, Pagination, Row, Skeleton } from "antd";
+import { Button, Col, Divider, Form, Input, Modal, Pagination, Row, Select, Skeleton } from "antd";
 import axios from "axios";
 import MainFilter from "@/components/Filters/main-filter";
 import EstateSearch from "@/components/Filters/estate-search";
 import { useTranslation } from "next-i18next";
 import BuildingItem from "@/components/Buildings/BuildingItem";
 import ContainerBoxed from "@/components/Containers/ContainerBoxed";
+import TextArea from "antd/lib/input/TextArea";
 
 const onChange = (key) => {
     console.log(key);
@@ -118,6 +119,11 @@ export function BuildingList(props) {
                         locale={{ items_per_page: "" }}
                         onChange={handlePageChange} />
                 </Row>
+
+
+
+
+
             </ContainerBoxed>
         </>
     );
