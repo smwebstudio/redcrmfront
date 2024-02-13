@@ -143,7 +143,7 @@ function EstateDetailsSection(props) {
                             <EnvironmentOutlined style={{
                                 fontSize: 24,
                                 marginRight: 10
-                            }} />{estate.public_text_arm} {estate.full_address}
+                            }} />{estate.short_description}
                         </Col>
 
                         <Col sm={20}>
@@ -378,9 +378,12 @@ function EstateDetailsSection(props) {
                     </Row>
                     <Divider />
                     <Row>
-                        <DarkHeading3 className={'mb-10'}>{t('label.utility.facilities')}</DarkHeading3>
+                        <Col xs={24}>
+
+                            <DarkHeading3 className={'mb-10'}>{t('label.utility.facilities')}</DarkHeading3>
+                        </Col>
                     </Row>
-                    <Row className="mb-3 mb-sm-0  d-flex flex-row flex-wrap">
+                    <Row className="mb-3 mb-sm-0  flex flex-row flex-wrap">
                         {estate_facilities?.map((item, i) =>
                             item[1]["value"] &&
                             <Col xs={24} sm={12} className={"pr-1 d-flex  align-items-center font-size-13 mb-3"}>

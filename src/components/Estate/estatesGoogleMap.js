@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Col, Image, Row } from "antd";
 import { MagnifyingGlass } from "react-loader-spinner";
 import nextConfig from "../../../next.config";
+import MapDrawShapeManager from "@/lib/MapDrawShape/MapDrawShapeManager";
 
 const libraries = ["drawing"];
 
@@ -33,7 +34,7 @@ const EstatesGoogleMap = (props) => {
 
     const [drawingMode, setDrawingMode] = useState(null);
     const [searchInfoBoxHidden, setSearchInfoBoxHidden] = useState(true);
-
+    const [markers, setMarkers] = useState([]);
     const [map, setMap] = useState(null);
     const [coords, setCoords] = useState([[41.33864326945792,47.69020142773721],[41.33864326945792,42.97157349804971],[38.47399202518743,42.97157349804971],[38.47399202518743,47.69020142773721]]);
     const centerInitial = {
@@ -41,7 +42,7 @@ const EstatesGoogleMap = (props) => {
         lng: 44.512546
     };
 
-    const [markers, setMarkers] = useState([]);
+
     const [fetchedData, setFetchedData] = useState([]);
     useEffect(() => {
 
@@ -161,7 +162,7 @@ const EstatesGoogleMap = (props) => {
     const handleStartDrawing = () => {
         setButtonText("Ջնջել");
         rectangle?.setOptions({ map: null });
-        setDrawingMode("rectangle");
+        setDrawingMode("polyline");
     };
 
     const handleMapClick = () => {
@@ -172,6 +173,8 @@ const EstatesGoogleMap = (props) => {
 
     const handleMapZoomChanged = () => {
         setSearchInfoBoxHidden(false);
+
+
         if (map) {
             setTimeout(() => {
                 const bounds = map.getBounds();
@@ -183,7 +186,39 @@ const EstatesGoogleMap = (props) => {
                     [sw.lat(), sw.lng()],
                     [sw.lat(), ne.lng()]
                 ];
-                setCoords(newCoords);
+
+
+                const boundsRec = rectangle.getBounds();
+
+                const outerPolygonCoords = [
+                    { lat: boundsRec.getNorthEast().lat(), lng: boundsRec.getNorthEast().lng() },
+                    { lat: boundsRec.getNorthEast().lat(), lng: boundsRec.getSouthWest().lng() },
+                    { lat: boundsRec.getSouthWest().lat(), lng: boundsRec.getSouthWest().lng() },
+                    { lat: boundsRec.getSouthWest().lat(), lng: boundsRec.getNorthEast().lng() }
+                ];
+
+                const outerPolygon = new google.maps.Polygon({
+                    paths: outerPolygonCoords
+                });
+
+                let isInside = true;
+                for (let i = 0; i < newCoords.length; i++) {
+                    const vertex = new google.maps.LatLng(newCoords[i][0], newCoords[i][1]);
+                    if (!google.maps.geometry.poly.containsLocation(vertex, outerPolygon)) {
+                        isInside = false;
+                        break;
+                    }
+                }
+
+                if (isInside) {
+                    setCoords(newCoords);
+                    console.log('Inner polygon is inside the outer polygon');
+                } else {
+                    setSearchInfoBoxHidden(true);
+                    console.log('Inner polygon is not inside the outer polygon');
+                }
+
+
             }, 2000);
         }
     };
@@ -235,6 +270,52 @@ const EstatesGoogleMap = (props) => {
     const [markerOptions, setMarkerOptions] = useState({
         color: "#FFFFFF"
     });
+
+
+    /*DrawingShapeManager*/
+
+    if(isLoaded) {
+
+
+        const onDrawCallback = (shape) => console.log(shape);
+// Flag indicating whether it should set Drawing Mode enabled
+        const drawingModeManager = false;
+// Flag indicating whether it should set Draw Free Hand Mode enabled
+        const drawFreeHandMode = false;
+// Object containing the google polygon options to be used when drawing
+        const polygonOptions = {
+            clickable: false,
+            fillColor: "#303030",
+            fillOpacity: 0.1,
+            strokeColor: "#000000",
+            strokeWeight: 4,
+            strokeOpacity: 1
+        };
+// String with the inner HTML of the draw initial point overlay
+        const initialPointInnerHtml = `<button class="your-custom-initial-point-class" title="Initial Point"></button>`;
+// String with the inner HTML of the draw delete point overlay
+        const deletePointInnerHtml = `<button class="your-custom-delete-point-class" title="Delete">X</button></div>`;
+
+        const initalShape = [
+            { lat: 40.71755745031312, lng: 44.34395756832437 },
+            { lat: 40.780999209652855, lng: 44.82210698238687 },
+            { lat: 40.91016617157451, lng: 44.82259526363687 },
+            { lat: 40.71755745031312, lng: 44.34395756832437 }
+        ];
+
+        const manager = new MapDrawShapeManager(
+            map,
+            onDrawCallback,
+            drawingModeManager,
+            drawFreeHandMode,
+            polygonOptions,
+            initialPointInnerHtml,
+            deletePointInnerHtml
+        );
+        manager.initDrawnShape(initalShape);
+
+        manager.setDrawFreeHandMode(true);
+    }
 
 
     return (

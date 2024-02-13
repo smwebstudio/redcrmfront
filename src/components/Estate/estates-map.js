@@ -167,7 +167,7 @@ export function EstatesMap(props) {
                     // Ajax
                     let polygonCoordinates = coordinates;
                     $.ajax({
-                        url: apiURL+"api/estates/map_search",
+                        url: apiURL+"api/estates/map/map_search",
                         method: "GET",
                         dataType: "JSON",
                         data: {

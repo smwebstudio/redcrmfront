@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
     const filtersData = filtersDataRequest.data;
 
 
-    const data = await api(locale).get(apiURL + "api/estates/filter/estates?" + queryURL);
+    const data = await api(locale).get(apiURL + "api/estates/filter/estates?&filter[contract_type_id]=1&" + queryURL);
     const estatesData = data.data;
     const pageDataURL = apiURL + "api/estates/filter/estates";
 

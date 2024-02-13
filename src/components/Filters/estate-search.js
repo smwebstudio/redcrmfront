@@ -41,8 +41,6 @@ export default function EstateSearch(props) {
     let currentContractType = "sale";
 
 
-    console.log("filtersData.data.prices");
-    console.log(filtersData.data.prices);
 
     const [cities, setCities] = useState(initialProvince.cities);
     const [prices, setPrices] = useState(filtersData.data.prices[currentContractType][currentCurrency]);

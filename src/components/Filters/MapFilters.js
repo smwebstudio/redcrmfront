@@ -22,10 +22,7 @@ export default function MapFilters(props) {
     const setLoading = props.setLoading;
     const setPageDataURL = props.setPageDataURL;
     const { t } = useTranslation("common");
-    console.log("propfdgdfgdfgs");
 
-console.log('filtersData');
-console.log(filtersData);
     let initialProvince = filtersData.data.locations.find(x => x.id === 1);
 
     let contract_type_id = [];
@@ -42,7 +39,6 @@ console.log(filtersData);
     let currentContractType = "sale";
 
 
-    console.log("filtersData.data.prices");
 
     const [cities, setCities] = useState(initialProvince.cities);
     const [prices, setPrices] = useState(filtersData.data.prices[currentContractType][currentCurrency]);
@@ -109,10 +105,7 @@ console.log(filtersData);
 
     const handleAdditionalFilters = () => {
 
-        console.log(showAdditionalFilters);
         setShowAdditionalFilters(!showAdditionalFilters);
-
-        console.log(showAdditionalFilters);
 
     };
 
@@ -122,7 +115,6 @@ console.log(filtersData);
         setLoading(true);
         const queryData = Object.entries(values);
 
-        console.log(7777777777);
 
         let queryURL = "";
         let queryURLNext = {};
@@ -154,7 +146,6 @@ console.log(filtersData);
         setPageDataURL(apiURL + "api/estates/filter/estates?fromMap=1&" + queryURL);
 
 
-        console.log(queryURL);
         const estatesFilteredResponse = await api(locale).get(apiURL + "api/estates/filter/estates?fromMap=1&" + queryURL + "filter[coordinates]=" + coords);
         const estatesData = estatesFilteredResponse.data;
 

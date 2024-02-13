@@ -7,6 +7,7 @@ import estatesGoogleMap from "@/components/Estate/estatesGoogleMap";
 import EstatesGoogleMap from "@/components/Estate/estatesGoogleMap";
 import ContainerBoxed from "@/components/Containers/ContainerBoxed";
 import MapFilters from "@/components/Filters/MapFilters";
+import EstatesGoogleMapNew from "@/components/Estate/estatesGoogleMapNew";
 
 
 function EstateMap(props) {
@@ -32,7 +33,7 @@ function EstateMap(props) {
 
                     {/*<EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />*/}
 
-                    <EstatesGoogleMap estatesData={estatesData} changeCoords={setCoords} />
+                    <EstatesGoogleMapNew estatesData={estatesData} changeCoords={setCoords} />
                 </Col>
 
 

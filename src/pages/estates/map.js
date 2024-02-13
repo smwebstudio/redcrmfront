@@ -7,7 +7,7 @@ import { apiURL } from "@/constants";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import api from "@/hooks/api";
 import axios from "axios";
-import EstateMap from "@/components/Estate/estate-map";
+import EstateMap from "@/components/Estate/estates-map";
 
 const EstatesMap = ({ estatesData, pageDataURL, filtersData, queryData, queryDataParams }) => {
     return <div>

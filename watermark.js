@@ -2,19 +2,41 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 
-
-const inputDir = "/home/suren/Home/tomcat-uploads/2014";
+const inputDir = "/home/suren/Home/testw";
 const outputDir = "/home/suren/Home/uploadsWithWatermark";
 
 sharp.cache(false);
 
 // Set up the options for the watermark
 const watermarkOptions = {
-    left: 0,
-    top: 0,
+    gravity: sharp.gravity.northwest,
     blend: "over",
-    tile: true
+    tile: false
 };
+const watermarkOptions2 = {
+    gravity: sharp.gravity.northeast,
+    blend: "over",
+    tile: false
+};
+const watermarkOptions3 = {
+    gravity: sharp.gravity.center,
+    blend: "over",
+    tile: false
+};
+
+const watermarkOptions4 = {
+    gravity: sharp.gravity.southeast,
+    blend: "over",
+    tile: false
+};
+
+const watermarkOptions5 = {
+    gravity: sharp.gravity.southwest,
+    blend: "over",
+    tile: false
+};
+
+
 
 
 function processFile(file) {
@@ -23,23 +45,7 @@ function processFile(file) {
     const output = `${outputDir}${this}/${file}`;
 
     // Set up the watermark image
-    let watermark = fs.readFileSync("./public/redwatermarkbig.svg");
-
-    // Check if file name contains "thumb"
-    // if (/thumb/i.test(file)) {
-    //     watermark = fs.readFileSync('./public/redwatermarkthumb.svg');
-    // }
-
-
-    // sharp(input)
-    //     .composite([{ input: watermark, ...watermarkOptions }])
-    //     .toFormat('jpeg')
-    //     .jpeg({ quality: 100 })
-    //     .toFile(output, (err, info) => {
-    //         if (err) throw err;
-    //         console.log(`${input} has been watermarked`);
-    //     });
-
+    let watermark = fs.readFileSync("./public/redinvest4.svg");
 
     try {
         // Get image metadata
@@ -48,7 +54,6 @@ function processFile(file) {
             console.error(`processing without metadata ${file}`);
 
             if(metadata?.width) {
-
                 console.error(`processing with metadata ${file}`);
 
                 // Check image dimensions
@@ -56,25 +61,29 @@ function processFile(file) {
                     watermark = fs.readFileSync("./public/redwatermarkthumb.svg");
                     console.log('under 400');
                 } else if (metadata.width >= 400 && metadata.width < 700) {
-                    watermark = fs.readFileSync("./public/redwatermarkmd.svg");
+                    watermark = fs.readFileSync("./public/redinvest4.svg");
                     console.log('between 400 - 700');
                 } else if (metadata.width >= 900 && metadata.width < 2000) {
-                    watermark = fs.readFileSync("./public/redwatermarkbig.svg");
+                    watermark = fs.readFileSync("./public/redinvest4.svg");
                     console.log('between 900 - 2000');
                 } else if (metadata.width >= 2000) {
-                    watermark = fs.readFileSync("./public/redwatermarkxxl.svg");
+                    watermark = fs.readFileSync("./public/redinvest4.svg");
                     console.log('between 2000+');
                 }
-
                 // Process image
                 sharp(input)
-                    .composite([{ input: watermark, ...watermarkOptions }])
+                    .composite([
+                        { input: watermark, ...watermarkOptions },
+                        { input: watermark, ...watermarkOptions2 },
+                        { input: watermark, ...watermarkOptions3 },
+                        { input: watermark, ...watermarkOptions4 },
+                        { input: watermark, ...watermarkOptions5 },
+                    ])
                     .toFormat("jpeg")
                     .jpeg({ quality: 70 })
                     .toFile(output, (err, info) => {
                         console.log(`${input} has been watermarked`);
                     });
-
             }
         });
 
@@ -83,11 +92,7 @@ function processFile(file) {
     }
 }
 
-
 function processDirectory(directory) {
-    // Create output directory if it doesn't exist
-
-
 
     fs.readdir(directory, (err, files) => {
         if (err) throw err;
@@ -97,10 +102,12 @@ function processDirectory(directory) {
 
             fs.stat(filePath, (err, stats) => {
                 if (err) throw err;
-
+                console.log('outputSubdirasdsadasd');
+                console.log(stats);
                 if (stats.isDirectory()) {
                     // Check if output subdirectory exists and create it if needed
                     const outputSubdir = `${outputDir}/${directory}/${file}`;
+
                     if (!fs.existsSync(outputSubdir)) {
                         fs.mkdirSync(outputSubdir, { recursive: true });
                     }

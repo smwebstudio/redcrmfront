@@ -1,10 +1,10 @@
 import React, { Component, useEffect, useRef, useState } from "react";
-import { Image, Col, Row, Table, Button } from "antd";
+import { Image, Col, Row, Table, Button, Checkbox } from "antd";
 import { apiURL } from "@/constants";
 import api from "@/hooks/api";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { CheckCircleFilled, CheckOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import RedText from "@/components/Typography/text/RedText";
 
 
@@ -37,7 +37,8 @@ export function EstateCompareCarousel() {
             room_count: t("label.roomCount"),
             area_total: t("label.area"),
             floor: t("label.floor"),
-            ceilingHeight: t("label.ceilingHeight")
+            ceilingHeight: t("label.ceilingHeight"),
+            estate_facilities: t("common\:label.utility.facilities"),
         };
 
         estatesDataFromApi.unshift(dataHeaders);
@@ -106,8 +107,42 @@ export function EstateCompareCarousel() {
                 ...Object.fromEntries(
                     estatesDataFromApi.map((item) => [item.id.toString(), item.room_count])
                 )
+            },
+            {
+                key: "7",
+                attribute: "estate_facilities",
+                ...Object.fromEntries(
+                    estatesDataFromApi.map((item) => [
+                        item.id.toString(),
+                        item.estate_facilities
+                            ? estateFacilitiesToString(item.estate_facilities)
+                            : ""
+                    ])
+                )
             }
         ];
+
+        function estateFacilitiesToString(estate_facilities) {
+            return (
+                <>
+                    {Object.entries(estate_facilities).map(([facilityKey, facility]) => (
+                        <div key={facilityKey} >
+
+                            {facility.value === true &&
+                                <div className={'flex flex-row justify-between'}>
+                                    <label className={'mr-2'}>{facility.label}</label>
+                                <CheckOutlined />
+                                </div>
+
+                            }
+
+                        </div>
+                    ))}
+                </>
+            );
+        }
+
+
         setColumns(columnsFromApi);
         setDataSource(dataSourceFromApi);
 
@@ -154,10 +189,10 @@ export function EstateCompareCarousel() {
 
                     {estatesData.length > 0 &&
                         <div className={'relative'}>
-                            <Button  shape="circle" onClick={handleScrollLeft} className={'flex justify-center items-center absolute z-40 left-60 top-20 bg-opacity-50 bg-gray-600'}>
+                            <Button  shape="circle" onClick={handleScrollLeft} className={'flex justify-center items-center absolute z-40 left-60 top-20 bg-opacity-70 bg-gray-600'}>
                                 <LeftOutlined style={{color: '#FFFFFF'}}/>
                             </Button>
-                            <Button  shape="circle" onClick={handleScrollRight} className={'flex justify-center items-center absolute z-40 right-3.5 top-20 bg-opacity-50 bg-gray-600'}>
+                            <Button  shape="circle" onClick={handleScrollRight} className={'flex justify-center items-center absolute z-40 right-3.5 top-20 bg-opacity-70 bg-gray-600'}>
                                 <RightOutlined style={{color: '#FFFFFF'}}/>
                             </Button>
                             <Table  showHeader={false} dataSource={dataSource} columns={columns} pagination={false} scroll={{ x: 1300 }} ref={tableRef} />
