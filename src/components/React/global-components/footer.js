@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import Link from "next/link";
 import footerdata from "data/footerdata.json";
-import Image from "next/image";
-import { Col, Row } from "antd";
+import { Col, Row, Image } from "antd";
 import ContainerBoxed from "@/components/Containers/ContainerBoxed";
 
 class Footer_v1 extends Component {
