@@ -34,7 +34,7 @@ function Professionals(props) {
                 )
                 }
                 <Col xs={24} className="mt-3 text-right">
-                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
+                    <Link href="/estates" className="text-main text-underline">Տեսնել բոլորը</Link>
                 </Col>
             </Row>
         </ContainerBoxed>

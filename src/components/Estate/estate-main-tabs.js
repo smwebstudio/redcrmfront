@@ -17,7 +17,6 @@ function EstateMainTabs(props) {
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
 
     return (
-
         <ContainerBoxed className="container  pt-5 mt-5 mb-5">
             <Row className={"main-featured min-h-fit mt-5"}>
                 <Col xs={24} sm={4}>
@@ -51,7 +50,7 @@ function EstateMainTabs(props) {
             </Row>
             <Row>
                 <Col xs={24} className={"text-right"}>
-                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
+                    <Link href="/estates" className="text-main text-underline">Տեսնել բոլորը</Link>
                 </Col>
             </Row>
         </ContainerBoxed>

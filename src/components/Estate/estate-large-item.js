@@ -13,7 +13,7 @@ export function EstateLargeItem(props) {
                 <Row className="large-estate single-feature">
                     <Col span={6} className="thumb">
                         <Link href={"/estates/" + item.id}>
-                            <a><img className={"estate-image"}  src={item.image} alt="img" /></a>
+                            <img className={"estate-image"}  src={item.image} alt="img" />
                         </Link>
                     </Col>
                     <Col span={18} className="details">
@@ -24,10 +24,10 @@ export function EstateLargeItem(props) {
                             </div>
                             <div className="col-6 text-right justify-content-end d-flex">
                                 <Link className="p-3" href="/">
-                                    <a className="ml-3"><img src={"/assets/img/svg/compare.svg"} alt="logo" /></a>
+                                    <img src={"/assets/img/svg/compare.svg"} alt="logo" />
                                 </Link>
                                 <Link className="p-3" href="/">
-                                    <a className="ml-3"><img src={"/assets/img/svg/favorites.svg"} alt="logo" /></a>
+                                    <img src={"/assets/img/svg/favorites.svg"} alt="logo" />
                                 </Link>
                             </div>
                         </div>

@@ -12,7 +12,6 @@ const onChange = (key) => {
 
 function EstateMainHot(props) {
     return (
-
         <ContainerBoxed className={'pt-10 pb-10'}>
             <Row className="row main-featured min-h-fit">
                 <Col xs={24}>
@@ -20,7 +19,7 @@ function EstateMainHot(props) {
                     <EstateCarousel type="hot"/>
                 </Col>
                 <Col xs={24} className={'text-right'}>
-                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
+                    <Link href="/estates" className="text-main text-underline">Տեսնել բոլորը</Link>
                 </Col>
             </Row>
         </ContainerBoxed>

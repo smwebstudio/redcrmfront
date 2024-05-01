@@ -6,14 +6,12 @@ function Professional(props) {
     let professional = props.professional;
 
     return (
-
         <div className="professional-card flex flex-row pt-4 pb-4">
             <div className="professional-image flex p-2">
                 <Link href={"professionals/" + professional.id}>
-                    <a>
 
-                        <Image preview={false} width={50} height={50} src={professional.profile_picture} alt={'proffesional'} />
-                    </a>
+                    <Image preview={false} width={50} height={50} src={professional.profile_picture} alt={'proffesional'} />
+
                 </Link>
             </div>
             <div className="professional-info p-2 flex flex-col justify-content-center">

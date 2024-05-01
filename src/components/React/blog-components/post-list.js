@@ -18,7 +18,7 @@ class PostList extends Component {
                         <img src={publicUrl+item.image} alt={ imagealt } />
                       </div>
                       <div className="details">
-                        <h4><Link to={ item.url }  >{ item.title }</Link></h4>
+                        <h4><Link to={ item.url } legacyBehavior>{ item.title }</Link></h4>
                         <p>{ item.content }</p>
                         <div className="author">
                           <img src={publicUrl+item.authorimage} alt={ imagealt } />
@@ -34,7 +34,7 @@ class PostList extends Component {
             </div>
           </div>
       </div>
-    )
+    );
   }
 }
 

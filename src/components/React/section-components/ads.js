@@ -16,16 +16,18 @@ class Ads extends Component {
             backgroundImage: 'url('+publicUrl+'/assets/img/bg/1.png)'
         }
 
-    return <div className="call-to-action-area pd-top-70">
-              <div className="container">
-                <div className="call-to-action" style={ inlineStyle }>
-                  <div className="cta-content">
-                    <h3 className="title">{ data.title }</h3>
-                    <Link className="btn btn-white" to={ data.url }>{ data.btntxt }</Link>
+    return (
+      <div className="call-to-action-area pd-top-70">
+                <div className="container">
+                  <div className="call-to-action" style={ inlineStyle }>
+                    <div className="cta-content">
+                      <h3 className="title">{ data.title }</h3>
+                      <Link className="btn btn-white" to={ data.url } legacyBehavior>{ data.btntxt }</Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-          </div>
+            </div>
+    );
 
 
         }

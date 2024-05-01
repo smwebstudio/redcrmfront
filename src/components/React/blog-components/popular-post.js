@@ -25,7 +25,7 @@ class PopularPost extends Component {
               <div  className="popular-post-slider">
                 { data.items.map( ( item, i )=>
                     <div key={ i } className="item">
-                    <Link to={ item.url } className="media single-popular-post">
+                    <Link to={ item.url } className="media single-popular-post" legacyBehavior>
                       <div className="media-left">
                         <img src={ publicUrl+item.image } alt={ imagealt } />
                       </div>
@@ -42,7 +42,7 @@ class PopularPost extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -10,7 +10,7 @@ export function NotFound() {
                 <Col xs={24} className="mt-5 mb-5 text-center flex flex-col items-center">
                     <Image preview={false} src={"/assets/img/svg/404.svg"} alt="404" />
                     <h3 className={'mt-10 mb-4'}> Ցավոք էջը չի գտնվել</h3>
-                    <Link href="/"><a className="btn btn-main">Գլխավոր </a></Link>
+                    <Link href="/" className="btn btn-main">Գլխավոր </Link>
                 </Col>
             </Row>
 

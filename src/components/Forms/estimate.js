@@ -300,7 +300,7 @@ const EstimateForm = () => {
                                     </p>
                                     <p>
                                         {t('label.Ev.to.newAnounc3')}
-                                        <Link href={"/professionals"}><a className={"text-main"}> {t('label.Ev.to.newAnounc3.1')} </a></Link>
+                                        <Link href={"/professionals"} className={"text-main"}> {t('label.Ev.to.newAnounc3.1')} </Link>
                                     </p>
                                     <p>
                                         {t('label.Ev.to.newAnounc4')}

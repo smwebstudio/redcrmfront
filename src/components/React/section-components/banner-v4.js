@@ -16,17 +16,19 @@ class BannerV4 extends Component {
             backgroundImage: 'url('+publicUrl+'/assets/img/banner/3.png)'
         }
 
-    return <div>
-              <div className="banner-area jarallax" style={ inlineStyle }>
-              <div className="container">
-                <div className="banner-inner-wrap">
-                  <div className="row">
-                    <div className="col-lg-10">
-                      <div className="banner-inner">
-                        <h5 className="sub-title">{ data.title }</h5>
-                        <h1 className="title">{ data.subtitle }</h1>
-                        <div className="banner-btn-wrap">
-                          <Link className="btn btn-yellow mr-2" to={ data.btnurl }>{ data.btntxt }</Link>
+    return (
+      <div>
+                <div className="banner-area jarallax" style={ inlineStyle }>
+                <div className="container">
+                  <div className="banner-inner-wrap">
+                    <div className="row">
+                      <div className="col-lg-10">
+                        <div className="banner-inner">
+                          <h5 className="sub-title">{ data.title }</h5>
+                          <h1 className="title">{ data.subtitle }</h1>
+                          <div className="banner-btn-wrap">
+                            <Link className="btn btn-yellow mr-2" to={ data.btnurl } legacyBehavior>{ data.btntxt }</Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -34,7 +36,7 @@ class BannerV4 extends Component {
                 </div>
               </div>
             </div>
-          </div>
+    );
 
         }
 }

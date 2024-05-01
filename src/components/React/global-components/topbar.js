@@ -37,16 +37,16 @@ const Topbar = (props) => {
 
                         <Col xs={4} sm={3} className={"border-right"}>
                             <Link href={"/compare"}>
-                                <a>
-                                    <Row gutter={4} justify="center" align="middle">
-                                        <Col xs={24} sm={4} className={"text-center"}>
-                                            <img src={"/assets/img/svg/compare.svg"} alt="logo" />
-                                        </Col>
-                                        <Col xs={0} sm={20}>
-                                            {t("label.compare")}
-                                        </Col>
-                                    </Row>
-                                </a>
+
+                                <Row gutter={4} justify="center" align="middle">
+                                    <Col xs={24} sm={4} className={"text-center"}>
+                                        <img src={"/assets/img/svg/compare.svg"} alt="logo" />
+                                    </Col>
+                                    <Col xs={0} sm={20}>
+                                        {t("label.compare")}
+                                    </Col>
+                                </Row>
+
                             </Link>
                         </Col>
                         <Col xs={4} sm={3} className={"border-right"}>
@@ -56,7 +56,7 @@ const Topbar = (props) => {
                                 </Col>
                                 <Col xs={0} sm={16}>
                                     <Link href={"/test"}>
-                                        <a>{t("label.favorites")}</a>
+                                        {t("label.favorites")}
                                     </Link>
                                 </Col>
                             </Row>
@@ -69,9 +69,9 @@ const Topbar = (props) => {
                                 {!user &&
                                     <Col xs={0} sm={19}>
                                         <span className="ml-1 pr-3 border-right">
-                                        <Link href="/login">{t("label.login")}</Link>
+                                        <Link href="/login" legacyBehavior>{t("label.login")}</Link>
                                     </span>
-                                        <span className="ml-1 pl-1"><Link href="/register">{t("button.register")}</Link></span>
+                                        <span className="ml-1 pl-1"><Link href="/register" legacyBehavior>{t("button.register")}</Link></span>
 
                                     </Col>
                                 }
@@ -79,7 +79,7 @@ const Topbar = (props) => {
                                 {user &&
                                     <Col xs={0} sm={19}>
                                         <span className="ml-1 pr-3 border-right">
-                                        <Link href="#">{user.name}</Link>
+                                        <Link href="#" legacyBehavior>{user.name}</Link>
                                     </span>
                                         <span className="ml-3" onClick={() => logout()}>
                                             {t("common\:label.logout")}

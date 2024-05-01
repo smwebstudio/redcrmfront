@@ -17,11 +17,11 @@ function BlogNavbar() {
         <div className="">
                     <div className="container nav-container">
                             <ul className="blog-nav">
-                                <li className={router.pathname == "/blog" ? "active" : ""}><Link href="/blog"><a>Բոլորը</a></Link></li>
-                                <li className={newsActive ? "active" : ""}><Link href="/blog/news"><a>Նորություններ</a></Link></li>
-                                <li className={articlesActive ? "active" : ""}><Link href="/blog/articles"><a>Հոդվածներ</a></Link></li>
-                                <li className={statisticsActive ? "active" : ""}><Link href="/blog/statistics"><a>Վիճակագրություն</a></Link></li>
-                                <li className={pricesActive ? "active" : ""}><Link href="/blog/prices"><a>Գներ</a></Link></li>
+                                <li className={router.pathname == "/blog" ? "active" : ""}><Link href="/blog">Բոլորը</Link></li>
+                                <li className={newsActive ? "active" : ""}><Link href="/blog/news">Նորություններ</Link></li>
+                                <li className={articlesActive ? "active" : ""}><Link href="/blog/articles">Հոդվածներ</Link></li>
+                                <li className={statisticsActive ? "active" : ""}><Link href="/blog/statistics">Վիճակագրություն</Link></li>
+                                <li className={pricesActive ? "active" : ""}><Link href="/blog/prices">Գներ</Link></li>
                             </ul>
                     </div>
         </div>

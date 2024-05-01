@@ -58,9 +58,9 @@ const Login = () => {
                     <AuthCard
                         logo={
                             <Link href="/">
-                                <a>
-                                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
-                                </a>
+
+                                <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+
                             </Link>
                         }>
 
@@ -122,15 +122,16 @@ const Login = () => {
                             </div>
                             <Button className="btn btn-block  btn-main p-2 mt-3">{t('common\:label.login')}</Button>
                             <div className="d-flex items-center flex-column justify-end text-center mt-4">
-                                <Link href="/forgot-password">
-                                    <a className="underline text-sm w-100 hover:text-gray-900">
-                                        {t('common\:label.loginForgotPass')}
-                                    </a>
+                                <Link
+                                    href="/forgot-password"
+                                    className="underline text-sm w-100 hover:text-gray-900">
+
+                                    {t('common\:label.loginForgotPass')}
+
                                 </Link>
-                                <Link href="/register">
-                                    <a className="underline mt-5 text-sm  hover:text-gray-900">
-                                        Գրանցված չեք? <span className={"ml-3 text-main text-underline"}>{t('common\:button.register')}</span>
-                                    </a>
+                                <Link href="/register" className="underline mt-5 text-sm  hover:text-gray-900">
+                                    Գրանցված չեք?<span className={"ml-3 text-main text-underline"}>{t('common\:button.register')}</span>
+
                                 </Link>
 
 

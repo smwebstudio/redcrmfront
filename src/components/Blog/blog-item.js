@@ -9,7 +9,6 @@ function BlogItem(props) {
 
 
     return (
-
         <div className="BlogItem-card d-flex flex-column pt-4 pb-4">
             <div className="BlogItem-image d-flex">
                 <img src={BlogItem.picture} />
@@ -25,7 +24,7 @@ function BlogItem(props) {
 
                 <div className="font-size-13 mb-1 text-gray-800 text-dark"><div dangerouslySetInnerHTML={{__html: ShotContent}}></div></div>
 
-                <Link href={"/blog/news/"+BlogItem.id}><a className={"text-main hover-underline"}>Մանրամասն</a></Link>
+                <Link href={"/blog/news/"+BlogItem.id} className={"text-main hover-underline"}>Մանրամասն</Link>
             </div>
         </div>
     );

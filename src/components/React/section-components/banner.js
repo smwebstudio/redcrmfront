@@ -31,8 +31,7 @@ function Banner(props) {
                                 ձեզ
                                 հարմար տարբերակով</h6>
                             <Col xs={0} sm={24}>
-                                <Link href="/estates"><a
-                                    className="btn btn-main-transparent-dark pr-3 pl-3">{t("button.learnMore")}</a></Link>
+                                <Link href="/estates" className="btn btn-main-transparent-dark pr-3 pl-3">{t("button.learnMore")}</Link>
                             </Col>
                         </div>
                     </div>

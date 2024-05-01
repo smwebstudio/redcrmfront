@@ -318,113 +318,111 @@ const EstatesGoogleMap = (props) => {
     }
 
 
-    return (
-        <>
+    return <>
 
 
-            {isLoaded &&
-                <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    center={center}
-                    zoom={13}
-                    onLoad={(map) => setMap(map)}
-                    onClick={handleMapClick}
-                    onZoomChanged={handleMapZoomChanged}
-                    onResize={handleMapZoomChanged}
+        {isLoaded &&
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                center={center}
+                zoom={13}
+                onLoad={(map) => setMap(map)}
+                onClick={handleMapClick}
+                onZoomChanged={handleMapZoomChanged}
+                onResize={handleMapZoomChanged}
+                options={{
+                    gestureHandling: 'greedy'
+                }}
+                gestureHandling={'greedy'}
+            >
+
+                {!searchInfoBoxHidden &&
+                        <div style={{ backgroundColor: "transparent", opacity: 1, width: "160px" }}>
+                            <MagnifyingGlass
+                                visible={true}
+                                height="80"
+                                width="80"
+                                ariaLabel="MagnifyingGlass-loading"
+                                wrapperStyle={{zIndex: '999999', width: '80px', height: '80px', position: 'absolute', left: '45%', top: '42%'}}
+                                wrapperClass="MagnifyingGlass-wrapper"
+                                glassColor="#FFFFFF"
+                                color="#777777"
+                            />
+                        </div>
+
+                }
+                <button onClick={handleStartDrawing} className="btn btn-main-transparent map-pencil"
+                        id="start_drawing" drawable="false">
+                    <span className="drawing-icon mr-2 flex"><img src={"/assets/img/svg/pencil.svg"} width={'25px'}/></span> <span
+                    className="drawing-title">{buttonText}</span>
+                </button>
+                <DrawingManager
+                    onLoad={onLoad}
+                    onRectangleComplete={onRectangleComplete}
+                    drawingMode={drawingMode}
                     options={{
-                        gestureHandling: 'greedy'
-                    }}
-                    gestureHandling={'greedy'}
-                >
-
-                    {!searchInfoBoxHidden &&
-                            <div style={{ backgroundColor: "transparent", opacity: 1, width: "160px" }}>
-                                <MagnifyingGlass
-                                    visible={true}
-                                    height="80"
-                                    width="80"
-                                    ariaLabel="MagnifyingGlass-loading"
-                                    wrapperStyle={{zIndex: '999999', width: '80px', height: '80px', position: 'absolute', left: '45%', top: '42%'}}
-                                    wrapperClass="MagnifyingGlass-wrapper"
-                                    glassColor="#FFFFFF"
-                                    color="#777777"
-                                />
-                            </div>
-
-                    }
-                    <button onClick={handleStartDrawing} className="btn btn-main-transparent map-pencil"
-                            id="start_drawing" drawable="false">
-                        <span className="drawing-icon mr-2 flex"><img src={"/assets/img/svg/pencil.svg"} width={'25px'}/></span> <span
-                        className="drawing-title">{buttonText}</span>
-                    </button>
-                    <DrawingManager
-                        onLoad={onLoad}
-                        onRectangleComplete={onRectangleComplete}
-                        drawingMode={drawingMode}
-                        options={{
-                            rectangleOptions: rectangleOptions,
-                            markerOptions: markerOptions,
-                            drawingControlOptions: {
-                                position: -5,
-                                drawingModes: [
-                                    google.maps.drawing.OverlayType.RECTANGLE
-                                ]
-                            }
-                        }}
-                    />
-
-
-                    <MarkerClusterer options={options}>
-                        {(clusterer) =>
-                            markers.map((marker) => (
-                                <Marker
-                                    key={createKey(marker)}
-                                    position={marker}
-                                    clusterer={clusterer}
-                                    onClick={() => handleMarkerClick(marker)}
-                                    icon={"/assets/img/svg/mapIcon.svg"}
-                                    label={{
-                                        text: marker.label,
-                                        color: "#FFFFFF", // set the color to white
-                                        fontSize: "12px",
-                                        fontWeight: "bold"
-                                    }}
-                                />
-                            ))
+                        rectangleOptions: rectangleOptions,
+                        markerOptions: markerOptions,
+                        drawingControlOptions: {
+                            position: -5,
+                            drawingModes: [
+                                google.maps.drawing.OverlayType.RECTANGLE
+                            ]
                         }
-                    </MarkerClusterer>
-                    {selectedMarker && (
-                        <InfoWindow
-                            position={selectedMarker}
-                            options={{ disableAutoPan: true, maxWidth: 350 }}
-                            anchor={selectedMarker}
-                            onCloseClick={handleCloseClick}
-                            content={selectedMarker.id}
-                        >
-                            <div>
-                                <Link href={"/estates/" + selectedMarker.id}>
-                                    <div className={"flex flex-row items-start"}>
-                                        <div className={"mr-4"}>
-                                            <Image preview={false} src={selectedMarker.image} height={100}
-                                                   alt={selectedMarker.title} />
-                                        </div>
-                                        <div className={"flex flex-col items-start"}>
-                                            <h3><span
-                                                className={"text-main font-bold  font-size-16"}>{selectedMarker.price}</span> | {selectedMarker.code}
-                                            </h3>
-                                            <h3>{selectedMarker.title}</h3>
-                                        </div>
+                    }}
+                />
 
+
+                <MarkerClusterer options={options}>
+                    {(clusterer) =>
+                        markers.map((marker) => (
+                            <Marker
+                                key={createKey(marker)}
+                                position={marker}
+                                clusterer={clusterer}
+                                onClick={() => handleMarkerClick(marker)}
+                                icon={"/assets/img/svg/mapIcon.svg"}
+                                label={{
+                                    text: marker.label,
+                                    color: "#FFFFFF", // set the color to white
+                                    fontSize: "12px",
+                                    fontWeight: "bold"
+                                }}
+                            />
+                        ))
+                    }
+                </MarkerClusterer>
+                {selectedMarker && (
+                    <InfoWindow
+                        position={selectedMarker}
+                        options={{ disableAutoPan: true, maxWidth: 350 }}
+                        anchor={selectedMarker}
+                        onCloseClick={handleCloseClick}
+                        content={selectedMarker.id}
+                    >
+                        <div>
+                            <Link href={"/estates/" + selectedMarker.id} legacyBehavior>
+                                <div className={"flex flex-row items-start"}>
+                                    <div className={"mr-4"}>
+                                        <Image preview={false} src={selectedMarker.image} height={100}
+                                               alt={selectedMarker.title} />
                                     </div>
-                                </Link>
-                            </div>
-                        </InfoWindow>
-                    )}
-                </GoogleMap>
+                                    <div className={"flex flex-col items-start"}>
+                                        <h3><span
+                                            className={"text-main font-bold  font-size-16"}>{selectedMarker.price}</span> | {selectedMarker.code}
+                                        </h3>
+                                        <h3>{selectedMarker.title}</h3>
+                                    </div>
 
-            }
-        </>
-    );
+                                </div>
+                            </Link>
+                        </div>
+                    </InfoWindow>
+                )}
+            </GoogleMap>
+
+        }
+    </>;
 };
 
 export default EstatesGoogleMap;
