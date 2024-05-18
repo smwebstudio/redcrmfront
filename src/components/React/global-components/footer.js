@@ -1,3 +1,4 @@
+'use client';
 import React, { Component } from "react";
 import footerdata from "data/footerdata.json";
 import { Col, Row, Image } from "antd";

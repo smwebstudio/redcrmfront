@@ -1,3 +1,4 @@
+'use client';
 import { Col, Row, Tabs } from "antd";
 import React, { Component, useState } from "react";
 import EstateCarousel from "@/components/Estate/estate-carousel";

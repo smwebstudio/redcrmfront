@@ -1,3 +1,4 @@
+'use client';
 import React, { Component } from 'react';
 import sectiondata from 'data/sections.json';
 import { useMediaQuery } from "react-responsive";

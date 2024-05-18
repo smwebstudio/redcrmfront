@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from "react";
 import Professional from "@/components/Professionals/professional";
 import Link from "next/link";
