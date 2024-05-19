@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Col, Image, notification, Row, Spin } from 'antd'
+import { Col, notification, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
+import AppImage from '@/components/common/Image/AppImage'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -39,7 +40,7 @@ export function EstateItem(props) {
                         <Link
                             href={'estates/' + item.id}
                             style={{ width: '100%' }}>
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 src={item.image}
                                 preview={false}
@@ -70,7 +71,7 @@ export function EstateItem(props) {
                                     className={'cursor-pointer'}
                                     key={'compare_' + item.id}
                                     onClick={() => compare(item)}>
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/compare.svg'}
                                     />
@@ -78,7 +79,7 @@ export function EstateItem(props) {
                                 <span
                                     className={'ml-4 cursor-pointer'}
                                     key={'add_to_favorites_' + item.id}>
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/favorites.svg'}
                                     />
@@ -90,7 +91,7 @@ export function EstateItem(props) {
                             <Col xs={24}>
                                 <p className="address flex flex-row ">
                                     <span>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={'/assets/img/svg/location.svg'}
                                         />
@@ -105,7 +106,7 @@ export function EstateItem(props) {
                         <ul className="info-list">
                             {item.room_count && (
                                 <li className="mr-4">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/doors.svg'}
                                     />
@@ -115,7 +116,7 @@ export function EstateItem(props) {
 
                             {item.floor && (
                                 <li className="mr-4">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/floor.svg'}
                                     />
@@ -125,7 +126,7 @@ export function EstateItem(props) {
 
                             {item.area_total && (
                                 <li className="mr-3">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/area.svg'}
                                     />

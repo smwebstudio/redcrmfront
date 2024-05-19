@@ -1,10 +1,11 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Affix, Col, Image, Row } from 'antd'
+import { Affix, Col, Row } from 'antd'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
 import { useTranslation } from '@/app/i18n/client'
+import AppImage from '@/components/common/Image/AppImage'
 
 const AppNavbar = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
@@ -93,7 +94,7 @@ const AppNavbar = ({ lng }) => {
                                 <Col xs={18} sm={3} md={6} lg={4}>
                                     <div className="logo readeal-top">
                                         <Link href="/">
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 src={'/assets/img/logo-pc.svg'}
                                             />

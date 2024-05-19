@@ -3,7 +3,8 @@ import React from 'react'
 import sectiondata from 'data/sections.json'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
-import { Col, Image, Row } from 'antd'
+import { Col, Row } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 const WhyChooseUs = () => {
     let publicUrl = process.env.PUBLIC_URL + '/'
@@ -21,7 +22,7 @@ const WhyChooseUs = () => {
                         <Col key={i} xs={12} sm={8}>
                             <div className={'single-intro text-left '}>
                                 <div className="thumb">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={publicUrl + item.icon}
                                     />

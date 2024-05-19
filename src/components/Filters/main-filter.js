@@ -36,8 +36,6 @@ export default function MainFilter(props) {
         { value: 2, label: 'RUR' },
     ]
 
-    console.log(filtersData)
-
     filtersData.estate_types.forEach(value => {
         estateTypeOptions.push({
             value: value.id,

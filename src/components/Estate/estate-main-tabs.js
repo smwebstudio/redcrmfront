@@ -39,17 +39,32 @@ function EstateMainTabs(props) {
                             {
                                 label: t('button.sale'),
                                 key: '1',
-                                children: <EstateCarousel type="sale" />,
+                                children: (
+                                    <EstateCarousel
+                                        type="sale"
+                                        saleEstates={props.saleEstates}
+                                    />
+                                ),
                             },
                             {
                                 label: t('button.rent'),
                                 key: '2',
-                                children: <EstateCarousel type="rent" />,
+                                children: (
+                                    <EstateCarousel
+                                        type="rent"
+                                        saleEstates={props.rentEstates}
+                                    />
+                                ),
                             },
                             {
                                 label: t('label.title.fee.normal'),
                                 key: '3',
-                                children: <EstateCarousel type="daily" />,
+                                children: (
+                                    <EstateCarousel
+                                        type="daily"
+                                        saleEstates={props.dailyEstates}
+                                    />
+                                ),
                             },
                         ]}
                     />

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Image } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 function BlogMidItem(props) {
     let BlogItem = props.BlogItem
@@ -13,16 +13,16 @@ function BlogMidItem(props) {
                 <Link
                     href={'/blog/news/' + BlogItem.id}
                     className={'text-main hover-underline'}>
-                    <Image alt={'Red Group'} src={BlogItem.picture} />
+                    <AppImage alt={'Red Group'} src={BlogItem.picture} />
                 </Link>
             </div>
             <div className="BlogItem-info no-shadow d-flex pb-3 pt-3 pl-3 pr-3 flex-column justify-content-center">
                 <p className="font-size-11 d-flex  mb-2">
-                    <Image
+                    <AppImage
                         alt={'Red Group'}
                         src={'/assets/img/svg/calendar_icon.svg'}
                     />
-                    <Image className={'mr-1'} />
+                    <AppImage className={'mr-1'} />
                     {BlogItem.created_at}թ․
                 </p>
                 <p className="font-size-13 mt-2 mb-3 text-gray-800 text-dark">

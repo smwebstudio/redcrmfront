@@ -11,10 +11,10 @@ import { apiURL } from '@/constants'
 import { useRouter } from 'next/navigation'
 import api from '@/hooks/api'
 import Link from 'next/link'
-import { Image } from 'antd'
 import { MagnifyingGlass } from 'react-loader-spinner'
 import nextConfig from '../../../next.config'
 import MapDrawShapeManager from '@/lib/MapDrawShape/MapDrawShapeManager'
+import AppImage from '@/components/common/Image/AppImage'
 
 const libraries = ['drawing']
 
@@ -372,7 +372,7 @@ const EstatesGoogleMap = props => {
                         id="start_drawing"
                         drawable="false">
                         <span className="drawing-icon mr-2 flex">
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 src={'/assets/img/svg/pencil.svg'}
                                 width={'25px'}
@@ -429,7 +429,7 @@ const EstatesGoogleMap = props => {
                                     <div
                                         className={'flex flex-row items-start'}>
                                         <div className={'mr-4'}>
-                                            <Image
+                                            <AppImage
                                                 preview={false}
                                                 src={selectedMarker.image}
                                                 height={100}

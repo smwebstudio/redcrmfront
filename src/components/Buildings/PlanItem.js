@@ -1,7 +1,8 @@
 import React from 'react'
-import { Col, Image, notification, Row, Spin } from 'antd'
+import { Col, notification, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
+import AppImage from '@/components/common/Image/AppImage'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -51,7 +52,7 @@ export function PlanItem(props) {
                         }}>
                         ՎԱՃԱՌՎԱԾ
                     </span>
-                    <Image
+                    <AppImage
                         alt={'Red Group'}
                         src={'/assets/developers/saled.png'}
                         style={{
@@ -69,7 +70,7 @@ export function PlanItem(props) {
             )}
             <div className="single-feature mb-0">
                 <div className="thumb relative">
-                    <Image
+                    <AppImage
                         alt={'Red Group'}
                         src={item.image}
                         preview={false}
@@ -102,7 +103,7 @@ export function PlanItem(props) {
                                 className={'cursor-pointer'}
                                 key={'compare_' + item.id}
                                 onClick={() => compare(item)}>
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/compare.svg'}
                                 />
@@ -110,7 +111,7 @@ export function PlanItem(props) {
                             <span
                                 className={'ml-4 cursor-pointer'}
                                 key={'add_to_favorites_' + item.id}>
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/favorites.svg'}
                                 />
@@ -122,7 +123,7 @@ export function PlanItem(props) {
                         <Col xs={24}>
                             <p className="address flex flex-row ">
                                 <span>
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/location.svg'}
                                     />
@@ -137,7 +138,7 @@ export function PlanItem(props) {
                     <ul className="info-list">
                         {item.room_count && (
                             <li className="mr-4">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/doors.svg'}
                                 />
@@ -147,7 +148,7 @@ export function PlanItem(props) {
 
                         {item.floor && (
                             <li className="mr-4">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/floor.svg'}
                                 />
@@ -157,7 +158,7 @@ export function PlanItem(props) {
 
                         {item.area_total && (
                             <li className="mr-3">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/area.svg'}
                                 />

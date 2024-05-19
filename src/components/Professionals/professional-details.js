@@ -1,9 +1,10 @@
 'use client'
 import React from 'react'
-import { Col, Divider, Image, Rate, Row, Tabs, Typography } from 'antd'
+import { Col, Divider, Rate, Row, Tabs, Typography } from 'antd'
 import ContactSimpleForm from '@/components/Forms/contact-simple-form'
 import EstateProfessionalList from '@/components/Estate/estate-professional-list'
 import ProfessionalInfo from '@/components/Professionals/professional-info'
+import AppImage from '@/components/common/Image/AppImage'
 
 const { Text } = Typography
 
@@ -22,7 +23,7 @@ function ProfessionalDetails(props) {
                     className={
                         'professionalDetails bg-white pt-4 d-flex flex-column justify-center align-items-center mb-5'
                     }>
-                    <Image
+                    <AppImage
                         alt={'Red Group'}
                         className={'avatar'}
                         src={professional.profile_picture}
@@ -48,7 +49,7 @@ function ProfessionalDetails(props) {
                     </div>
                     <div>
                         <Text className="d-flex mb-1 justify-content-start text-dark font-size-12">
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 className="mr-2"
                                 src={publicUrl + 'assets/img/svg/envelope.svg'}
@@ -58,7 +59,7 @@ function ProfessionalDetails(props) {
                             </span>
                         </Text>
                         <Text className="d-flex justify-content-start text-dark font-size-12">
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 className="mr-2"
                                 src={publicUrl + 'assets/img/svg/mobile.svg'}

@@ -1,6 +1,7 @@
-import { Button, Image, Modal, Upload } from 'antd'
+import { Button, Modal, Upload } from 'antd'
 import { useState } from 'react'
 import { useTranslation } from '@/app/i18n/client'
+import AppImage from '@/components/common/Image/AppImage'
 
 const getBase64 = file =>
     new Promise((resolve, reject) => {
@@ -114,7 +115,7 @@ const UploadBlock = () => {
                 title={previewTitle}
                 footer={null}
                 onCancel={handleCancel}>
-                <Image
+                <AppImage
                     alt={'Red Group'}
                     style={{
                         width: '100%',

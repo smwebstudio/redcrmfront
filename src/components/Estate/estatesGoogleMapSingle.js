@@ -5,8 +5,8 @@ import {
     Marker,
     useJsApiLoader,
 } from '@react-google-maps/api'
-import { Image } from 'antd'
 import nextConfig from '../../../next.config'
+import AppImage from '@/components/common/Image/AppImage'
 
 const libraries = ['drawing']
 
@@ -102,7 +102,7 @@ const EstatesGoogleMapSingle = props => {
                         <div>
                             <div className={'flex flex-row items-start'}>
                                 <div className={'mr-4'}>
-                                    <Image
+                                    <AppImage
                                         preview={false}
                                         src={selectedMarker.image}
                                         height={100}

@@ -1,9 +1,10 @@
 'use client'
 import React from 'react'
 import footerdata from 'data/footerdata.json'
-import { Col, Image, Row } from 'antd'
+import { Col, Row } from 'antd'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import Link from 'next/link'
+import AppImage from '@/components/common/Image/AppImage'
 
 export const AppFooter = () => {
     // useEffect(() => {
@@ -26,7 +27,7 @@ export const AppFooter = () => {
                             sm={8}
                             className={'text-center text-sm-left'}>
                             <Link className="footer-logo" href="#">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={publicUrl + footerdata.footerlogo}
                                 />
@@ -129,7 +130,7 @@ export const AppFooter = () => {
                                 <p className="">Ինֆոգրուպ ՍՊԸ</p>
                                 <ul>
                                     <li className={'d-flex flex-row mb-3'}>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 '/assets/img/svg/location-white.svg'
@@ -145,7 +146,7 @@ export const AppFooter = () => {
                                         </span>
                                     </li>
                                     <li className={'d-flex flex-row mb-3'}>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 '/assets/img/svg/mobile-white.svg'

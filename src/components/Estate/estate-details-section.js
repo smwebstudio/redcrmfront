@@ -8,7 +8,6 @@ import {
     Col,
     Divider,
     Form,
-    Image,
     Input,
     Modal,
     notification,
@@ -32,6 +31,7 @@ import LoanCalculator from '@/components/Forms/loan-calculator'
 import EstateCarousel from '@/components/Estate/estate-carousel'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 import EstatesGoogleMapSingle from '@/components/Estate/estatesGoogleMapSingle'
+import AppImage from '@/components/common/Image/AppImage'
 
 const { Text, Link } = Typography
 
@@ -186,7 +186,7 @@ function EstateDetailsSection(props) {
                                     className="flex flex-row align-items-center">
                                     {estate.room_count && (
                                         <Col className="mr-4 flex flex-row">
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
@@ -200,7 +200,7 @@ function EstateDetailsSection(props) {
 
                                     {estate.floor && (
                                         <Col className="mr-4 flex flex-row">
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
@@ -214,7 +214,7 @@ function EstateDetailsSection(props) {
 
                                     {estate.area_total && (
                                         <Col className="mr-3 flex flex-row">
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className="mr-2"
                                                 src={'/assets/img/svg/area.svg'}
@@ -383,7 +383,7 @@ function EstateDetailsSection(props) {
                                 {estate.contact && (
                                     <Row className={'mb-1'}>
                                         <Col xs={24} sm={8}>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className={''}
                                                 style={{
@@ -412,7 +412,7 @@ function EstateDetailsSection(props) {
                                             xs={24}
                                             className={'flex flex-col'}>
                                             <Text className="flex flex-row mb-1 justify-content-start text-dark font-size-12">
-                                                <Image
+                                                <AppImage
                                                     alt={'Red Group'}
                                                     className="mr-2"
                                                     src={
@@ -425,7 +425,7 @@ function EstateDetailsSection(props) {
                                                 </span>
                                             </Text>
                                             <Text className="flex flex-row justify-content-start text-dark font-size-12">
-                                                <Image
+                                                <AppImage
                                                     alt={'Red Group'}
                                                     className="mr-2"
                                                     src={

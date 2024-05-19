@@ -12,11 +12,6 @@ function SearchSection(props) {
 
     const filtersData = props.filtersData.data
 
-    console.log('SearchSection lng')
-    console.log(props.lng)
-
-    console.log(filtersData)
-
     return (
         <ContainerBoxed className={'container -mt-44'}>
             <div className="main-search-tabs">

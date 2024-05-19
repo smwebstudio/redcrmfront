@@ -1,12 +1,13 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Col, Image, Row, Table } from 'antd'
+import { Button, Col, Row, Table } from 'antd'
 import { apiURL } from '@/constants'
 import api from '@/hooks/api'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import { CheckOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
+import AppImage from '@/components/common/Image/AppImage'
 
 export async function EstateCompareCarousel({ props }) {
     const router = useRouter()
@@ -70,7 +71,7 @@ export async function EstateCompareCarousel({ props }) {
                     estatesDataFromApi.map(item => [
                         item.id.toString(),
                         item.image ? (
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 preview={false}
                                 src={item.image}

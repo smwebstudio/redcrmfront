@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Layout } from 'antd'
 import AppHeader from './AppHeader'
 import MoonLoading from '@/components/common/Loading/MoonLoading'
@@ -7,17 +7,17 @@ import { Content } from 'antd/es/layout/layout'
 import AppFooter from '@/components/common/Layout/AppFooter'
 
 const AppLayout = ({ children, lng }) => {
-    const [pageLoading, setPageLoading] = useState(true)
+    const [pageLoading, setPageLoading] = useState(false)
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setPageLoading(false)
-        }, 500)
-
-        return () => {
-            clearTimeout(timeoutId)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const timeoutId = setTimeout(() => {
+    //         setPageLoading(false)
+    //     }, 500)
+    //
+    //     return () => {
+    //         clearTimeout(timeoutId)
+    //     }
+    // }, [])
 
     return (
         <div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Image } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 function Professional(props) {
     let publicUrl = process.env.PUBLIC_URL + '/'
@@ -10,7 +10,7 @@ function Professional(props) {
         <div className="professional-card flex flex-row pt-4 pb-4">
             <div className="professional-image flex p-2">
                 <Link href={'professionals/' + professional.id}>
-                    <Image
+                    <AppImage
                         alt={'Red Group'}
                         preview={false}
                         width={50}
@@ -25,7 +25,7 @@ function Professional(props) {
                 </p>
                 <p className="mb-1">Անշարժ գույքի գործակալ</p>
                 <p className="flex mb-1 justify-content-start text-dark">
-                    <Image
+                    <AppImage
                         className="mr-2"
                         src={publicUrl + 'assets/img/svg/envelope.svg'}
                     />
@@ -34,7 +34,7 @@ function Professional(props) {
                     </span>
                 </p>
                 <p className="flex justify-content-start text-dark">
-                    <Image
+                    <AppImage
                         className="mr-2"
                         src={publicUrl + 'assets/img/svg/mobile.svg'}
                     />

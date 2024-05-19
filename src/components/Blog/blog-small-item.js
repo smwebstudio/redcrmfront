@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 function BlogSmallItem(props) {
     let BlogSmallItem = props.BlogSmallItem
@@ -10,15 +10,16 @@ function BlogSmallItem(props) {
         <div className="BlogSmallItem-card d-flex flex-row pt-4 pb-1">
             <div className={'row'}>
                 <div className="BlogSmallItem-image d-flex col-5">
-                    <Image alt={'Red Group'} src={BlogSmallItem.picture} />
+                    <AppImage alt={'Red Group'} src={BlogSmallItem.picture} />
                 </div>
                 <div className="BlogSmallItem-info d-flex p-0 flex-column justify-content-center col-7">
                     <p className="font-size-11 d-flex mb-2">
-                        <Image
+                        <AppImage
                             alt={'Red Group'}
                             src={'/assets/img/svg/calendar_icon.svg'}
                         />
-                        <Image className={'mr-1'} /> {BlogSmallItem.created_at}
+                        <AppImage className={'mr-1'} />{' '}
+                        {BlogSmallItem.created_at}
                         թ․
                     </p>
                     <p className="font-size-13 mt-1 mb-2 text-gray-800 text-dark">

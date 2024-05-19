@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import { Col, Image, Row, Spin } from 'antd'
+import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
+import AppImage from '@/components/common/Image/AppImage'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -32,7 +33,7 @@ export function BuildingItem(props) {
                         <Link
                             href={'developers/' + item.id}
                             style={{ width: '100%' }}>
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 src={item.image}
                                 preview={false}
@@ -64,7 +65,7 @@ export function BuildingItem(props) {
                             <Col xs={24}>
                                 <SmallParagraph className="address d-flex mt-2">
                                     <span>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={'/assets/img/svg/location.svg'}
                                         />

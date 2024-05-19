@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Col, Image, Row, Select } from 'antd'
+import { Col, Row, Select } from 'antd'
 import AmOption from '@/components/Global/Languages/am-option'
 import EnOption from '@/components/Global/Languages/en-option'
 import RuOption from '@/components/Global/Languages/ru-option'
@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 // import { useAuth } from '@/hooks/auth'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import { useTranslation } from '@/app/i18n/client'
+import AppImage from '@/components/common/Image/AppImage'
 
 export const AppTopbar = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
@@ -31,7 +32,7 @@ export const AppTopbar = ({ lng }) => {
                 <div className="container nav-container">
                     <Row gutter={8} justify="center" align="middle">
                         <Col xs={4} sm={1}>
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 src={'/assets/img/svg/phone.svg'}
                             />
@@ -47,7 +48,7 @@ export const AppTopbar = ({ lng }) => {
                                         xs={24}
                                         sm={4}
                                         className={'text-center'}>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={'/assets/img/svg/compare.svg'}
                                         />
@@ -65,7 +66,7 @@ export const AppTopbar = ({ lng }) => {
                                     sm={4}
                                     flex="auto"
                                     className={'text-center'}>
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/favorites.svg'}
                                     />
@@ -80,7 +81,7 @@ export const AppTopbar = ({ lng }) => {
                         <Col xs={4} sm={4} className={'border-right'}>
                             <Row gutter={4} justify="center" align="middle">
                                 <Col xs={24} sm={4} className={'text-center'}>
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/login.svg'}
                                     />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Image } from 'antd'
 import { apiURL } from '@/constants'
+import AppImage from '@/components/common/Image/AppImage'
 
 const onChange = key => {
     console.log(key)
@@ -44,7 +44,7 @@ export function EstateItems(props) {
                     <div className="single-feature">
                         <div className="thumb">
                             <Link href={'estates/' + item.id}>
-                                <Image alt={'Red Group'} src={item.image} />
+                                <AppImage alt={'Red Group'} src={item.image} />
                             </Link>
                         </div>
                         <div className="details">
@@ -55,13 +55,13 @@ export function EstateItems(props) {
                                 </div>
                                 <div className="col-6 text-right">
                                     <Link className="p-3" href="/">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={'/assets/img/svg/compare.svg'}
                                         />
                                     </Link>
                                     <Link className="p-3" href="/">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 '/assets/img/svg/favorites.svg'
@@ -75,7 +75,7 @@ export function EstateItems(props) {
                                 <div className="col-9">
                                     <p className="address d-flex">
                                         <span>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 src={
                                                     '/assets/img/svg/location.svg'
@@ -91,7 +91,7 @@ export function EstateItems(props) {
 
                             <ul className="info-list">
                                 <li className="mr-4">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/doors.svg'}
                                     />
@@ -99,7 +99,7 @@ export function EstateItems(props) {
                                 </li>
                                 {item.floor && (
                                     <li className="mr-4">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={'/assets/img/svg/floor.svg'}
                                         />
@@ -108,7 +108,7 @@ export function EstateItems(props) {
                                     </li>
                                 )}
                                 <li className="mr-3">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/area.svg'}
                                     />

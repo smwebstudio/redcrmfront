@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { Col, Image, Row } from 'antd'
+import { Col, Row } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 export function NotFound() {
     return (
@@ -9,7 +10,7 @@ export function NotFound() {
                 <Col
                     xs={24}
                     className="mt-5 mb-5 text-center flex flex-col items-center">
-                    <Image
+                    <AppImage
                         preview={false}
                         src={'/assets/img/svg/404.svg'}
                         alt="404"

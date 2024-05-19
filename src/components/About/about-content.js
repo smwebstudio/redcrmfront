@@ -1,6 +1,6 @@
 'use client'
 import React, { Component } from 'react'
-import { Image } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 class AboutContent extends Component {
     render() {
@@ -56,7 +56,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -81,7 +81,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -106,7 +106,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -131,7 +131,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -164,7 +164,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -189,7 +189,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -214,7 +214,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +
@@ -239,7 +239,7 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={
                                                 publicUrl +

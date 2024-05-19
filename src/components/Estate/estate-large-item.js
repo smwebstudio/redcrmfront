@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { Col, Image, Row } from 'antd'
+import { Col, Row } from 'antd'
+import AppImage from '@/components/common/Image/AppImage'
 
 export function EstateLargeItem(props) {
     let item = props.item
@@ -11,7 +12,7 @@ export function EstateLargeItem(props) {
                 <Row className="large-estate single-feature">
                     <Col span={6} className="thumb">
                         <Link href={'/estates/' + item.id}>
-                            <Image
+                            <AppImage
                                 alt={'Red Group'}
                                 className={'estate-image'}
                                 src={item.image}
@@ -26,13 +27,13 @@ export function EstateLargeItem(props) {
                             </div>
                             <div className="col-6 text-right justify-content-end d-flex">
                                 <Link className="p-3" href="/">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/compare.svg'}
                                     />
                                 </Link>
                                 <Link className="p-3" href="/">
-                                    <Image
+                                    <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/favorites.svg'}
                                     />
@@ -44,7 +45,7 @@ export function EstateLargeItem(props) {
                             <div className="col-12">
                                 <p className="address d-flex">
                                     <span>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             src={'/assets/img/svg/location.svg'}
                                         />
@@ -58,21 +59,21 @@ export function EstateLargeItem(props) {
 
                         <ul className="info-list">
                             <li className="mr-4">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/doors.svg'}
                                 />
                                 {item.floor}
                             </li>
                             <li className="mr-4">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/floor.svg'}
                                 />
                                 {item.floor} / {item.building_floor_count}
                             </li>
                             <li className="mr-3">
-                                <Image
+                                <AppImage
                                     alt={'Red Group'}
                                     src={'/assets/img/svg/area.svg'}
                                 />

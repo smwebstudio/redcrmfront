@@ -6,10 +6,6 @@ import { useTranslation } from '@/app/i18n/client'
 import BuildingItem from '@/components/Buildings/BuildingItem'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-const onChange = key => {
-    console.log(key)
-}
-
 export function BuildingList(props) {
     const { t } = useTranslation(props.lng, 'common')
 

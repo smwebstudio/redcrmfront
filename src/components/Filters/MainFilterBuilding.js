@@ -42,7 +42,6 @@ export default function MainFilterBuilding(props) {
 
     const { Option } = Select
 
-    console.log(filtersData)
     const [cities, setCities] = useState(initialProvince.cities)
     const [prices, setPrices] = useState(filtersData.data.prices.USD)
 

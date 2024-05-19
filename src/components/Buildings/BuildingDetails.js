@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ImageGallery from 'react-image-gallery'
-import { Button, Checkbox, Col, Divider, Form, Image, Row, Select } from 'antd'
+import { Button, Checkbox, Col, Divider, Form, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { EnvironmentOutlined, EyeOutlined } from '@ant-design/icons'
 import LoanCalculator from '@/components/Forms/loan-calculator'
@@ -11,6 +11,7 @@ import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import RedText from '@/components/Typography/text/RedText'
 import PlanItem from '@/components/Buildings/PlanItem'
+import AppImage from '@/components/common/Image/AppImage'
 
 const { Option } = Select
 
@@ -343,7 +344,7 @@ function BuildingDetails(props) {
                                     className="flex flex-row align-items-center">
                                     {developerData.room_count && (
                                         <Col className="mr-4 flex flex-row">
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
@@ -356,7 +357,7 @@ function BuildingDetails(props) {
 
                                     {developerData.floor && (
                                         <Col className="mr-4 flex flex-row">
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
@@ -371,7 +372,7 @@ function BuildingDetails(props) {
                                         <Col
                                             className="mr-3 flex flex-row"
                                             key={'col-area-total'}>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
@@ -403,7 +404,7 @@ function BuildingDetails(props) {
                                 <Row className={'mb-1'}>
                                     <Col xs={24} sm={24}>
                                         <DarkHeading3>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 preview={false}
                                                 src={
@@ -426,7 +427,7 @@ function BuildingDetails(props) {
                                         </SmallParagraph>
                                         <Divider />
                                         <DarkHeading3>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 preview={false}
                                                 src={
@@ -442,7 +443,7 @@ function BuildingDetails(props) {
                                         </SmallParagraph>
                                         <Divider />
                                         <DarkHeading3>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 preview={false}
                                                 src={
@@ -458,7 +459,7 @@ function BuildingDetails(props) {
                                         </SmallParagraph>
                                         <Divider />
                                         <DarkHeading3>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 preview={false}
                                                 src={
@@ -477,7 +478,7 @@ function BuildingDetails(props) {
                                         </SmallParagraph>
                                         <Divider />
                                         <DarkHeading3>
-                                            <Image
+                                            <AppImage
                                                 alt={'Red Group'}
                                                 preview={false}
                                                 src={
@@ -517,7 +518,7 @@ function BuildingDetails(props) {
                             <Col xs={24} className={'flex flex-row'}>
                                 {imagesData.map((img, idx) => (
                                     <div className={'mr-4'} key={'col-' + idx}>
-                                        <Image
+                                        <AppImage
                                             alt={'Red Group'}
                                             key={idx}
                                             width={100}
