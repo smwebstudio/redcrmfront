@@ -103,10 +103,7 @@ export default function EstateSearch(props) {
     }
 
     const handleAdditionalFilters = () => {
-        console.log(showAdditionalFilters)
         setShowAdditionalFilters(!showAdditionalFilters)
-
-        console.log(showAdditionalFilters)
     }
 
     const onFinish = async values => {

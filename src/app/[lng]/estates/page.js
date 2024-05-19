@@ -14,9 +14,6 @@ export default async function EstateListPage({
     let queryURL = ''
     const query = searchParams
 
-    console.log('searchParams')
-    console.log(searchParams)
-
     const queryData = Object.entries(query)
 
     const queryDataParamsInitial = queryData.reduce(
@@ -65,9 +62,6 @@ export default async function EstateListPage({
     )
     const estatesData = data.data
     const pageDataURL = apiURL + 'api/estates/filter/estates'
-
-    console.log('estatesData')
-    console.log(estatesData)
 
     return (
         <AppPage>

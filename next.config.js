@@ -9,7 +9,7 @@ const nextConfig = {
         NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
         API_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
         GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
-        PUBLIC_URL: 'http://localhost:3000',
+        PUBLIC_URL: process.env.PUBLIC_URL,
     },
     images: {
         remotePatterns: [

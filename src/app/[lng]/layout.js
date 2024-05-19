@@ -19,8 +19,6 @@ export async function generateStaticParams() {
 }
 
 export default function RootLayout({ children, params: { lng } }) {
-    console.log('lng root layout')
-    console.log(lng)
     return (
         <html lang={lng} dir={dir(lng)}>
             <body>

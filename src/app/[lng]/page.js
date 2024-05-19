@@ -15,8 +15,6 @@ export const metadata = {
 }
 
 export default async function HomePage({ params: { lng } }) {
-    console.log('lng homepage')
-    console.log(lng)
     const response = await api(lng).post('/api/filters', {})
     const filters = response.data
     const query = ''
