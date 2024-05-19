@@ -12,7 +12,7 @@ const onChange = key => {
 }
 
 function EstateMainTabs(props) {
-    const { t } = useTranslation('en', 'common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
 

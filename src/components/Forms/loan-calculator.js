@@ -32,7 +32,7 @@ const loanSchedule = new LoanSchedule({
     prodCalendar: 'ru',
 })
 const LoanCalculator = props => {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
     const router = useRouter()
     const [form] = Form.useForm()
 

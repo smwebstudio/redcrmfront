@@ -1,10 +1,8 @@
 import React from 'react'
-import Navbar from '@/components/React/global-components/navbar'
-import Footer from '@/components/React/global-components/footer'
 import EstateDetailsSection from '@/components/Estate/estate-details-section'
-import Topbar from '@/components/React/global-components/topbar'
 import api from '@/hooks/api'
 import { apiURL } from '@/constants'
+import AppPage from '@/components/common/Layout/AppPage'
 
 export default async function EstateViewPage({
     params: { lng, slug },
@@ -16,11 +14,8 @@ export default async function EstateViewPage({
     const estateData = estateDataResponse.data
 
     return (
-        <div>
-            <Topbar />
-            <Navbar />
+        <AppPage>
             <EstateDetailsSection estateData={estateData} />
-            <Footer />
-        </div>
+        </AppPage>
     )
 }

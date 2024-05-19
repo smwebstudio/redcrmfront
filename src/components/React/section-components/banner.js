@@ -8,7 +8,7 @@ import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import { useTranslation } from '@/app/i18n/client'
 
 function Banner(props) {
-    const { t } = useTranslation('en', 'common')
+    const { t } = useTranslation(props.lng, 'common')
 
     let publicUrl = process.env.PUBLIC_URL + '/'
 

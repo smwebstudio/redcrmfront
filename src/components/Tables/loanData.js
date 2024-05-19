@@ -3,7 +3,7 @@ import { Table } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 
 function LoanData({ payments }) {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const columns = [
         {

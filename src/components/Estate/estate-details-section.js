@@ -89,6 +89,9 @@ function EstateDetailsSection(props) {
         })
     }
 
+    console.log('images')
+    console.log(images)
+
     let currencies = [
         { value: 'AMD', label: 'AMD' },
         { value: 'USD', label: 'USD' },

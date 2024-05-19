@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Col } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
@@ -5,7 +6,7 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import MainFilterBuilding from '@/components/Filters/MainFilterBuilding'
 
 function SearchSectionDevelopers(props) {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const filtersData = props.filtersData
 
@@ -52,7 +53,10 @@ function SearchSectionDevelopers(props) {
                     <div className="tab-content">
                         <div className="tab-pane fade show active" id="tabs_1">
                             <div className="pt-4 pl-3 pr-4 bg-white">
-                                <MainFilterBuilding filtersData={filtersData} />
+                                <MainFilterBuilding
+                                    filtersData={filtersData}
+                                    lng={props.lng}
+                                />
                             </div>
                         </div>
                         {/*<div className="tab-pane fade" id="tabs_2">*/}

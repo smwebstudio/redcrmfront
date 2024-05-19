@@ -1,6 +1,7 @@
+'use client'
 import { Button, Checkbox, Col, Form, Input, Modal, Row, Select } from 'antd'
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 
@@ -15,7 +16,7 @@ export default function MainFilterBuilding(props) {
     const router = useRouter()
     const filtersData = props.filtersData
 
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const showModal = () => {

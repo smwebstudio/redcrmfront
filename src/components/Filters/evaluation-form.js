@@ -62,19 +62,35 @@ export default function EvaluationForm(props) {
         setCities(province.cities)
     }
 
+    function objectToQueryParams(obj) {
+        return Object.keys(obj)
+            .map(key => {
+                const trimmedKey = encodeURIComponent(key.replace(/\s+/g, ''))
+                const trimmedValue =
+                    obj[key] !== undefined
+                        ? encodeURIComponent(
+                              String(obj[key]).replace(/\s+/g, ''),
+                          )
+                        : undefined
+                return trimmedValue !== undefined
+                    ? trimmedKey + '=' + trimmedValue
+                    : ''
+            })
+            .filter(param => param !== '') // Filter out empty parameters
+            .join('&')
+    }
+
     const onFinish = values => {
+        setLoading(true)
         const queryData = Object.entries(values)
-
         let query = {}
-
         queryData.forEach(function (param) {
             query[param[0]] = param[1]
         })
-
-        router.push({
-            pathname: '/search',
-            query: query,
-        })
+        const queryString = objectToQueryParams(query)
+        const updateLink = '/search?' + queryString
+        console.log(updateLink)
+        router.push(updateLink)
     }
 
     return (

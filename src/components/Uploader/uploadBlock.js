@@ -30,7 +30,7 @@ const props = {
 }
 
 const UploadBlock = () => {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
     const [previewOpen, setPreviewOpen] = useState(false)
     const [previewImage, setPreviewImage] = useState('')
     const [previewTitle, setPreviewTitle] = useState('')

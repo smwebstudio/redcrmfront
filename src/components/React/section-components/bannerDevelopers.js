@@ -1,10 +1,11 @@
+'use client'
 import React from 'react'
 import { useTranslation } from '@/app/i18n/client'
 import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import WhiteParagraph from '@/components/Typography/paragraph/WhiteParagraph'
 
 function BannerDevelopers(props) {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     let publicUrl = process.env.PUBLIC_URL + '/'
 

@@ -15,16 +15,17 @@ export default function MainFilter(props) {
     const [form] = Form.useForm()
     const router = useRouter()
     const filtersData = props.filtersData
-
+    let initialProvince = filtersData.locations.find(x => x.id === 1)
+    const [loading, setLoading] = useState(false)
     const [estateType, setEstateType] = useState(1)
-    const [locationProvince, setLocationProvince] = useState(1)
+    const [locationProvince, setLocationProvince] = useState(initialProvince)
     const [price, setPrice] = useState(null)
     const [currency, setCurrency] = useState('AMD')
     const [roomCount, setRoomCount] = useState(null)
+    const [cities, setCities] = useState(initialProvince.cities)
+    const [prices, setPrices] = useState(filtersData.prices.USD)
 
-    const { t } = useTranslation('en', 'common')
-
-    let initialProvince = filtersData.data.locations.find(x => x.id === 1)
+    const { t } = useTranslation(props.lng, 'common')
 
     let estateTypeOptions = []
     let provinces = []
@@ -36,31 +37,29 @@ export default function MainFilter(props) {
     ]
 
     console.log(filtersData)
-    const [cities, setCities] = useState(initialProvince.cities)
-    const [prices, setPrices] = useState(filtersData.data.prices.USD)
 
-    filtersData.data.estate_types.forEach(value => {
+    filtersData.estate_types.forEach(value => {
         estateTypeOptions.push({
             value: value.id,
             label: value.label,
         })
     })
 
-    filtersData.data.locations.forEach(value => {
+    filtersData.locations.forEach(value => {
         provinces.push({
             value: value.id,
             label: value.label,
         })
     })
 
-    // filtersData.data.prices.USD.forEach((value) => {
+    // filtersData.prices.USD.forEach((value) => {
     //     prices.push({
     //         value: value.value,
     //         label: value.label
     //     });
     // });
 
-    filtersData.data.rooms.forEach(value => {
+    filtersData.rooms.forEach(value => {
         rooms.push({
             value: value.id,
             label: value.label,
@@ -75,28 +74,46 @@ export default function MainFilter(props) {
     })
 
     const handleProvinceChange = value => {
-        let province = filtersData.data.locations.find(x => x.id === value)
+        let province = filtersData.locations.find(x => x.id === value)
         setCities([])
         setCities(province.cities)
+        setLocationProvince(province)
     }
 
     const handleCurrencyChange = (value, option) => {
-        setPrices(filtersData.data.prices[option.label])
+        setPrices(filtersData.prices[option.label])
         form.setFieldValue('prices', null)
     }
 
+    function objectToQueryParams(obj) {
+        return Object.keys(obj)
+            .map(key => {
+                const trimmedKey = encodeURIComponent(key.replace(/\s+/g, ''))
+                const trimmedValue =
+                    obj[key] !== undefined
+                        ? encodeURIComponent(
+                              String(obj[key]).replace(/\s+/g, ''),
+                          )
+                        : undefined
+                return trimmedValue !== undefined
+                    ? trimmedKey + '=' + trimmedValue
+                    : ''
+            })
+            .filter(param => param !== '') // Filter out empty parameters
+            .join('&')
+    }
+
     const onFinish = values => {
+        setLoading(true)
         const queryData = Object.entries(values)
         let query = {}
-
         queryData.forEach(function (param) {
             query[param[0]] = param[1]
         })
-
-        router.push({
-            pathname: '/estates',
-            query: query,
-        })
+        const queryString = objectToQueryParams(query)
+        const updateLink = '/estates?' + queryString
+        console.log(updateLink)
+        router.push(updateLink)
     }
 
     return (
@@ -119,7 +136,7 @@ export default function MainFilter(props) {
                             <Select
                                 showSearch
                                 placeholder={t('label.type')}
-                                bordered={false}
+                                variant="borderless"
                                 optionFilterProp="children"
                                 options={estateTypeOptions}
                             />
@@ -136,11 +153,11 @@ export default function MainFilter(props) {
                             <Select
                                 showSearch
                                 placeholder={t('label.locationProvince')}
-                                bordered={false}
+                                variant="borderless"
                                 optionFilterProp="children"
                                 options={provinces}
                                 style={{ width: '100%' }}
-                                dropdownMatchSelectWidth={false}
+                                popupMatchSelectWidth={false}
                                 onChange={handleProvinceChange}
                             />
                         </Form.Item>
@@ -156,10 +173,10 @@ export default function MainFilter(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant="borderless"
                                 optionFilterProp="children"
                                 style={{ width: '100%' }}
-                                dropdownMatchSelectWidth={false}
+                                popupMatchSelectWidth={false}
                                 options={cities}
                                 allowClear
                             />
@@ -176,7 +193,7 @@ export default function MainFilter(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant="borderless"
                                 optionFilterProp="children"
                                 options={prices}
                                 allowClear
@@ -194,7 +211,7 @@ export default function MainFilter(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant="borderless"
                                 optionFilterProp="children"
                                 options={currencies}
                                 onChange={handleCurrencyChange}
@@ -212,7 +229,7 @@ export default function MainFilter(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant="borderless"
                                 optionFilterProp="children"
                                 options={rooms}
                             />
@@ -228,6 +245,7 @@ export default function MainFilter(props) {
                     <Col xs={12} sm={4} className="field-item   ">
                         <Button
                             htmlType="submit"
+                            loading={loading}
                             className="btn btn-main w-100"
                             size="large">
                             {t('button.search')}

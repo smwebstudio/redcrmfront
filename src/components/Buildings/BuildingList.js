@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { Col, Pagination, Row, Skeleton } from 'antd'
 import axios from 'axios'
@@ -10,7 +11,7 @@ const onChange = key => {
 }
 
 export function BuildingList(props) {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const [loading, setLoading] = useState(false)
     const changeEstatesFoundCount = props.changeEstatesFoundCount

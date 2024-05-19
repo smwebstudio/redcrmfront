@@ -1,3 +1,4 @@
+'use client'
 import {
     Affix,
     Button,
@@ -13,7 +14,7 @@ import React, { useEffect, useState } from 'react'
 import { CheckCircleOutlined } from '@ant-design/icons'
 import { useTranslation } from '@/app/i18n/client'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import api from '@/hooks/api'
 
 const formItemLayout = {
@@ -35,8 +36,8 @@ const formItemLayout = {
     },
 }
 
-const EstimateForm = () => {
-    const { t, lang } = useTranslation('common')
+const EstimateForm = ({ params }) => {
+    const { t, lang } = useTranslation('en', 'common')
 
     const router = useRouter()
     const { locale } = router

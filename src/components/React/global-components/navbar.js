@@ -7,7 +7,7 @@ import ContainerFluid from '@/components/Containers/ContainerFluid'
 import { useTranslation } from '@/app/i18n/client'
 
 function Navbar() {
-    const { t } = useTranslation('en', 'common')
+    const { t } = useTranslation(props.lng, 'common')
 
     return (
         <ContainerFluid>

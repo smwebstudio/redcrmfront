@@ -4117,7 +4117,7 @@
     font-weight: normal;
     font-style: normal;
 
-    src: url('../fonts/slick.eot');
+    src: url('../assets/fonts/slick.eot');
     src: url('../fonts/slick.eot?#iefix') format('embedded-opentype'), url('../fonts/slick.svg#slick') format('svg');
 }
 /* Arrows */

@@ -4,11 +4,18 @@ import MainSearch from '@/components/Filters/main-search'
 import { Col } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import Link from 'next/link'
+import MainFilter from '@/components/Filters/main-filter'
 
 function SearchSection(props) {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
-    const filtersData = props.filtersData
+    const filtersData = props.filtersData.data
+
+    console.log('SearchSection lng')
+    console.log(props.lng)
+
+    console.log(filtersData)
 
     return (
         <ContainerBoxed className={'container -mt-44'}>
@@ -17,48 +24,50 @@ function SearchSection(props) {
                     <Col xs={0} sm={24}>
                         <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
                             <li className="nav-item">
-                                <a
+                                <Link
                                     className="nav-link active"
                                     data-toggle="tab"
                                     href="#tabs_1">
                                     {t('button.sale')}
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a
+                                <Link
                                     className="nav-link"
                                     data-toggle="tab"
                                     href="#tabs_2">
                                     {t('button.rent')}
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a
+                                <Link
                                     className="nav-link"
                                     data-toggle="tab"
                                     href="#tabs_3">
                                     {t('label.title.fee.normal')}
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="btn btn-main" href="/estates/map">
+                                <Link
+                                    className="btn btn-main"
+                                    href="/estates/map">
                                     {t('label.searchMap')}
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a
+                                <Link
                                     className="nav-link"
                                     data-toggle="tab"
                                     href="#tabs_4">
                                     {t('label.search')}
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </Col>
                     <div className="tab-content">
                         <div className="tab-pane fade show active" id="tabs_1">
                             <div className="pt-4 pl-3 bg-white pr-4">
-                                {/*<MainFilter filtersData={filtersData} />*/}
+                                <MainFilter filtersData={filtersData} />
                             </div>
                         </div>
                         {/*<div className="tab-pane fade" id="tabs_2">*/}

@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Link from 'next/link'
 import { Col, Row, Select } from 'antd'
@@ -12,7 +10,7 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import { useTranslation } from '@/app/i18n/client'
 
 export const Topbar = ({ lng }) => {
-    const { t } = useTranslation('en', 'common')
+    const { t } = useTranslation(lng, 'common')
 
     // const { logout, user } = useAuth()
 

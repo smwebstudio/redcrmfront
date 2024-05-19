@@ -18,13 +18,21 @@ export function middleware(req) {
     if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
     if (!lng) lng = fallbackLng
 
+    const {
+        nextUrl: { search },
+    } = req
+    const urlSearchParams = new URLSearchParams(search)
+    const params = Object.fromEntries(urlSearchParams.entries())
+
+    const urlParams = '?' + new URLSearchParams(params)
+
     // Redirect if lng in path is not supported
     if (
         !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
         !req.nextUrl.pathname.startsWith('/_next')
     ) {
         return NextResponse.redirect(
-            new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
+            new URL(`/${lng}${req.nextUrl.pathname}${urlParams}`, req.url),
         )
     }
 

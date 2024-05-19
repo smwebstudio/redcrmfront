@@ -23,7 +23,7 @@ export default function MapFilters(props) {
     const changeEstatesData = props.changeEstatesData
     const setLoading = props.setLoading
     const setPageDataURL = props.setPageDataURL
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     let initialProvince = filtersData.data.locations.find(x => x.id === 1)
 

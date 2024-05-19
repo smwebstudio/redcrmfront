@@ -1,16 +1,17 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, Col, Image, Row, Table } from 'antd'
 import { apiURL } from '@/constants'
 import api from '@/hooks/api'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import { CheckOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 
-export function EstateCompareCarousel() {
+export function EstateCompareCarousel({ props }) {
     const router = useRouter()
     const { locale } = router
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const [estatesData, setEstatesData] = useState([])
     const [columns, setColumns] = useState([])

@@ -11,7 +11,7 @@ const onChange = key => {
 }
 
 export function EstatesSection(props) {
-    const { t } = useTranslation('common')
+    const { t } = useTranslation(props.lng, 'common')
 
     const [loading, setLoading] = useState(false)
     const changeEstatesFoundCount = props.changeEstatesFoundCount

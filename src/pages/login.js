@@ -14,12 +14,9 @@ import Navbar from '@/components/React/global-components/navbar'
 import LoginFooter from '@/components/LoginFooter'
 import Footer from '@/components/React/global-components/footer'
 import Topbar from '@/components/React/global-components/topbar'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from '@/app/i18n/client'
 
 const Login = () => {
     const router = useRouter()
-    const { t } = useTranslation()
 
     const { login } = useAuth({
         middleware: 'guest',

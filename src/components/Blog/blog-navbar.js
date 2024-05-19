@@ -1,20 +1,21 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
-function BlogNavbar() {
-    const router = useRouter()
+export const BlogNavbar = ({ title, type }) => {
+    const pathname = usePathname()
 
-    const newsActive = router.asPath.includes('/blog/news', 0)
-    const articlesActive = router.asPath.includes('/blog/articles', 0)
-    const statisticsActive = router.asPath.includes('/blog/statistics', 0)
-    const pricesActive = router.asPath.includes('/blog/prices', 0)
+    const newsActive = pathname.includes('/blog/news', 0)
+    const articlesActive = pathname.includes('/blog/articles', 0)
+    const statisticsActive = pathname.includes('/blog/statistics', 0)
+    const pricesActive = pathname.includes('/blog/prices', 0)
 
     return (
         <div className="">
             <div className="container nav-container">
                 <ul className="blog-nav">
-                    <li className={router.pathname == '/blog' ? 'active' : ''}>
+                    <li className={pathname === '/blog' ? 'active' : ''}>
                         <Link href="/blog">Բոլորը</Link>
                     </li>
                     <li className={newsActive ? 'active' : ''}>

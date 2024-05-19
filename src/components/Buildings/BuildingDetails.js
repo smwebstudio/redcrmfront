@@ -15,8 +15,8 @@ import PlanItem from '@/components/Buildings/PlanItem'
 const { Option } = Select
 
 function BuildingDetails(props) {
-    const { t } = useTranslation('common')
-    const developerData = props.developerData.developerData
+    const { t } = useTranslation(props.lng, 'common')
+    const developerData = props.developerData
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const showModal = () => {
