@@ -25,7 +25,7 @@ export function EstateProfessionalList(props) {
             <div className="property-area ">
                 <Row>
                     {estatesData.data?.map((item, index) => (
-                        <Col span={24}>
+                        <Col span={24} key={'col-' + index}>
                             <EstateLargeItem key={index} item={item} />
                         </Col>
                     ))}

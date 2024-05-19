@@ -1,6 +1,7 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Col, Row, Select } from 'antd'
+import { Col, Image, Row, Select } from 'antd'
 import AmOption from '@/components/Global/Languages/am-option'
 import EnOption from '@/components/Global/Languages/en-option'
 import RuOption from '@/components/Global/Languages/ru-option'
@@ -30,7 +31,10 @@ export const AppTopbar = ({ lng }) => {
                 <div className="container nav-container">
                     <Row gutter={8} justify="center" align="middle">
                         <Col xs={4} sm={1}>
-                            <img src={'/assets/img/svg/phone.svg'} alt="logo" />
+                            <Image
+                                alt={'Red Group'}
+                                src={'/assets/img/svg/phone.svg'}
+                            />
                         </Col>
                         <Col xs={0} sm={11}>
                             <span>37496 908 900, 37411 970 908</span>
@@ -43,9 +47,9 @@ export const AppTopbar = ({ lng }) => {
                                         xs={24}
                                         sm={4}
                                         className={'text-center'}>
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={'/assets/img/svg/compare.svg'}
-                                            alt="logo"
                                         />
                                     </Col>
                                     <Col xs={0} sm={20}>
@@ -61,9 +65,9 @@ export const AppTopbar = ({ lng }) => {
                                     sm={4}
                                     flex="auto"
                                     className={'text-center'}>
-                                    <img
+                                    <Image
+                                        alt={'Red Group'}
                                         src={'/assets/img/svg/favorites.svg'}
-                                        alt="logo"
                                     />
                                 </Col>
                                 <Col xs={0} sm={16}>
@@ -76,9 +80,9 @@ export const AppTopbar = ({ lng }) => {
                         <Col xs={4} sm={4} className={'border-right'}>
                             <Row gutter={4} justify="center" align="middle">
                                 <Col xs={24} sm={4} className={'text-center'}>
-                                    <img
+                                    <Image
+                                        alt={'Red Group'}
                                         src={'/assets/img/svg/login.svg'}
-                                        alt="logo"
                                     />
                                 </Col>
                                 {!user && (

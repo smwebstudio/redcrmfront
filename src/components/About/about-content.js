@@ -1,5 +1,6 @@
 'use client'
 import React, { Component } from 'react'
+import { Image } from 'antd'
 
 class AboutContent extends Component {
     render() {
@@ -55,7 +56,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -79,7 +81,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -103,7 +106,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -127,7 +131,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -159,7 +164,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -183,7 +189,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -207,7 +214,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'
@@ -231,7 +239,8 @@ class AboutContent extends Component {
                             <div className={'col-xl-3 col-lg-4 col-sm-6 '}>
                                 <div className="single-intro text-lg-left text-left">
                                     <div className="mb-3">
-                                        <img
+                                        <Image
+                                            alt={'Red Group'}
                                             src={
                                                 publicUrl +
                                                 'assets/img/svg/about/1.svg'

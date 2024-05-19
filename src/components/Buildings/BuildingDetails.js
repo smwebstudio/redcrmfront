@@ -343,12 +343,12 @@ function BuildingDetails(props) {
                                     className="flex flex-row align-items-center">
                                     {developerData.room_count && (
                                         <Col className="mr-4 flex flex-row">
-                                            <img
+                                            <Image
+                                                alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
                                                     '/assets/img/svg/developer.svg'
                                                 }
-                                                alt="logo"
                                             />
                                             Կառուցապատող: «Օմեգա Պլյուս» ՍՊԸ
                                         </Col>
@@ -356,25 +356,27 @@ function BuildingDetails(props) {
 
                                     {developerData.floor && (
                                         <Col className="mr-4 flex flex-row">
-                                            <img
+                                            <Image
+                                                alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
                                                     '/assets/img/svg/builder.svg'
                                                 }
-                                                alt="logo"
                                             />
                                             Շինարար: «Միդիս Քնսթրաքշն» ՍՊԸ
                                         </Col>
                                     )}
 
                                     {developerData.area_total && (
-                                        <Col className="mr-3 flex flex-row">
-                                            <img
+                                        <Col
+                                            className="mr-3 flex flex-row"
+                                            key={'col-area-total'}>
+                                            <Image
+                                                alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
                                                     '/assets/img/svg/controller.svg'
                                                 }
-                                                alt="logo"
                                             />
                                             Նախագծի կառավարում: «1SQ» ՍՊԸ
                                         </Col>
@@ -402,6 +404,7 @@ function BuildingDetails(props) {
                                     <Col xs={24} sm={24}>
                                         <DarkHeading3>
                                             <Image
+                                                alt={'Red Group'}
                                                 preview={false}
                                                 src={
                                                     '/assets/img/svg/redCalendar.svg'
@@ -424,6 +427,7 @@ function BuildingDetails(props) {
                                         <Divider />
                                         <DarkHeading3>
                                             <Image
+                                                alt={'Red Group'}
                                                 preview={false}
                                                 src={
                                                     '/assets/img/svg/redBank.svg'
@@ -439,6 +443,7 @@ function BuildingDetails(props) {
                                         <Divider />
                                         <DarkHeading3>
                                             <Image
+                                                alt={'Red Group'}
                                                 preview={false}
                                                 src={
                                                     '/assets/img/svg/redSale.svg'
@@ -454,6 +459,7 @@ function BuildingDetails(props) {
                                         <Divider />
                                         <DarkHeading3>
                                             <Image
+                                                alt={'Red Group'}
                                                 preview={false}
                                                 src={
                                                     '/assets/img/svg/mobile.svg'
@@ -472,6 +478,7 @@ function BuildingDetails(props) {
                                         <Divider />
                                         <DarkHeading3>
                                             <Image
+                                                alt={'Red Group'}
                                                 preview={false}
                                                 src={
                                                     '/assets/img/svg/mobile.svg'
@@ -509,13 +516,13 @@ function BuildingDetails(props) {
                             </Col>
                             <Col xs={24} className={'flex flex-row'}>
                                 {imagesData.map((img, idx) => (
-                                    <div className={'mr-4'}>
+                                    <div className={'mr-4'} key={'col-' + idx}>
                                         <Image
+                                            alt={'Red Group'}
                                             key={idx}
                                             width={100}
                                             height={100}
                                             src={img}
-                                            alt={`Image ${idx + 1}`}
                                         />
                                     </div>
                                 ))}
@@ -603,7 +610,7 @@ function BuildingDetails(props) {
                             <Col xs={24}>
                                 <Row gutter={32}>
                                     {filteredPlans.map((item, index) => (
-                                        <Col span={8}>
+                                        <Col span={8} key={'col-' + index}>
                                             <PlanItem key={index} item={item} />
                                         </Col>
                                     ))}

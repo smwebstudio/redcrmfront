@@ -8,6 +8,7 @@ import {
     Col,
     Divider,
     Form,
+    Image,
     Input,
     Modal,
     notification,
@@ -185,12 +186,12 @@ function EstateDetailsSection(props) {
                                     className="flex flex-row align-items-center">
                                     {estate.room_count && (
                                         <Col className="mr-4 flex flex-row">
-                                            <img
+                                            <Image
+                                                alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
                                                     '/assets/img/svg/doors.svg'
                                                 }
-                                                alt="logo"
                                             />
                                             {estate.room_count}{' '}
                                             {t('common:label.design.room')}
@@ -199,12 +200,12 @@ function EstateDetailsSection(props) {
 
                                     {estate.floor && (
                                         <Col className="mr-4 flex flex-row">
-                                            <img
+                                            <Image
+                                                alt={'Red Group'}
                                                 className="mr-2"
                                                 src={
                                                     '/assets/img/svg/floor.svg'
                                                 }
-                                                alt="logo"
                                             />
                                             {estate.floor} /{' '}
                                             {estate.building_floor_count}
@@ -213,10 +214,10 @@ function EstateDetailsSection(props) {
 
                                     {estate.area_total && (
                                         <Col className="mr-3 flex flex-row">
-                                            <img
+                                            <Image
+                                                alt={'Red Group'}
                                                 className="mr-2"
                                                 src={'/assets/img/svg/area.svg'}
-                                                alt="logo"
                                             />
                                             {Math.round(estate.area_total)} քմ
                                         </Col>
@@ -240,7 +241,7 @@ function EstateDetailsSection(props) {
                                     onCancel={handleCancel}
                                     width={700}
                                     footer={[
-                                        <Col>
+                                        <Col key={'modal'}>
                                             <Button
                                                 key="back"
                                                 onClick={handleCancel}>
@@ -382,7 +383,8 @@ function EstateDetailsSection(props) {
                                 {estate.contact && (
                                     <Row className={'mb-1'}>
                                         <Col xs={24} sm={8}>
-                                            <img
+                                            <Image
+                                                alt={'Red Group'}
                                                 className={''}
                                                 style={{
                                                     borderRadius: '50%',
@@ -410,7 +412,8 @@ function EstateDetailsSection(props) {
                                             xs={24}
                                             className={'flex flex-col'}>
                                             <Text className="flex flex-row mb-1 justify-content-start text-dark font-size-12">
-                                                <img
+                                                <Image
+                                                    alt={'Red Group'}
                                                     className="mr-2"
                                                     src={
                                                         publicUrl +
@@ -422,7 +425,8 @@ function EstateDetailsSection(props) {
                                                 </span>
                                             </Text>
                                             <Text className="flex flex-row justify-content-start text-dark font-size-12">
-                                                <img
+                                                <Image
+                                                    alt={'Red Group'}
                                                     className="mr-2"
                                                     src={
                                                         publicUrl +
@@ -459,6 +463,7 @@ function EstateDetailsSection(props) {
                                         <Col
                                             xs={24}
                                             sm={12}
+                                            key={'col-' + item[1]['value']}
                                             className={
                                                 'pr-1 d-flex  align-items-center font-size-13 mb-3'
                                             }>
@@ -511,6 +516,7 @@ function EstateDetailsSection(props) {
                                         <Col
                                             xs={24}
                                             sm={12}
+                                            key={'col-' + i}
                                             className={
                                                 'pr-1 d-flex  align-items-center font-size-13 mb-3'
                                             }>

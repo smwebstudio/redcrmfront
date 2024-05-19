@@ -1,19 +1,21 @@
-import React, { Component, useEffect, useState } from "react";
-import Link from "next/link";
-import { Col, Row } from "antd";
-
+import React from 'react'
+import Link from 'next/link'
+import { Col, Image, Row } from 'antd'
 
 export function EstateLargeItem(props) {
-
-    let item = props.item;
+    let item = props.item
 
     return (
         <div className="">
-            <div key={item.id} className={" mb-5  cat" + item.contract_type_id}>
+            <div key={item.id} className={' mb-5  cat' + item.contract_type_id}>
                 <Row className="large-estate single-feature">
                     <Col span={6} className="thumb">
-                        <Link href={"/estates/" + item.id}>
-                            <img className={"estate-image"}  src={item.image} alt="img" />
+                        <Link href={'/estates/' + item.id}>
+                            <Image
+                                alt={'Red Group'}
+                                className={'estate-image'}
+                                src={item.image}
+                            />
                         </Link>
                     </Col>
                     <Col span={18} className="details">
@@ -24,10 +26,16 @@ export function EstateLargeItem(props) {
                             </div>
                             <div className="col-6 text-right justify-content-end d-flex">
                                 <Link className="p-3" href="/">
-                                    <img src={"/assets/img/svg/compare.svg"} alt="logo" />
+                                    <Image
+                                        alt={'Red Group'}
+                                        src={'/assets/img/svg/compare.svg'}
+                                    />
                                 </Link>
                                 <Link className="p-3" href="/">
-                                    <img src={"/assets/img/svg/favorites.svg"} alt="logo" />
+                                    <Image
+                                        alt={'Red Group'}
+                                        src={'/assets/img/svg/favorites.svg'}
+                                    />
                                 </Link>
                             </div>
                         </div>
@@ -35,25 +43,47 @@ export function EstateLargeItem(props) {
                         <div className="row">
                             <div className="col-12">
                                 <p className="address d-flex">
-                                    <span><img src={"/assets/img/svg/location.svg"} alt="logo" /></span>
-                                    <span className="ml-2">{item.full_address}</span>
+                                    <span>
+                                        <Image
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/location.svg'}
+                                        />
+                                    </span>
+                                    <span className="ml-2">
+                                        {item.full_address}
+                                    </span>
                                 </p>
                             </div>
                         </div>
 
                         <ul className="info-list">
-                            <li className="mr-4"><img src={"/assets/img/svg/doors.svg"} alt="logo" />{item.floor}</li>
-                            <li className="mr-4"><img src={"/assets/img/svg/floor.svg"} alt="logo" />{item.floor} / {item.building_floor_count}</li>
-                            <li className="mr-3"><img src={"/assets/img/svg/area.svg"} alt="logo" />{Math.round(item.area_total)} քմ</li>
+                            <li className="mr-4">
+                                <Image
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/doors.svg'}
+                                />
+                                {item.floor}
+                            </li>
+                            <li className="mr-4">
+                                <Image
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/floor.svg'}
+                                />
+                                {item.floor} / {item.building_floor_count}
+                            </li>
+                            <li className="mr-3">
+                                <Image
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/area.svg'}
+                                />
+                                {Math.round(item.area_total)} քմ
+                            </li>
                         </ul>
                     </Col>
                 </Row>
             </div>
         </div>
-    );
+    )
+}
 
-
-};
-
-
-export default EstateLargeItem;
+export default EstateLargeItem

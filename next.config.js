@@ -27,7 +27,6 @@ const nextConfig = {
             },
         ],
     },
-    debug: true,
     reactStrictMode: false,
     output: 'standalone',
 }

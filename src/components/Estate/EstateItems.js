@@ -1,97 +1,126 @@
-import React, { Component, useEffect, useState } from "react";
-import sectiondata from "data/sections.json";
-import parse from "html-react-parser";
-import Link from "next/link";
-import api from "@/hooks/api";
-import { Tabs } from "antd";
-import { apiURL } from "@/constants";
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { Image } from 'antd'
+import { apiURL } from '@/constants'
 
-const onChange = (key) => {
-    console.log(key);
-};
+const onChange = key => {
+    console.log(key)
+}
 
 export function EstateItems(props) {
+    console.log(props)
+    console.log(54)
+    console.log(props.estates)
+    console.log(props.type)
 
-    console.log(props);
-    console.log(54);
-    console.log(props.estates);
-    console.log(props.type);
+    console.log('props')
+    console.log(props)
 
-    console.log("props");
-    console.log(props);
-
-    const changeEstatesFoundCount = props.changeEstatesFoundCount;
-    const [estatesData, setEstatesData] = useState([]);
+    const changeEstatesFoundCount = props.changeEstatesFoundCount
+    const [estatesData, setEstatesData] = useState([])
     useEffect(() => {
-        fetch(apiURL + "api/estates/" + props.type)
+        fetch(apiURL + 'api/estates/' + props.type)
             .then(res => res.json())
             .then(data => {
-                setEstatesData(data);
-                changeEstatesFoundCount(data.meta.total);
-            }).catch((e) => {
-            console.log(e);
-        });
-    }, []);
+                setEstatesData(data)
+                changeEstatesFoundCount(data.meta.total)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }, [])
 
-    let publicUrl = process.env.PUBLIC_URL + "/";
-    let imagealt = "image";
+    let publicUrl = process.env.PUBLIC_URL + '/'
+    let imagealt = 'image'
 
-
-    return <>
-        {estatesData.data?.map((item, i) =>
-            <div key={i} className={"col-lg-4 col-sm-6 mb-5 cat" + item.contract_type_id}>
-                <div className="single-feature">
-                    <div className="thumb">
-                        <Link href={"estates/" + item.id}>
-                            <img src={item.image} alt="img" />
-                        </Link>
-                    </div>
-                    <div className="details">
-                        <div className="row mb-3">
-                            <div className="col-6">
-                                <h6 className="price">{item.price}</h6>
-                                <del>{item.old_price}</del>
-                            </div>
-                            <div className="col-6 text-right">
-                                <Link className="p-3" href="/">
-                                    <img src={"/assets/img/svg/compare.svg"} alt="logo" />
-                                </Link>
-                                <Link className="p-3" href="/">
-                                    <img src={"/assets/img/svg/favorites.svg"} alt="logo" />
-                                </Link>
-                            </div>
+    return (
+        <>
+            {estatesData.data?.map((item, i) => (
+                <div
+                    key={i}
+                    className={
+                        'col-lg-4 col-sm-6 mb-5 cat' + item.contract_type_id
+                    }>
+                    <div className="single-feature">
+                        <div className="thumb">
+                            <Link href={'estates/' + item.id}>
+                                <Image alt={'Red Group'} src={item.image} />
+                            </Link>
                         </div>
-
-                        <div className="row">
-                            <div className="col-9">
-                                <p className="address d-flex">
-                                    <span><img src={"/assets/img/svg/location.svg"} alt="logo" /></span>
-                                    <span className="ml-2">{item.full_address}</span>
-                                </p>
+                        <div className="details">
+                            <div className="row mb-3">
+                                <div className="col-6">
+                                    <h6 className="price">{item.price}</h6>
+                                    <del>{item.old_price}</del>
+                                </div>
+                                <div className="col-6 text-right">
+                                    <Link className="p-3" href="/">
+                                        <Image
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/compare.svg'}
+                                        />
+                                    </Link>
+                                    <Link className="p-3" href="/">
+                                        <Image
+                                            alt={'Red Group'}
+                                            src={
+                                                '/assets/img/svg/favorites.svg'
+                                            }
+                                        />
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
 
-                        <ul className="info-list">
-                            <li className="mr-4"><img src={"/assets/img/svg/doors.svg"} alt="logo" />{item.floor}
-                            </li>
-                            {item.floor &&
+                            <div className="row">
+                                <div className="col-9">
+                                    <p className="address d-flex">
+                                        <span>
+                                            <Image
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/location.svg'
+                                                }
+                                            />
+                                        </span>
+                                        <span className="ml-2">
+                                            {item.full_address}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
 
-                                <li className="mr-4"><img src={"/assets/img/svg/floor.svg"}
-                                                          alt="logo" />{item.floor} / {item.building_floor_count}
+                            <ul className="info-list">
+                                <li className="mr-4">
+                                    <Image
+                                        alt={'Red Group'}
+                                        src={'/assets/img/svg/doors.svg'}
+                                    />
+                                    {item.floor}
                                 </li>
-                            }
-                            <li className="mr-3"><img src={"/assets/img/svg/area.svg"}
-                                                      alt="logo" />{Math.round(item.area_total)} քմ
-                            </li>
-                        </ul>
+                                {item.floor && (
+                                    <li className="mr-4">
+                                        <Image
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/floor.svg'}
+                                        />
+                                        {item.floor} /{' '}
+                                        {item.building_floor_count}
+                                    </li>
+                                )}
+                                <li className="mr-3">
+                                    <Image
+                                        alt={'Red Group'}
+                                        src={'/assets/img/svg/area.svg'}
+                                    />
+                                    {Math.round(item.area_total)} քմ
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
-        }
-    </>;
+            ))}
+        </>
+    )
+}
 
-
-};
-
-export default EstateItems;
+export default EstateItems

@@ -8,7 +8,7 @@ import { useTranslation } from '@/app/i18n/client'
 import { CheckOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 
-export function EstateCompareCarousel({ props }) {
+export async function EstateCompareCarousel({ props }) {
     const router = useRouter()
     const { locale } = router
     const { t } = useTranslation(props.lng, 'common')
@@ -18,7 +18,10 @@ export function EstateCompareCarousel({ props }) {
     const [dataSource, setDataSource] = useState([])
     const [compareCount, setCompareCount] = useState(0)
 
-    useEffect(async () => {
+    const data = await api(locale).get(apiURL + 'api/estates/compare/estates', {
+        params,
+    })
+    useEffect(() => {
         const compareIds = JSON.parse(
             localStorage.getItem('compareEstates') || [],
         )
@@ -27,10 +30,10 @@ export function EstateCompareCarousel({ props }) {
             'filter[id]': compareIds.join('|'),
         }
 
-        const data = await api(locale).get(
-            apiURL + 'api/estates/compare/estates',
-            { params },
-        )
+        const data = api(locale).get(apiURL + 'api/estates/compare/estates', {
+            params,
+        })
+
         const estatesDataFromApi = data.data.data
 
         const dataHeaders = {
@@ -68,6 +71,7 @@ export function EstateCompareCarousel({ props }) {
                         item.id.toString(),
                         item.image ? (
                             <Image
+                                alt={'Red Group'}
                                 preview={false}
                                 src={item.image}
                                 width={'175px'}

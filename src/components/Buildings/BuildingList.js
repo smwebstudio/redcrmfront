@@ -68,7 +68,8 @@ export function BuildingList(props) {
                                 sm={12}
                                 md={8}
                                 xl={8}
-                                className={'pr-3 pl-3 flex items-stretch'}>
+                                className={'pr-3 pl-3 flex items-stretch'}
+                                key={'col-' + index}>
                                 <BuildingItem key={index} item={item} />
                             </Col>
                         ))}

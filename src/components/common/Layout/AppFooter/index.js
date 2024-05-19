@@ -26,9 +26,9 @@ export const AppFooter = () => {
                             sm={8}
                             className={'text-center text-sm-left'}>
                             <Link className="footer-logo" href="#">
-                                <img
-                                    src={publicUrl + footerdata.footerlogo}
+                                <Image
                                     alt={'Red Group'}
+                                    src={publicUrl + footerdata.footerlogo}
                                 />
                             </Link>
                         </Col>
@@ -130,6 +130,7 @@ export const AppFooter = () => {
                                 <ul>
                                     <li className={'d-flex flex-row mb-3'}>
                                         <Image
+                                            alt={'Red Group'}
                                             src={
                                                 '/assets/img/svg/location-white.svg'
                                             }
@@ -145,6 +146,7 @@ export const AppFooter = () => {
                                     </li>
                                     <li className={'d-flex flex-row mb-3'}>
                                         <Image
+                                            alt={'Red Group'}
                                             src={
                                                 '/assets/img/svg/mobile-white.svg'
                                             }

@@ -372,7 +372,8 @@ const EstatesGoogleMap = props => {
                         id="start_drawing"
                         drawable="false">
                         <span className="drawing-icon mr-2 flex">
-                            <img
+                            <Image
+                                alt={'Red Group'}
                                 src={'/assets/img/svg/pencil.svg'}
                                 width={'25px'}
                             />

@@ -1,4 +1,4 @@
-import { Button, Modal, Upload } from 'antd'
+import { Button, Image, Modal, Upload } from 'antd'
 import { useState } from 'react'
 import { useTranslation } from '@/app/i18n/client'
 
@@ -114,8 +114,8 @@ const UploadBlock = () => {
                 title={previewTitle}
                 footer={null}
                 onCancel={handleCancel}>
-                <img
-                    alt="example"
+                <Image
+                    alt={'Red Group'}
                     style={{
                         width: '100%',
                     }}

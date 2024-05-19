@@ -220,7 +220,7 @@ export default function MainFilterBuilding(props) {
                 onClose={handleCancel}
                 width={700}
                 footer={[
-                    <Col>
+                    <Col key={'modal2'}>
                         <Button
                             form="priceOffer"
                             type="primary"

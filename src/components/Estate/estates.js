@@ -6,10 +6,6 @@ import EstateSearch from '@/components/Filters/estate-search'
 import { useTranslation } from '@/app/i18n/client'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-const onChange = key => {
-    console.log(key)
-}
-
 export function EstatesSection(props) {
     const { t } = useTranslation(props.lng, 'common')
 
@@ -121,6 +117,7 @@ export function EstatesSection(props) {
                                     sm={12}
                                     md={8}
                                     xl={6}
+                                    key={index + '-col'}
                                     className={'pr-3 pl-3'}>
                                     <EstateItem key={index} item={item} />
                                 </Col>
