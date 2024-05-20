@@ -7,9 +7,6 @@ import PrevArrow from '@/components/Carousel/PrevArrow'
 import { useMediaQuery } from 'react-responsive'
 
 export function EstateCarousel({ saleEstates }) {
-    console.log('saleEstatsses')
-    console.log(saleEstates)
-
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
     const slidesToShow = isTabletOrMobile ? 1 : 3
 

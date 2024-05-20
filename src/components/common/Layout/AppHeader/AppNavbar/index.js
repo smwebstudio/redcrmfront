@@ -9,10 +9,6 @@ import AppImage from '@/components/common/Image/AppImage'
 
 const AppNavbar = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
-
-    console.log('lng navbar')
-    console.log(lng)
-    console.log(t('menu.professional'))
     return (
         <ContainerFluid>
             <Affix offsetTop={0}>

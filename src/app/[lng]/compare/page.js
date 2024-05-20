@@ -1,8 +1,8 @@
 import React from 'react'
-import EstateCompareCarousel from '@/components/Estate/estate-compare-carousel'
 import AppPage from '@/components/common/Layout/AppPage'
+import EstateCompareCarousel from '@/components/Estate/estate-compare-carousel'
 
-export default async function ComparePage({ params: { lng, slug } }) {
+export default async function CompareListPage({ params: { lng } }) {
     return (
         <AppPage>
             <EstateCompareCarousel />

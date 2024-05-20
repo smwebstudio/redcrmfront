@@ -9,7 +9,7 @@ import { CheckOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
 
-export async function EstateCompareCarousel({ props }) {
+export async function EstateCompareCarousel(props) {
     const router = useRouter()
     const { locale } = router
     const { t } = useTranslation(props.lng, 'common')
@@ -19,9 +19,6 @@ export async function EstateCompareCarousel({ props }) {
     const [dataSource, setDataSource] = useState([])
     const [compareCount, setCompareCount] = useState(0)
 
-    const data = await api(locale).get(apiURL + 'api/estates/compare/estates', {
-        params,
-    })
     useEffect(() => {
         const compareIds = JSON.parse(
             localStorage.getItem('compareEstates') || [],

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { Col, Pagination, Row, Skeleton } from 'antd'
 import EstateItem from '@/components/Estate/estate-item'

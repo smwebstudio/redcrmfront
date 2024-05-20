@@ -14,7 +14,6 @@ import AppImage from '@/components/common/Image/AppImage'
 export const AppTopbar = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
 
-    console.log(lng)
     // const { logout, user } = useAuth()
 
     const router = useRouter()

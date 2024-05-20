@@ -22,7 +22,6 @@ export default async function HomePage({ params: { lng } }) {
     const filters = response.data
     const query = ''
 
-    console.log(apiURL + '/api/estates/sale')
     const saleEstatesResponse = await fetch(apiURL + 'api/estates/sale')
     const rentEstatesResponse = await fetch(apiURL + 'api/estates/rent')
     const dailyEstatesResponse = await fetch(apiURL + 'api/estates/daily')
@@ -30,8 +29,6 @@ export default async function HomePage({ params: { lng } }) {
     const rentEstates = await rentEstatesResponse.json()
     const dailyEstates = await dailyEstatesResponse.json()
 
-    console.log('saleEstates')
-    console.log(saleEstates)
     return (
         <AppPage>
             <Banner />
