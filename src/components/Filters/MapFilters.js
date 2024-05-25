@@ -1,6 +1,7 @@
+'use client'
 import { Button, Col, Form, Input, Row, Select } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { apiURL } from '@/constants'
 import api from '@/hooks/api'
 import { useTranslation } from '@/app/i18n/client'

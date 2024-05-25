@@ -23,13 +23,20 @@
         }
     },
     "dependencies": {
+        "@ant-design/cssinjs": "^1.20.0",
         "@ant-design/icons": "^5.0.1",
+        "@ant-design/nextjs-registry": "^1.0.0",
         "@babel/eslint-parser": "^7.12.1",
+        "@fortawesome/fontawesome-svg-core": "^6.5.2",
+        "@fortawesome/free-brands-svg-icons": "^6.5.2",
+        "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@fortawesome/react-fontawesome": "^0.2.2",
         "@headlessui/react": "^1.4.2",
         "@next/eslint-plugin-next": "^10.0.4",
         "@react-google-maps/api": "^2.18.1",
         "@react-google-maps/marker-clusterer": "^2.16.1",
         "@tailwindcss/forms": "^0.5.2",
+        "@vis.gl/react-google-maps": "^1.0.0",
         "accept-language": "^3.0.18",
         "antd": "^5.16.5",
         "autoprefixer": "^10.4.2",
@@ -50,6 +57,7 @@
         "i18next-browser-languagedetector": "^8.0.0",
         "i18next-resources-to-backend": "^1.2.1",
         "jquery": "^3.6.1",
+        "js-cookie": "^3.0.5",
         "jsts": "1.6.2",
         "loan-schedule.js": "^2.0.3",
         "mysql": "^2.18.1",
@@ -72,7 +80,9 @@
         "sharp": "^0.32.1",
         "sharp-multer": "^0.2.5",
         "styled-components": "^5.3.10",
+        "supercluster": "^8.0.1",
         "swr": "^1.2.2",
-        "tailwindcss": "^3.0.22"
+        "tailwindcss": "^3.0.22",
+        "use-supercluster": "^1.2.0"
     }
 }

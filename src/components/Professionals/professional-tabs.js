@@ -2,20 +2,22 @@
 import { Tabs } from 'antd'
 import React from 'react'
 import ProfessionalSection from '@/components/Professionals/professional-section'
+import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-function ProfessionalTabs(props) {
+function ProfessionalTabs({ allProfessionals }) {
     return (
-        <div className={'mt-5'}>
+        <ContainerBoxed className={'mt-5'}>
             <div className={''}>
-                <div className={'container  pt-5 mt-5 border-top'}>
+                <div className={'  pt-5 mt-5 '}>
                     <div className="row ">
                         <div className="col-8">
-                            <h4 className={'text-dark'}>
+                            <DarkHeading1 className={'text-dark mb-12'}>
                                 Մասնագետներ
                                 <small className="text-main ml-3 font-size-13">
                                     / 14{' '}
                                 </small>
-                            </h4>
+                            </DarkHeading1>
                         </div>
                     </div>
                     <div className="row">
@@ -27,28 +29,48 @@ function ProfessionalTabs(props) {
                                         label: `Բոլորը`,
                                         key: '1',
                                         children: (
-                                            <ProfessionalSection type="-1" />
+                                            <ProfessionalSection
+                                                type="-1"
+                                                allProfessionals={
+                                                    allProfessionals
+                                                }
+                                            />
                                         ),
                                     },
                                     {
                                         label: `Անշարժ գույքի գործակալ / գործակալություն`,
                                         key: '2',
                                         children: (
-                                            <ProfessionalSection type="-2" />
+                                            <ProfessionalSection
+                                                type="-2"
+                                                allProfessionals={
+                                                    allProfessionals
+                                                }
+                                            />
                                         ),
                                     },
                                     {
                                         label: `Բանկ, վարկային կազմակերպություն`,
                                         key: '3',
                                         children: (
-                                            <ProfessionalSection type="1" />
+                                            <ProfessionalSection
+                                                type="1"
+                                                allProfessionals={
+                                                    allProfessionals
+                                                }
+                                            />
                                         ),
                                     },
                                     {
                                         label: `Անշարժ գույք գնահատող`,
                                         key: '4',
                                         children: (
-                                            <ProfessionalSection type="2" />
+                                            <ProfessionalSection
+                                                type="2"
+                                                allProfessionals={
+                                                    allProfessionals
+                                                }
+                                            />
                                         ),
                                     },
                                 ]}
@@ -57,7 +79,7 @@ function ProfessionalTabs(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </ContainerBoxed>
     )
 }
 

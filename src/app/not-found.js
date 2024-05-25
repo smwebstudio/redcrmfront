@@ -1,11 +1,15 @@
 import React from 'react'
 import AppPage from '@/components/common/Layout/AppPage'
+import NotFound from '@/components/common/Layout/NotFound'
+import AppLayout from '@/components/common/Layout'
 
 export function NotFoundPage() {
     return (
-        <AppPage>
-            <p>not found</p>
-        </AppPage>
+        <AppLayout>
+            <AppPage>
+                <NotFound />
+            </AppPage>
+        </AppLayout>
     )
 }
 

@@ -7,14 +7,14 @@ function Professional(props) {
     let professional = props.professional
 
     return (
-        <div className="professional-card flex flex-row pt-4 pb-4">
+        <div className="professional-card flex flex-row pt-4 pb-4 bg-white ">
             <div className="professional-image flex p-2">
                 <Link href={'professionals/' + professional.id}>
                     <AppImage
                         alt={'Red Group'}
                         preview={false}
-                        width={50}
-                        height={50}
+                        width={100}
+                        height={100}
                         src={professional.profile_picture}
                     />
                 </Link>
@@ -23,22 +23,22 @@ function Professional(props) {
                 <p className="font-size-13 mb-1 text-gray-800 text-dark">
                     {professional.full_name}
                 </p>
-                <p className="mb-1">Անշարժ գույքի գործակալ</p>
+                <p className="mb-3">Անշարժ գույքի գործակալ</p>
                 <p className="flex mb-1 justify-content-start text-dark">
                     <AppImage
-                        className="mr-2"
+                        width={15}
                         src={publicUrl + 'assets/img/svg/envelope.svg'}
                     />
-                    <span className="align-self-center">
+                    <span className="align-self-center ml-2">
                         {professional.email}
                     </span>
                 </p>
                 <p className="flex justify-content-start text-dark">
                     <AppImage
-                        className="mr-2"
+                        width={15}
                         src={publicUrl + 'assets/img/svg/mobile.svg'}
                     />
-                    <span className="align-self-center">
+                    <span className="align-self-center ml-2">
                         {professional.phone_1}
                     </span>
                 </p>

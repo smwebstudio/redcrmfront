@@ -21,7 +21,7 @@ function ProfessionalDetails(props) {
             <Col sm={6}>
                 <div
                     className={
-                        'professionalDetails bg-white pt-4 d-flex flex-column justify-center align-items-center mb-5'
+                        'professionalDetails bg-white pt-4 flex flex-col justify-center items-center mb-5'
                     }>
                     <AppImage
                         alt={'Red Group'}
@@ -48,7 +48,7 @@ function ProfessionalDetails(props) {
                         <Rate defaultValue={professional.rating} />
                     </div>
                     <div>
-                        <Text className="d-flex mb-1 justify-content-start text-dark font-size-12">
+                        <Text className="flex mb-1 justify-content-start text-dark font-size-12">
                             <AppImage
                                 alt={'Red Group'}
                                 className="mr-2"

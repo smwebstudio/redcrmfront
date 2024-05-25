@@ -15,7 +15,7 @@ export default async function EstateViewPage({
 
     return (
         <AppPage>
-            <EstateDetailsSection estateData={estateData} />
+            <EstateDetailsSection estateData={estateData} lng={lng} />
         </AppPage>
     )
 }

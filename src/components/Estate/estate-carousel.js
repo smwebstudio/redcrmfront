@@ -6,7 +6,7 @@ import NextArrow from '@/components/Carousel/NextArrow'
 import PrevArrow from '@/components/Carousel/PrevArrow'
 import { useMediaQuery } from 'react-responsive'
 
-export function EstateCarousel({ saleEstates }) {
+export function EstateCarousel({ estates }) {
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
     const slidesToShow = isTabletOrMobile ? 1 : 3
 
@@ -15,7 +15,7 @@ export function EstateCarousel({ saleEstates }) {
         prevArrow: isTabletOrMobile ? '' : <PrevArrow />,
     }
 
-    const [estatesData, setEstatesData] = useState(saleEstates)
+    const [estatesData, setEstatesData] = useState(estates)
     // useEffect(() => {
     //     fetch(apiURL + 'api/estates/' + props.type)
     //         .then(res => res.json())

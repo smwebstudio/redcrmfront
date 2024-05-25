@@ -2,6 +2,7 @@ import React from 'react'
 import api from '@/hooks/api'
 import { apiURL } from '@/constants'
 import BuildingDetails from '@/components/Buildings/BuildingDetails'
+import AppPage from '@/components/common/Layout/AppPage'
 
 const developerData = {
     id: 68,
@@ -187,8 +188,8 @@ export default async function DeveloperViewPage({
     )
 
     return (
-        <div>
+        <AppPage>
             <BuildingDetails developerData={developerData} />
-        </div>
+        </AppPage>
     )
 }

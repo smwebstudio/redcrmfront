@@ -1,10 +1,13 @@
 'use client'
 import { Button, Col, Row } from 'antd'
 import React from 'react'
-import EvaluationForm from '@/components/Filters/evaluation-form'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
+import EvaluationSimpleForm from '@/components/Filters/evaluation--simple-form'
+import { useRouter } from 'next/navigation'
 
 function EstateEstimate(props) {
+    const router = useRouter()
     return (
         <ContainerBoxed>
             <Row>
@@ -12,18 +15,14 @@ function EstateEstimate(props) {
                     <div className="estate-estimate flex flex-col justify-end pl-10 pr-10 pb-10">
                         <Row className="mb-3">
                             <Col xs={12}>
-                                <h5 className="text-white">
+                                <WhiteHeading1 className={'mb-2'}>
                                     Բնակարանի գնահատման հաշվիչ
-                                </h5>
-                                <p className="small text-white">
-                                    Այս հաշվիչը, հնարավորություն է տալիս որոշել
-                                    Ձեր բնակարանի վաճառքի շուկայական գինը:
-                                </p>
+                                </WhiteHeading1>
                             </Col>
                         </Row>
                         <Row className="row">
                             <Col xs={12}>
-                                <EvaluationForm
+                                <EvaluationSimpleForm
                                     filtersData={props.filtersData}
                                 />
                             </Col>
@@ -46,7 +45,10 @@ function EstateEstimate(props) {
                                 Այս հաշվիչը, հնարավորություն է տալիս որոշել Ձեր
                                 բնակարանի վաճառքի շուկայական գինը:
                             </p>
-                            <Button htmlType="submit" size="large">
+                            <Button
+                                size="large"
+                                className={'w-full'}
+                                onClick={() => router.push('/estimate')}>
                                 Գնահատել
                             </Button>
                         </div>

@@ -46,9 +46,6 @@ const EstatesGoogleMapSingle = props => {
 
     const [marker, setMarker] = useState(markerChanged[0])
 
-    console.log('marker')
-    console.log(marker)
-
     const [selectedMarker, setSelectedMarker] = useState(markerChanged[0])
 
     const [center, setCenter] = useState(centerInitial)

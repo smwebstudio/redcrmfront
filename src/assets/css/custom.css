@@ -1,6 +1,6 @@
 
 body, .ant-layout, .ant-typography, .ant-col, h1, h2, h3, h4, h5, h6, hr, p, pre, span, button, a, * {
-    font-family: var(--heading-font);
+    font-family: var(--heading-font) !important;
 }
 
 html, body {
@@ -149,17 +149,6 @@ html, body {
     content: url('../../assets/img/svg/arrow-right-hover.svg') !important;
 }
 
-.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: var(--main-color-one) !important;
-}
-
-.ant-tabs-ink-bar {
-    background: transparent !important;
-}
-
-.ant-tabs-tab:hover {
-    color: var(--main-color-one) !important;
-}
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
     color: var(--main-color-one) !important;
@@ -246,9 +235,7 @@ html, body {
 .map-container {
     width: 100%;
     overflow: hidden;
-    position: fixed;
-    top: 160px;
-    left: 0px;
+    position: relative;
     height: 100vh;
     padding-right: 30px;
 }
@@ -321,6 +308,20 @@ html, body {
 }
 
 
+.ant-tabs .ant-tabs-tab[data-node-key="map"],
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:hover,
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:focus,
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:active,
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab[data-node-key="map"] .ant-tabs-tab-btn:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab[data-node-key="map"] .ant-tabs-tab-btn:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab-active[data-node-key="map"] {
+    background-color: #d8002c !important;
+    color: #fff !important;
+}
+
+
 /*google maps*/
 
 .gm-style .gm-style-iw-c {
@@ -330,3 +331,9 @@ html, body {
 .gm-style-iw .gm-ui-hover-effect {
     display: none !important;
 }
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;

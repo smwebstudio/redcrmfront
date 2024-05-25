@@ -1,11 +1,12 @@
 'use client'
-import { Col, Row, Tabs } from 'antd'
+import { Col, Row } from 'antd'
 import React from 'react'
 import EstateCarousel from '@/components/Estate/estate-carousel'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import { useTranslation } from '@/app/i18n/client'
+import AppTabs from '@/components/common/Tabs/AppTabs'
 
 const onChange = key => {
     console.log(key)
@@ -19,7 +20,7 @@ function EstateMainTabs(props) {
     return (
         <ContainerBoxed className="container  pt-5 mt-5 mb-5">
             <Row className={'main-featured min-h-fit mt-5'}>
-                <Col xs={24} sm={4}>
+                <Col xs={24} sm={12}>
                     <h5
                         className={
                             isTabletOrMobile
@@ -30,7 +31,7 @@ function EstateMainTabs(props) {
                     </h5>
                 </Col>
                 <Col sm={24} xs={24}>
-                    <Tabs
+                    <AppTabs
                         defaultActiveKey="1"
                         centered={true}
                         className={isTabletOrMobile ? '' : 'mt-n5'}
@@ -42,7 +43,7 @@ function EstateMainTabs(props) {
                                 children: (
                                     <EstateCarousel
                                         type="sale"
-                                        saleEstates={props.saleEstates}
+                                        estates={props.saleEstates}
                                     />
                                 ),
                             },
@@ -52,7 +53,7 @@ function EstateMainTabs(props) {
                                 children: (
                                     <EstateCarousel
                                         type="rent"
-                                        saleEstates={props.rentEstates}
+                                        estates={props.rentEstates}
                                     />
                                 ),
                             },
@@ -62,7 +63,7 @@ function EstateMainTabs(props) {
                                 children: (
                                     <EstateCarousel
                                         type="daily"
-                                        saleEstates={props.dailyEstates}
+                                        estates={props.dailyEstates}
                                     />
                                 ),
                             },

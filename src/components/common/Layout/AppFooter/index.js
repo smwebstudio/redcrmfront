@@ -5,6 +5,14 @@ import { Col, Row } from 'antd'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import Link from 'next/link'
 import AppImage from '@/components/common/Image/AppImage'
+import FontIcon from '@/components/common/Icons/FontIcon'
+import {
+    faFacebook,
+    faInstagram,
+    faLinkedin,
+    faTwitter,
+    faYoutube,
+} from '@fortawesome/free-brands-svg-icons'
 
 export const AppFooter = () => {
     // useEffect(() => {
@@ -25,7 +33,7 @@ export const AppFooter = () => {
                         <Col
                             xs={24}
                             sm={8}
-                            className={'text-center text-sm-left'}>
+                            className={'text-center sm:text-left'}>
                             <Link className="footer-logo" href="#">
                                 <AppImage
                                     alt={'Red Group'}
@@ -34,31 +42,31 @@ export const AppFooter = () => {
                             </Link>
                         </Col>
                         <Col xs={24} sm={16}>
-                            <div className="footer-social text-center text-sm-right">
+                            <div className="footer-social text-center sm:text-right">
                                 <ul className="social-icon">
                                     <li>
                                         <Link href="#" target="_blank">
-                                            <i className="fa fa-facebook"></i>
+                                            <FontIcon icon={faFacebook} />
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="#" target="_blank">
-                                            <i className="fa fa-instagram"></i>
+                                            <FontIcon icon={faInstagram} />
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="#" target="_blank">
-                                            <i className="fa fa-twitter"></i>
+                                            <FontIcon icon={faTwitter} />
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="#" target="_blank">
-                                            <i className="fa fa-linkedin"></i>
+                                            <FontIcon icon={faLinkedin} />
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="#" target="_blank">
-                                            <i className="fa fa-youtube"></i>
+                                            <FontIcon icon={faYoutube} />
                                         </Link>
                                     </li>
                                 </ul>

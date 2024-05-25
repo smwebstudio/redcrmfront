@@ -32,7 +32,9 @@ export async function EstateCompareCarousel(props) {
             params,
         })
 
-        const estatesDataFromApi = data.data.data
+        console.log('data')
+        console.log(data)
+        const estatesDataFromApi = data.data
 
         const dataHeaders = {
             id: 1,

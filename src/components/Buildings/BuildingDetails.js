@@ -12,6 +12,7 @@ import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import RedText from '@/components/Typography/text/RedText'
 import PlanItem from '@/components/Buildings/PlanItem'
 import AppImage from '@/components/common/Image/AppImage'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
 const { Option } = Select
 
@@ -294,340 +295,358 @@ function BuildingDetails(props) {
     })
 
     return (
-        <div className="property-details-area">
-            <div className="bg-gray  pd-bottom-90">
-                <div className={'container-fluid bg-white pt-5 pb-1'}>
-                    <div className={'container'}>
-                        <Row className={'mb-4'}>
-                            <Col sm={16} className={'mb-4'}>
-                                <h3>
-                                    <span className="font-bold mr-5 font-size-24">
-                                        The View Պրեմիում դասի բնակելի համալիր
-                                    </span>
-                                </h3>
-                            </Col>
-                            <Col sm={8}>
-                                <div
+        <ContainerBoxed>
+            <div className="property-details-area">
+                <div className="bg-gray  pd-bottom-90">
+                    <div className={'container-fluid bg-white pt-5 pb-1'}>
+                        <div className={'container'}>
+                            <Row className={'mb-4'}>
+                                <Col sm={16} className={'mb-4'}>
+                                    <h3>
+                                        <span className="font-bold mr-5 font-size-24">
+                                            The View Պրեմիում դասի բնակելի
+                                            համալիր
+                                        </span>
+                                    </h3>
+                                </Col>
+                                <Col sm={8}>
+                                    <div
+                                        className={
+                                            'd-flex justify-content-end align-items-center'
+                                        }>
+                                        <EyeOutlined
+                                            style={{
+                                                fontSize: 24,
+                                                marginRight: 10,
+                                            }}
+                                        />{' '}
+                                        1362
+                                        <Button
+                                            className={
+                                                'ml-6 bg-orange-400 text-white rounded-md'
+                                            }>
+                                            Եկամտահարկի վերադարձ
+                                        </Button>
+                                    </div>
+                                </Col>
+                                <Col
+                                    sm={24}
                                     className={
-                                        'd-flex justify-content-end align-items-center'
+                                        'd-flex align-items-center mb-4'
                                     }>
-                                    <EyeOutlined
+                                    <EnvironmentOutlined
                                         style={{
                                             fontSize: 24,
                                             marginRight: 10,
                                         }}
                                     />{' '}
-                                    1362
-                                    <Button
-                                        className={
-                                            'ml-6 bg-orange-400 text-white rounded-md'
-                                        }>
-                                        Եկամտահարկի վերադարձ
-                                    </Button>
+                                    {developerData.full_address}
+                                </Col>
+
+                                <Col sm={20}>
+                                    <Row
+                                        gutter={32}
+                                        className="flex flex-row align-items-center">
+                                        {developerData.room_count && (
+                                            <Col className="mr-4 flex flex-row">
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    className="mr-2"
+                                                    src={
+                                                        '/assets/img/svg/developer.svg'
+                                                    }
+                                                />
+                                                Կառուցապատող: «Օմեգա Պլյուս» ՍՊԸ
+                                            </Col>
+                                        )}
+
+                                        {developerData.floor && (
+                                            <Col className="mr-4 flex flex-row">
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    className="mr-2"
+                                                    src={
+                                                        '/assets/img/svg/builder.svg'
+                                                    }
+                                                />
+                                                Շինարար: «Միդիս Քնսթրաքշն» ՍՊԸ
+                                            </Col>
+                                        )}
+
+                                        {developerData.area_total && (
+                                            <Col
+                                                className="mr-3 flex flex-row"
+                                                key={'col-area-total'}>
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    className="mr-2"
+                                                    src={
+                                                        '/assets/img/svg/controller.svg'
+                                                    }
+                                                />
+                                                Նախագծի կառավարում: «1SQ» ՍՊԸ
+                                            </Col>
+                                        )}
+                                    </Row>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
+
+                    <div className="container">
+                        <Row gutter={64} className={'pt-5 '}>
+                            <Col xs={18}>
+                                <ImageGallery
+                                    items={images}
+                                    showNav={true}
+                                    thumbnailPosition={'right'}
+                                    showPlayButton={false}
+                                />
+                            </Col>
+
+                            <Col xs={6} className={'pt-3  bg-white'}>
+                                <div className={'text-left mb-2'}>
+                                    <Row className={'mb-1'}>
+                                        <Col xs={24} sm={24}>
+                                            <DarkHeading3>
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    preview={false}
+                                                    src={
+                                                        '/assets/img/svg/redCalendar.svg'
+                                                    }
+                                                />
+                                                <span className={'ml-4'}>
+                                                    {' '}
+                                                    Շինարարության մեկնարկ
+                                                </span>
+                                            </DarkHeading3>
+                                            <SmallParagraph>
+                                                01.12.2021թ
+                                            </SmallParagraph>
+                                            <DarkHeading3 className={'mt-4'}>
+                                                Շինարարության ավարտ
+                                            </DarkHeading3>
+                                            <SmallParagraph>
+                                                12.12.2024թ.
+                                            </SmallParagraph>
+                                            <Divider />
+                                            <DarkHeading3>
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    preview={false}
+                                                    src={
+                                                        '/assets/img/svg/redBank.svg'
+                                                    }
+                                                />
+                                                <span className={'ml-4'}>
+                                                    Գործընկեր բանկեր{' '}
+                                                </span>
+                                            </DarkHeading3>
+                                            <SmallParagraph>
+                                                Արցախ բանկ, ID Bank, AEB
+                                            </SmallParagraph>
+                                            <Divider />
+                                            <DarkHeading3>
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    preview={false}
+                                                    src={
+                                                        '/assets/img/svg/redSale.svg'
+                                                    }
+                                                />
+                                                <span className={'ml-4'}>
+                                                    Վաճառքի բացառիկ իրավունք{' '}
+                                                </span>
+                                            </DarkHeading3>
+                                            <SmallParagraph>
+                                                «ՌԷԴ Ինվեսթ Գրուպ» ՍՊԸ
+                                            </SmallParagraph>
+                                            <Divider />
+                                            <DarkHeading3>
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    preview={false}
+                                                    src={
+                                                        '/assets/img/svg/mobile.svg'
+                                                    }
+                                                />
+                                                <span className={'ml-4'}>
+                                                    Կարեն Ավետիսյան
+                                                </span>
+                                            </DarkHeading3>
+                                            <SmallParagraph>
+                                                Վաճառքի պատասխանատու
+                                            </SmallParagraph>
+                                            <SmallParagraph>
+                                                <RedText>
+                                                    +37495 908 909
+                                                </RedText>
+                                            </SmallParagraph>
+                                            <Divider />
+                                            <DarkHeading3>
+                                                <AppImage
+                                                    alt={'Red Group'}
+                                                    preview={false}
+                                                    src={
+                                                        '/assets/img/svg/mobile.svg'
+                                                    }
+                                                />
+                                                <span className={'ml-4'}>
+                                                    Վաճառքի գրասենյակ
+                                                </span>
+                                            </DarkHeading3>
+                                            <SmallParagraph>
+                                                <RedText>
+                                                    +37495 908 909
+                                                </RedText>
+                                            </SmallParagraph>
+                                        </Col>
+                                    </Row>
                                 </div>
-                            </Col>
-                            <Col
-                                sm={24}
-                                className={'d-flex align-items-center mb-4'}>
-                                <EnvironmentOutlined
-                                    style={{
-                                        fontSize: 24,
-                                        marginRight: 10,
-                                    }}
-                                />{' '}
-                                {developerData.full_address}
-                            </Col>
-
-                            <Col sm={20}>
-                                <Row
-                                    gutter={32}
-                                    className="flex flex-row align-items-center">
-                                    {developerData.room_count && (
-                                        <Col className="mr-4 flex flex-row">
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                className="mr-2"
-                                                src={
-                                                    '/assets/img/svg/developer.svg'
-                                                }
-                                            />
-                                            Կառուցապատող: «Օմեգա Պլյուս» ՍՊԸ
-                                        </Col>
-                                    )}
-
-                                    {developerData.floor && (
-                                        <Col className="mr-4 flex flex-row">
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                className="mr-2"
-                                                src={
-                                                    '/assets/img/svg/builder.svg'
-                                                }
-                                            />
-                                            Շինարար: «Միդիս Քնսթրաքշն» ՍՊԸ
-                                        </Col>
-                                    )}
-
-                                    {developerData.area_total && (
-                                        <Col
-                                            className="mr-3 flex flex-row"
-                                            key={'col-area-total'}>
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                className="mr-2"
-                                                src={
-                                                    '/assets/img/svg/controller.svg'
-                                                }
-                                            />
-                                            Նախագծի կառավարում: «1SQ» ՍՊԸ
-                                        </Col>
-                                    )}
-                                </Row>
                             </Col>
                         </Row>
                     </div>
                 </div>
-
                 <div className="container">
-                    <Row gutter={64} className={'pt-5 '}>
-                        <Col xs={18}>
-                            <ImageGallery
-                                items={images}
-                                showNav={true}
-                                thumbnailPosition={'right'}
-                                showPlayButton={false}
-                            />
-                        </Col>
+                    <div>
+                        <Row className="property-news-single-card pt-5 border-bottom-yellow">
+                            <Row>
+                                <Col xs={24}>
+                                    <DarkHeading2 className={'mt-10'}>
+                                        Ընդհանուր
+                                    </DarkHeading2>
+                                </Col>
 
-                        <Col xs={6} className={'pt-3  bg-white'}>
-                            <div className={'text-left mb-2'}>
-                                <Row className={'mb-1'}>
-                                    <Col xs={24} sm={24}>
-                                        <DarkHeading3>
+                                <Col xs={24}>
+                                    {developerData.public_text_arm}
+                                </Col>
+                                <Col xs={24}>
+                                    <DarkHeading2 className={'mt-10'}>
+                                        Կառուցապատման ընթացք
+                                    </DarkHeading2>
+                                </Col>
+                                <Col xs={24} className={'flex flex-row'}>
+                                    {imagesData.map((img, idx) => (
+                                        <div
+                                            className={'mr-4'}
+                                            key={'col-' + idx}>
                                             <AppImage
                                                 alt={'Red Group'}
-                                                preview={false}
-                                                src={
-                                                    '/assets/img/svg/redCalendar.svg'
-                                                }
+                                                key={idx}
+                                                width={100}
+                                                height={100}
+                                                src={img}
                                             />
-                                            <span className={'ml-4'}>
-                                                {' '}
-                                                Շինարարության մեկնարկ
-                                            </span>
-                                        </DarkHeading3>
-                                        <SmallParagraph>
-                                            01.12.2021թ
-                                        </SmallParagraph>
-                                        <DarkHeading3 className={'mt-4'}>
-                                            Շինարարության ավարտ
-                                        </DarkHeading3>
-                                        <SmallParagraph>
-                                            12.12.2024թ.
-                                        </SmallParagraph>
-                                        <Divider />
-                                        <DarkHeading3>
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                preview={false}
-                                                src={
-                                                    '/assets/img/svg/redBank.svg'
-                                                }
-                                            />
-                                            <span className={'ml-4'}>
-                                                Գործընկեր բանկեր{' '}
-                                            </span>
-                                        </DarkHeading3>
-                                        <SmallParagraph>
-                                            Արցախ բանկ, ID Bank, AEB
-                                        </SmallParagraph>
-                                        <Divider />
-                                        <DarkHeading3>
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                preview={false}
-                                                src={
-                                                    '/assets/img/svg/redSale.svg'
-                                                }
-                                            />
-                                            <span className={'ml-4'}>
-                                                Վաճառքի բացառիկ իրավունք{' '}
-                                            </span>
-                                        </DarkHeading3>
-                                        <SmallParagraph>
-                                            «ՌԷԴ Ինվեսթ Գրուպ» ՍՊԸ
-                                        </SmallParagraph>
-                                        <Divider />
-                                        <DarkHeading3>
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                preview={false}
-                                                src={
-                                                    '/assets/img/svg/mobile.svg'
-                                                }
-                                            />
-                                            <span className={'ml-4'}>
-                                                Կարեն Ավետիսյան
-                                            </span>
-                                        </DarkHeading3>
-                                        <SmallParagraph>
-                                            Վաճառքի պատասխանատու
-                                        </SmallParagraph>
-                                        <SmallParagraph>
-                                            <RedText>+37495 908 909</RedText>
-                                        </SmallParagraph>
-                                        <Divider />
-                                        <DarkHeading3>
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                preview={false}
-                                                src={
-                                                    '/assets/img/svg/mobile.svg'
-                                                }
-                                            />
-                                            <span className={'ml-4'}>
-                                                Վաճառքի գրասենյակ
-                                            </span>
-                                        </DarkHeading3>
-                                        <SmallParagraph>
-                                            <RedText>+37495 908 909</RedText>
-                                        </SmallParagraph>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-            </div>
-            <div className="container">
-                <div>
-                    <Row className="property-news-single-card pt-5 border-bottom-yellow">
-                        <Row>
-                            <Col xs={24}>
-                                <DarkHeading2 className={'mt-10'}>
-                                    Ընդհանուր
-                                </DarkHeading2>
-                            </Col>
+                                        </div>
+                                    ))}
+                                </Col>
+                                <Divider />
+                                <Col xs={24}>
+                                    <DarkHeading2 className={'mt-10 mb-10'}>
+                                        Հատակագծեր
+                                    </DarkHeading2>
+                                </Col>
+                                <Col
+                                    xs={24}
+                                    className={
+                                        'flex flex-row justify-content-between items-center mb-10'
+                                    }>
+                                    <div>
+                                        <Checkbox
+                                            checked={hideSaled}
+                                            onChange={handleHideSaledChange}
+                                            style={{ marginLeft: '1rem' }}>
+                                            <SmallParagraph>
+                                                Թաքցնել վաճառվածները
+                                            </SmallParagraph>
+                                        </Checkbox>
 
-                            <Col xs={24}>{developerData.public_text_arm}</Col>
-                            <Col xs={24}>
-                                <DarkHeading2 className={'mt-10'}>
-                                    Կառուցապատման ընթացք
-                                </DarkHeading2>
-                            </Col>
-                            <Col xs={24} className={'flex flex-row'}>
-                                {imagesData.map((img, idx) => (
-                                    <div className={'mr-4'} key={'col-' + idx}>
-                                        <AppImage
-                                            alt={'Red Group'}
-                                            key={idx}
-                                            width={100}
-                                            height={100}
-                                            src={img}
-                                        />
-                                    </div>
-                                ))}
-                            </Col>
-                            <Divider />
-                            <Col xs={24}>
-                                <DarkHeading2 className={'mt-10 mb-10'}>
-                                    Հատակագծեր
-                                </DarkHeading2>
-                            </Col>
-                            <Col
-                                xs={24}
-                                className={
-                                    'flex flex-row justify-content-between items-center mb-10'
-                                }>
-                                <div>
-                                    <Checkbox
-                                        checked={hideSaled}
-                                        onChange={handleHideSaledChange}
-                                        style={{ marginLeft: '1rem' }}>
-                                        <SmallParagraph>
-                                            Թաքցնել վաճառվածները
-                                        </SmallParagraph>
-                                    </Checkbox>
-
-                                    <Select
-                                        defaultValue=""
-                                        onChange={handleAreaChange}
-                                        style={{
-                                            width: 200,
-                                            marginLeft: '1rem',
-                                        }}>
-                                        <Option value="">Մակերես</Option>
-                                        {areaOptions.map((area, index) => (
-                                            <Option key={index} value={area}>
-                                                {area}
-                                            </Option>
-                                        ))}
-                                    </Select>
-                                    <Select
-                                        defaultValue=""
-                                        onChange={handleRoomCountChange}
-                                        style={{
-                                            width: 200,
-                                            marginLeft: '1rem',
-                                        }}>
-                                        <Option value="">Սենյակներ</Option>
-                                        {roomCountOptions.map(
-                                            (roomCount, index) => (
+                                        <Select
+                                            defaultValue=""
+                                            onChange={handleAreaChange}
+                                            style={{
+                                                width: 200,
+                                                marginLeft: '1rem',
+                                            }}>
+                                            <Option value="">Մակերես</Option>
+                                            {areaOptions.map((area, index) => (
                                                 <Option
                                                     key={index}
-                                                    value={roomCount}>
-                                                    {roomCount} սենյակ
+                                                    value={area}>
+                                                    {area}
                                                 </Option>
-                                            ),
-                                        )}
-                                    </Select>
-                                </div>
-                                <div
-                                    className={
-                                        'flex flex-row justify-end items-center'
-                                    }>
-                                    <SmallParagraph className={'mr-4 mb-0'}>
-                                        Դասավորել ըստ։{' '}
-                                    </SmallParagraph>
-                                    <Select
-                                        defaultValue="price-asc"
-                                        onChange={handleSortChange}
-                                        style={{ width: 200 }}>
-                                        <Option value="price-asc">
-                                            Գնի աճման
-                                        </Option>
-                                        <Option value="price-desc">
-                                            Գնի նվազման
-                                        </Option>
-                                        <Option value="area_total-asc">
-                                            Մակերեսի աճման
-                                        </Option>
-                                        <Option value="area_total-desc">
-                                            Մակերեսի նվազման
-                                        </Option>
-                                    </Select>
-                                </div>
-                            </Col>
-                            <Col xs={24}>
-                                <Row gutter={32}>
-                                    {filteredPlans.map((item, index) => (
-                                        <Col span={8} key={'col-' + index}>
-                                            <PlanItem key={index} item={item} />
-                                        </Col>
-                                    ))}
-                                </Row>
-                            </Col>
+                                            ))}
+                                        </Select>
+                                        <Select
+                                            defaultValue=""
+                                            onChange={handleRoomCountChange}
+                                            style={{
+                                                width: 200,
+                                                marginLeft: '1rem',
+                                            }}>
+                                            <Option value="">Սենյակներ</Option>
+                                            {roomCountOptions.map(
+                                                (roomCount, index) => (
+                                                    <Option
+                                                        key={index}
+                                                        value={roomCount}>
+                                                        {roomCount} սենյակ
+                                                    </Option>
+                                                ),
+                                            )}
+                                        </Select>
+                                    </div>
+                                    <div
+                                        className={
+                                            'flex flex-row justify-end items-center'
+                                        }>
+                                        <SmallParagraph className={'mr-4 mb-0'}>
+                                            Դասավորել ըստ։{' '}
+                                        </SmallParagraph>
+                                        <Select
+                                            defaultValue="price-asc"
+                                            onChange={handleSortChange}
+                                            style={{ width: 200 }}>
+                                            <Option value="price-asc">
+                                                Գնի աճման
+                                            </Option>
+                                            <Option value="price-desc">
+                                                Գնի նվազման
+                                            </Option>
+                                            <Option value="area_total-asc">
+                                                Մակերեսի աճման
+                                            </Option>
+                                            <Option value="area_total-desc">
+                                                Մակերեսի նվազման
+                                            </Option>
+                                        </Select>
+                                    </div>
+                                </Col>
+                                <Col xs={24}>
+                                    <Row gutter={32}>
+                                        {filteredPlans.map((item, index) => (
+                                            <Col span={8} key={'col-' + index}>
+                                                <PlanItem
+                                                    key={index}
+                                                    item={item}
+                                                />
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                </Col>
+                            </Row>
                         </Row>
-                    </Row>
+                    </div>
                 </div>
-            </div>
 
-            <div className="bg-gray  pd-10 pt-10">
-                <div className={'container'}>
-                    <LoanCalculator price={developerData.price} />
+                <div className="bg-gray  pd-10 pt-10">
+                    <div className={'container'}>
+                        <LoanCalculator price={developerData.price} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </ContainerBoxed>
     )
 }
 

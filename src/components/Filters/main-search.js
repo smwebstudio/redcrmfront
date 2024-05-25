@@ -28,14 +28,10 @@ export default function MainSearch(props) {
                 action="/search"
                 method="get"
                 className="bg-white text-gray-50 ">
-                <Row>
+                <Row className={'pl-4 pt-10 pb-10'}>
                     <Col span={20} className=" ">
                         <Form.Item name="search_query" wrapperCol={{ sm: 22 }}>
-                            <Input
-                                placeholder={'Հասցե, կոդ'}
-                                size="large"
-                                bordered={false}
-                            />
+                            <Input placeholder={'Հասցե, կոդ'} size="large" />
                         </Form.Item>
                     </Col>
                     <Col span={4} className="field-item   ">

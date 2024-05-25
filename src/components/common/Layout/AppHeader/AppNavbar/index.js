@@ -15,7 +15,7 @@ const AppNavbar = ({ lng }) => {
                 <div className="navbar-area ">
                     <nav className="navbar-area navbar-expand-lg">
                         <ContainerBoxed className="container nav-container">
-                            <Row justify="center" align="top">
+                            <Row justify="center" align="middle">
                                 <Col offset={1} xs={2} sm={0}>
                                     <div className="responsive-mobile-menu">
                                         <button
@@ -32,7 +32,7 @@ const AppNavbar = ({ lng }) => {
                                         className="collapse navbar-collapse mt-5"
                                         id="realdeal_main_menu">
                                         <ul
-                                            className="navbar-nav menu-open readeal-top"
+                                            className="navbar-nav  readeal-top "
                                             style={{ height: '100vh' }}>
                                             <li>
                                                 <Link href="/estates">
@@ -149,8 +149,7 @@ const AppNavbar = ({ lng }) => {
                                         <Link
                                             href="/add-property"
                                             className="btn btn-main-transparent pr-1 pl-1">
-                                            <i className="la la-plus" />{' '}
-                                            {t('label.addNewAnnouncement')}{' '}
+                                            + {t('label.addNewAnnouncement')}{' '}
                                             <span className="right"></span>
                                         </Link>
                                     </div>

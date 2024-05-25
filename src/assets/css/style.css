@@ -1,10 +1,5 @@
 /*
-Theme Name: Realdeal
-Theme URI: http://codingeek.net/html/realdeal
-Author: Codingeek
-Author URI: https://codingeek.net
-Description: RealDeal - Real Estate HTML Template
-Version: 1.0.0
+
 */
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
@@ -5352,27 +5347,6 @@ h1.blog_title {
     margin: 0;
 }
 
-.ant-tabs-tab {
-    padding: 0px 30px !important;
-    border-bottom: 5px solid #eee !important;
-}
-
-.ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before {
-    border-bottom: 0px solid #f0f0f0 !important;
-}
-
-.ant-tabs-tab + .ant-tabs-tab {
-    margin: 0 0 0 0px !important;
-    padding-right: 30px !important;
-}
-
-.ant-tabs-tab.ant-tabs-tab-active {
-    border-bottom: 5px solid var(--main-color-one) !important;
-}
-
-.ant-tabs-tab-btn {
-    padding-bottom: 7px !important;
-}
 
 .ant-input:focus {
     border-color: #ffffff;

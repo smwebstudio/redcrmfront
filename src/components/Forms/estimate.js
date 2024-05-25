@@ -16,6 +16,7 @@ import { useTranslation } from '@/app/i18n/client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import api from '@/hooks/api'
+import AppSelect from '@/components/common/FormFields/Selects/AppSelect'
 
 const formItemLayout = {
     labelCol: {
@@ -167,7 +168,7 @@ const EstimateForm = ({ params }) => {
                                                 ),
                                             },
                                         ]}>
-                                        <Select
+                                        <AppSelect
                                             showSearch
                                             options={communities}
                                             placeholder={t('button.pick')}

@@ -18,16 +18,13 @@ import AppImage from '@/components/common/Image/AppImage'
 
 const libraries = ['drawing']
 
-const EstatesGoogleMap = props => {
+const EstatesGoogleMap = ({ lng, estatesData, changeCoords }) => {
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'redgroup-script',
         googleMapsApiKey: nextConfig.env.GOOGLE_MAPS_API_KEY,
         nonce: 'map',
         libraries: ['drawing'],
     })
-
-    const estatesData = props.estatesData
-    const changeCoords = props.changeCoords
 
     const [drawingMode, setDrawingMode] = useState(null)
     const [searchInfoBoxHidden, setSearchInfoBoxHidden] = useState(true)
@@ -44,9 +41,11 @@ const EstatesGoogleMap = props => {
         lng: 44.512546,
     }
 
+    console.log(estatesData)
+
     const [fetchedData, setFetchedData] = useState([])
     useEffect(() => {
-        const initialMarkers = estatesData?.data.map(item => ({
+        const initialMarkers = estatesData.map(item => ({
             id: item.id,
             position: {
                 lat: parseFloat(item.native_coords[0]),

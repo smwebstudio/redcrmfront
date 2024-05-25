@@ -1,9 +1,6 @@
 const nextConfig = {
     compiler: {
-        styledComponents: {
-            displayName: false,
-            ssr: true,
-        },
+        styledComponents: true,
     },
     env: {
         NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,

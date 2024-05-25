@@ -6,6 +6,7 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
 import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import { useTranslation } from '@/app/i18n/client'
+import WhiteParagraph from '@/components/Typography/paragraph/WhiteParagraph'
 
 function Banner(props) {
     const { t } = useTranslation(props.lng, 'common')
@@ -24,12 +25,11 @@ function Banner(props) {
                     <div className="banner-inner-wrap">
                         <div className="banner-inner text-center align-self-center mt-5">
                             <WhiteHeading1 className="text-center text-white">
-                                Լավագույն առաջարկները մեզ մոտ
+                                {t('label.red.bestOffers')}
                             </WhiteHeading1>
-                            <h6 className="title text-center text-white mb-5">
-                                Վաճառեք տներ, հողատարածքներ, բնակարաններ, ձեզ
-                                հարմար տարբերակով
-                            </h6>
+                            <WhiteParagraph className="title text-center text-white mb-5">
+                                {t('label.red.sellProperties')}
+                            </WhiteParagraph>
                             <Col xs={0} sm={24}>
                                 <Link
                                     href="/estates"

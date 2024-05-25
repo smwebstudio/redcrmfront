@@ -1,20 +1,18 @@
 'use client'
 import { Button, Col, Form, Row, Select } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
-
-const filter = (inputValue, path) =>
-    path.some(
-        option =>
-            option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
-    )
+import { objectToQueryParams } from '@/lib/helper'
 
 export default function MainFilter(props) {
     const [form] = Form.useForm()
     const router = useRouter()
     const filtersData = props.filtersData
+    const contract_type = props.contractType
+    console.log('filtersData')
+    console.log(filtersData)
     let initialProvince = filtersData.locations.find(x => x.id === 1)
     const [loading, setLoading] = useState(false)
     const [estateType, setEstateType] = useState(1)
@@ -24,81 +22,52 @@ export default function MainFilter(props) {
     const [roomCount, setRoomCount] = useState(null)
     const [cities, setCities] = useState(initialProvince.cities)
     const [prices, setPrices] = useState(filtersData.prices.USD)
+    const [communities, setCommunities] = useState(
+        filtersData.location_community,
+    )
 
     const { t } = useTranslation(props.lng, 'common')
 
-    let estateTypeOptions = []
-    let provinces = []
-    let rooms = []
-    let currencies = [
+    const estateTypeOptions = filtersData.estate_types.map(value => ({
+        value: value.id,
+        label: value.label,
+    }))
+
+    const provinces = filtersData.locations.map(value => ({
+        value: value.id,
+        label: value.label,
+    }))
+
+    const roomOptions = filtersData.rooms.map(value => ({
+        value: value.id,
+        label: value.label,
+    }))
+
+    const currencyOptions = [
         { value: 3, label: 'AMD' },
         { value: 1, label: 'USD' },
         { value: 2, label: 'RUR' },
     ]
 
-    filtersData.estate_types.forEach(value => {
-        estateTypeOptions.push({
-            value: value.id,
-            label: value.label,
-        })
-    })
-
-    filtersData.locations.forEach(value => {
-        provinces.push({
-            value: value.id,
-            label: value.label,
-        })
-    })
-
-    // filtersData.prices.USD.forEach((value) => {
-    //     prices.push({
-    //         value: value.value,
-    //         label: value.label
-    //     });
-    // });
-
-    filtersData.rooms.forEach(value => {
-        rooms.push({
-            value: value.id,
-            label: value.label,
-        })
-    })
-
-    form.setFieldsValue({
-        estate_type_id: 1,
-        province: 1,
-        location_province_id: 1,
-        currency_id: 1,
-    })
+    useEffect(() => {
+        // form.setFieldsValue({
+        //     estate_type_id: 1,
+        //     province: 1,
+        //     location_community_id: 1,
+        //     location_province_id: 1,
+        //     currency_id: 3,
+        // })
+    }, [filtersData])
 
     const handleProvinceChange = value => {
         let province = filtersData.locations.find(x => x.id === value)
-        setCities([])
-        setCities(province.cities)
         setLocationProvince(province)
+        setCities(province.cities)
     }
 
     const handleCurrencyChange = (value, option) => {
         setPrices(filtersData.prices[option.label])
         form.setFieldValue('prices', null)
-    }
-
-    function objectToQueryParams(obj) {
-        return Object.keys(obj)
-            .map(key => {
-                const trimmedKey = encodeURIComponent(key.replace(/\s+/g, ''))
-                const trimmedValue =
-                    obj[key] !== undefined
-                        ? encodeURIComponent(
-                              String(obj[key]).replace(/\s+/g, ''),
-                          )
-                        : undefined
-                return trimmedValue !== undefined
-                    ? trimmedKey + '=' + trimmedValue
-                    : ''
-            })
-            .filter(param => param !== '') // Filter out empty parameters
-            .join('&')
     }
 
     const onFinish = values => {
@@ -109,8 +78,8 @@ export default function MainFilter(props) {
             query[param[0]] = param[1]
         })
         const queryString = objectToQueryParams(query)
-        const updateLink = '/estates?' + queryString
-        console.log(updateLink)
+        const updateLink =
+            '/estates?contract_type_id=' + contract_type + '&' + queryString
         router.push(updateLink)
     }
 
@@ -119,10 +88,9 @@ export default function MainFilter(props) {
             <Form
                 form={form}
                 onFinish={onFinish}
-                action="/search"
                 method="get"
                 className="bg-white text-gray-50 ">
-                <Row>
+                <Row className={'pt-10 pb-10 pl-2'}>
                     <Col
                         xs={12}
                         sm={3}
@@ -160,26 +128,51 @@ export default function MainFilter(props) {
                             />
                         </Form.Item>
                     </Col>
-                    <Col
-                        xs={12}
-                        sm={3}
-                        className="field-item d-flex flex-column">
-                        <SmallParagraph className="pl-2">
-                            {t('label.locationCommunity')}
-                        </SmallParagraph>
-                        <Form.Item name="location_city_id">
-                            <Select
-                                showSearch
-                                placeholder={t('button.pick')}
-                                variant="borderless"
-                                optionFilterProp="children"
-                                style={{ width: '100%' }}
-                                popupMatchSelectWidth={false}
-                                options={cities}
-                                allowClear
-                            />
-                        </Form.Item>
-                    </Col>
+
+                    {locationProvince.id !== 1 ? (
+                        <Col
+                            xs={12}
+                            sm={3}
+                            className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">
+                                {t('label.locationCommunity')}
+                            </SmallParagraph>
+                            <Form.Item name="location_city_id">
+                                <Select
+                                    showSearch
+                                    placeholder={t('button.pick')}
+                                    variant="borderless"
+                                    optionFilterProp="children"
+                                    style={{ width: '100%' }}
+                                    popupMatchSelectWidth={false}
+                                    options={cities}
+                                    allowClear
+                                />
+                            </Form.Item>
+                        </Col>
+                    ) : (
+                        <Col
+                            xs={12}
+                            sm={3}
+                            className="field-item d-flex flex-column">
+                            <SmallParagraph className="pl-2">
+                                {t('label.locationCommunity')}
+                            </SmallParagraph>
+                            <Form.Item name="location_community_id">
+                                <Select
+                                    showSearch
+                                    placeholder={t('button.pick')}
+                                    variant="borderless"
+                                    optionFilterProp="children"
+                                    style={{ width: '100%' }}
+                                    popupMatchSelectWidth={false}
+                                    options={communities}
+                                    allowClear
+                                />
+                            </Form.Item>
+                        </Col>
+                    )}
+
                     <Col
                         xs={12}
                         sm={3}
@@ -211,7 +204,7 @@ export default function MainFilter(props) {
                                 placeholder={t('button.pick')}
                                 variant="borderless"
                                 optionFilterProp="children"
-                                options={currencies}
+                                options={currencyOptions}
                                 onChange={handleCurrencyChange}
                             />
                         </Form.Item>
@@ -221,7 +214,7 @@ export default function MainFilter(props) {
                         sm={2}
                         className="field-item d-flex flex-column">
                         <SmallParagraph className="pl-2">
-                            {t('label.design.room')}
+                            {t('common:label.roomCount')}
                         </SmallParagraph>
                         <Form.Item name="room_count">
                             <Select
@@ -229,7 +222,7 @@ export default function MainFilter(props) {
                                 placeholder={t('button.pick')}
                                 variant="borderless"
                                 optionFilterProp="children"
-                                options={rooms}
+                                options={roomOptions}
                             />
                         </Form.Item>
                     </Col>
@@ -244,7 +237,7 @@ export default function MainFilter(props) {
                         <Button
                             htmlType="submit"
                             loading={loading}
-                            className="btn btn-main w-100"
+                            type={'primary'}
                             size="large">
                             {t('button.search')}
                         </Button>

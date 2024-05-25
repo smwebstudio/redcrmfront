@@ -3,6 +3,7 @@ import ProfessionalBanner from '@/components/Professionals/professional-banner'
 import { apiURL } from '@/constants'
 import ProfessionalDetails from '@/components/Professionals/professional-details'
 import AppPage from '@/components/common/Layout/AppPage'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
 export default async function ProfessionalPage({ params: { lng, slug } }) {
     const data = await fetch(apiURL + 'api/professionals/' + slug)
@@ -10,7 +11,9 @@ export default async function ProfessionalPage({ params: { lng, slug } }) {
     return (
         <AppPage>
             <ProfessionalBanner />
-            <ProfessionalDetails professionalItem={professionalItem} />
+            <ContainerBoxed>
+                <ProfessionalDetails professionalItem={professionalItem} />
+            </ContainerBoxed>
         </AppPage>
     )
 }

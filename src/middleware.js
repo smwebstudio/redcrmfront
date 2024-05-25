@@ -13,10 +13,12 @@ export const config = {
 
 export function middleware(req) {
     let lng
-    if (req.cookies.has(cookieName))
+    if (req.cookies.has(cookieName)) {
         lng = acceptLanguage.get(req.cookies.get(cookieName).value)
-    if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
+    }
+
     if (!lng) lng = fallbackLng
+    if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
 
     const {
         nextUrl: { search },
@@ -31,6 +33,7 @@ export function middleware(req) {
         !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
         !req.nextUrl.pathname.startsWith('/_next')
     ) {
+        console.log('path not supported')
         return NextResponse.redirect(
             new URL(`/${lng}${req.nextUrl.pathname}${urlParams}`, req.url),
         )
@@ -43,6 +46,7 @@ export function middleware(req) {
         )
         const response = NextResponse.next()
         if (lngInReferer) response.cookies.set(cookieName, lngInReferer)
+
         return response
     }
 

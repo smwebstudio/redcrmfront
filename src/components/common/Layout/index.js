@@ -5,6 +5,7 @@ import AppHeader from './AppHeader'
 import MoonLoading from '@/components/common/Loading/MoonLoading'
 import { Content } from 'antd/es/layout/layout'
 import AppFooter from '@/components/common/Layout/AppFooter'
+import StyledComponentsRegistry from '@/styles/styleRegistry'
 
 const AppLayout = ({ children, lng }) => {
     const [pageLoading, setPageLoading] = useState(false)
@@ -29,13 +30,13 @@ const AppLayout = ({ children, lng }) => {
                     <MoonLoading loading={true} />
                 </div>
             ) : (
-                <>
-                    <Layout className={'app-main-layout'}>
+                <StyledComponentsRegistry>
+                    <Layout className={'app-main-layout bg-white'}>
                         <AppHeader lng={lng} />
                         <Content>{children}</Content>
                         <AppFooter lng={lng} />
                     </Layout>
-                </>
+                </StyledComponentsRegistry>
             )}
         </div>
     )

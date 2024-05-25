@@ -9,39 +9,56 @@ import EstateEstimate from '@/components/Home/estate-estimate'
 import SearchSection from '@/components/Search/SearchSection'
 import AppPage from '@/components/common/Layout/AppPage'
 import { apiURL } from '@/constants'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
 export const metadata = {
-    title: 'RED Group',
+    title: 'Health',
     description: 'RED Group',
 }
 
-export const revalidate = 3600
+export const revalidate = 0
 
 export default async function HomePage({ params: { lng } }) {
-    const response = await api(lng).post('/api/filters', {})
-    const filters = response.data
+    const filtersResponse = await api(lng).post('/api/filters', {})
+    const filters = filtersResponse.data
+
+    console.log(filters)
+
     const query = ''
 
-    const saleEstatesResponse = await fetch(apiURL + 'api/estates/sale')
-    const rentEstatesResponse = await fetch(apiURL + 'api/estates/rent')
-    const dailyEstatesResponse = await fetch(apiURL + 'api/estates/daily')
-    const saleEstates = await saleEstatesResponse.json()
-    const rentEstates = await rentEstatesResponse.json()
-    const dailyEstates = await dailyEstatesResponse.json()
+    const saleEstatesResponse = await api(lng).get('api/estates/sale')
+    const rentEstatesResponse = await api(lng).get('api/estates/rent')
+    const dailyEstatesResponse = await api(lng).get(
+        apiURL + 'api/estates/daily',
+    )
+    const hotEstatesResponse = await api(lng).get('api/estates/hot')
+    const saleEstates = saleEstatesResponse.data
+    const rentEstates = rentEstatesResponse.data
+    const dailyEstates = dailyEstatesResponse.data
+    const hotEstates = hotEstatesResponse.data
+
+    const bestBrokersResponse = await api(lng).get('api/brokers/best')
+    const bestBrokers = bestBrokersResponse.data
 
     return (
         <AppPage>
             <Banner />
-            <SearchSection filtersData={filters} queryData={query} lng={lng} />
-            <EstateMainTabs
-                saleEstates={saleEstates}
-                rentEstates={rentEstates}
-                dailyEstates={dailyEstates}
-            />
-            <EstateEstimate filtersData={filters} lng={lng} />
-            <Professionals />
-            <EstateMainHot />
-            <WhyChooseUs />
+            <ContainerBoxed>
+                <SearchSection
+                    filtersData={filters}
+                    queryData={query}
+                    lng={lng}
+                />
+                <EstateMainTabs
+                    saleEstates={saleEstates}
+                    rentEstates={rentEstates}
+                    dailyEstates={dailyEstates}
+                />
+                <EstateEstimate filtersData={filters} lng={lng} />
+                <Professionals bestBrokers={bestBrokers} />
+                <EstateMainHot hotEstates={hotEstates} />
+            </ContainerBoxed>
+            <WhyChooseUs lng={lng} />
         </AppPage>
     )
 }

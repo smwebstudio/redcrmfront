@@ -1,86 +1,76 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import MainSearch from '@/components/Filters/main-search'
-import { Col } from 'antd'
+import { Col, Tabs } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
-import Link from 'next/link'
 import MainFilter from '@/components/Filters/main-filter'
+import TabPane from 'antd/es/tabs/TabPane'
+import { useRouter } from 'next/navigation'
 
 function SearchSection(props) {
     const { t } = useTranslation(props.lng, 'common')
-
+    const [activeKey, setActiveKey] = useState('1')
     const filtersData = props.filtersData.data
+    const router = useRouter()
+    const filters = [
+        {
+            key: '1',
+            label: t('button.sale'),
+            children: <MainFilter filtersData={filtersData} contractType={1} />,
+        },
+        {
+            key: '2',
+            label: t('button.rent'),
+            children: <MainFilter filtersData={filtersData} contractType={2} />,
+        },
+        {
+            key: '3',
+            label: t('label.title.fee.normal'),
+            children: <MainFilter filtersData={filtersData} contractType={3} />,
+        },
+        {
+            key: 'map',
+            label: t('label.searchMap'),
+            children: 'Content of Tab Pane 3',
+        },
+        {
+            key: '5',
+            label: t('label.search'),
+            children: <MainSearch />,
+        },
+    ]
+
+    const changeTab = activeKey => {
+        if (activeKey === 'map') {
+            router.push('/mapview')
+            return
+        }
+
+        setActiveKey(activeKey)
+    }
 
     return (
         <ContainerBoxed className={'container -mt-44'}>
             <div className="main-search-tabs">
                 <div className="banner-search-wrap">
                     <Col xs={0} sm={24}>
-                        <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link active"
-                                    data-toggle="tab"
-                                    href="#tabs_1">
-                                    {t('button.sale')}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link"
-                                    data-toggle="tab"
-                                    href="#tabs_2">
-                                    {t('button.rent')}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link"
-                                    data-toggle="tab"
-                                    href="#tabs_3">
-                                    {t('label.title.fee.normal')}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="btn btn-main"
-                                    href="/estates/map">
-                                    {t('label.searchMap')}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link"
-                                    data-toggle="tab"
-                                    href="#tabs_4">
-                                    {t('label.search')}
-                                </Link>
-                            </li>
-                        </ul>
+                        <Tabs
+                            type="card"
+                            activeKey={activeKey}
+                            defaultActiveKey={activeKey}
+                            tabBarGutter={4}
+                            onChange={changeTab}>
+                            {filters.map(filter => (
+                                <TabPane
+                                    tab={filter.label}
+                                    key={filter.key}
+                                    className={'test'}>
+                                    {filter.children}
+                                </TabPane>
+                            ))}
+                        </Tabs>
                     </Col>
-                    <div className="tab-content">
-                        <div className="tab-pane fade show active" id="tabs_1">
-                            <div className="pt-4 pl-3 bg-white pr-4">
-                                <MainFilter filtersData={filtersData} />
-                            </div>
-                        </div>
-                        {/*<div className="tab-pane fade" id="tabs_2">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainFilter filtersData={filtersData} />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="tab-pane fade" id="tabs_3">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainFilter filtersData={filtersData} />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        <div className="tab-pane fade" id="tabs_4">
-                            <div className="pt-4 pl-3 bg-white pr-4">
-                                <MainSearch />
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </ContainerBoxed>

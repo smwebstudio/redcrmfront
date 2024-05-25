@@ -189,18 +189,20 @@ export function EstatesSection(props) {
                             </Col>
                         </Row>
                     )}
-                    <Row
-                        className={
-                            'mb-5 d-flex align-items-center justify-content-center'
-                        }>
-                        <Pagination
-                            pageSize={pageSize}
-                            defaultCurrent={1}
-                            total={estatesData.meta.total}
-                            pageSizeOptions={[6, 9, 12, 24]}
-                            locale={{ items_per_page: '' }}
-                            onChange={handlePageChange}
-                        />
+                    <Row justify={'center'}>
+                        <Col
+                            xs={24}
+                            md={12}
+                            className={'flex flex-row justify-center p-4'}>
+                            <Pagination
+                                pageSize={pageSize}
+                                defaultCurrent={1}
+                                total={estatesData.meta.total}
+                                pageSizeOptions={[6, 9, 12, 24]}
+                                locale={{ items_per_page: '' }}
+                                onChange={handlePageChange}
+                            />
+                        </Col>
                     </Row>
                 </div>
             </ContainerBoxed>

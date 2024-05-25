@@ -1,13 +1,8 @@
 import { dir } from 'i18next'
-import '@/styles/red_theme.css'
-import '@/assets/css/custom.css'
-import '@/assets/css/bootstrap.min.css'
-import '@/assets/css/responsive.css'
-import '@/assets/css/style.css'
+// import '@/styles/red_theme.css'
 import AppLayout from '@/components/common/Layout'
+import { languages } from '../i18n/settings'
 // import '@/assets/css/vendor.css'
-
-const languages = ['am', 'en', 'ru']
 
 export const metadata = {
     title: 'RED Group',
