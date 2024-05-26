@@ -1,6 +1,4 @@
 import React from 'react'
-import Banner from '@/components/React/section-components/banner'
-import WhyChooseUs from '@/components/React/section-components/why-choose-us'
 import SearchSection from '@/components/Search/SearchSection'
 import AppPage from '@/components/common/Layout/AppPage'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
@@ -9,6 +7,8 @@ import EstateMainTabs from '@/components/Estate/estate-main-tabs'
 import EstateEstimate from '@/components/Home/estate-estimate'
 import Professionals from '@/components/Home/professionals'
 import EstateMainHot from '@/components/Estate/estate-main-hot'
+import HomeBanner from '@/components/pages/Home/HomeBanner'
+import WhyChooseUs from '@/components/pages/Home/WhyChooseUs'
 
 export const dynamicParams = true
 
@@ -40,7 +40,7 @@ export default async function HomePage({ params: { lng } }) {
 
     return (
         <AppPage>
-            <Banner />
+            <HomeBanner />
             <ContainerBoxed>
                 <SearchSection filtersData={filters} lng={lng} />
                 <EstateMainTabs

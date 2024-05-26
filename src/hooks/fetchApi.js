@@ -30,7 +30,6 @@ function fetchApi(locale) {
             headers,
         })
 
-        console.log(response)
         return handleResponse(response)
     }
 

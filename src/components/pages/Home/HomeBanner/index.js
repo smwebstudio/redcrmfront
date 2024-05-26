@@ -8,8 +8,8 @@ import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import { useTranslation } from '@/app/i18n/client'
 import WhiteParagraph from '@/components/Typography/paragraph/WhiteParagraph'
 
-function Banner(props) {
-    const { t } = useTranslation(props.lng, 'common')
+const HomeBanner = ({ lng }) => {
+    const { t } = useTranslation(lng, 'common')
 
     let publicUrl = process.env.PUBLIC_URL + '/'
 
@@ -45,4 +45,4 @@ function Banner(props) {
     )
 }
 
-export default Banner
+export default HomeBanner

@@ -1,9 +1,9 @@
 import React from 'react'
 import api from '@/hooks/api'
-import BannerDevelopers from '@/components/React/section-components/bannerDevelopers'
 import SearchSectionDevelopers from '@/components/Search/SearchSectionDevelopers'
 import BuildingList from '@/components/Buildings/BuildingList'
 import AppPage from '@/components/common/Layout/AppPage'
+import BannerDevelopers from '@/components/pages/Developers/DevelopersBanner'
 
 export default async function DeveloperListPage({
     params: { lng, slug },

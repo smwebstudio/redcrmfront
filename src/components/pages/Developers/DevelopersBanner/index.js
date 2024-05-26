@@ -5,8 +5,8 @@ import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import WhiteParagraph from '@/components/Typography/paragraph/WhiteParagraph'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-function BannerDevelopers(props) {
-    const { t } = useTranslation(props.lng, 'common')
+const BannerDevelopers = ({ lng }) => {
+    const { t } = useTranslation(lng, 'common')
 
     let publicUrl = process.env.PUBLIC_URL + '/'
 

@@ -38,52 +38,41 @@ const formItemLayout = {
     },
 }
 
-const EstimateForm = ({ lng }) => {
+const EstimateForm = ({ lng, evaluationOptionsData }) => {
     const { t } = useTranslation(lng, 'common')
 
     const communitiesOptions = []
-    let evaluationOptionsData = []
 
     const [form] = Form.useForm()
     const [communities, setCommunities] = useState([communitiesOptions])
     const [evaluationOptions, setEvaluationOptions] = useState([])
+
     useEffect(() => {
-        api(lng)
-            .post('/api/evaluationOptions', {})
-            .then(response => {
-                const data = response.data.data
-
-                let evaluationOptions = []
-
-                data.evaluationOptionsData.locationCommunity.forEach(
-                    community => {
-                        communitiesOptions.push({
-                            value: community.value,
-                            label: community.label,
-                        })
-                    },
-                )
-
-                evaluationOptionsData = Object.entries(
-                    data.evaluationOptionsData,
-                ).map(([name, values]) => ({
-                    name,
-                    values,
-                }))
-
-                evaluationOptionsData.forEach(list => {
-                    evaluationOptions.push({
-                        name: list.name,
-                        options: list.values,
-                    })
+        evaluationOptionsData.evaluationOptionsData.locationCommunity.forEach(
+            community => {
+                communitiesOptions.push({
+                    value: community.value,
+                    label: community.label,
                 })
+            },
+        )
 
-                setCommunities([...communitiesOptions])
-                setEvaluationOptions([...evaluationOptions])
+        evaluationOptionsData = Object.entries(
+            evaluationOptionsData.evaluationOptionsData,
+        ).map(([name, values]) => ({
+            name,
+            values,
+        }))
+
+        evaluationOptionsData.forEach(list => {
+            evaluationOptions.push({
+                name: list.name,
+                options: list.values,
             })
-            .catch(error => {
-                // if (error.response.status !== 422) throw error;
-            })
+        })
+
+        setCommunities([...communitiesOptions])
+        setEvaluationOptions([...evaluationOptions])
     }, [lng])
 
     const [showResult, setShowResult] = useState(false)
@@ -138,7 +127,7 @@ const EstimateForm = ({ lng }) => {
             </Row>
 
             <Row gutter={32}>
-                <Col span={18}>
+                <Col xs={24} md={18}>
                     <div className={'add_property_wrapper mt-2'}>
                         <Form
                             {...formItemLayout}
@@ -354,7 +343,7 @@ const EstimateForm = ({ lng }) => {
                         )}
                     </div>
                 </Col>
-                <Col span={6} className={'pt-5 shadow'}>
+                <Col xs={0} md={6} className={'pt-5 shadow'}>
                     <Affix offsetTop={150}>
                         <Steps
                             direction="vertical"
