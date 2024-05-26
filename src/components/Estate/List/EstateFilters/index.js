@@ -31,6 +31,7 @@ const EstateFilters = ({
     let currentCurrency = 'USD'
     let currentContractType = 'sale'
 
+    const [buttonLoading, setButtonLoading] = useState(false)
     const [currentProvince, setCurrentProvince] = useState(initialProvince)
     const [cities, setCities] = useState(initialProvince.cities)
     const [streets, setStreets] = useState([])
@@ -44,7 +45,7 @@ const EstateFilters = ({
         (acc, location) => {
             const transformedCities = location.cities.reduce(
                 (cityAcc, city) => {
-                    cityAcc[city.id] = city.streets
+                    cityAcc[city.id] = city.children
                     return cityAcc
                 },
                 {},
@@ -88,6 +89,7 @@ const EstateFilters = ({
     }
 
     const onFinish = async values => {
+        setButtonLoading(true)
         setLoading(true)
         const queryData = Object.entries(values)
 
@@ -130,6 +132,7 @@ const EstateFilters = ({
 
         changeEstatesData(estatesData)
         setLoading(false)
+        setButtonLoading(false)
 
         history.replaceState(null, '', updateLink)
     }
@@ -401,7 +404,7 @@ const EstateFilters = ({
                     </Col>
 
                     <Col xs={24} sm={8}>
-                        <Row gutter={[32, 8]} justify={'end'}>
+                        <Row gutter={[32, 8]} justify={'center'}>
                             <Col xs={24} md={8} className="">
                                 <AdditionalButton
                                     onClick={handleAdditionalFilters}>
@@ -409,7 +412,10 @@ const EstateFilters = ({
                                 </AdditionalButton>
                             </Col>
                             <Col xs={24} md={6}>
-                                <RedButton htmlType="submit">
+                                <RedButton
+                                    htmlType="submit"
+                                    className={'ml-2'}
+                                    loading={buttonLoading}>
                                     {t('label.search')}
                                 </RedButton>
                             </Col>

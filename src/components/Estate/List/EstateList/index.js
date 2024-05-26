@@ -62,9 +62,6 @@ const EstateList = ({
         setLoading(true)
         const exactPageUrl = pageDataURL + '&sort=' + sortBy
 
-        console.log('exactPageUrl')
-        console.log(exactPageUrl)
-
         const estatesSortedResponse = await api(lng).get(exactPageUrl)
 
         const sortedEstates = estatesSortedResponse.data

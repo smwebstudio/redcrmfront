@@ -1,8 +1,8 @@
 import React from 'react'
 import { apiURL } from '@/constants'
-import api from '@/hooks/api'
 import AppPage from '@/components/common/Layout/AppPage'
 import EstateList from '@/components/Estate/List/EstateList'
+import fetchApi from '@/hooks/fetchApi'
 
 export const dynamicParams = true
 
@@ -47,11 +47,18 @@ export default async function EstateListPage({
         }
     })
 
-    const filtersDataRequest = await api(lng).post('api/filters/', {})
-    const filtersData = filtersDataRequest.data.data
+    const filtersDataRequest = await fetchApi(lng).get('api/filters/', {
+        next: { revalidate: 12400 },
+    })
+    const filtersData = filtersDataRequest.data
 
-    const data = await api(lng).get('api/estates/filter/estates?' + queryURL)
-    const estatesData = data.data
+    const estatesDataResponse = await fetchApi(lng).get(
+        'api/estates/filter/estates?' + queryURL,
+        {
+            next: { revalidate: 3600 },
+        },
+    )
+    const estatesData = estatesDataResponse
     const pageDataURL = apiURL + 'api/estates/filter/estates'
 
     return (

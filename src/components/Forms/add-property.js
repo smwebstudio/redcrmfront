@@ -16,9 +16,8 @@ import {
 import React, { useEffect, useState } from 'react'
 import UploadBlock from '@/components/Uploader/uploadBlock'
 import { CheckCircleOutlined } from '@ant-design/icons'
-import { useRouter } from 'next/navigation'
-import api from '@/hooks/api'
 import { useTranslation } from '@/app/i18n/client'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
 const { Option } = Select
 
@@ -47,69 +46,51 @@ const formItemLayout = {
     },
 }
 
-const AddProperyForm = ({ slug, lng }) => {
+const AddProperyForm = ({ lng, evaluationData }) => {
     const { t } = useTranslation(lng, 'common')
 
     const locationOptions = []
-    let estateOptionsData = []
-    let buildingOptionsData = []
-    const router = useRouter()
-    const { locale } = router
 
+    let buildingOptionsData = []
     const [form] = Form.useForm()
     const [location, setLocation] = useState([locationOptions])
-    const [estateOptions, setEstateOptions] = useState([])
+    const [estateOptions, setEstateOptions] = useState(
+        evaluationData.estateOptionsData,
+    )
     const [buildingOptions, setBuildingOptions] = useState([])
     useEffect(() => {
-        api(locale)
-            .post('/api/options', {})
-            .then(response => {
-                const data = response.data.data
-
-                console.log(data)
-
-                data.locationData.forEach(value => {
-                    locationOptions.push({
-                        value: value.id,
-                        label: value.label,
-                        children: value.cities,
-                    })
-                })
-
-                data.estateOptionsData.forEach(value => {
-                    estateOptionsData.push({
-                        value: value.id,
-                        label: value.label,
-                    })
-                })
-
-                buildingOptionsData = Object.entries(
-                    data.buildingOptionsData,
-                ).map(([name, values]) => ({
-                    name,
-                    values,
-                }))
-
-                let buildingLists = []
-
-                buildingOptionsData.forEach(list => {
-                    console.error('value')
-                    console.error(list)
-
-                    buildingLists.push({
-                        name: list.name,
-                        options: list.values,
-                    })
-                })
-
-                setLocation([...locationOptions])
-                setEstateOptions([...estateOptionsData])
-                setBuildingOptions([...buildingLists])
+        console.log('evaluationData')
+        console.log(evaluationData)
+        evaluationData.locationData.forEach(value => {
+            locationOptions.push({
+                value: value.id,
+                label: value.label,
+                children: value.cities,
             })
-            .catch(e => {
-                console.log(e)
+        })
+
+        buildingOptionsData = Object.entries(
+            evaluationData.buildingOptionsData,
+        ).map(([name, values]) => ({
+            name,
+            values,
+        }))
+
+        let buildingLists = []
+
+        buildingOptionsData.forEach(list => {
+            console.error('value')
+            console.error(list)
+
+            buildingLists.push({
+                name: list.name,
+                options: list.values,
             })
-    }, [locale])
+        })
+
+        setLocation([...locationOptions])
+        setBuildingOptions([...buildingLists])
+    }, [])
 
     const onFinish = values => {
         console.log('Received values of form: ', values)
@@ -121,7 +102,7 @@ const AddProperyForm = ({ slug, lng }) => {
     }
 
     return (
-        <div className={'container mt-5 mb-5'}>
+        <ContainerBoxed className={'mt-5 mb-5'}>
             <Row>
                 <h3 className={'text-dark font-bold'}>
                     {t('label.addNewAnnouncement')}
@@ -526,7 +507,7 @@ const AddProperyForm = ({ slug, lng }) => {
                     </Affix>
                 </Col>
             </Row>
-        </div>
+        </ContainerBoxed>
     )
 }
 export default AddProperyForm

@@ -1,35 +1,42 @@
 import React from 'react'
 import Banner from '@/components/React/section-components/banner'
-import EstateMainTabs from '@/components/Estate/estate-main-tabs'
-import Professionals from '@/components/Home/professionals'
-import EstateMainHot from '@/components/Estate/estate-main-hot'
 import WhyChooseUs from '@/components/React/section-components/why-choose-us'
-import api from '@/hooks/api'
-import EstateEstimate from '@/components/Home/estate-estimate'
 import SearchSection from '@/components/Search/SearchSection'
 import AppPage from '@/components/common/Layout/AppPage'
-import { apiURL } from '@/constants'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import fetchApi from '@/hooks/fetchApi'
+import EstateMainTabs from '@/components/Estate/estate-main-tabs'
+import EstateEstimate from '@/components/Home/estate-estimate'
+import Professionals from '@/components/Home/professionals'
+import EstateMainHot from '@/components/Estate/estate-main-hot'
 
-export const revalidate = 0
+export const dynamicParams = true
 
 export default async function HomePage({ params: { lng } }) {
-    const filtersResponse = await api(lng).post('/api/filters', {})
+    const filtersResponse = await fetchApi(lng).get('api/filters/', {
+        next: { revalidate: 12400 },
+    })
+
+    const saleEstatesResponse = await fetchApi(lng).get('api/estates/sale/', {
+        next: { revalidate: 12400 },
+    })
+    const rentEstatesResponse = await fetchApi(lng).get('api/estates/rent/', {
+        next: { revalidate: 12400 },
+    })
+    const dailyEstatesResponse = await fetchApi(lng).get('api/estates/daily')
+    const hotEstatesResponse = await fetchApi(lng).get('api/estates/hot/', {
+        next: { revalidate: 12400 },
+    })
+    const bestBrokersResponse = await fetchApi(lng).get('api/brokers/best/', {
+        next: { revalidate: 12400 },
+    })
+
     const filters = filtersResponse.data
-
-    const saleEstatesResponse = await api(lng).get('api/estates/sale')
-    const rentEstatesResponse = await api(lng).get('api/estates/rent')
-    const dailyEstatesResponse = await api(lng).get(
-        apiURL + 'api/estates/daily',
-    )
-    const hotEstatesResponse = await api(lng).get('api/estates/hot')
-    const saleEstates = saleEstatesResponse.data
-    const rentEstates = rentEstatesResponse.data
-    const dailyEstates = dailyEstatesResponse.data
-    const hotEstates = hotEstatesResponse.data
-
-    const bestBrokersResponse = await api(lng).get('api/brokers/best')
-    const bestBrokers = bestBrokersResponse.data
+    const saleEstates = saleEstatesResponse
+    const rentEstates = rentEstatesResponse
+    const dailyEstates = dailyEstatesResponse
+    const hotEstates = hotEstatesResponse
+    const bestBrokers = bestBrokersResponse
 
     return (
         <AppPage>

@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 function SearchSection(props) {
     const { t } = useTranslation(props.lng, 'common')
     const [activeKey, setActiveKey] = useState('1')
-    const filtersData = props.filtersData.data
+    const filtersData = props.filtersData
     const router = useRouter()
     const filters = [
         {
