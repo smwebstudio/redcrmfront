@@ -11,11 +11,6 @@ import AppPage from '@/components/common/Layout/AppPage'
 import { apiURL } from '@/constants'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-export const metadata = {
-    title: 'Health',
-    description: 'RED Group',
-}
-
 export const revalidate = 0
 
 export default async function HomePage({ params: { lng } }) {

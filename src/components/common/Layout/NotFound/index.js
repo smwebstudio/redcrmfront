@@ -5,6 +5,7 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import { Col, Row } from 'antd'
 import AppImage from '@/components/common/Image/AppImage'
 import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
+import { RedButton } from '@/components/common/Buttons/RedButton'
 
 export const NotFound = () => {
     return (
@@ -16,8 +17,10 @@ export const NotFound = () => {
                 <Col xs={24}>
                     <DarkHeading1>Ցավոք էջը չի գտնվել</DarkHeading1>
                 </Col>
-                <Col xs={24}>
-                    <Link href="/">Գլխավոր</Link>
+                <Col xs={24} className={'mb-8'}>
+                    <Link href="/">
+                        <RedButton>Գլխավոր</RedButton>
+                    </Link>
                 </Col>
             </Row>
         </ContainerBoxed>

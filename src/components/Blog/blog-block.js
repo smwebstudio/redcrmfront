@@ -5,10 +5,12 @@ import BlogSmallItem from '@/components/Blog/blog-small-item'
 import BlogMidItem from '@/components/Blog/blog-mid-item'
 import { apiURL } from '@/constants'
 import { Col, Row } from 'antd'
+import { useTranslation } from '@/app/i18n/client'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-export const BlogBlock = ({ title, type }) => {
+export const BlogBlock = ({ title, type, lng }) => {
     const [blogData, setBlogData] = useState([])
-
+    const { t } = useTranslation(lng, 'common')
     useEffect(() => {
         fetch(apiURL + 'api/blog/' + type)
             .then(res => res.json())
@@ -21,7 +23,7 @@ export const BlogBlock = ({ title, type }) => {
     }, [type])
 
     return (
-        <div className="container pt-sm-5">
+        <ContainerBoxed className="pt-5 pb-5">
             <Row gutter={32}>
                 <Col xs={24} sm={16}>
                     <h3 className="font-bold">{title}</h3>
@@ -43,7 +45,7 @@ export const BlogBlock = ({ title, type }) => {
                     </Row>
                 </Col>
                 <Col xs={0} sm={8}>
-                    <div className="d-flex flex-row justify-content-end">
+                    <div className="flex flex-row justify-end">
                         <Link
                             href={'/blog/' + type}
                             className="text-main hover-underline mb-2 pb-1 text-underline">
@@ -64,7 +66,7 @@ export const BlogBlock = ({ title, type }) => {
                     )}
                 </Col>
             </Row>
-        </div>
+        </ContainerBoxed>
     )
 }
 

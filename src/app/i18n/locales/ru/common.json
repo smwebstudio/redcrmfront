@@ -76,6 +76,8 @@
     "label.ArmenMargaryan": "Армен Маргарян",
     "label.AsAConsequenceOfTheGlobal": "Глобальное следствие всего этого",
     "label.CashReturn": "Возврат денежных средств",
+    "label.EvaluatHous": "Оценка квартиры в Ереване",
+    "label.evaluation.smallText": "Этот калькулятор, созданный лучшими оценщиками недвижимости, позволяет определить рыночную стоимость продажи вашей квартиры.",
     "label.GeodesicSpecialist": "Специалист по геодезии",
     "label.InAllSearch": "Общий поиск",
     "label.Knowledge": "Знания",
@@ -985,5 +987,7 @@
     "validation.windowsView.required": "Расположение окон является обязательным",
     "validation.year.required": "Дата постройки обязательна",
     "label.red.bestOffers": "Лучшие предложения у нас",
-    "label.red.sellProperties": "Продавайте дома, земельные участки, квартиры удобным для вас способом"
+    "label.red.sellProperties": "Продавайте дома, земельные участки, квартиры удобным для вас способом",
+    "label.red.addressOffice": "0010, РА, Ереван, ул. М. Хоренаци, 15",
+    "label.red.address": "Бизнес-центр Элит Плаза, 4-й этаж"
 }

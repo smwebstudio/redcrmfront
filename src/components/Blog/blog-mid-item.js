@@ -11,7 +11,7 @@ function BlogMidItem(props) {
         <div className="BlogItem-card d-flex flex-column pt-4 pb-4">
             <div className="BlogItem-image d-flex">
                 <Link
-                    href={'/blog/news/' + BlogItem.id}
+                    href={'/blog/' + BlogItem.id}
                     className={'text-main hover-underline'}>
                     <AppImage alt={'Red Group'} src={BlogItem.picture} />
                 </Link>
@@ -34,7 +34,7 @@ function BlogMidItem(props) {
                     </span>
                 </p>
                 <Link
-                    href={'/blog/news/' + BlogItem.id}
+                    href={'/blog/' + BlogItem.id}
                     className={'text-main hover-underline'}>
                     <h3 className="font-size-13 mb-3 text-gray-800 text-dark">
                         {BlogItem.title}

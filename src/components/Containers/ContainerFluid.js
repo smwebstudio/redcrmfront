@@ -1,21 +1,19 @@
-import styled from 'styled-components';
-import React from "react";
+import styled from 'styled-components'
+import React from 'react'
 
 const Container = styled.div`
-  width: 100%;
-  margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
 
-  @media (min-width: 768px) {
-  }
+    @media (min-width: 768px) {
+    }
 
-  @media (min-width: 1280px) {
-  }
-`;
+    @media (min-width: 1280px) {
+    }
+`
 
+const ContainerFluid = ({ children, ...props }) => {
+    return <Container {...props}>{children}</Container>
+}
 
-
-const ContainerFluid = ({ children, className }) => {
-    return <Container className={className}>{children}</Container>;
-};
-
-export default ContainerFluid;
+export default ContainerFluid

@@ -33,7 +33,6 @@ export function middleware(req) {
         !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
         !req.nextUrl.pathname.startsWith('/_next')
     ) {
-        console.log('path not supported')
         return NextResponse.redirect(
             new URL(`/${lng}${req.nextUrl.pathname}${urlParams}`, req.url),
         )

@@ -6,6 +6,7 @@ import { apiURL } from '@/constants'
 import api from '@/hooks/api'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
+import { objectToQueryParams } from '@/lib/helper'
 
 const filter = (inputValue, path) =>
     path.some(
@@ -110,42 +111,38 @@ export default function EstateSearch(props) {
         setLoading(true)
         const queryData = Object.entries(values)
 
-        let queryURL = ''
-        let queryURLNext = {}
+        let query = {}
         queryData.forEach(function (param) {
-            if (param[0] === 'prices' && param[1]) {
-                let priceId = param[1] - 1
-
-                let pricesRangeData = prices[priceId]
-
-                let pricesRange = pricesRangeData.label.split('-')
-
-                queryURL +=
-                    'filter[price_from]=' +
-                    pricesRange[0] +
-                    '&' +
-                    'filter[price_to]=' +
-                    pricesRange[1] +
-                    '&'
-                queryURLNext[param[0]] = param[1]
-            } else if (param[1]) {
-                queryURL += 'filter[' + param[0] + ']' + '=' + param[1] + '&'
-                queryURLNext[param[0]] = param[1]
-            }
+            query[param[0]] = param[1]
         })
+        const queryString = objectToQueryParams(query)
+        const updateLink = '/estates?' + queryString
+        router.push(updateLink)
 
-        router.push(
-            {
-                pathname: '/estates',
-                query: queryURLNext,
-            },
-            undefined,
-            { shallow: true },
-        )
+        // queryData.forEach(function (param) {
+        //     if (param[0] === 'prices' && param[1]) {
+        //         let priceId = param[1] - 1
+        //
+        //         let pricesRangeData = prices[priceId]
+        //
+        //         let pricesRange = pricesRangeData.label.split('-')
+        //
+        //         queryURL +=
+        //             'filter[price_from]=' +
+        //             pricesRange[0] +
+        //             '&' +
+        //             'filter[price_to]=' +
+        //             pricesRange[1] +
+        //             '&'
+        //         queryURLNext[param[0]] = param[1]
+        //     } else if (param[1]) {
+        //         queryURL += 'filter[' + param[0] + ']' + '=' + param[1] + '&'
+        //         queryURLNext[param[0]] = param[1]
+        //     }
+        // })
 
-        setPageDataURL(apiURL + 'api/estates/filter/estates?' + queryURL)
+        setPageDataURL(apiURL + 'api/estates/filter/estates?' + queryString)
 
-        console.log(queryURL)
         const estatesFilteredResponse = await api(locale).get(
             apiURL + 'api/estates/filter/estates?' + queryURL,
         )

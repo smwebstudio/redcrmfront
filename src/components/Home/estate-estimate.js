@@ -5,9 +5,11 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import EvaluationSimpleForm from '@/components/Filters/evaluation--simple-form'
 import { useRouter } from 'next/navigation'
+import { useTranslation } from '@/app/i18n/client'
 
-function EstateEstimate(props) {
+function EstateEstimate({ lng, filtersData }) {
     const router = useRouter()
+    const { t } = useTranslation(lng, 'common')
     return (
         <ContainerBoxed>
             <Row>
@@ -16,14 +18,15 @@ function EstateEstimate(props) {
                         <Row className="mb-3">
                             <Col xs={12}>
                                 <WhiteHeading1 className={'mb-2'}>
-                                    Բնակարանի գնահատման հաշվիչ
+                                    {t('label.EvaluatHous')}
                                 </WhiteHeading1>
                             </Col>
                         </Row>
                         <Row className="row">
                             <Col xs={12}>
                                 <EvaluationSimpleForm
-                                    filtersData={props.filtersData}
+                                    filtersData={filtersData}
+                                    lng={lng}
                                 />
                             </Col>
                         </Row>
@@ -39,17 +42,16 @@ function EstateEstimate(props) {
                         }}>
                         <div className="pt-3 pb-3 pl-3 pr-3  bg-main">
                             <h3 className="text-white">
-                                Բնակարանի գնահատման հաշվիչ
+                                {t('label.EvaluatHous')}
                             </h3>
                             <p className="small text-white mb-4">
-                                Այս հաշվիչը, հնարավորություն է տալիս որոշել Ձեր
-                                բնակարանի վաճառքի շուկայական գինը:
+                                {t('label.evaluation.smallText')}
                             </p>
                             <Button
                                 size="large"
                                 className={'w-full'}
                                 onClick={() => router.push('/estimate')}>
-                                Գնահատել
+                                {t('label.button.evaluation')}
                             </Button>
                         </div>
                     </div>

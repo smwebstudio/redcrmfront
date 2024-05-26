@@ -39,7 +39,7 @@ function BlogItem(props) {
                 </div>
 
                 <Link
-                    href={'/blog/news/' + BlogItem.id}
+                    href={'/blog/' + BlogItem.id}
                     className={'text-main hover-underline'}>
                     Մանրամասն
                 </Link>

@@ -53,9 +53,6 @@ const EstimateForm = ({ lng }) => {
             .then(response => {
                 const data = response.data.data
 
-                console.log('data')
-                console.log(data)
-
                 let evaluationOptions = []
 
                 data.evaluationOptionsData.locationCommunity.forEach(
@@ -106,7 +103,7 @@ const EstimateForm = ({ lng }) => {
         const data = new FormData()
         data.append('json', JSON.stringify(values))
 
-        api(locale)
+        api(lng)
             .post('/api/evaluate', values)
             .then(response => {
                 let priceAMD = response.data * 400
@@ -206,7 +203,7 @@ const EstimateForm = ({ lng }) => {
                                                         placeholder={t(
                                                             'button.pick',
                                                         )}
-                                                        dropdownMatchSelectWidth={
+                                                        popupMatchSelectWidth={
                                                             false
                                                         }
                                                         options={item.options}
@@ -266,7 +263,7 @@ const EstimateForm = ({ lng }) => {
                                                         },
                                                     ]}>
                                                     <Select
-                                                        dropdownMatchSelectWidth={
+                                                        popupMatchSelectWidth={
                                                             false
                                                         }
                                                         placeholder={t(

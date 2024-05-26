@@ -7,12 +7,12 @@ import AppPage from '@/components/common/Layout/AppPage'
 export default async function Blog({ params: { lng } }) {
     return (
         <AppPage>
-            <BlogNavbar />
-            <BlogBanner />
-            <BlogBlock type="news" title="Նորություններ" />
-            <BlogBlock type="articles" title="Հոդվածներ" />
-            <BlogBlock type="prices" title="Գներ" />
-            <BlogBlock type="statistics" title="Հաշվետվություններ" />
+            <BlogNavbar lng={lng} />
+            <BlogBanner lng={lng} />
+            <BlogBlock type="news" title="Նորություններ" lng={lng} />
+            <BlogBlock type="articles" title="Հոդվածներ" lng={lng} />
+            <BlogBlock type="prices" title="Գներ" lng={lng} />
+            <BlogBlock type="statistics" title="Հաշվետվություններ" lng={lng} />
         </AppPage>
     )
 }

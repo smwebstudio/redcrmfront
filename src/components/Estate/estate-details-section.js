@@ -43,14 +43,9 @@ function EstateDetailsSection(props) {
 
     useEffect(() => {}, [])
 
-    console.log(estateData)
-
     const [isModalOpen, setIsModalOpen] = useState(false)
     const showModal = async () => {
-        console.log('lng')
-        console.log(props.lng)
         const estate = await api(props.lng).get('api/estates/' + 66027)
-        console.log(estate)
         setIsModalOpen(true)
     }
     const handleOk = () => {

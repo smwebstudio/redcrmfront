@@ -3,7 +3,7 @@ import EstateLargeItem from '@/components/Estate/estate-large-item'
 import { Col, Row } from 'antd'
 import { apiURL } from '@/constants'
 
-export function EstateList(props) {
+export function EstateListOld(props) {
     let mapState = props.mapState ? props.mapState : false
     let colClass = mapState ? 'col-12' : 'col-lg-4 col-sm-6'
 
@@ -16,9 +16,7 @@ export function EstateList(props) {
                 setEstatesData(data)
                 changeEstatesFoundCount(data.meta.total)
             })
-            .catch(e => {
-                console.log(e)
-            })
+            .catch(e => {})
     }, [])
 
     return (

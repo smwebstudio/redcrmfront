@@ -17,8 +17,6 @@ const initI18next = async (lng, ns) => {
 }
 
 export async function useTranslation(lng, ns, options = {}) {
-    console.log('useTranslation')
-    console.log(lng)
     const i18nextInstance = await initI18next(lng, ns)
     return {
         t: i18nextInstance.getFixedT(

@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import footerdata from 'data/footerdata.json'
 import { Col, Row } from 'antd'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import Link from 'next/link'
@@ -13,16 +12,10 @@ import {
     faTwitter,
     faYoutube,
 } from '@fortawesome/free-brands-svg-icons'
+import { useTranslation } from '@/app/i18n/client'
 
-export const AppFooter = () => {
-    // useEffect(() => {
-    //     let publicUrl = process.env.PUBLIC_URL + '/'
-    //     const minscript = document.createElement('script')
-    //     minscript.async = true
-    //     minscript.src = publicUrl + 'assets/js/main.js'
-    //     document.body.appendChild(minscript)
-    // }, [])
-
+export const AppFooter = ({ lng }) => {
+    const { t } = useTranslation(lng, 'common')
     let publicUrl = process.env.PUBLIC_URL + '/'
 
     return (
@@ -34,10 +27,12 @@ export const AppFooter = () => {
                             xs={24}
                             sm={8}
                             className={'text-center sm:text-left'}>
-                            <Link className="footer-logo" href="#">
+                            <Link className="footer-logo" href="/">
                                 <AppImage
                                     alt={'Red Group'}
-                                    src={publicUrl + footerdata.footerlogo}
+                                    src={
+                                        publicUrl + 'assets/img/logo-footer.svg'
+                                    }
                                 />
                             </Link>
                         </Col>
@@ -78,66 +73,87 @@ export const AppFooter = () => {
                     <Row gutter={16}>
                         <Col xs={12} sm={6}>
                             <div className="widget widget_nav_menu">
-                                <p className="mb-4">Անշարժ գույք</p>
+                                <p className="mb-4">{t('label.estate')}</p>
                                 <ul className={'font-size-12'}>
                                     <li className="">
-                                        <Link href="/">Գնել</Link>
+                                        <Link href="/estates">
+                                            {t('menu.buy')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Վարձակալել</Link>
+                                        <Link href="/estates">
+                                            {t('menu.rent')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Կառուցապատողից</Link>
+                                        <Link href="/estates">
+                                            {t('label.title.fee.normal')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Օրավարձ</Link>
-                                    </li>
-                                    <li className="">
-                                        <Link href="/">Նորակառույց</Link>
+                                        <Link href="/">
+                                            {t('menu.buildDevelopers')}
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                         </Col>
                         <Col sm={6}>
                             <div className="widget widget_nav_menu">
-                                <p className="mb-4">Մեր ընկերությունը</p>
+                                <p className="mb-4">{t('label.aboutUs')}</p>
                                 <ul className={'font-size-12'}>
                                     <li className="">
-                                        <Link href="/">Մեր մասին</Link>
+                                        <Link href="/about">
+                                            {t('menu.about')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Մասնագետներ</Link>
+                                        <Link href="/professionals">
+                                            {t('menu.professional')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Բլոգ</Link>
+                                        <Link href="/blog">
+                                            {t('menu.blog')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Կապ</Link>
+                                        <Link href="/contact">
+                                            {t('menu.contact')}
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                         </Col>
                         <Col sm={6}>
                             <div className="widget widget_nav_menu">
-                                <p className="mb-4">Ծառայություններ</p>
+                                <p className="mb-4">
+                                    {t('label.applicationServices')}
+                                </p>
                                 <ul className={'font-size-12'}>
                                     <li className="">
-                                        <Link href="/">Նոր հայտ</Link>
+                                        <Link href="/add-property">
+                                            {t('label.addNewAnnouncement')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Գնահատում</Link>
+                                        <Link href="/estimate">
+                                            {t('menu.evaluate')}
+                                        </Link>
                                     </li>
                                     <li className="">
-                                        <Link href="/">Անձնական էջ</Link>
+                                        <Link href="/">
+                                            {t('label.settingsProinfo')}
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                         </Col>
                         <Col xs={24} sm={6}>
                             <div className="widget widget_nav_menu">
-                                <p className="">Ինֆոգրուպ ՍՊԸ</p>
+                                <p className="mb-3">{t('label.contactDet')}</p>
                                 <ul>
-                                    <li className={'d-flex flex-row mb-3'}>
+                                    <li className={'flex flex-row mb-3'}>
                                         <AppImage
                                             alt={'Red Group'}
                                             src={
@@ -146,14 +162,13 @@ export const AppFooter = () => {
                                             width={'14px'}
                                             height={'20px'}
                                         />
-                                        <span className="ml-3 text-white font-size-11">
-                                            Էլիտ Պլազա բիզնես կենտրոն 4-րդ հարկ
-                                            0010,
-                                            <br /> ՀՀ, Երևան, Մ. Խորենացու
-                                            փողոց, 15
-                                        </span>
+                                        <p className="ml-3 text-white font-size-11">
+                                            {t('label.red.addressOffice')}
+                                            <br />
+                                            {t('label.red.address')}
+                                        </p>
                                     </li>
-                                    <li className={'d-flex flex-row mb-3'}>
+                                    <li className={'flex flex-row mb-3'}>
                                         <AppImage
                                             alt={'Red Group'}
                                             src={
@@ -174,7 +189,7 @@ export const AppFooter = () => {
                     </Row>
                 </div>
                 <div className="copy-right text-white text-left">
-                    © Red Group 2024. Բոլոր իրավունքները պաշտպանված են:
+                    © Red Invest Group 2024.
                 </div>
             </ContainerBoxed>
         </footer>

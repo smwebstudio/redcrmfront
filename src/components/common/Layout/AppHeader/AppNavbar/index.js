@@ -25,7 +25,9 @@ const AppNavbar = ({ lng }) => {
                                     <div className="responsive-mobile-menu">
                                         <Button
                                             onClick={toggleMenu}
-                                            className="menu toggle-btn"
+                                            className={
+                                                'menu toggle-btn border-0'
+                                            }
                                             data-toggle="collapse"
                                             data-target="#realdeal_main_menu"
                                             aria-expanded="false"
@@ -53,8 +55,8 @@ const AppNavbar = ({ lng }) => {
                                 <Col
                                     xs={menuOpen ? 24 : 0}
                                     sm={21}
-                                    md={18}
-                                    lg={18}>
+                                    md={17}
+                                    lg={17}>
                                     <div className="collapse navbar-collapse">
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li>
@@ -102,10 +104,12 @@ const AppNavbar = ({ lng }) => {
                                 </Col>
                                 <Col
                                     xs={{ span: menuOpen ? 23 : 0, offset: 1 }}
-                                    sm={{ span: 2, offset: 0 }}>
+                                    sm={{ span: 3, offset: 0 }}>
                                     <Link
                                         href="/add-property"
-                                        className="btn btn-main-transparent pr-1 pl-1">
+                                        className={
+                                            'btn btn-main-transparent  block w-11/12 pr-1 pl-1 text-center'
+                                        }>
                                         + {t('label.addNewAnnouncement')}
                                     </Link>
                                 </Col>

@@ -1,8 +1,8 @@
 import React from 'react'
-import EstateTabs from '@/components/Estate/estate-tabs'
 import { apiURL } from '@/constants'
 import api from '@/hooks/api'
 import AppPage from '@/components/common/Layout/AppPage'
+import EstateList from '@/components/Estate/List/EstateList'
 
 export const dynamicParams = true
 
@@ -10,11 +10,9 @@ export default async function EstateListPage({
     params: { lng, slug },
     searchParams,
 }) {
-    let locale = lng
     let queryURL = ''
-    const query = searchParams
 
-    const queryData = Object.entries(query)
+    const queryData = Object.entries(searchParams)
 
     const queryDataParamsInitial = queryData.reduce(
         (acc, [key, value]) => ({
@@ -49,28 +47,22 @@ export default async function EstateListPage({
         }
     })
 
-    const filtersDataRequest = await api(locale).post(
-        apiURL + 'api/filters/',
-        {},
-    )
-    const filtersData = filtersDataRequest.data
+    const filtersDataRequest = await api(lng).post('api/filters/', {})
+    const filtersData = filtersDataRequest.data.data
 
-    const data = await api(locale).get(
-        apiURL +
-            'api/estates/filter/estates?&filter[contract_type_id]=1&' +
-            queryURL,
-    )
+    const data = await api(lng).get('api/estates/filter/estates?' + queryURL)
     const estatesData = data.data
     const pageDataURL = apiURL + 'api/estates/filter/estates'
 
     return (
         <AppPage>
-            <EstateTabs
+            <EstateList
                 estatesData={estatesData}
-                pageDataURL={pageDataURL}
+                pageDataURLData={pageDataURL}
                 filtersData={filtersData}
                 queryData={queryData}
                 queryDataParams={queryDataParams}
+                lng={lng}
             />
         </AppPage>
     )

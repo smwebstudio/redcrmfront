@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Col, notification, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import AppImage from '@/components/common/Image/AppImage'
+import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -60,12 +61,11 @@ export function EstateItem(props) {
                     </div>
                     <div className="details">
                         <Row className="mb-3">
-                            <Col xs={12}>
+                            <Col xs={18}>
                                 <h6 className="price">{item.price}</h6>
-                                {/*<del>{item.old_price}</del>*/}
                             </Col>
                             <Col
-                                xs={12}
+                                xs={6}
                                 className="text-right justify-end content-end flex flex-row">
                                 <span
                                     className={'cursor-pointer'}
@@ -88,18 +88,16 @@ export function EstateItem(props) {
                         </Row>
 
                         <Row>
-                            <Col xs={24}>
-                                <p className="address flex flex-row ">
-                                    <span>
-                                        <AppImage
-                                            alt={'Red Group'}
-                                            src={'/assets/img/svg/location.svg'}
-                                        />
-                                    </span>
-                                    <span className="ml-2">
-                                        {item.full_address}
-                                    </span>
-                                </p>
+                            <Col
+                                xs={24}
+                                className={'flex flex-row items-center'}>
+                                <AppImage
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/location.svg'}
+                                />
+                                <SmallParagraph className="ml-2">
+                                    {item.full_address}
+                                </SmallParagraph>
                             </Col>
                         </Row>
 

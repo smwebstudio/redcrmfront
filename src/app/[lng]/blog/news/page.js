@@ -5,7 +5,7 @@ import AppPage from '@/components/common/Layout/AppPage'
 export default async function BlogNewsPage({ params: { lng } }) {
     return (
         <AppPage>
-            <BlogList type="news" title="Նորություններ" />
+            <BlogList type="news" title="Նորություններ" lng={lng} />
         </AppPage>
     )
 }

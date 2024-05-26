@@ -10,8 +10,6 @@ export default async function EstateMapPage({
     params: { lng, slug },
     searchParams,
 }) {
-    console.log('map ssr')
-
     let locale = lng
     let queryURL = ''
     const query = searchParams

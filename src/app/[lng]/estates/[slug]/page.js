@@ -8,9 +8,7 @@ export default async function EstateViewPage({
     params: { lng, slug },
     searchParams,
 }) {
-    const estateDataResponse = await api(lng).get(
-        apiURL + 'api/estates/' + slug,
-    )
+    const estateDataResponse = await api(lng).get(apiURL + 'api/blog/' + slug)
     const estateData = estateDataResponse.data
 
     return (

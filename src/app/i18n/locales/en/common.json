@@ -899,6 +899,8 @@
     "label.receiverEmailAddress": "Receiver email address",
     "label.recentPost": "Recent posts",
     "label.recommendation": "Specialist's opinion,recommendation",
+    "label.red.bestOffers": "The best offers are with us",
+    "label.red.sellProperties": "Sell houses, land plots, apartments in a way that suits you",
     "label.regMyPage": "Registration / My page",
     "label.regPopupText1": "Real estate agents and real estate agencies",
     "label.regPopupText10": "In all property statuses",
@@ -968,9 +970,9 @@
     "label.searchByNamePhone": "Search by name,surname or phone ․․․",
     "label.searchMap": "Search map",
     "label.searchResults": "Search Results",
+    "label.seeAll": "See all",
     "label.seeAllComments": "He helped me during all the processes, including: Properly evaluate the apartment in the market, offering easy and best choices, assisting in negotiations. Finally, find a comfortable apartment. I strongly advise you to contact him.",
     "label.seeAllReview": "See all reviews",
-    "label.seeAll": "See all",
     "label.selectAgent": "-Select agent",
     "label.selectContractType": "-All types-",
     "label.selectOne": "-select one-",
@@ -1309,6 +1311,6 @@
     "validation.user.type.required": "The profession type is required",
     "validation.windowsView.required": "Windows view is required",
     "validation.year.required ": "The date of construction is required",
-    "label.red.bestOffers": "The best offers are with us",
-    "label.red.sellProperties": "Sell houses, land plots, apartments in a way that suits you"
+    "label.red.addressOffice": "0010, RA, Yerevan, M. Khorenatsi Street, 15",
+    "label.red.address": "Elite Plaza Business Center, 4th floor"
 }

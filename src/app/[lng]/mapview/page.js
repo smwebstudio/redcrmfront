@@ -7,8 +7,6 @@ export default async function MapSearchPage({
     params: { lng, slug },
     searchParams,
 }) {
-    console.log('map ssr')
-
     let queryURL = ''
     const query = searchParams
 
@@ -47,8 +45,6 @@ export default async function MapSearchPage({
         }
     })
 
-    console.log(99999999)
-
     const filtersDataRequest = await api(lng).get(apiURL + 'api/filters/', {})
     const filtersData = filtersDataRequest.data
 
@@ -59,9 +55,6 @@ export default async function MapSearchPage({
     )
     const estatesData = estatesResponse.data.data
     const pageDataURL = apiURL + 'api/estates/filter/estates'
-
-    console.log('estatesResponse')
-    console.log(estatesData.length)
 
     return (
         <AppPage>

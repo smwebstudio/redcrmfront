@@ -2,6 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
 export const BlogNavbar = ({ title, type }) => {
     const pathname = usePathname()
@@ -12,8 +13,8 @@ export const BlogNavbar = ({ title, type }) => {
     const pricesActive = pathname.includes('/blog/prices', 0)
 
     return (
-        <div className="">
-            <div className="container nav-container">
+        <ContainerBoxed className="">
+            <div className=" nav-container">
                 <ul className="blog-nav">
                     <li className={pathname === '/blog' ? 'active' : ''}>
                         <Link href="/blog">Բոլորը</Link>
@@ -32,7 +33,7 @@ export const BlogNavbar = ({ title, type }) => {
                     </li>
                 </ul>
             </div>
-        </div>
+        </ContainerBoxed>
     )
 }
 

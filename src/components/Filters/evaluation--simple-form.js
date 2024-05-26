@@ -1,35 +1,31 @@
 'use client'
-import { Button, Col, Row } from 'antd'
+import { Col, Row } from 'antd'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
+import { useTranslation } from '@/app/i18n/client'
+import { RedButton } from '@/components/common/Buttons/RedButton'
 
-const filter = (inputValue, path) =>
-    path.some(
-        option =>
-            option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
-    )
-
-export default function EvaluationSimpleForm(props) {
+export default function EvaluationSimpleForm({ filtersData, lng }) {
+    const { t } = useTranslation(lng, 'common')
     const router = useRouter()
 
     return (
         <>
-            <Row className={'bg-white p-3 align-items-center'}>
-                <Col xs={24} sm={12}>
+            <Row className={'bg-white p-3 align-items-center'} gutter={24}>
+                <Col xs={24} sm={17}>
                     <SmallParagraph className="small text-white">
-                        Այս հաշվիչը, հնարավորություն է տալիս որոշել Ձեր
-                        բնակարանի վաճառքի շուկայական գինը:
+                        {t('label.evaluation.smallText')}
                     </SmallParagraph>
                 </Col>
 
-                <Col xs={24} sm={12}>
-                    <Button
+                <Col xs={24} sm={7}>
+                    <RedButton
                         onClick={() => router.push('/estimate')}
                         className="btn btn-main w-100"
                         size="large">
-                        Գնահատել
-                    </Button>
+                        {t('label.button.evaluation')}
+                    </RedButton>
                 </Col>
             </Row>
         </>
