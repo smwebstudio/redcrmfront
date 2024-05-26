@@ -49,7 +49,7 @@ function EstateDetailsSection(props) {
     const showModal = async () => {
         console.log('lng')
         console.log(props.lng)
-        const estate = await api(props.lng).get('api/estates/' + 61141)
+        const estate = await api(props.lng).get('api/estates/' + 66027)
         console.log(estate)
         setIsModalOpen(true)
     }
@@ -171,7 +171,7 @@ function EstateDetailsSection(props) {
                                                 marginRight: 10,
                                             }}
                                         />{' '}
-                                        1362
+                                        {estate.visits_count}
                                         <SwapOutlined
                                             style={{
                                                 fontSize: 24,
@@ -548,11 +548,15 @@ function EstateDetailsSection(props) {
                             )}
                         </Row>
                         <Divider />
-                        <DarkHeading1 className={'mb-10'}>
-                            {t('label.menuGeneralInformation')}
-                        </DarkHeading1>
-                        <Row>{estate.public_text_arm}</Row>
-                        <Divider />
+                        {estate.public_text_arm && (
+                            <>
+                                <DarkHeading1 className={'mb-10'}>
+                                    {t('label.menuGeneralInformation')}
+                                </DarkHeading1>
+                                <Row>{estate.public_text_arm}</Row>
+                                <Divider />
+                            </>
+                        )}
 
                         <Row>
                             <Col xs={24} className={'mb-4 mt-4'}>

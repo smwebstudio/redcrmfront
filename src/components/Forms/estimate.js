@@ -14,9 +14,10 @@ import React, { useEffect, useState } from 'react'
 import { CheckCircleOutlined } from '@ant-design/icons'
 import { useTranslation } from '@/app/i18n/client'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import api from '@/hooks/api'
-import AppSelect from '@/components/common/FormFields/Selects/AppSelect'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
+import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 
 const formItemLayout = {
     labelCol: {
@@ -37,11 +38,8 @@ const formItemLayout = {
     },
 }
 
-const EstimateForm = ({ params }) => {
-    const { t, lang } = useTranslation('en', 'common')
-
-    const router = useRouter()
-    const { locale } = router
+const EstimateForm = ({ lng }) => {
+    const { t } = useTranslation(lng, 'common')
 
     const communitiesOptions = []
     let evaluationOptionsData = []
@@ -50,10 +48,14 @@ const EstimateForm = ({ params }) => {
     const [communities, setCommunities] = useState([communitiesOptions])
     const [evaluationOptions, setEvaluationOptions] = useState([])
     useEffect(() => {
-        api(locale)
+        api(lng)
             .post('/api/evaluationOptions', {})
             .then(response => {
                 const data = response.data.data
+
+                console.log('data')
+                console.log(data)
+
                 let evaluationOptions = []
 
                 data.evaluationOptionsData.locationCommunity.forEach(
@@ -85,7 +87,7 @@ const EstimateForm = ({ params }) => {
             .catch(error => {
                 // if (error.response.status !== 422) throw error;
             })
-    }, [locale])
+    }, [lng])
 
     const [showResult, setShowResult] = useState(false)
     const [price, setPrice] = useState(0)
@@ -126,13 +128,15 @@ const EstimateForm = ({ params }) => {
     const onStepChange = value => {}
 
     return (
-        <div className={'container mt-5 mb-5'}>
+        <ContainerBoxed className={'mt-5 mb-5'}>
             <Row>
                 <Col xs={24} sm={16}>
-                    <h3 className={'text-dark font-bold'}>
+                    <DarkHeading1 className={'text-dark font-bold'}>
                         {t('label.EvaluatHous')}
-                    </h3>
-                    <p>{t('label.evaluation.smallText')}</p>
+                    </DarkHeading1>
+                    <SmallParagraph>
+                        {t('label.evaluation.smallText')}
+                    </SmallParagraph>
                 </Col>
             </Row>
 
@@ -168,12 +172,12 @@ const EstimateForm = ({ params }) => {
                                                 ),
                                             },
                                         ]}>
-                                        <AppSelect
+                                        <Select
                                             showSearch
                                             options={communities}
                                             placeholder={t('button.pick')}
                                             style={{ width: '100%' }}
-                                            dropdownMatchSelectWidth={false}
+                                            popupMatchSelectWidth={false}
                                         />
                                     </Form.Item>
                                 </Col>
@@ -379,7 +383,7 @@ const EstimateForm = ({ params }) => {
                     </Affix>
                 </Col>
             </Row>
-        </div>
+        </ContainerBoxed>
     )
 }
 export default EstimateForm

@@ -17,6 +17,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     const [estates, setEstates] = useState(estatesData)
     const mapDrawShapeManagerRef = useRef(null)
     const [coords, setCoords] = useState([])
+    const [shape, setShape] = useState([])
 
     console.log('estates')
     console.log(estates)

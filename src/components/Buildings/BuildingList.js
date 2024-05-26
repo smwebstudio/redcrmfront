@@ -136,18 +136,17 @@ export function BuildingList(props) {
                         </Col>
                     </Row>
                 )}
-                <Row
-                    className={
-                        'mb-5 d-flex align-items-center justify-content-center'
-                    }>
-                    <Pagination
-                        pageSize={pageSize}
-                        defaultCurrent={1}
-                        total={buildings.meta.total}
-                        pageSizeOptions={[6, 9, 12, 24]}
-                        locale={{ items_per_page: '' }}
-                        onChange={handlePageChange}
-                    />
+                <Row className={'mb-5 flex items-center justify-center p-4'}>
+                    <Col xs={24} className={'text-center'}>
+                        <Pagination
+                            pageSize={pageSize}
+                            defaultCurrent={1}
+                            total={buildings.meta.total}
+                            pageSizeOptions={[6, 9, 12, 24]}
+                            locale={{ items_per_page: '' }}
+                            onChange={handlePageChange}
+                        />
+                    </Col>
                 </Row>
             </ContainerBoxed>
         </>

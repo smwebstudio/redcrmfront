@@ -1,7 +1,6 @@
+'use client'
 import styled from "styled-components";
 import { Typography } from "antd";
-import React  from "react";
-
 const { Title } = Typography;
 
 const DarkHeading2Styled = styled(Title)`
@@ -14,13 +13,11 @@ const DarkHeading2Styled = styled(Title)`
 `;
 
 
-const DarkHeading2  = ({ children, ...props }) => {
+export const DarkHeading2  = ({ children, ...props }) => {
   return (
-      <div>
-        <DarkHeading2Styled level={3} {...props}>
+        <DarkHeading2Styled level={2} {...props}>
           {children}
         </DarkHeading2Styled>
-      </div>
   );
 };
 

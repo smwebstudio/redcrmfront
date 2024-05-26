@@ -22,10 +22,6 @@ export default async function HomePage({ params: { lng } }) {
     const filtersResponse = await api(lng).post('/api/filters', {})
     const filters = filtersResponse.data
 
-    console.log(filters)
-
-    const query = ''
-
     const saleEstatesResponse = await api(lng).get('api/estates/sale')
     const rentEstatesResponse = await api(lng).get('api/estates/rent')
     const dailyEstatesResponse = await api(lng).get(
@@ -44,19 +40,16 @@ export default async function HomePage({ params: { lng } }) {
         <AppPage>
             <Banner />
             <ContainerBoxed>
-                <SearchSection
-                    filtersData={filters}
-                    queryData={query}
-                    lng={lng}
-                />
+                <SearchSection filtersData={filters} lng={lng} />
                 <EstateMainTabs
                     saleEstates={saleEstates}
                     rentEstates={rentEstates}
                     dailyEstates={dailyEstates}
+                    lng={lng}
                 />
                 <EstateEstimate filtersData={filters} lng={lng} />
-                <Professionals bestBrokers={bestBrokers} />
-                <EstateMainHot hotEstates={hotEstates} />
+                <Professionals bestBrokers={bestBrokers} lng={lng} />
+                <EstateMainHot hotEstates={hotEstates} lng={lng} />
             </ContainerBoxed>
             <WhyChooseUs lng={lng} />
         </AppPage>

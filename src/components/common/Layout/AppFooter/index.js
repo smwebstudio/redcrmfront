@@ -173,11 +173,9 @@ export const AppFooter = () => {
                         </Col>
                     </Row>
                 </div>
-                <div
-                    className="copy-right text-white text-left"
-                    dangerouslySetInnerHTML={{
-                        __html: footerdata.copyrighttext,
-                    }}></div>
+                <div className="copy-right text-white text-left">
+                    © Red Group 2024. Բոլոր իրավունքները պաշտպանված են:
+                </div>
             </ContainerBoxed>
         </footer>
     )

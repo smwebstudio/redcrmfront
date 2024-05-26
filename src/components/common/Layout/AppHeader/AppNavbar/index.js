@@ -1,104 +1,60 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { Affix, Col, Row } from 'antd'
+import { Affix, Button, Col, Row } from 'antd'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
 import { useTranslation } from '@/app/i18n/client'
 import AppImage from '@/components/common/Image/AppImage'
+import { isMobile } from 'react-device-detect'
 
 const AppNavbar = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
+    const [menuOpen, setMenuOpen] = useState(false)
+    const toggleMenu = () => {
+        setMenuOpen(prevState => !prevState)
+    }
     return (
         <ContainerFluid>
             <Affix offsetTop={0}>
                 <div className="navbar-area ">
                     <nav className="navbar-area navbar-expand-lg">
                         <ContainerBoxed className="container nav-container">
-                            <Row justify="center" align="middle">
+                            <Row justify="start" align="middle">
                                 <Col offset={1} xs={2} sm={0}>
                                     <div className="responsive-mobile-menu">
-                                        <button
-                                            className="menu toggle-btn d-block d-lg-none"
+                                        <Button
+                                            onClick={toggleMenu}
+                                            className="menu toggle-btn"
                                             data-toggle="collapse"
                                             data-target="#realdeal_main_menu"
                                             aria-expanded="false"
                                             aria-label="Toggle navigation">
                                             <span className="icon-left" />
                                             <span className="icon-right" />
-                                        </button>
-                                    </div>
-                                    <div
-                                        className="collapse navbar-collapse mt-5"
-                                        id="realdeal_main_menu">
-                                        <ul
-                                            className="navbar-nav  readeal-top "
-                                            style={{ height: '100vh' }}>
-                                            <li>
-                                                <Link href="/estates">
-                                                    {t('menu.buy')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/estates">
-                                                    {t('menu.rent')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/about">
-                                                    {t('menu.about')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/professionals">
-                                                    {t('menu.professional')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/blog">
-                                                    {t('menu.blog')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/contact">
-                                                    {t('menu.contact')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/evaluate">
-                                                    {t('menu.evaluate')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/developers">
-                                                    {t('menu.buildDevelopers')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href="/add-property"
-                                                    className="btn btn-main-transparent">
-                                                    <i className="la la-plus" />
-                                                    ՆՈՐ ՀԱՅՏ
-                                                    <span className="right"></span>
-                                                </Link>
-                                            </li>
-                                        </ul>
+                                        </Button>
                                     </div>
                                 </Col>
 
-                                <Col xs={18} sm={3} md={6} lg={4}>
+                                <Col xs={16} sm={3} md={6} lg={4}>
                                     <div className="logo readeal-top">
                                         <Link href="/">
                                             <AppImage
                                                 alt={'Red Group'}
+                                                height={
+                                                    isMobile ? '22px' : '35px'
+                                                }
                                                 src={'/assets/img/logo-pc.svg'}
                                             />
                                         </Link>
                                     </div>
                                 </Col>
 
-                                <Col xs={0} sm={21} md={18} lg={18}>
+                                <Col
+                                    xs={menuOpen ? 24 : 0}
+                                    sm={21}
+                                    md={18}
+                                    lg={18}>
                                     <div className="collapse navbar-collapse">
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li>
@@ -144,15 +100,14 @@ const AppNavbar = ({ lng }) => {
                                         </ul>
                                     </div>
                                 </Col>
-                                <Col xs={0} sm={0} md={0} lg={2}>
-                                    <div className="nav-right-part nav-right-part-desktop readeal-top">
-                                        <Link
-                                            href="/add-property"
-                                            className="btn btn-main-transparent pr-1 pl-1">
-                                            + {t('label.addNewAnnouncement')}{' '}
-                                            <span className="right"></span>
-                                        </Link>
-                                    </div>
+                                <Col
+                                    xs={{ span: menuOpen ? 23 : 0, offset: 1 }}
+                                    sm={{ span: 2, offset: 0 }}>
+                                    <Link
+                                        href="/add-property"
+                                        className="btn btn-main-transparent pr-1 pl-1">
+                                        + {t('label.addNewAnnouncement')}
+                                    </Link>
                                 </Col>
                             </Row>
                         </ContainerBoxed>

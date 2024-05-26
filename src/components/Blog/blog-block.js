@@ -47,7 +47,7 @@ export const BlogBlock = ({ title, type }) => {
                         <Link
                             href={'/blog/' + type}
                             className="text-main hover-underline mb-2 pb-1 text-underline">
-                            Տեսնել բոլորը
+                            {t('label.seeAll')}
                         </Link>
                     </div>
                     {blogData?.data &&

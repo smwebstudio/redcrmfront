@@ -9,7 +9,7 @@ const DarkHeading1Styled = styled(Title)`
         color: #414141 !important;
         font-weight: 600;
         font-size: 25px;
-        line-height: 18px;
+        line-height: 28px;
     }
 `
 

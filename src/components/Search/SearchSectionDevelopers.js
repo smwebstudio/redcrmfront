@@ -1,80 +1,57 @@
 'use client'
 import React from 'react'
-import { Col } from 'antd'
+import { Col, Tabs } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import MainFilterBuilding from '@/components/Filters/MainFilterBuilding'
+import TabPane from 'antd/es/tabs/TabPane'
 
-function SearchSectionDevelopers(props) {
-    const { t } = useTranslation(props.lng, 'common')
-
-    const filtersData = props.filtersData
+function SearchSectionDevelopers({ filtersData, lng, queryData }) {
+    const { t } = useTranslation(lng, 'common')
+    const filters = [
+        {
+            key: '1',
+            label: t('label.apartment'),
+            children: (
+                <MainFilterBuilding filtersData={filtersData} lng={lng} />
+            ),
+        },
+        {
+            key: '2',
+            label: t('label.house'),
+            children: (
+                <MainFilterBuilding filtersData={filtersData} lng={lng} />
+            ),
+        },
+        {
+            key: '3',
+            label: 'Թաունհաուս',
+            children: (
+                <MainFilterBuilding filtersData={filtersData} lng={lng} />
+            ),
+        },
+        {
+            key: '4',
+            label: t('label.commercial'),
+            children: (
+                <MainFilterBuilding filtersData={filtersData} lng={lng} />
+            ),
+        },
+    ]
 
     return (
         <ContainerBoxed className={'container -mt-44'}>
             <div className="main-search-tabs">
                 <div className="banner-search-wrap">
-                    <Col xs={0} sm={24}>
-                        <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link active"
-                                    data-toggle="tab"
-                                    href="#tabs_1">
-                                    {t('label.apartment')}
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link"
-                                    data-toggle="tab"
-                                    href="#tabs_2">
-                                    {t('label.house')}
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link"
-                                    data-toggle="tab"
-                                    href="#tabs_3">
-                                    Թաունհաուս
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a
-                                    className="nav-link"
-                                    data-toggle="tab"
-                                    href="#tabs_4">
-                                    {t('label.commercial')}
-                                </a>
-                            </li>
-                        </ul>
+                    <Col xs={24} sm={24}>
+                        <Tabs type="card" defaultActiveKey={1} tabBarGutter={4}>
+                            {filters.map(filter => (
+                                <TabPane tab={filter.label} key={filter.key}>
+                                    {filter.children}
+                                </TabPane>
+                            ))}
+                        </Tabs>
                     </Col>
-                    <div className="tab-content">
-                        <div className="tab-pane fade show active" id="tabs_1">
-                            <div className="pt-4 pl-3 pr-4 bg-white">
-                                <MainFilterBuilding
-                                    filtersData={filtersData}
-                                    lng={props.lng}
-                                />
-                            </div>
-                        </div>
-                        {/*<div className="tab-pane fade" id="tabs_2">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainFilter filtersData={filtersData} />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="tab-pane fade" id="tabs_3">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainFilter filtersData={filtersData} />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="tab-pane fade" id="tabs_4">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainSearch />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                    </div>
                 </div>
             </div>
         </ContainerBoxed>

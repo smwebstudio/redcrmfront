@@ -63,7 +63,7 @@ export function BuildingItem(props) {
                                 </DarkHeading3>
                             </Col>
                             <Col xs={24}>
-                                <SmallParagraph className="address d-flex mt-2">
+                                <SmallParagraph className="address flex mt-2">
                                     <span>
                                         <AppImage
                                             alt={'Red Group'}

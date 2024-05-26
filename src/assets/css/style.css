@@ -1736,9 +1736,6 @@ nav.navbar-area {
     font-family: var(--body-font);
 }
 
-.navbar-area .nav-container .logo a img {
-    height: auto;
-}
 
 .navbar-area .nav-container .navbar-collapse .navbar-nav {
     display: block;
@@ -2081,9 +2078,6 @@ nav.navbar-area {
 }
 
 .toggle-btn {
-    left: auto;
-    right: 0;
-    position: absolute;
     width: 40px;
     height: 40px;
     -webkit-transition-duration: 0.5s;

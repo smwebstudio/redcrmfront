@@ -73,13 +73,12 @@ export function EstatesSection(props) {
                     </Row>
                     <Row>
                         <h4 className={'mb-5'}>
-                            Բնակարաններ Երևանում
+                            {t('label.saleRent')}
                             <small
                                 className={'text-secondary ml-3 font-size-13'}>
-                                / Որոնման արդյունքներ{' '}
+                                / {t('label.searchResults')}
                             </small>
-                            <strong className={'text-dark font-size-13'}>
-                                {' '}
+                            <strong className={'text-dark font-size-13 ml-2'}>
                                 {estatesData.meta.total}
                             </strong>
                         </h4>

@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from '@/app/i18n/client'
 import WhiteHeading1 from '@/components/Typography/Heading1/WhiteHeading1'
 import WhiteParagraph from '@/components/Typography/paragraph/WhiteParagraph'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
 function BannerDevelopers(props) {
     const { t } = useTranslation(props.lng, 'common')
@@ -16,7 +17,7 @@ function BannerDevelopers(props) {
 
     return (
         <div className="banner-area pd-top-100" style={inlineStyle}>
-            <div className="container">
+            <ContainerBoxed>
                 <div className="banner-inner-wrap">
                     <div className="banner-inner text-center align-self-center mt-5">
                         <WhiteHeading1 className="text-center ">
@@ -27,7 +28,7 @@ function BannerDevelopers(props) {
                         </WhiteParagraph>
                     </div>
                 </div>
-            </div>
+            </ContainerBoxed>
         </div>
     )
 }

@@ -139,7 +139,7 @@ export default async function DeveloperListPage({
             path: 'http://redoc/api/estates/filter/estates',
             per_page: 12,
             to: 12,
-            total: 3843,
+            total: 248,
         },
     }
 

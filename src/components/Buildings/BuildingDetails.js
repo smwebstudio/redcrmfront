@@ -2,11 +2,11 @@
 import React, { useState } from 'react'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ImageGallery from 'react-image-gallery'
-import { Button, Checkbox, Col, Divider, Form, Row, Select } from 'antd'
+import { Checkbox, Col, Divider, Form, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { EnvironmentOutlined, EyeOutlined } from '@ant-design/icons'
 import LoanCalculator from '@/components/Forms/loan-calculator'
-import DarkHeading2 from '@/components/Typography/Heading2/DarkHeading2'
+import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import RedText from '@/components/Typography/text/RedText'
@@ -312,7 +312,7 @@ function BuildingDetails(props) {
                                 <Col sm={8}>
                                     <div
                                         className={
-                                            'd-flex justify-content-end align-items-center'
+                                            'flex justify-end align-center'
                                         }>
                                         <EyeOutlined
                                             style={{
@@ -320,20 +320,18 @@ function BuildingDetails(props) {
                                                 marginRight: 10,
                                             }}
                                         />{' '}
-                                        1362
-                                        <Button
+                                        <span className={'p-2'}>1362</span>
+                                        <span
                                             className={
-                                                'ml-6 bg-orange-400 text-white rounded-md'
+                                                'ml-6 bg-orange-400 text-white rounded-md p-2'
                                             }>
                                             Եկամտահարկի վերադարձ
-                                        </Button>
+                                        </span>
                                     </div>
                                 </Col>
                                 <Col
                                     sm={24}
-                                    className={
-                                        'd-flex align-items-center mb-4'
-                                    }>
+                                    className={'flex align-center mb-4'}>
                                     <EnvironmentOutlined
                                         style={{
                                             fontSize: 24,
@@ -343,50 +341,47 @@ function BuildingDetails(props) {
                                     {developerData.full_address}
                                 </Col>
 
-                                <Col sm={20}>
+                                <Col sm={24}>
                                     <Row
                                         gutter={32}
-                                        className="flex flex-row align-items-center">
-                                        {developerData.room_count && (
-                                            <Col className="mr-4 flex flex-row">
-                                                <AppImage
-                                                    alt={'Red Group'}
-                                                    className="mr-2"
-                                                    src={
-                                                        '/assets/img/svg/developer.svg'
-                                                    }
-                                                />
+                                        className="flex flex-row align-center mt-2 mb-2">
+                                        <Col className="flex flex-row">
+                                            <AppImage
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/developer.svg'
+                                                }
+                                            />
+                                            <span className="ml-2">
                                                 Կառուցապատող: «Օմեգա Պլյուս» ՍՊԸ
-                                            </Col>
-                                        )}
+                                            </span>
+                                        </Col>
 
-                                        {developerData.floor && (
-                                            <Col className="mr-4 flex flex-row">
-                                                <AppImage
-                                                    alt={'Red Group'}
-                                                    className="mr-2"
-                                                    src={
-                                                        '/assets/img/svg/builder.svg'
-                                                    }
-                                                />
+                                        <Col className="flex flex-row">
+                                            <AppImage
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/builder.svg'
+                                                }
+                                            />
+                                            <span className="ml-2">
                                                 Շինարար: «Միդիս Քնսթրաքշն» ՍՊԸ
-                                            </Col>
-                                        )}
+                                            </span>
+                                        </Col>
 
-                                        {developerData.area_total && (
-                                            <Col
-                                                className="mr-3 flex flex-row"
-                                                key={'col-area-total'}>
-                                                <AppImage
-                                                    alt={'Red Group'}
-                                                    className="mr-2"
-                                                    src={
-                                                        '/assets/img/svg/controller.svg'
-                                                    }
-                                                />
+                                        <Col
+                                            className="flex flex-row"
+                                            key={'col-area-total'}>
+                                            <AppImage
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/controller.svg'
+                                                }
+                                            />
+                                            <span className="ml-2">
                                                 Նախագծի կառավարում: «1SQ» ՍՊԸ
-                                            </Col>
-                                        )}
+                                            </span>
+                                        </Col>
                                     </Row>
                                 </Col>
                             </Row>

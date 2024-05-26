@@ -3,7 +3,7 @@ import { Tabs } from 'antd'
 import React from 'react'
 
 const StyledAppTabs = styled(Tabs)`
-    border-bottom: 5px solid #eee !important;
+    border-bottom: 0px solid #eee !important;
 
     .ant-tabs-top > .ant-tabs-nav::before,
     .ant-tabs-bottom > .ant-tabs-nav::before,

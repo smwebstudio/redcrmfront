@@ -54,7 +54,7 @@ function SearchSection(props) {
         <ContainerBoxed className={'container -mt-44'}>
             <div className="main-search-tabs">
                 <div className="banner-search-wrap">
-                    <Col xs={0} sm={24}>
+                    <Col xs={24} sm={24}>
                         <Tabs
                             type="card"
                             activeKey={activeKey}

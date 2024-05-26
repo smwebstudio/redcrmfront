@@ -189,7 +189,7 @@ export default function EstateSearch(props) {
                                     <Select
                                         showSearch
                                         placeholder={t('label.contract')}
-                                        bordered={false}
+                                        variant={'borderless'}
                                         optionFilterProp="children"
                                         options={contract_type_id}
                                         allowClear
@@ -207,7 +207,7 @@ export default function EstateSearch(props) {
                                     <Select
                                         showSearch
                                         placeholder="Տեսակ"
-                                        bordered={false}
+                                        variant={'borderless'}
                                         optionFilterProp="children"
                                         options={estate_type_id}
                                         allowClear
@@ -225,7 +225,7 @@ export default function EstateSearch(props) {
                                     <Select
                                         showSearch
                                         placeholder="Մարզ"
-                                        bordered={false}
+                                        variant={'borderless'}
                                         optionFilterProp="children"
                                         options={provinces}
                                         style={{ width: '100%' }}
@@ -247,7 +247,7 @@ export default function EstateSearch(props) {
                                     <Select
                                         showSearch
                                         placeholder="Ընտրել"
-                                        bordered={false}
+                                        variant={'borderless'}
                                         optionFilterProp="children"
                                         style={{ width: '100%' }}
                                         dropdownMatchSelectWidth={false}
@@ -261,7 +261,7 @@ export default function EstateSearch(props) {
                                     <Select
                                         showSearch
                                         placeholder="Ընտրել"
-                                        bordered={false}
+                                        variant={'borderless'}
                                         optionFilterProp="children"
                                         style={{ width: '100%' }}
                                         dropdownMatchSelectWidth={false}
@@ -285,7 +285,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={prices}
                                             allowClear
@@ -306,7 +306,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={currencies}
                                             onChange={handleCurrencyChange}
@@ -328,7 +328,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={rooms}
                                             allowClear
@@ -349,7 +349,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={
                                                 filtersData.data.area_total
@@ -372,7 +372,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={
                                                 filtersData.data.prece_per_qwd
@@ -395,7 +395,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={
                                                 filtersData.data
@@ -419,7 +419,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={
                                                 filtersData.data.building_type
@@ -442,7 +442,7 @@ export default function EstateSearch(props) {
                                         <Select
                                             showSearch
                                             placeholder="Ընտրել"
-                                            bordered={false}
+                                            variant={'borderless'}
                                             optionFilterProp="children"
                                             options={
                                                 filtersData.data.repairing_type

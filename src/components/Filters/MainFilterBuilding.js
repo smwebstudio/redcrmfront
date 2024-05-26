@@ -108,7 +108,7 @@ export default function MainFilterBuilding(props) {
                 action="/search"
                 method="get"
                 className="bg-white text-gray-50 ">
-                <Row>
+                <Row className={'p-8'} gutter={16} align={'middle'}>
                     <Col
                         xs={12}
                         sm={3}
@@ -120,10 +120,10 @@ export default function MainFilterBuilding(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant={'borderless'}
                                 optionFilterProp="children"
                                 style={{ width: '100%' }}
-                                dropdownMatchSelectWidth={false}
+                                popupMatchSelectWidth={false}
                                 options={cities}
                                 allowClear
                             />
@@ -141,7 +141,7 @@ export default function MainFilterBuilding(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant={'borderless'}
                                 optionFilterProp="children"
                                 options={prices}
                                 allowClear
@@ -159,7 +159,7 @@ export default function MainFilterBuilding(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant={'borderless'}
                                 optionFilterProp="children"
                                 options={currencies}
                                 onChange={handleCurrencyChange}
@@ -177,7 +177,7 @@ export default function MainFilterBuilding(props) {
                             <Select
                                 showSearch
                                 placeholder={t('button.pick')}
-                                bordered={false}
+                                variant={'borderless'}
                                 optionFilterProp="children"
                                 options={rooms}
                             />
@@ -187,23 +187,20 @@ export default function MainFilterBuilding(props) {
                         <Button
                             htmlType="submit"
                             className="btn btn-main w-100"
-                            size="large">
+                            size="middle">
                             {t('button.search')}
                         </Button>
                     </Col>
 
-                    <Col xs={12} sm={6} className="field-item pl-3 pr-3">
-                        <Button
-                            className="btn  bg-white hover-primary w-100"
-                            size="large">
+                    <Col xs={12} sm={5} className="field-item pl-3 pr-3">
+                        <Button className="btn  bg-white hover-primary w-100">
                             Ստանալ առաջարկներ
                         </Button>
                     </Col>
 
-                    <Col xs={12} sm={4} className="field-item pl-3 pr-3">
+                    <Col xs={12} sm={3} className="field-item pl-3 pr-3">
                         <Button
-                            className="btn  bg-gray-800 text-white  w-100"
-                            size="large"
+                            className="btn  bg-gray-800 text-white  "
                             onClick={showModal}>
                             Պատվիրել զանգ
                         </Button>

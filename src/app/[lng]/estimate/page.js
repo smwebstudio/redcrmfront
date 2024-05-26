@@ -5,7 +5,7 @@ import AppPage from '@/components/common/Layout/AppPage'
 export default async function DeveloperViewPage({ params: { lng } }) {
     return (
         <AppPage>
-            <EstimateForm />
+            <EstimateForm lng={lng} />
         </AppPage>
     )
 }
