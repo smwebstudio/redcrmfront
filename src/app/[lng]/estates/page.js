@@ -5,6 +5,7 @@ import EstateList from '@/components/Estate/List/EstateList'
 import fetchApi from '@/hooks/fetchApi'
 
 export const dynamicParams = true
+export const revalidate = 12000
 
 export default async function EstateListPage({
     params: { lng, slug },

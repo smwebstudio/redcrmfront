@@ -38,7 +38,6 @@ export function EstateItemList({ estate }) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     }
 
-    console.log(estate)
     const formattedPrice = formatEstatePrice(estate.price)
 
     return (

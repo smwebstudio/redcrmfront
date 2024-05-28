@@ -48,8 +48,6 @@ const EstatesGoogleMapSingle = props => {
 
     const [selectedMarker, setSelectedMarker] = useState(markerChanged[0])
 
-    console.log(marker)
-
     const [center, setCenter] = useState(centerInitial)
     const mapContainerStyle = {
         height: '500px',

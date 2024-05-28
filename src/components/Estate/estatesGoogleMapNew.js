@@ -19,9 +19,6 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     const [coords, setCoords] = useState([])
     const [shape, setShape] = useState([])
 
-    console.log('estates')
-    console.log(estates)
-
     const mapBootstrap = {
         key: nextConfig.env.GOOGLE_MAPS_API_KEY,
         libraries: ['drawing'],
@@ -53,7 +50,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     const initialPointInnerHtml = `<button class="btn-initial-point" title="Initial Point"></button>`
     const deletePointInnerHtml = `<button class="btn-delete-point" title="Delete">X</button></div>`
 
-    const endpoint = apiURL + 'api/estates/filter/estates'
+    const endpoint = apiURL + 'api/estates/geoFilter/estates'
     const onGoogleApiLoaded = map => {
         mapRef.current = map
         mapDrawShapeManagerRef.current = new MapDrawShapeManager(
@@ -65,30 +62,46 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
             initialPointInnerHtml,
             deletePointInnerHtml,
         )
-
+        mapRef.current = map
         setMapLoaded(true)
     }
 
     const [bounds, setBounds] = useState(null)
     const [zoom, setZoom] = useState(10)
 
-    const points = estates.map(estate => ({
-        type: 'Feature',
-        properties: { cluster: false, esateId: estate.id },
-        geometry: {
-            type: 'Point',
-            coordinates: [
-                parseFloat(estate.native_coords[0]),
+    const points = estates
+        .map(estate => {
+            const coords = [
                 parseFloat(estate.native_coords[1]),
-            ],
-        },
-    }))
+                parseFloat(estate.native_coords[0]),
+            ]
+
+            // Check if both coordinates are greater than 0
+            if (coords[0] > 0 && coords[1] > 0) {
+                return {
+                    type: 'Feature',
+                    properties: {
+                        cluster: false,
+                        estateId: estate.id,
+                        category: 'estate',
+                        estate: estate,
+                    },
+                    geometry: {
+                        type: 'Point',
+                        coordinates: coords,
+                    },
+                }
+            }
+
+            return null
+        })
+        .filter(point => point !== null) // Filter out the null values
 
     const { clusters, supercluster } = useSupercluster({
         points,
         bounds,
         zoom,
-        options: { radius: 75, maxZoom: 20 },
+        options: { radius: 50, maxZoom: 20 },
     })
 
     const [searchInfoBoxHidden, setSearchInfoBoxHidden] = useState(true)
@@ -104,9 +117,8 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
             const endTime = new Date()
             const responseTimeMs = endTime - startTime // Calculate response time in milliseconds
             const responseTimeSec = responseTimeMs / 1000 // Convert milliseconds to seconds
-            console.log('Response time:', responseTimeSec, 'seconds')
-            console.log('response')
-            console.log(response)
+
+            console.log('mapresult in ' + responseTimeSec)
 
             setEstates(response.data.data)
 
@@ -117,7 +129,6 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     }
 
     useEffect(() => {
-        console.log('map use effect')
         fetchData()
         // create an async function to fetch the data
         let coordsToSend = encodeURIComponent(JSON.stringify(coords))
@@ -134,9 +145,6 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
             clearTimeout(timeoutId)
         }
     }, [coords])
-
-    console.log('coords')
-    console.log(coords)
 
     const onDrawCallback = shape => {
         let newCoords = shape.map(({ lat, lng }) => [lat, lng])
@@ -178,88 +186,83 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
                     defaultCenter={defaultCenter}
                     defaultZoom={defaultZoom}
                     yesIWantToUseGoogleMapApiInternals
+                    onChange={({ zoom, bounds }) => {
+                        setZoom(zoom)
+                        setBounds([
+                            bounds.nw.lng,
+                            bounds.se.lat,
+                            bounds.se.lng,
+                            bounds.nw.lat,
+                        ])
+                    }}
                     onGoogleApiLoaded={({ map, maps }) =>
                         onGoogleApiLoaded(map, maps)
                     }>
-                    {estates.map(
-                        estate =>
-                            estate.native_coords &&
-                            estate.native_coords.length === 2 && (
-                                <EstateMarker
-                                    key={estate.id}
-                                    estate={estate}
-                                    text={estate.full_address}
-                                    lat={estate.native_coords[0]}
-                                    lng={estate.native_coords[1]}
-                                />
-                            ),
-                    )}
+                    {clusters.map(cluster => {
+                        const [
+                            longitude,
+                            latitude,
+                        ] = cluster.geometry.coordinates
+                        const {
+                            cluster: isCluster,
+                            point_count: pointCount,
+                        } = cluster.properties
 
-                    {/*{clusters.map(cluster => {*/}
-                    {/*    const [*/}
-                    {/*        longitude,*/}
-                    {/*        latitude,*/}
-                    {/*    ] = cluster.geometry.coordinates*/}
-                    {/*    const {*/}
-                    {/*        cluster: isCluster,*/}
-                    {/*        point_count: pointCount,*/}
-                    {/*    } = cluster.properties*/}
+                        if (isCluster) {
+                            return (
+                                <Marker
+                                    key={`cluster-${cluster.id}`}
+                                    lat={latitude}
+                                    lng={longitude}>
+                                    <div
+                                        className="cluster-marker"
+                                        style={{
+                                            width: `${
+                                                10 +
+                                                (pointCount / points.length) *
+                                                    20
+                                            }px`,
+                                            height: `${
+                                                10 +
+                                                (pointCount / points.length) *
+                                                    20
+                                            }px`,
+                                            background: 'orange',
+                                            padding: '15px',
+                                            color: '#fff',
+                                            fontSize: '16',
+                                            borderRadius: '50%',
+                                        }}
+                                        onClick={() => {
+                                            const expansionZoom = Math.min(
+                                                supercluster.getClusterExpansionZoom(
+                                                    cluster.id,
+                                                ),
+                                                20,
+                                            )
+                                            mapRef.current.setZoom(
+                                                expansionZoom,
+                                            )
+                                            mapRef.current.panTo({
+                                                lat: latitude,
+                                                lng: longitude,
+                                            })
+                                        }}>
+                                        {pointCount}
+                                    </div>
+                                </Marker>
+                            )
+                        }
 
-                    {/*    if (isCluster) {*/}
-                    {/*        return (*/}
-                    {/*            <Marker*/}
-                    {/*                key={`cluster-${cluster.id}`}*/}
-                    {/*                lat={latitude}*/}
-                    {/*                lng={longitude}>*/}
-                    {/*                <div*/}
-                    {/*                    className="cluster-marker"*/}
-                    {/*                    style={{*/}
-                    {/*                        width: `${*/}
-                    {/*                            10 +*/}
-                    {/*                            (pointCount / points.length) **/}
-                    {/*                                20*/}
-                    {/*                        }px`,*/}
-                    {/*                        height: `${*/}
-                    {/*                            10 +*/}
-                    {/*                            (pointCount / points.length) **/}
-                    {/*                                20*/}
-                    {/*                        }px`,*/}
-                    {/*                    }}*/}
-                    {/*                    onClick={() => {*/}
-                    {/*                        const expansionZoom = Math.min(*/}
-                    {/*                            supercluster.getClusterExpansionZoom(*/}
-                    {/*                                cluster.id,*/}
-                    {/*                            ),*/}
-                    {/*                            20,*/}
-                    {/*                        )*/}
-                    {/*                        mapRef.current.setZoom(*/}
-                    {/*                            expansionZoom,*/}
-                    {/*                        )*/}
-                    {/*                        mapRef.current.panTo({*/}
-                    {/*                            lat: latitude,*/}
-                    {/*                            lng: longitude,*/}
-                    {/*                        })*/}
-                    {/*                    }}>*/}
-                    {/*                    {pointCount}*/}
-                    {/*                </div>*/}
-                    {/*            </Marker>*/}
-                    {/*        )*/}
-                    {/*    }*/}
-
-                    {/*    return (*/}
-                    {/*        <Marker*/}
-                    {/*            key={`crime-${cluster.properties.esateId}`}*/}
-                    {/*            lat={latitude}*/}
-                    {/*            lng={longitude}>*/}
-                    {/*            <button className="crime-marker">*/}
-                    {/*                <img*/}
-                    {/*                    src="/custody.svg"*/}
-                    {/*                    alt="crime doesn't pay"*/}
-                    {/*                />*/}
-                    {/*            </button>*/}
-                    {/*        </Marker>*/}
-                    {/*    )*/}
-                    {/*})}*/}
+                        return (
+                            <EstateMarker
+                                key={cluster.properties.estateId}
+                                lat={latitude}
+                                lng={longitude}
+                                estate={cluster.properties.estate}
+                            />
+                        )
+                    })}
                 </GoogleMapReact>
             </div>
             {mapLoaded && (

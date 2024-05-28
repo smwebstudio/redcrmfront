@@ -32,8 +32,6 @@ export async function EstateCompareCarousel(props) {
             params,
         })
 
-        console.log('data')
-        console.log(data)
         const estatesDataFromApi = data.data
 
         const dataHeaders = {
@@ -49,8 +47,6 @@ export async function EstateCompareCarousel(props) {
 
         estatesDataFromApi.unshift(dataHeaders)
         setEstatesData(estatesDataFromApi)
-
-        console.log(estatesDataFromApi)
 
         let columnsFromApi = [
             ...estatesDataFromApi.map(item => ({
@@ -194,7 +190,6 @@ export async function EstateCompareCarousel(props) {
             '.ant-table-cell-fix-left',
         )
         if (tableBody) {
-            console.log(12)
             const fixedColumnWidth = tableFixedColumn.clientWidth
             tableBody.scrollTo({
                 left: tableBody.scrollLeft + fixedColumnWidth,

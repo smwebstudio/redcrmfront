@@ -8,7 +8,6 @@ import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import { useTranslation } from '@/app/i18n/client'
 
 function Professionals({ bestBrokers, lng }) {
-    console.log(lng)
     const { t } = useTranslation(lng, 'common')
     const [professionalsData, setProfessionalsData] = useState(bestBrokers)
 

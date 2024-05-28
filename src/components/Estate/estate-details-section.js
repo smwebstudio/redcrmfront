@@ -64,8 +64,6 @@ function EstateDetailsSection(props) {
     if (estate) {
         building_attributes = Object.entries(estate.building_attributes)
 
-        console.log(building_attributes)
-
         estate_facilities = Object.entries(estate.estate_facilities)
     }
 
@@ -85,9 +83,7 @@ function EstateDetailsSection(props) {
 
     const [form] = Form.useForm()
 
-    const onFinish = values => {
-        console.log('Success:', values)
-    }
+    const onFinish = values => {}
 
     let images = []
     if (imagesData) {

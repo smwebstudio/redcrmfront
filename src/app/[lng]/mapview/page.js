@@ -50,7 +50,7 @@ export default async function MapSearchPage({
 
     const estatesResponse = await api(lng).get(
         apiURL +
-            'api/estates/filter/estates?filter[contract_type_id]=1&' +
+            'api/estates/geoFilter/estates?filter[contract_type_id]=1&' +
             queryURL,
     )
     const estatesData = estatesResponse.data.data

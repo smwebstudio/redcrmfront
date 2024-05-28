@@ -102,8 +102,6 @@ const EstateFilters = ({
 
         let queryURL = ''
         queryData.forEach(function (param) {
-            console.log('param')
-            console.log(param)
             if (param[0] === 'prices' && param[1]) {
                 let priceId = param[1] - 1
 

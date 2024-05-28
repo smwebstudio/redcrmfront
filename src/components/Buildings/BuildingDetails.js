@@ -31,13 +31,7 @@ function BuildingDetails(props) {
         setIsModalOpen(false)
     }
 
-    let publicUrl = process.env.PUBLIC_URL + '/'
-
     let imagesData = developerData.images
-
-    console.log('developerData')
-    console.log(developerData)
-    console.log(developerData.building_attributes)
 
     let building_attributes = []
     if (developerData) {
@@ -54,9 +48,7 @@ function BuildingDetails(props) {
 
     const [form] = Form.useForm()
 
-    const onFinish = values => {
-        console.log('Success:', values)
-    }
+    const onFinish = values => {}
 
     const renderVideo = item => {
         return (

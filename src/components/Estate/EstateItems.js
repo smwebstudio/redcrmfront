@@ -3,19 +3,7 @@ import Link from 'next/link'
 import { apiURL } from '@/constants'
 import AppImage from '@/components/common/Image/AppImage'
 
-const onChange = key => {
-    console.log(key)
-}
-
 export function EstateItems(props) {
-    console.log(props)
-    console.log(54)
-    console.log(props.estates)
-    console.log(props.type)
-
-    console.log('props')
-    console.log(props)
-
     const changeEstatesFoundCount = props.changeEstatesFoundCount
     const [estatesData, setEstatesData] = useState([])
     useEffect(() => {

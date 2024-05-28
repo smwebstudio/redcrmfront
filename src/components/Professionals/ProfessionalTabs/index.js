@@ -6,7 +6,6 @@ import AppTabs from '@/components/common/Tabs/AppTabs'
 import ProfessionalTabList from '@/components/Professionals/ProfessionalTabList'
 
 const ProfessionalTabs = ({ allProfessionals, brokers, banks, estimators }) => {
-    console.log(allProfessionals)
     return (
         <ContainerBoxed className={'mt-5'}>
             <div className={''}>
