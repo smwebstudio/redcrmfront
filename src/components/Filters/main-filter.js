@@ -50,15 +50,7 @@ export default function MainFilter(props) {
         { value: 2, label: 'RUR' },
     ]
 
-    useEffect(() => {
-        // form.setFieldsValue({
-        //     estate_type_id: 1,
-        //     province: 1,
-        //     location_community_id: 1,
-        //     location_province_id: 1,
-        //     currency_id: 3,
-        // })
-    }, [filtersData])
+    useEffect(() => {}, [filtersData])
 
     const handleProvinceChange = value => {
         let province = filtersData.locations.find(x => x.id === value)

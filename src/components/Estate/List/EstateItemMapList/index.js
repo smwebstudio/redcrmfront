@@ -53,7 +53,7 @@ export function EstateItemList({ estate }) {
             key={estate.id}
             gutter={[0, 0]}
             className={'mb-8 border border-gray-300'}>
-            <Col xs={24} md={8} className={'flex items-center pr-8'}>
+            <Col xs={24} md={24} className={'flex items-center pr-8'}>
                 <Link href={'estates/' + estate.id} style={{ width: '100%' }}>
                     <AppImage
                         alt={'Red Group'}
@@ -73,7 +73,7 @@ export function EstateItemList({ estate }) {
                     />
                 </Link>
             </Col>
-            <Col xs={24} md={16} className={'p-4'}>
+            <Col xs={24} md={24} className={'p-4'}>
                 <Row className="mb-6">
                     <Col xs={18}>
                         <EstatePrice className="price">

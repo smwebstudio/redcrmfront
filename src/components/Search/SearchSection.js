@@ -43,7 +43,7 @@ function SearchSection(props) {
 
     const changeTab = activeKey => {
         if (activeKey === 'map') {
-            router.push('/mapview')
+            router.push('/estates')
             return
         }
 

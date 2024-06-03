@@ -56,7 +56,7 @@ export default async function EstateListPage({
     const estatesDataResponse = await fetchApi(lng).get(
         'api/estates/filter/estates?' + queryURL,
         {
-            next: { revalidate: 3600 },
+            next: { revalidate: 0 },
         },
     )
     const estatesData = estatesDataResponse

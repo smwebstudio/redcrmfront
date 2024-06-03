@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useState } from 'react'
-import { Button, Col, Pagination, Row } from 'antd'
+import { Affix, Button, Col, Pagination, Row } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { FullListSkeleton } from '@/components/common/Skeletons/FullListSkeleton'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
@@ -14,6 +14,7 @@ import api from '@/hooks/api'
 import EstateMapSearch from '@/components/Estate/EstateMap'
 import { MapContext } from '@/providers/MapProvider'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
+import EstateItemMapList from '@/components/Estate/List/EstateItemMapList'
 
 const EstateList = ({
     estatesData,
@@ -60,6 +61,8 @@ const EstateList = ({
         setGridList(prevState => !prevState)
     }
 
+    console.log(estatesData)
+
     const sortEstates = async sortBy => {
         setLoading(true)
         const exactPageUrl = pageDataURL + '&sort=' + sortBy
@@ -79,31 +82,37 @@ const EstateList = ({
     return (
         <ContainerFluid>
             <Row gutter={40} className={'pr-4'}>
+                <Col xs={24}>
+                    <EstateFilters
+                        filtersData={filtersData}
+                        queryData={queryData}
+                        queryDataParams={queryDataParams}
+                        changeEstatesData={setEstates}
+                        setLoading={setLoading}
+                        setPageDataURL={setPageDataURL}
+                        lng={lng}
+                    />
+                </Col>
                 <Col
                     xs={24}
                     sm={openMap ? 16 : 4}
                     style={{ overflow: 'hidden' }}>
                     {estates && (
-                        <EstateMapSearch lng={lng} estatesData={estates.data} />
+                        <Affix offsetTop={100}>
+                            <EstateMapSearch
+                                lng={lng}
+                                estatesData={estates}
+                                updateFilteredEstates={setEstates}
+                            />
+                        </Affix>
                     )}
                 </Col>
 
-                <Col xs={24} sm={openMap ? 4 : 20}>
+                <Col xs={24} sm={openMap ? 8 : 20}>
                     <Row>
                         <Col xs={24}>
-                            <EstateFilters
-                                filtersData={filtersData}
-                                queryData={queryData}
-                                queryDataParams={queryDataParams}
-                                changeEstatesData={setEstates}
-                                setLoading={setLoading}
-                                setPageDataURL={setPageDataURL}
-                                lng={lng}
-                            />
-                        </Col>
-                        <Col xs={24}>
                             <Row justify={'space-between'}>
-                                <Col xs={24} md={12}>
+                                <Col xs={24} md={openMap ? 24 : 12}>
                                     <DarkHeading2 className={'mb-5'}>
                                         {t('label.saleRent')}
                                         <small
@@ -120,11 +129,16 @@ const EstateList = ({
                                         </strong>
                                     </DarkHeading2>
                                 </Col>
-                                <Col xs={24} md={12} className={'text-right'}>
-                                    <IconButton onClick={toggleGrid}>
-                                        <NextImage src={gridTypeIcon} />
-                                    </IconButton>
-                                </Col>
+                                {!openMap && (
+                                    <Col
+                                        xs={24}
+                                        md={12}
+                                        className={'text-right'}>
+                                        <IconButton onClick={toggleGrid}>
+                                            <NextImage src={gridTypeIcon} />
+                                        </IconButton>
+                                    </Col>
+                                )}
                             </Row>
                             <Row className={'mb-5'}>
                                 <Col xs={24} className={'sortButtonsWrapper'}>
@@ -162,15 +176,24 @@ const EstateList = ({
                                     estates.data?.map((estate, index) => (
                                         <Col
                                             xs={24}
-                                            md={gridList ? 6 : 24}
+                                            md={gridList && !openMap ? 6 : 24}
                                             key={index + '-col'}>
-                                            {gridList ? (
+                                            {gridList && !openMap && (
                                                 <EstateItemGrid
                                                     key={index}
                                                     estate={estate}
                                                 />
-                                            ) : (
+                                            )}
+
+                                            {!gridList && !openMap && (
                                                 <EstateItemList
+                                                    key={index}
+                                                    estate={estate}
+                                                />
+                                            )}
+
+                                            {openMap && (
+                                                <EstateItemMapList
                                                     key={index}
                                                     estate={estate}
                                                 />

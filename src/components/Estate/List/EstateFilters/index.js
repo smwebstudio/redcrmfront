@@ -402,7 +402,10 @@ const EstateFilters = ({
                     </Col>
 
                     <Col xs={24} sm={8}>
-                        <Row gutter={[32, 8]} justify={'center'}>
+                        <Row
+                            gutter={[32, 8]}
+                            justify={'center'}
+                            className={'mb-2'}>
                             <Col xs={24} md={8} className="">
                                 <AdditionalButton
                                     onClick={handleAdditionalFilters}>
@@ -412,7 +415,7 @@ const EstateFilters = ({
                             <Col xs={24} md={6}>
                                 <RedButton
                                     htmlType="submit"
-                                    className={'ml-2'}
+                                    className={'md:ml-2'}
                                     loading={buttonLoading}>
                                     {t('label.search')}
                                 </RedButton>

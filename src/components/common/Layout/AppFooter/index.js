@@ -19,7 +19,7 @@ export const AppFooter = ({ lng }) => {
     let publicUrl = process.env.PUBLIC_URL + '/'
 
     return (
-        <footer className="footer-area">
+        <footer className="footer-area z-50">
             <ContainerBoxed>
                 <div className="footer-top">
                     <Row align={'middle'}>

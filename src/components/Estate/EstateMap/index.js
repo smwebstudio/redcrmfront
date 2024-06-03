@@ -18,7 +18,7 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
     const [loading, setLoading] = useState(false)
     const [drawingMode, setDrawingMode] = useState(false)
     const [drawFreeHandMode, setDrawFreeHandMode] = useState(true)
-    const [estates, setEstates] = useState(estatesData)
+    const [estates, setEstates] = useState(estatesData.data)
     const mapDrawShapeManagerRef = useRef(null)
     const [coords, setCoords] = useState([])
     const [shape, setShape] = useState([])
@@ -134,6 +134,7 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
             )
 
             setEstates(response.data.data)
+            updateFilteredEstates(response.data)
 
             setSearchInfoBoxHidden(true)
             setLoading(false)
