@@ -1,6 +1,5 @@
 'use client'
-import React, { useContext, useState } from 'react'
-import { MapContext } from '@/providers/MapProvider'
+import React, { useState } from 'react'
 import { Col, Popover, Row } from 'antd'
 import StyledMapDraw from '@/components/Map/MapButtons/MapDraw/style'
 import { RedOutlinedButton } from '@/components/common/Buttons/RedOutlinedButton'
@@ -9,8 +8,12 @@ import { RedButton } from '@/components/common/Buttons/RedButton'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import { GreyButton } from '@/components/common/Buttons/GreyButton'
 
-export function MapDraw({ ...props }) {
-    const { openMap, toggleMapContainer } = useContext(MapContext)
+export function MapDraw({
+    handleDrawingMode,
+    resetDrawnShape,
+    drawingMode,
+    readyDelete,
+}) {
     const [open, setOpen] = useState(false)
     const hide = () => {
         setOpen(false)
@@ -43,10 +46,18 @@ export function MapDraw({ ...props }) {
                         <Col xs={24}>
                             <Row gutter={16} justify={'center'}>
                                 <Col>
-                                    <RedButton>sdasd</RedButton>
+                                    <RedButton
+                                        onClick={() => {
+                                            handleDrawingMode()
+                                            hide()
+                                        }}>
+                                        Սկսել
+                                    </RedButton>
                                 </Col>
                                 <Col>
-                                    <GreyButton>sdasd</GreyButton>
+                                    <GreyButton onClick={hide}>
+                                        Փակել
+                                    </GreyButton>
                                 </Col>
                             </Row>
                         </Col>
@@ -55,8 +66,29 @@ export function MapDraw({ ...props }) {
                 trigger="click"
                 placement={'bottomRight'}
                 open={open}
+                close={hide}
                 onOpenChange={handleOpenChange}>
-                <RedOutlinedButton>Շրջագծել</RedOutlinedButton>
+                {!readyDelete ? (
+                    <RedOutlinedButton className={'map-start-draw'}>
+                        <AppImage
+                            alt={'Map Shape'}
+                            preview={false}
+                            src={'/assets/img/svg/pencil.svg'}
+                        />
+                        Շրջագծել
+                    </RedOutlinedButton>
+                ) : (
+                    <RedOutlinedButton
+                        className={'map-start-draw'}
+                        onClick={resetDrawnShape}>
+                        <AppImage
+                            alt={'Map Shape'}
+                            preview={false}
+                            src={'/assets/img/svg/cross-remove.svg'}
+                        />
+                        Ջնջել
+                    </RedOutlinedButton>
+                )}
             </Popover>
         </StyledMapDraw>
     )

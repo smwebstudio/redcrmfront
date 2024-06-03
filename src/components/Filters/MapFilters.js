@@ -1,5 +1,5 @@
 'use client'
-import { Button, Col, Form, Input, Row, Select } from 'antd'
+import { Button, Col, Form, Row, Select } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { apiURL } from '@/constants'
@@ -78,8 +78,6 @@ export default function MapFilters(props) {
     })
 
     useEffect(() => {
-        form.setFieldValue('currency_id', 'USD')
-        form.setFieldValue('contract_type_id', 2)
         form.setFieldsValue(queryDataParams)
     }, [queryDataParams])
 
@@ -441,29 +439,12 @@ export default function MapFilters(props) {
                         </Button>
                     </Col>
                     <Col xs={12} sm={12} className="field-item   ">
-                        <Form.Item
-                            name={'contract_type_id'}
-                            hidden={true}
-                            initialValue={1}>
-                            <Input />
-                        </Form.Item>
                         <Button
                             htmlType="submit"
                             className="btn btn-main w-100"
                             size="large">
                             Փնտրել
                         </Button>
-                    </Col>
-
-                    <Col xs={24} sm={24} className="field-item">
-                        <Form.Item>
-                            <Button
-                                className="btn btn-main w-100 mt-4"
-                                size="large"
-                                onClick={handleButtonMapClick}>
-                                Փակել քարտեզը
-                            </Button>
-                        </Form.Item>
                     </Col>
                 </Row>
             </Form>

@@ -26,7 +26,7 @@ export function EstateMarker({ estate }) {
                         alt={'Red Group'}
                         src={estate.image}
                         height={'70px'}
-                        width={'100px'}
+                        width={'80px'}
                         preview={false}
                     />
                 </Link>

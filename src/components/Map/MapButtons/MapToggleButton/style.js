@@ -4,7 +4,7 @@ import { Button } from 'antd'
 
 const StyledMapToggleButton = styled(Button)`
     position: absolute;
-    right: 30px;
+    right: 20px;
     top: 300px;
     padding: 4px 16px;
 

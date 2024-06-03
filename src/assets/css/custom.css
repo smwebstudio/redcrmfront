@@ -237,7 +237,6 @@ html, body {
     overflow: hidden;
     position: relative;
     height: 100vh;
-    padding-right: 30px;
 }
 
 .map-container-opened {

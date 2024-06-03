@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapDrawShapeManager from '@/lib/MapDrawShape/MapDrawShapeManager'
-import nextConfig from '../../../next.config'
 import api from '@/hooks/api'
 import { apiURL } from '@/constants'
 import useSupercluster from 'use-supercluster'
@@ -9,11 +8,14 @@ import EstateMarker from '@/components/Map/EstateMarker'
 import MapToggleButton from '@/components/Map/MapButtons/MapToggleButton'
 import MapDraw from '@/components/Map/MapButtons/MapDraw'
 import { Spin } from 'antd'
+import nextConfig from '../../../../next.config'
+import StyledEstateMap from '@/components/Estate/EstateMap/style'
 
 const Marker = ({ children }) => children
 
-const EstatesGoogleMapNew = ({ lng, estatesData }) => {
+const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
     const [mapLoaded, setMapLoaded] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [drawingMode, setDrawingMode] = useState(false)
     const [drawFreeHandMode, setDrawFreeHandMode] = useState(true)
     const [estates, setEstates] = useState(estatesData)
@@ -41,7 +43,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData }) => {
         lat: 40.177628,
         lng: 44.512546,
     }
-    const defaultZoom = 7
+    const defaultZoom = 10
     const polygonOptions = {
         clickable: false,
         fillColor: '#303030',
@@ -70,7 +72,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData }) => {
     }
 
     const [bounds, setBounds] = useState(null)
-    const [zoom, setZoom] = useState(10)
+    const [zoom, setZoom] = useState(18)
     useEffect(() => {}, [])
     const points = useMemo(() => {
         return estates
@@ -125,6 +127,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData }) => {
 
     const fetchData = async () => {
         try {
+            setLoading(true)
             let coordsToSend = encodeURIComponent(JSON.stringify(coords))
             const response = await api(lng).get(
                 endpoint + '?fromMap=1&filter[coordinates]=' + coordsToSend,
@@ -133,6 +136,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData }) => {
             setEstates(response.data.data)
 
             setSearchInfoBoxHidden(true)
+            setLoading(false)
         } catch (error) {
             console.error(error)
         }
@@ -173,12 +177,10 @@ const EstatesGoogleMapNew = ({ lng, estatesData }) => {
         width: '100%',
     }
 
-    console.log('mapLoaded')
-    console.log(mapLoaded)
     const mapRef = useRef()
 
     return (
-        <>
+        <StyledEstateMap>
             <div className="map-container " style={mapContainerStyle}>
                 <GoogleMapReact
                     bootstrapURLKeys={mapBootstrap}
@@ -267,11 +269,15 @@ const EstatesGoogleMapNew = ({ lng, estatesData }) => {
                         readyDelete={shape.length > 0}
                     />
                     <MapToggleButton />
-                    <Spin size="large" />
+                    <Spin
+                        size="large"
+                        className={'map-loading'}
+                        spinning={loading}
+                    />
                 </>
             )}
-        </>
+        </StyledEstateMap>
     )
 }
 
-export default EstatesGoogleMapNew
+export default EstateMapSearch
