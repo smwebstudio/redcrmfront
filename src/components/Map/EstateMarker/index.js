@@ -49,7 +49,7 @@ export function EstateMarker({ estate }) {
     return (
         <>
             <Popover content={estateContent}>
-                <Button type="primary" className={'text-white'}>
+                <Button type="primary" className={'text-white p-1 opacity-80'}>
                     {estate.price}
                 </Button>
             </Popover>

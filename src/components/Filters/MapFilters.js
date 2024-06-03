@@ -7,12 +7,6 @@ import api from '@/hooks/api'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 
-const filter = (inputValue, path) =>
-    path.some(
-        option =>
-            option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
-    )
-
 export default function MapFilters(props) {
     const [form] = Form.useForm()
     const router = useRouter()

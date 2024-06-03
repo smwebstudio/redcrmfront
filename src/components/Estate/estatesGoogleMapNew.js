@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapDrawShapeManager from '@/lib/MapDrawShape/MapDrawShapeManager'
 import nextConfig from '../../../next.config'
@@ -7,10 +7,12 @@ import { apiURL } from '@/constants'
 import { Button } from 'antd'
 import useSupercluster from 'use-supercluster'
 import EstateMarker from '@/components/Map/EstateMarker'
+import MapToggleButton from '@/components/Map/MapButtons/MapToggleButton'
+import MapDraw from '@/components/Map/MapButtons/MapDraw'
 
 const Marker = ({ children }) => children
 
-const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
+const EstatesGoogleMapNew = ({ lng, estatesData }) => {
     const [mapLoaded, setMapLoaded] = useState(false)
     const [drawingMode, setDrawingMode] = useState(false)
     const [drawFreeHandMode, setDrawFreeHandMode] = useState(true)
@@ -18,6 +20,7 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     const mapDrawShapeManagerRef = useRef(null)
     const [coords, setCoords] = useState([])
     const [shape, setShape] = useState([])
+    const [radius, setRadius] = useState(50)
 
     const mapBootstrap = {
         key: nextConfig.env.GOOGLE_MAPS_API_KEY,
@@ -68,40 +71,53 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
 
     const [bounds, setBounds] = useState(null)
     const [zoom, setZoom] = useState(10)
+    useEffect(() => {}, [])
+    const points = useMemo(() => {
+        return estates
+            .map(estate => {
+                const estateCoords = [
+                    parseFloat(estate.native_coords[1]),
+                    parseFloat(estate.native_coords[0]),
+                ]
 
-    const points = estates
-        .map(estate => {
-            const coords = [
-                parseFloat(estate.native_coords[1]),
-                parseFloat(estate.native_coords[0]),
-            ]
+                const minIncrement = -0.0001 // Adjust as needed
+                const maxIncrement = 0.001 // Adjust as needed
 
-            // Check if both coordinates are greater than 0
-            if (coords[0] > 0 && coords[1] > 0) {
-                return {
-                    type: 'Feature',
-                    properties: {
-                        cluster: false,
-                        estateId: estate.id,
-                        category: 'estate',
-                        estate: estate,
-                    },
-                    geometry: {
-                        type: 'Point',
-                        coordinates: coords,
-                    },
+                // Generate random increments for each coordinate
+                const randomIncrement1 =
+                    Math.random() * (maxIncrement - minIncrement) + minIncrement
+
+                // Apply the random increments to the coordinates
+
+                // Check if both coordinates are greater than 0
+                if (estateCoords[0] > 0 && estateCoords[1] > 0) {
+                    estateCoords[0] += randomIncrement1
+                    return {
+                        type: 'Feature',
+                        properties: {
+                            cluster: false,
+                            estateId: estate.id,
+                            category: 'estate',
+                            estate: estate,
+                        },
+                        geometry: {
+                            type: 'Point',
+                            coordinates: estateCoords,
+                        },
+                    }
                 }
-            }
 
-            return null
-        })
-        .filter(point => point !== null) // Filter out the null values
+                return null
+            })
+            .filter(point => point !== null)
+    }, [estates])
+    // Filter out the null values
 
     const { clusters, supercluster } = useSupercluster({
         points,
         bounds,
         zoom,
-        options: { radius: 50, maxZoom: 20 },
+        options: { radius: radius, maxZoom: 30 },
     })
 
     const [searchInfoBoxHidden, setSearchInfoBoxHidden] = useState(true)
@@ -129,16 +145,10 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     }
 
     useEffect(() => {
-        fetchData()
-        // create an async function to fetch the data
-        let coordsToSend = encodeURIComponent(JSON.stringify(coords))
-
-        changeCoords(coordsToSend)
-
         // set a timeout to avoid sending too many requests in a short time
         const timeoutId = setTimeout(() => {
             fetchData()
-        }, 2000)
+        }, 200)
 
         // return a cleanup function to clear the timeout
         return () => {
@@ -170,13 +180,14 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
     }
 
     const mapContainerStyle = {
-        height: '800px',
-        width: 'calc(100vw - 35%)',
+        height: '850px',
+        width: '100%',
     }
 
     console.log('mapLoaded')
     console.log(mapLoaded)
     const mapRef = useRef()
+
     return (
         <>
             <div className="map-container " style={mapContainerStyle}>
@@ -217,21 +228,14 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
                                     <div
                                         className="cluster-marker"
                                         style={{
-                                            width: `${
-                                                10 +
-                                                (pointCount / points.length) *
-                                                    20
-                                            }px`,
-                                            height: `${
-                                                10 +
-                                                (pointCount / points.length) *
-                                                    20
-                                            }px`,
+                                            width: '25px',
+                                            height: '25px',
                                             background: 'orange',
-                                            padding: '15px',
+                                            padding: ' 5px',
                                             color: '#fff',
-                                            fontSize: '16',
+                                            fontSize: '12px',
                                             borderRadius: '50%',
+                                            textAlign: 'center',
                                         }}
                                         onClick={() => {
                                             const expansionZoom = Math.min(
@@ -266,24 +270,28 @@ const EstatesGoogleMapNew = ({ lng, estatesData, changeCoords }) => {
                 </GoogleMapReact>
             </div>
             {mapLoaded && (
-                <div
-                    className={
-                        'controls-container absolute z-30 left-50 top-0'
-                    }>
-                    <div className="center">
-                        <Button
-                            className="btn-control"
-                            onClick={handleDrawingMode}>
-                            {!drawingMode ? 'Start Draw' : 'Cancel Draw'}
-                        </Button>
-                        <Button
-                            className="btn-control"
-                            disabled={!shape.length > 0 || drawingMode}
-                            onClick={resetDrawnShape}>
-                            Clear Shape
-                        </Button>
+                <>
+                    <div
+                        className={
+                            'controls-container absolute z-30 left-50 top-0'
+                        }>
+                        <div className="center">
+                            <Button
+                                className="btn-control"
+                                onClick={handleDrawingMode}>
+                                {!drawingMode ? 'Start Draw' : 'Cancel Draw'}
+                            </Button>
+                            <Button
+                                className="btn-control"
+                                disabled={!shape.length > 0 || drawingMode}
+                                onClick={resetDrawnShape}>
+                                Clear Shape
+                            </Button>
+                        </div>
                     </div>
-                </div>
+                    <MapDraw />
+                    <MapToggleButton />
+                </>
             )}
         </>
     )

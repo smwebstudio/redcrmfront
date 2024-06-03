@@ -8,9 +8,8 @@ export default async function MapSearchPage({
     searchParams,
 }) {
     let queryURL = ''
-    const query = searchParams
 
-    const queryData = Object.entries(query)
+    const queryData = Object.entries(searchParams)
 
     const queryDataParamsInitial = queryData.reduce(
         (acc, [key, value]) => ({
@@ -48,12 +47,14 @@ export default async function MapSearchPage({
     const filtersDataRequest = await api(lng).get(apiURL + 'api/filters/', {})
     const filtersData = filtersDataRequest.data
 
-    const estatesResponse = await api(lng).get(
-        apiURL +
-            'api/estates/geoFilter/estates?filter[contract_type_id]=1&' +
-            queryURL,
-    )
-    const estatesData = estatesResponse.data.data
+    let estatesData = []
+    if (queryURL) {
+        const estatesResponse = await api(lng).get(
+            'api/estates/geoFilter/estates?' + queryURL,
+        )
+        estatesData = estatesResponse.data.data
+    }
+
     const pageDataURL = apiURL + 'api/estates/filter/estates'
 
     return (

@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react'
-import { Col, Divider, Row } from 'antd'
+import React, { useContext, useState } from 'react'
+import { Col, Row } from 'antd'
 import MapFilters from '@/components/Filters/MapFilters'
 import EstatesGoogleMapNew from '@/components/Estate/estatesGoogleMapNew'
+import { MapContext } from '@/providers/MapProvider'
 
 function EstateMap({
     lng,
@@ -18,44 +19,25 @@ function EstateMap({
     const [pageDataURLLink, setPageDataURLLink] = useState(pageDataURL + '?')
 
     const [loading, setLoading] = useState(false)
-
+    const { openMap, toggleMapContainer } = useContext(MapContext)
     return (
-        <>
-            <Row gutter={48}>
-                <Col
-                    xs={20}
-                    sm={18}
-                    className={''}
-                    style={{ overflow: 'hidden' }}>
-                    {/*<EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />*/}
+        <Row gutter={48}>
+            <Col xs={20} sm={openMap ? 16 : 4} style={{ overflow: 'hidden' }}>
+                <EstatesGoogleMapNew lng={lng} estatesData={estates} />
+            </Col>
 
-                    {/*<EstatesGoogleMap*/}
-                    {/*    lng={lng}*/}
-                    {/*    estatesData={estates}*/}
-                    {/*    changeCoords={setCoords}*/}
-                    {/*/>*/}
-                    <EstatesGoogleMapNew
-                        lng={lng}
-                        estatesData={estates}
-                        changeCoords={setCoords}
-                    />
-                </Col>
-
-                <Col xs={5}>
-                    <MapFilters
-                        filtersData={filtersData}
-                        queryData={queryData}
-                        queryDataParams={queryDataParams}
-                        changeEstatesData={setEstates}
-                        coords={coords}
-                        setLoading={setLoading}
-                        setPageDataURL={setPageDataURLLink}
-                    />
-                </Col>
-
-                <Divider />
-            </Row>
-        </>
+            <Col xs={8} sm={openMap ? 8 : 20}>
+                <MapFilters
+                    filtersData={filtersData}
+                    queryData={queryData}
+                    queryDataParams={queryDataParams}
+                    changeEstatesData={setEstates}
+                    coords={coords}
+                    setLoading={setLoading}
+                    setPageDataURL={setPageDataURLLink}
+                />
+            </Col>
+        </Row>
     )
 }
 
