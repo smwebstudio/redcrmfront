@@ -1,60 +1,71 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, Col, Row, Table } from 'antd'
-import { apiURL } from '@/constants'
-import api from '@/hooks/api'
-import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import { CheckOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
+import api from '@/hooks/api'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-export async function EstateCompareCarousel(props) {
-    const router = useRouter()
-    const { locale } = router
-    const { t } = useTranslation(props.lng, 'common')
+export function EstateCompareCarousel({ lng }) {
+    const { t } = useTranslation(lng, 'common')
 
     const [estatesData, setEstatesData] = useState([])
     const [columns, setColumns] = useState([])
     const [dataSource, setDataSource] = useState([])
     const [compareCount, setCompareCount] = useState(0)
+    const [loaded, setLoaded] = useState(false)
+
+    const fetchData = async () => {
+        try {
+            const compareIds = JSON.parse(
+                localStorage.getItem('compareEstates') || [],
+            )
+            setCompareCount(compareIds.length)
+            const params = {
+                'filter[id]': compareIds.join('|'),
+            }
+            const estatesDataFromApi = await api(lng).get(
+                'api/estates/compare/estates',
+                {
+                    params,
+                },
+            )
+
+            const estates = estatesDataFromApi.data.data
+
+            const dataHeaders = {
+                id: 1,
+                price: t('label.price'),
+                full_address: t('label.address'),
+                room_count: t('label.roomCount'),
+                area_total: t('label.area'),
+                floor: t('label.floor'),
+                ceilingHeight: t('label.ceilingHeight'),
+                estate_facilities: t('common:label.utility.facilities'),
+            }
+
+            if (!loaded) {
+                estates.unshift(dataHeaders)
+                setEstatesData(estates)
+                setLoaded(true)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
-        const compareIds = JSON.parse(
-            localStorage.getItem('compareEstates') || [],
-        )
-        setCompareCount(compareIds.length)
-        const params = {
-            'filter[id]': compareIds.join('|'),
-        }
-
-        const data = api(locale).get(apiURL + 'api/estates/compare/estates', {
-            params,
-        })
-
-        const estatesDataFromApi = data.data
-
-        const dataHeaders = {
-            id: 1,
-            price: t('label.price'),
-            full_address: t('label.address'),
-            room_count: t('label.roomCount'),
-            area_total: t('label.area'),
-            floor: t('label.floor'),
-            ceilingHeight: t('label.ceilingHeight'),
-            estate_facilities: t('common:label.utility.facilities'),
-        }
-
-        estatesDataFromApi.unshift(dataHeaders)
-        setEstatesData(estatesDataFromApi)
+        fetchData()
 
         let columnsFromApi = [
-            ...estatesDataFromApi.map(item => ({
+            ...estatesData.map(item => ({
                 dataIndex: item.id.toString(),
                 key: item.id.toString(),
                 width: 200,
                 style: { padding: '0px 8px' },
-                fixed: item.id === estatesDataFromApi[0].id ? 'left' : null,
+                fixed: item.id === estatesData[0].id ? 'left' : null,
             })),
         ]
 
@@ -63,7 +74,7 @@ export async function EstateCompareCarousel(props) {
                 key: '1',
                 attribute: 'image',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.image ? (
                             <AppImage
@@ -84,17 +95,14 @@ export async function EstateCompareCarousel(props) {
                 key: '2',
                 attribute: 'price',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
-                        item.id.toString(),
-                        item.price,
-                    ]),
+                    estatesData.map(item => [item.id.toString(), item.price]),
                 ),
             },
             {
                 key: '3',
                 attribute: 'full_address',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.full_address,
                     ]),
@@ -104,7 +112,7 @@ export async function EstateCompareCarousel(props) {
                 key: '4',
                 attribute: 'area_total',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.area_total,
                     ]),
@@ -114,17 +122,14 @@ export async function EstateCompareCarousel(props) {
                 key: '5',
                 attribute: 'floor',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
-                        item.id.toString(),
-                        item.floor,
-                    ]),
+                    estatesData.map(item => [item.id.toString(), item.floor]),
                 ),
             },
             {
                 key: '6',
                 attribute: 'ceilingHeight',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.ceilingHeight || '-',
                     ]),
@@ -134,7 +139,7 @@ export async function EstateCompareCarousel(props) {
                 key: '7',
                 attribute: 'room_count',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.room_count,
                     ]),
@@ -144,7 +149,7 @@ export async function EstateCompareCarousel(props) {
                 key: '7',
                 attribute: 'estate_facilities',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map(item => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.estate_facilities
                             ? estateFacilitiesToString(item.estate_facilities)
@@ -180,7 +185,7 @@ export async function EstateCompareCarousel(props) {
 
         setColumns(columnsFromApi)
         setDataSource(dataSourceFromApi)
-    }, [])
+    }, [estatesData])
 
     const tableRef = useRef(null)
 
@@ -214,7 +219,7 @@ export async function EstateCompareCarousel(props) {
     }
 
     return (
-        <div className={'container pt-10 pb-20'}>
+        <ContainerBoxed className={'container pt-10 pb-20'}>
             <Row>
                 <Col xs={24}>
                     <h1 className={'mb-6'}>
@@ -253,7 +258,7 @@ export async function EstateCompareCarousel(props) {
                     )}
                 </Col>
             </Row>
-        </div>
+        </ContainerBoxed>
     )
 }
 

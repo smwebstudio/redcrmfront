@@ -6,6 +6,7 @@ import { LoadingOutlined } from '@ant-design/icons'
 import AppImage from '@/components/common/Image/AppImage'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
+import StyledEstateItemGrid from '@/components/Estate/List/EstateItemGrid/style'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -33,7 +34,7 @@ export function EstateItemGrid({ estate }) {
     }
 
     return (
-        <div className="">
+        <StyledEstateItemGrid>
             <div
                 key={estate.id}
                 className={' mb-5  cat' + estate.contract_type_id}>
@@ -41,7 +42,7 @@ export function EstateItemGrid({ estate }) {
                     <div className="thumb">
                         <Link
                             href={'estates/' + estate.id}
-                            style={{ width: '100%' }}>
+                            style={{ width: '100%', display: 'block' }}>
                             <AppImage
                                 alt={'Red Group'}
                                 src={estate.image}
@@ -137,7 +138,7 @@ export function EstateItemGrid({ estate }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </StyledEstateItemGrid>
     )
 }
 

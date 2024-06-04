@@ -18,7 +18,7 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
     const [loading, setLoading] = useState(false)
     const [drawingMode, setDrawingMode] = useState(false)
     const [drawFreeHandMode, setDrawFreeHandMode] = useState(true)
-    const [estates, setEstates] = useState(estatesData.data)
+    const [estates, setEstates] = useState([])
     const mapDrawShapeManagerRef = useRef(null)
     const [coords, setCoords] = useState([])
     const [shape, setShape] = useState([])
@@ -73,6 +73,11 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
 
     const [bounds, setBounds] = useState(null)
     const [zoom, setZoom] = useState(18)
+
+    useEffect(() => {
+        setEstates(estatesData.data)
+    }, [estatesData])
+
     useEffect(() => {}, [])
     const points = useMemo(() => {
         return estates

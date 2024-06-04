@@ -1,10 +1,11 @@
 'use client'
 import React from 'react'
-import { Col, Divider, Rate, Row, Tabs, Typography } from 'antd'
+import { Col, Divider, Rate, Row, Typography } from 'antd'
 import ContactSimpleForm from '@/components/Forms/contact-simple-form'
 import EstateProfessionalList from '@/components/Estate/estate-professional-list'
 import ProfessionalInfo from '@/components/Professionals/professional-info'
 import AppImage from '@/components/common/Image/AppImage'
+import AppTabs from '@/components/common/Tabs/AppTabs'
 
 const { Text } = Typography
 
@@ -75,7 +76,7 @@ function ProfessionalDetails(props) {
                 <ContactSimpleForm />
             </Col>
             <Col xs={24} sm={18} className={'pl-5 pt-2'}>
-                <Tabs
+                <AppTabs
                     defaultActiveKey="1"
                     items={[
                         {
