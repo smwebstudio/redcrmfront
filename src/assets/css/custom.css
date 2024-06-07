@@ -1,0 +1,338 @@
+
+body, .ant-layout, .ant-typography, .ant-col, h1, h2, h3, h4, h5, h6, hr, p, pre, span, button, a, * {
+    font-family: var(--heading-font) !important;
+}
+
+html, body {
+    width: auto !important;
+    height: auto !important;
+    font-family: var(--heading-font);
+}
+
+.font-size-10 {
+    font-size: 10px !important;
+}
+
+.font-size-11 {
+    font-size: 11px !important;
+}
+
+.font-size-12 {
+    font-size: 12px !important;
+}
+
+.font-size-13 {
+    font-size: 13px !important;
+}
+
+.font-size-16 {
+    font-size: 16px !important;
+}
+
+.font-size-18 {
+    font-size: 18px !important;
+}
+
+.font-size-24 {
+    font-size: 24px !important;
+}
+
+
+.text-main {
+    color: var(--main-color-one) !important;
+}
+
+.text-dark {
+    color: var(--dark-color) !important;
+}
+
+.text-underline {
+    text-decoration: underline !important;
+}
+
+
+.bg-orange {
+    background: #FF8038 !important;
+}
+
+.bg-white {
+    background: #FFFFFF !important;
+}
+
+.bg-dark {
+    background: #414141 !important;
+}
+
+.border-orange {
+    border: 1px solid #FF8038 !important
+}
+
+.btn-main {
+    background: var(--main-color-one) !important;
+    color: #fff !important;
+}
+
+.btn-main:hover, .btn-main:focus {
+    color: #fff !important;
+    background: #C60028 !important;
+}
+
+.btn-main-transparent {
+    background: none !important;
+    color: var(--main-color-one) !important;
+    border: 1px solid var(--main-color-one) !important;
+}
+
+.btn-main-transparent-dark {
+    background: none !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.btn-main-transparent:hover {
+    background: var(--main-color-one) !important;
+    color: #FFF !important;
+}
+
+.hover-primary:hover, .hover-primary:focus {
+    color: var(--main-color-one) !important;
+}
+
+.hover-underline:hover {
+    text-decoration: underline;
+}
+
+.input-main {
+    background: #FFFFFF !important;
+    border: 1px solid #EFEFEF !important;
+    height: 40px;
+    line-height: 40px;
+}
+
+.slick-center {
+    padding: 0px 15px
+}
+
+/*Flex custom classes*/
+
+.flex-grow-1 {
+    flex-grow: 1 !important;
+}
+
+.flex-grow-2 {
+    flex-grow: 2 !important;
+}
+
+.flex-grow-3 {
+    flex-grow: 3 !important;
+}
+
+.flex-grow-4 {
+    flex-grow: 4 !important;
+}
+
+/*Ant customized*/
+
+.ant-carousel .slick-prev::before {
+    content: url('../../assets/img/svg/arrow-left.svg') !important;
+}
+
+.ant-carousel .slick-next::before {
+    content: url('../../assets/img/svg/arrow-right.svg') !important;
+}
+
+.ant-carousel .slick-prev:hover::before {
+    content: url('../../assets/img/svg/arrow-left-hover.svg') !important;
+}
+
+.ant-carousel .slick-next:hover::before {
+    content: url('../../assets/img/svg/arrow-right-hover.svg') !important;
+}
+
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    color: var(--main-color-one) !important;
+    font-weight: 600;
+    background-color: #fff !important;
+}
+
+.ant-table-scroll-horizontal .ant-table-container .ant-table-content {
+    overflow-x: hidden !important;
+}
+
+/*End Ant*/
+
+.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);
+    background-color: #ffffff !important;
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*Home*/
+
+.main-featured {
+    min-height: 450px;
+}
+
+.estate-estimate {
+    background: url('../../assets/img/bg/estate-estimate.png') center center;
+
+    background-size: cover;
+    height: 400px;
+}
+
+.professional-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    align-self: center;
+}
+
+/*Image gallery customized*/
+
+.image-gallery-slide-wrapper.left, .image-gallery-slide-wrapper.right {
+    width: calc(100% - 210px) !important;
+}
+
+.image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
+    width: 200px !important;
+}
+
+.image-gallery-slide.center {
+    background: #414141 !important;
+}
+
+/*.image-gallery-content:not(.fullscreen) {*/
+/*    font-weight: bold;*/
+/*    display: flex;*/
+/*}*/
+
+/*.image-gallery-content:not(.fullscreen) .image-gallery-slide-wrapper {*/
+/*    width: calc(100% - 200px);*/
+/*}*/
+
+/*.image-gallery-content:not(.fullscreen) .image-gallery-thumbnails-wrapper {*/
+/*    width: 200px;*/
+/*}*/
+
+.image-gallery-content:not(.fullscreen) .image-gallery-thumbnail {
+    border: 0px solid transparent;
+    transition: border .3s ease-out;
+    width: 200px !important;
+    height: 20% !important
+}
+
+
+/*Map*/
+
+.map-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+.map-container-opened {
+    overflow: hidden;
+    cursor: crosshair;
+    padding-right: 30px;
+}
+
+.map-overflow-hidden .ant-affix {
+    overflow: hidden !important;
+}
+
+.estates-map {
+    min-height: calc(100vh - 100px);
+    width: 100%;
+}
+
+.map-container-opened .estates-map {
+    position: fixed;
+}
+
+
+.map-pencil {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    border-radius: 25px 0px 0px 25px !important;
+    padding: 0px 15px 0px 0px !important;
+    background: #fff !important;
+    top: 15px;
+    right: 15px;
+    z-index: 99;
+    opacity: 1;
+    position: absolute !important;
+}
+
+.map-container-opened .map-pencil {
+    opacity: 1;
+}
+
+.map-pencil span.drawing-icon {
+    background: var(--main-color-one);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.estates-map .toggle-map {
+    position: absolute;
+    top: 250px;
+    width: 50px;
+    right: 0px;
+    z-index: 99;
+    background: #fff !important;
+    border: 1px solid #E7E7E7 !important;
+    align-items: center;
+    display: flex;
+}
+
+.map-container-opened .toggle-map {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.estates-map .toggle-map:hover {
+    border: 1px solid var(--main-color-one);
+}
+
+
+.ant-tabs .ant-tabs-tab[data-node-key="map"],
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:hover,
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:focus,
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:active,
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab[data-node-key="map"]:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab[data-node-key="map"] .ant-tabs-tab-btn:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab[data-node-key="map"] .ant-tabs-tab-btn:focus:not(:focus-visible),
+.ant-tabs .ant-tabs-tab-active[data-node-key="map"] {
+    background-color: #d8002c !important;
+    color: #fff !important;
+}
+
+
+/*google maps*/
+
+.gm-style .gm-style-iw-c {
+    border-radius: 0px !important
+}
+
+.gm-style-iw .gm-ui-hover-effect {
+    display: none !important;
+}
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;

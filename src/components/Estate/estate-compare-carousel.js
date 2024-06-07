@@ -1,210 +1,265 @@
-import React, { Component, useEffect, useRef, useState } from "react";
-import { Image, Col, Row, Table, Button, Checkbox } from "antd";
-import { apiURL } from "@/constants";
-import api from "@/hooks/api";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-import { CheckCircleFilled, CheckOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
-import RedText from "@/components/Typography/text/RedText";
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, Col, Row, Table } from 'antd'
+import { useTranslation } from '@/app/i18n/client'
+import { CheckOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
+import RedText from '@/components/Typography/text/RedText'
+import AppImage from '@/components/common/Image/AppImage'
+import api from '@/hooks/api'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
+export function EstateCompareCarousel({ lng }) {
+    const { t } = useTranslation(lng, 'common')
 
-export function EstateCompareCarousel() {
+    const [estatesData, setEstatesData] = useState([])
+    const [columns, setColumns] = useState([])
+    const [dataSource, setDataSource] = useState([])
+    const [compareCount, setCompareCount] = useState(0)
+    const [loaded, setLoaded] = useState(false)
 
-    const router = useRouter();
-    const { locale } = router;
-    const { t } = useTranslation("common");
+    const fetchData = async () => {
+        try {
+            const compareIds = JSON.parse(
+                localStorage.getItem('compareEstates') || [],
+            )
+            setCompareCount(compareIds.length)
+            const params = {
+                'filter[id]': compareIds.join('|'),
+            }
+            const estatesDataFromApi = await api(lng).get(
+                'api/estates/compare/estates',
+                {
+                    params,
+                },
+            )
 
-    const [estatesData, setEstatesData] = useState([]);
-    const [columns, setColumns] = useState([]);
-    const [dataSource, setDataSource] = useState([]);
-    const [compareCount, setCompareCount] = useState(0);
+            const estates = estatesDataFromApi.data.data
 
+            const dataHeaders = {
+                id: 1,
+                price: t('label.price'),
+                full_address: t('label.address'),
+                room_count: t('label.roomCount'),
+                area_total: t('label.area'),
+                floor: t('label.floor'),
+                ceilingHeight: t('label.ceilingHeight'),
+                estate_facilities: t('common:label.utility.facilities'),
+            }
 
-    useEffect(async () => {
-        const compareIds = JSON.parse(localStorage.getItem("compareEstates") || []);
-        setCompareCount(compareIds.length);
-        const params = {
-            "filter[id]": compareIds.join("|")
-        };
+            if (!loaded) {
+                estates.unshift(dataHeaders)
+                setEstatesData(estates)
+                setLoaded(true)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
-        const data = await api(locale).get(apiURL + "api/estates/compare/estates", { params });
-        const estatesDataFromApi = data.data.data;
-
-        const dataHeaders = {
-            id: 1,
-            price: t("label.price"),
-            full_address: t("label.address"),
-            room_count: t("label.roomCount"),
-            area_total: t("label.area"),
-            floor: t("label.floor"),
-            ceilingHeight: t("label.ceilingHeight"),
-            estate_facilities: t("common\:label.utility.facilities"),
-        };
-
-        estatesDataFromApi.unshift(dataHeaders);
-        setEstatesData(estatesDataFromApi);
-
-        console.log(estatesDataFromApi);
+    useEffect(() => {
+        fetchData()
 
         let columnsFromApi = [
-            ...estatesDataFromApi.map((item) => ({
+            ...estatesData.map(item => ({
                 dataIndex: item.id.toString(),
                 key: item.id.toString(),
                 width: 200,
                 style: { padding: '0px 8px' },
-                fixed: item.id === estatesDataFromApi[0].id ? "left" : null
-            }))
-        ];
-
+                fixed: item.id === estatesData[0].id ? 'left' : null,
+            })),
+        ]
 
         let dataSourceFromApi = [
             {
-                key: "1",
-                attribute: "image",
+                key: '1',
+                attribute: 'image',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(),
-                        item.image ? <Image preview={false} src={item.image} width={'175px'} height={'150px'} style={{maxHeight: '100%', maxWidth: '100%'}} /> : ''])
-                )
+                    estatesData.map(item => [
+                        item.id.toString(),
+                        item.image ? (
+                            <AppImage
+                                alt={'Red Group'}
+                                preview={false}
+                                src={item.image}
+                                width={'175px'}
+                                height={'150px'}
+                                style={{ maxHeight: '100%', maxWidth: '100%' }}
+                            />
+                        ) : (
+                            ''
+                        ),
+                    ]),
+                ),
             },
             {
-                key: "2",
-                attribute: "price",
+                key: '2',
+                attribute: 'price',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(), item.price])
-                )
+                    estatesData.map(item => [item.id.toString(), item.price]),
+                ),
             },
             {
-                key: "3",
-                attribute: "full_address",
+                key: '3',
+                attribute: 'full_address',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(), item.full_address])
-                )
+                    estatesData.map(item => [
+                        item.id.toString(),
+                        item.full_address,
+                    ]),
+                ),
             },
             {
-                key: "4",
-                attribute: "area_total",
+                key: '4',
+                attribute: 'area_total',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(), item.area_total])
-                )
+                    estatesData.map(item => [
+                        item.id.toString(),
+                        item.area_total,
+                    ]),
+                ),
             },
             {
-                key: "5",
-                attribute: "floor",
+                key: '5',
+                attribute: 'floor',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(), item.floor])
-                )
+                    estatesData.map(item => [item.id.toString(), item.floor]),
+                ),
             },
             {
-                key: "6",
-                attribute: "ceilingHeight",
+                key: '6',
+                attribute: 'ceilingHeight',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(), item.ceilingHeight || "-"])
-                )
+                    estatesData.map(item => [
+                        item.id.toString(),
+                        item.ceilingHeight || '-',
+                    ]),
+                ),
             },
             {
-                key: "7",
-                attribute: "room_count",
+                key: '7',
+                attribute: 'room_count',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [item.id.toString(), item.room_count])
-                )
+                    estatesData.map(item => [
+                        item.id.toString(),
+                        item.room_count,
+                    ]),
+                ),
             },
             {
-                key: "7",
-                attribute: "estate_facilities",
+                key: '7',
+                attribute: 'estate_facilities',
                 ...Object.fromEntries(
-                    estatesDataFromApi.map((item) => [
+                    estatesData.map(item => [
                         item.id.toString(),
                         item.estate_facilities
                             ? estateFacilitiesToString(item.estate_facilities)
-                            : ""
-                    ])
-                )
-            }
-        ];
+                            : '',
+                    ]),
+                ),
+            },
+        ]
 
         function estateFacilitiesToString(estate_facilities) {
             return (
                 <>
-                    {Object.entries(estate_facilities).map(([facilityKey, facility]) => (
-                        <div key={facilityKey} >
-
-                            {facility.value === true &&
-                                <div className={'flex flex-row justify-between'}>
-                                    <label className={'mr-2'}>{facility.label}</label>
-                                <CheckOutlined />
-                                </div>
-
-                            }
-
-                        </div>
-                    ))}
+                    {Object.entries(estate_facilities).map(
+                        ([facilityKey, facility]) => (
+                            <div key={facilityKey}>
+                                {facility.value === true && (
+                                    <div
+                                        className={
+                                            'flex flex-row justify-between'
+                                        }>
+                                        <label className={'mr-2'}>
+                                            {facility.label}
+                                        </label>
+                                        <CheckOutlined />
+                                    </div>
+                                )}
+                            </div>
+                        ),
+                    )}
                 </>
-            );
+            )
         }
 
+        setColumns(columnsFromApi)
+        setDataSource(dataSourceFromApi)
+    }, [estatesData])
 
-        setColumns(columnsFromApi);
-        setDataSource(dataSourceFromApi);
-
-
-    }, []);
-
-
-    const tableRef = useRef(null);
+    const tableRef = useRef(null)
 
     const handleScrollRight = () => {
-        const tableBody = document.querySelector(".ant-table-content");
-        const tableFixedColumn = document.querySelector(".ant-table-cell-fix-left");
+        const tableBody = document.querySelector('.ant-table-content')
+        const tableFixedColumn = document.querySelector(
+            '.ant-table-cell-fix-left',
+        )
         if (tableBody) {
-            console.log(12)
-            const fixedColumnWidth = tableFixedColumn.clientWidth;
+            const fixedColumnWidth = tableFixedColumn.clientWidth
             tableBody.scrollTo({
                 left: tableBody.scrollLeft + fixedColumnWidth,
-                behavior: "smooth"
-            });
+                behavior: 'smooth',
+            })
         }
-    };
+    }
 
     const handleScrollLeft = () => {
-        const tableBody = document.querySelector(".ant-table-content");
-        const tableFixedColumn = document.querySelector(".ant-table-cell-fix-left");
+        const tableBody = document.querySelector('.ant-table-content')
+        const tableFixedColumn = document.querySelector(
+            '.ant-table-cell-fix-left',
+        )
         if (tableBody) {
             console.log(12)
-            const fixedColumnWidth = tableFixedColumn.clientWidth;
+            const fixedColumnWidth = tableFixedColumn.clientWidth
             tableBody.scrollTo({
                 left: tableBody.scrollLeft - fixedColumnWidth,
-                behavior: "smooth"
-            });
+                behavior: 'smooth',
+            })
         }
-    };
+    }
 
     return (
-        <div className={"container pt-10 pb-20"}>
+        <ContainerBoxed className={'container pt-10 pb-20'}>
             <Row>
-
                 <Col xs={24}>
-                    <h1 className={'mb-6'}>{t('label.compare')} / <RedText className={'text-2xl'}>{compareCount}</RedText></h1>
+                    <h1 className={'mb-6'}>
+                        {t('label.compare')} /{' '}
+                        <RedText className={'text-2xl'}>{compareCount}</RedText>
+                    </h1>
                 </Col>
                 <Col xs={24}>
-
-                    {estatesData.length > 0 &&
+                    {estatesData.length > 0 && (
                         <div className={'relative'}>
-                            <Button  shape="circle" onClick={handleScrollLeft} className={'flex justify-center items-center absolute z-40 left-60 top-20 bg-opacity-70 bg-gray-600'}>
-                                <LeftOutlined style={{color: '#FFFFFF'}}/>
+                            <Button
+                                shape="circle"
+                                onClick={handleScrollLeft}
+                                className={
+                                    'flex justify-center items-center absolute z-40 left-60 top-20 bg-opacity-70 bg-gray-600'
+                                }>
+                                <LeftOutlined style={{ color: '#FFFFFF' }} />
                             </Button>
-                            <Button  shape="circle" onClick={handleScrollRight} className={'flex justify-center items-center absolute z-40 right-3.5 top-20 bg-opacity-70 bg-gray-600'}>
-                                <RightOutlined style={{color: '#FFFFFF'}}/>
+                            <Button
+                                shape="circle"
+                                onClick={handleScrollRight}
+                                className={
+                                    'flex justify-center items-center absolute z-40 right-3.5 top-20 bg-opacity-70 bg-gray-600'
+                                }>
+                                <RightOutlined style={{ color: '#FFFFFF' }} />
                             </Button>
-                            <Table  showHeader={false} dataSource={dataSource} columns={columns} pagination={false} scroll={{ x: 1300 }} ref={tableRef} />
+                            <Table
+                                showHeader={false}
+                                dataSource={dataSource}
+                                columns={columns}
+                                pagination={false}
+                                scroll={{ x: 1300 }}
+                                ref={tableRef}
+                            />
                         </div>
-
-                    }
-
+                    )}
                 </Col>
             </Row>
+        </ContainerBoxed>
+    )
+}
 
-        </div>
-    );
-};
-
-export default EstateCompareCarousel;
+export default EstateCompareCarousel

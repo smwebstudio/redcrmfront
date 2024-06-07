@@ -4,31 +4,31 @@ html, body {
 }
 
 .font-size-10 {
-    font-size:10px !important;
+    font-size: 10px !important;
 }
 
 .font-size-11 {
-    font-size:11px !important;
+    font-size: 11px !important;
 }
 
 .font-size-12 {
-    font-size:12px !important;
+    font-size: 12px !important;
 }
 
 .font-size-13 {
-    font-size:13px !important;
+    font-size: 13px !important;
 }
 
 .font-size-16 {
-    font-size:16px !important;
+    font-size: 16px !important;
 }
 
 .font-size-18 {
-    font-size:18px !important;
+    font-size: 18px !important;
 }
 
 .font-size-24 {
-    font-size:24px !important;
+    font-size: 24px !important;
 }
 
 
@@ -37,7 +37,7 @@ html, body {
 }
 
 .text-dark {
-    color:var(--dark-color) !important;
+    color: var(--dark-color) !important;
 }
 
 .text-underline {
@@ -88,7 +88,7 @@ html, body {
     color: #FFF !important;
 }
 
-.hover-primary:hover , .hover-primary:focus {
+.hover-primary:hover, .hover-primary:focus {
     color: var(--main-color-one) !important;
 }
 
@@ -99,12 +99,12 @@ html, body {
 .input-main {
     background: #FFFFFF !important;
     border: 1px solid #EFEFEF !important;
-    height:40px;
+    height: 40px;
     line-height: 40px;
 }
 
 .slick-center {
-    padding:0px 15px
+    padding: 0px 15px
 }
 
 /*Flex custom classes*/
@@ -214,7 +214,7 @@ html, body {
     background: #414141 !important;
 }
 
-    /*.image-gallery-content:not(.fullscreen) {*/
+/*.image-gallery-content:not(.fullscreen) {*/
 /*    font-weight: bold;*/
 /*    display: flex;*/
 /*}*/
@@ -240,7 +240,7 @@ html, body {
 .map-container {
     width: 100%;
     overflow: hidden;
-    position: fixed;
+    position: relative;
     top: 160px;
     left: 0px;
     height: 100vh;
@@ -259,7 +259,7 @@ html, body {
 
 .estates-map {
     min-height: calc(100vh - 100px);
-    width:100%;
+    width: 100%;
 }
 
 .map-container-opened .estates-map {
@@ -317,5 +317,10 @@ html, body {
 
 /*google maps*/
 
-.gm-style .gm-style-iw-c {border-radius: 0px !important}
-.gm-style-iw .gm-ui-hover-effect {display: none !important;}
+.gm-style .gm-style-iw-c {
+    border-radius: 0px !important
+}
+
+.gm-style-iw .gm-ui-hover-effect {
+    display: none !important;
+}

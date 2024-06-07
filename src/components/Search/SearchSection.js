@@ -1,72 +1,80 @@
-import React, { Component } from "react";
-import Link from "next/link";
-import MainFilter from "@/components/Filters/main-filter";
-import MainSearch from "@/components/Filters/main-search";
-import { Col } from "antd";
-import { useTranslation } from "next-i18next";
-import ContainerBoxed from "@/components/Containers/ContainerBoxed";
+'use client'
+import React, { useState } from 'react'
+import MainSearch from '@/components/Filters/main-search'
+import { Col, Tabs } from 'antd'
+import { useTranslation } from '@/app/i18n/client'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import MainFilter from '@/components/Filters/main-filter'
+import TabPane from 'antd/es/tabs/TabPane'
+import { useRouter } from 'next/navigation'
 
 function SearchSection(props) {
-    const { t } = useTranslation("common");
+    const { t } = useTranslation(props.lng, 'common')
+    const [activeKey, setActiveKey] = useState('1')
+    const filtersData = props.filtersData
+    const router = useRouter()
+    const filters = [
+        {
+            key: '1',
+            label: t('button.sale'),
+            children: <MainFilter filtersData={filtersData} contractType={1} />,
+        },
+        {
+            key: '2',
+            label: t('button.rent'),
+            children: <MainFilter filtersData={filtersData} contractType={2} />,
+        },
+        {
+            key: '3',
+            label: t('label.title.fee.normal'),
+            children: <MainFilter filtersData={filtersData} contractType={3} />,
+        },
+        {
+            key: 'map',
+            label: t('label.searchMap'),
+            children: 'Content of Tab Pane 3',
+        },
+        {
+            key: '5',
+            label: t('label.search'),
+            children: <MainSearch />,
+        },
+    ]
 
+    const changeTab = activeKey => {
+        if (activeKey === 'map') {
+            router.push('/estates')
+            return
+        }
 
-    const filtersData = props.filtersData;
-
+        setActiveKey(activeKey)
+    }
 
     return (
-
-        <ContainerBoxed className={"container -mt-44"}>
+        <ContainerBoxed className={'container -mt-44'}>
             <div className="main-search-tabs">
                 <div className="banner-search-wrap">
-                    <Col xs={0} sm={24}>
-
-                        <ul className="nav nav-tabs rld-banner-tab overflow-hidden">
-                            <li className="nav-item">
-                                <a className="nav-link active" data-toggle="tab" href="#tabs_1">{t("button.sale")}</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab" href="#tabs_2">{t("button.rent")}</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab"
-                                   href="#tabs_3">{t("label.title.fee.normal")}</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="btn btn-main" href="/estates/map">{t("label.searchMap")}</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab" href="#tabs_4">{t("label.search")}</a>
-                            </li>
-                        </ul>
-
+                    <Col xs={24} sm={24}>
+                        <Tabs
+                            type="card"
+                            activeKey={activeKey}
+                            defaultActiveKey={activeKey}
+                            tabBarGutter={4}
+                            onChange={changeTab}>
+                            {filters.map(filter => (
+                                <TabPane
+                                    tab={filter.label}
+                                    key={filter.key}
+                                    className={'test'}>
+                                    {filter.children}
+                                </TabPane>
+                            ))}
+                        </Tabs>
                     </Col>
-                    <div className="tab-content">
-                        <div className="tab-pane fade show active" id="tabs_1">
-                            <div className="pt-4 pl-3 bg-white pr-4">
-                                <MainFilter filtersData={filtersData} />
-                            </div>
-                        </div>
-                        {/*<div className="tab-pane fade" id="tabs_2">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainFilter filtersData={filtersData} />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="tab-pane fade" id="tabs_3">*/}
-                        {/*    <div className="pt-4 pl-3 bg-white">*/}
-                        {/*        <MainFilter filtersData={filtersData} />*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        <div className="tab-pane fade" id="tabs_4">
-                            <div className="pt-4 pl-3 bg-white pr-4">
-                                <MainSearch />
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </ContainerBoxed>
-    );
-
+    )
 }
 
-export default SearchSection;
+export default SearchSection

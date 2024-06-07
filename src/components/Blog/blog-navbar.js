@@ -1,33 +1,40 @@
-import React, { Component, useEffect } from "react";
-import Link from "next/link";
-import { Menu, Select } from "antd";
-import { useRouter } from "next/router";
+'use client'
+import React from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 
-function BlogNavbar() {
+export const BlogNavbar = ({ title, type }) => {
+    const pathname = usePathname()
 
-
-    const router = useRouter();
-
-    const newsActive = router.asPath.includes("/blog/news", 0);
-    const articlesActive = router.asPath.includes("/blog/articles", 0);
-    const statisticsActive = router.asPath.includes("/blog/statistics", 0);
-    const pricesActive = router.asPath.includes("/blog/prices", 0);
+    const newsActive = pathname.includes('/blog/news', 0)
+    const articlesActive = pathname.includes('/blog/articles', 0)
+    const statisticsActive = pathname.includes('/blog/statistics', 0)
+    const pricesActive = pathname.includes('/blog/prices', 0)
 
     return (
-        <div className="">
-                    <div className="container nav-container">
-                            <ul className="blog-nav">
-                                <li className={router.pathname == "/blog" ? "active" : ""}><Link href="/blog"><a>Բոլորը</a></Link></li>
-                                <li className={newsActive ? "active" : ""}><Link href="/blog/news"><a>Նորություններ</a></Link></li>
-                                <li className={articlesActive ? "active" : ""}><Link href="/blog/articles"><a>Հոդվածներ</a></Link></li>
-                                <li className={statisticsActive ? "active" : ""}><Link href="/blog/statistics"><a>Վիճակագրություն</a></Link></li>
-                                <li className={pricesActive ? "active" : ""}><Link href="/blog/prices"><a>Գներ</a></Link></li>
-                            </ul>
-                    </div>
-        </div>
-    );
-
+        <ContainerBoxed className="">
+            <div className=" nav-container">
+                <ul className="blog-nav">
+                    <li className={pathname === '/blog' ? 'active' : ''}>
+                        <Link href="/blog">Բոլորը</Link>
+                    </li>
+                    <li className={newsActive ? 'active' : ''}>
+                        <Link href="/blog/news">Նորություններ</Link>
+                    </li>
+                    <li className={articlesActive ? 'active' : ''}>
+                        <Link href="/blog/articles">Հոդվածներ</Link>
+                    </li>
+                    <li className={statisticsActive ? 'active' : ''}>
+                        <Link href="/blog/statistics">Վիճակագրություն</Link>
+                    </li>
+                    <li className={pricesActive ? 'active' : ''}>
+                        <Link href="/blog/prices">Գներ</Link>
+                    </li>
+                </ul>
+            </div>
+        </ContainerBoxed>
+    )
 }
 
-
-export default BlogNavbar;
+export default BlogNavbar
