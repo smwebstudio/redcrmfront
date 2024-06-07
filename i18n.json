@@ -1,9 +1,9 @@
 {
     "locales": [
-        "am",
+        "hy",
         "en"
     ],
-    "defaultLocale": "am",
+    "defaultLocale": "hy",
     "pages": {
         "*": [
             "common"

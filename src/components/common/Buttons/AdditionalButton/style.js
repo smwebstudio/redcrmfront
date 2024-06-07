@@ -4,6 +4,11 @@ import { Button } from 'antd'
 
 const StyledAdditionalButton = styled(Button)`
     background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 0;
+    padding: 0;
 
     span {
         color: #414141 !important;
@@ -11,7 +16,7 @@ const StyledAdditionalButton = styled(Button)`
         font-weight: 400;
     }
 
-    @media only screen and (max-width: 991px) {
+    @media only screen and(max-width: 991px) {
         width: 100%;
     }
 `

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Table } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
+import StyledLoanTable from '@/components/Estate/LoanCalculator/LoanTable/style'
 
-function LoanData({ payments }) {
-    const { t } = useTranslation(props.lng, 'common')
+const LoanData = ({ payments, lng }) => {
+    const { t } = useTranslation(lng, 'common')
 
     const columns = [
         {
@@ -39,7 +40,11 @@ function LoanData({ payments }) {
 
     const data = payments.map((pay, index) => ({ ...pay, key: index }))
 
-    return <Table columns={columns} dataSource={data} />
+    return (
+        <StyledLoanTable>
+            <Table columns={columns} dataSource={data} />
+        </StyledLoanTable>
+    )
 }
 
 export default LoanData

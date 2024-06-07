@@ -11,20 +11,6 @@ const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 export function BuildingItem(props) {
     let item = props.item
 
-    function compare(item) {
-        let compareEstates =
-            JSON.parse(localStorage.getItem('compareEstates')) || []
-        const index = compareEstates.indexOf(item.id)
-
-        if (index === -1) {
-            compareEstates.push(item.id)
-        } else {
-            compareEstates.splice(index, 1)
-        }
-
-        localStorage.setItem('compareEstates', JSON.stringify(compareEstates))
-    }
-
     return (
         <div className="">
             <div key={item.id} className={'mb-5'}>

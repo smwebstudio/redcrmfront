@@ -26,7 +26,7 @@ i18next
         ...getOptions(),
         lng: undefined,
         detection: {
-            order: ['cookie', 'path', 'htmlTag', 'navigator'],
+            order: ['path', 'htmlTag', 'cookie', 'navigator'],
         },
         preload: runsOnServerSide ? languages : [],
     })

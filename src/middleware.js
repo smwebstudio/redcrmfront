@@ -33,9 +33,15 @@ export function middleware(req) {
         !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
         !req.nextUrl.pathname.startsWith('/_next')
     ) {
-        return NextResponse.redirect(
-            new URL(`/${lng}${req.nextUrl.pathname}${urlParams}`, req.url),
-        )
+        if (lng === 'hy') {
+            return NextResponse.rewrite(
+                new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
+            )
+        } else {
+            return NextResponse.redirect(
+                new URL(`/${lng}${req.nextUrl.pathname}${urlParams}`, req.url),
+            )
+        }
     }
 
     if (req.headers.has('referer')) {

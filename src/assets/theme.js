@@ -38,6 +38,17 @@ const redTheme = {
             itemColor: '#fff',
             colorPrimaryBorder: '#4d8200',
         },
+        Select: {
+            optionFontSize: 14,
+        },
+        Radio: {
+            radioSize: 8,
+            buttonPaddingInline: 8,
+        },
+        Form: {
+            labelHeight: 14,
+            labelColor: '#959595',
+        },
     },
 }
 

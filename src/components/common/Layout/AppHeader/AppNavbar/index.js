@@ -40,7 +40,7 @@ const AppNavbar = ({ lng }) => {
 
                                 <Col xs={16} sm={3} md={6} lg={4}>
                                     <div className="logo readeal-top">
-                                        <Link href="/">
+                                        <Link href={`/${lng}`}>
                                             <AppImage
                                                 alt={'Red Group'}
                                                 height={
@@ -60,42 +60,44 @@ const AppNavbar = ({ lng }) => {
                                     <div className="collapse navbar-collapse">
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li>
-                                                <Link href="/estates">
+                                                <Link href={`/${lng}/estates`}>
                                                     {t('menu.buy')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/estates">
+                                                <Link href={`/${lng}/estates`}>
                                                     {t('menu.rent')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/about">
+                                                <Link href={`/${lng}/about`}>
                                                     {t('menu.about')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/professionals">
+                                                <Link
+                                                    href={`/${lng}/professionals`}>
                                                     {t('menu.professional')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/blog">
+                                                <Link href={`/${lng}/blog`}>
                                                     {t('menu.blog')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/contact">
+                                                <Link href={`/${lng}/contact`}>
                                                     {t('menu.contact')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/estimate">
+                                                <Link href={`/${lng}/estimate`}>
                                                     {t('menu.evaluate')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/developers">
+                                                <Link
+                                                    href={`/${lng}/developers`}>
                                                     {t('menu.buildDevelopers')}
                                                 </Link>
                                             </li>
@@ -106,7 +108,7 @@ const AppNavbar = ({ lng }) => {
                                     xs={{ span: menuOpen ? 23 : 0, offset: 1 }}
                                     sm={{ span: 3, offset: 0 }}>
                                     <Link
-                                        href="/add-property"
+                                        href={`/${lng}/add-property`}
                                         className={
                                             'btn btn-main-transparent  block w-11/12 pr-1 pl-1 text-center'
                                         }>

@@ -1,5 +1,10 @@
 import { MapProvider } from '@/providers/MapProvider'
+import { FilterProvider } from '@/providers/FilterProvider'
 
 export default function MapLayout({ children, params: { lng } }) {
-    return <MapProvider>{children}</MapProvider>
+    return (
+        <MapProvider>
+            <FilterProvider>{children}</FilterProvider>
+        </MapProvider>
+    )
 }

@@ -5,7 +5,6 @@ import ImageGallery from 'react-image-gallery'
 import { Checkbox, Col, Divider, Form, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { EnvironmentOutlined, EyeOutlined } from '@ant-design/icons'
-import LoanCalculator from '@/components/Forms/loan-calculator'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
@@ -13,6 +12,7 @@ import RedText from '@/components/Typography/text/RedText'
 import PlanItem from '@/components/Buildings/PlanItem'
 import AppImage from '@/components/common/Image/AppImage'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import LoanCalculator from '@/components/Estate/LoanCalculator'
 
 const { Option } = Select
 
@@ -80,12 +80,6 @@ function BuildingDetails(props) {
             }
         })
     }
-
-    let currencies = [
-        { value: 'AMD', label: 'AMD' },
-        { value: 'USD', label: 'USD' },
-        { value: 'RUR', label: 'RUR' },
-    ]
 
     const plans = {
         data: [
@@ -629,7 +623,7 @@ function BuildingDetails(props) {
 
                 <div className="bg-gray  pd-10 pt-10">
                     <div className={'container'}>
-                        <LoanCalculator price={developerData.price} />
+                        <LoanCalculator price={developerData.price} lng={lng} />
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Col, notification, Row, Spin } from 'antd'
+import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import AppImage from '@/components/common/Image/AppImage'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
@@ -9,32 +9,11 @@ import EstatePrice from '@/components/Estate/EstatePrice'
 import AppText from '@/components/common/Typography/Text/AppText'
 import DarkText from '@/components/common/Typography/Text/DarkText'
 import StyledEstateItemMapList from '@/components/Estate/List/EstateItemMapList/style'
+import { formatNumberPrice, toggleEstateComparison } from '@/lib/helper'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
 export function EstateItemList({ estate }) {
-    function compare(estate) {
-        let compareEstates =
-            JSON.parse(localStorage.getItem('compareEstates')) || []
-        const index = compareEstates.indexOf(estate.id)
-
-        if (index === -1) {
-            compareEstates.push(estate.id)
-            notification.open({
-                message: 'Ավելացվել է համեմատության համար',
-                duration: 1,
-            })
-        } else {
-            compareEstates.splice(index, 1)
-            notification.open({
-                message: 'Հանվել է համեմատելու ցանկից',
-                duration: 1,
-            })
-        }
-
-        localStorage.setItem('compareEstates', JSON.stringify(compareEstates))
-    }
-
     function sliceStringMax(str) {
         // Ensure the string doesn't exceed the maxLength
         if (str && str.length > 200) {
@@ -43,11 +22,7 @@ export function EstateItemList({ estate }) {
         return str
     }
 
-    function formatEstatePrice(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-    }
-
-    const formattedPrice = formatEstatePrice(estate.price)
+    const formattedPrice = formatNumberPrice(estate.price)
 
     return (
         <StyledEstateItemMapList>
@@ -89,7 +64,7 @@ export function EstateItemList({ estate }) {
                             <AppImage
                                 alt={'Red Group'}
                                 key={'compare_' + estate.id}
-                                onClick={() => compare(estate)}
+                                onClick={() => toggleEstateComparison(estate)}
                                 className={'cursor-pointer'}
                                 src={'/assets/img/svg/compare.svg'}
                             />

@@ -1,25 +1,33 @@
 'use client'
-import { Col, Form, Row, Select } from 'antd'
-import React, { useEffect, useState } from 'react'
-import api from '@/hooks/api'
+import { Affix, Button, Col, Form, Radio, Row, Select } from 'antd'
+import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
-import { objectToQueryParams } from '@/lib/helper'
+import {
+    getApiQueryURL,
+    objectToQueryParams,
+    transformLocations,
+} from '@/lib/helper'
 import { RedButton } from '@/components/common/Buttons/RedButton'
 import { AdditionalButton } from '@/components/common/Buttons/AdditionalButton'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import AppImage from '@/components/common/Image/AppImage'
+import { FilterContext } from '@/providers/FilterProvider'
+import { FilterSelect } from '@/components/common/Selects/FilterSelect'
+import { GreyButton } from '@/components/common/Buttons/GreyButton'
 
 const EstateFilters = ({
     filtersData,
-    queryData,
     queryDataParams,
-    changeEstatesData,
     setPageDataURL,
     setLoading,
     lng,
+    openMap,
 }) => {
     const [form] = Form.useForm()
     const { t } = useTranslation(lng, 'common')
+
+    const { filterEstates, filteredEstates } = useContext(FilterContext)
 
     let initialProvince = filtersData.locations.find(x => x.id === 1)
 
@@ -31,6 +39,7 @@ const EstateFilters = ({
     let currentCurrency = 'USD'
     let currentContractType = 'sale'
 
+    const [showMap, setShowMap] = useState(openMap)
     const [buttonLoading, setButtonLoading] = useState(false)
     const [currentProvince, setCurrentProvince] = useState(initialProvince)
     const [cities, setCities] = useState(initialProvince.cities)
@@ -41,20 +50,7 @@ const EstateFilters = ({
     const [showYerevanCommunities, setShowYerevanCommunities] = useState(true)
     const [showAdditionalFilters, setShowAdditionalFilters] = useState(false)
 
-    const transformedLocations = filtersData.locations.reduce(
-        (acc, location) => {
-            const transformedCities = location.cities.reduce(
-                (cityAcc, city) => {
-                    cityAcc[city.id] = city.children
-                    return cityAcc
-                },
-                {},
-            )
-            acc[location.id] = transformedCities
-            return acc
-        },
-        {},
-    )
+    const transformedLocations = transformLocations(filtersData)
 
     useEffect(() => {
         form.setFieldsValue(queryDataParams)
@@ -91,338 +87,347 @@ const EstateFilters = ({
     const onFinish = async values => {
         setButtonLoading(true)
         setLoading(true)
-        const queryData = Object.entries(values)
+        setPageDataURL('api/estates/filter/estates?' + getApiQueryURL(values))
+        await filterEstates(lng, getApiQueryURL(values))
 
-        let query = {}
-        queryData.forEach(function (param) {
-            query[param[0]] = param[1]
-        })
-        const queryString = objectToQueryParams(query)
-        const updateLink = '/estates?' + queryString
+        const updateLink = '/estates?' + objectToQueryParams(values)
+        history.replaceState(null, '', updateLink)
 
-        let queryURL = ''
-        queryData.forEach(function (param) {
-            if (param[0] === 'prices' && param[1]) {
-                let priceId = param[1] - 1
-
-                let pricesRangeData = prices[priceId]
-
-                let pricesRange = pricesRangeData.label.split('-')
-
-                queryURL +=
-                    'filter[price_from]=' +
-                    pricesRange[0] +
-                    '&' +
-                    'filter[price_to]=' +
-                    pricesRange[1] +
-                    '&'
-            } else if (param[1]) {
-                queryURL += 'filter[' + param[0] + ']' + '=' + param[1] + '&'
-            }
-        })
-
-        setPageDataURL('api/estates/filter/estates?' + queryURL)
-
-        const estatesFilteredResponse = await api(lng).get(
-            'api/estates/filter/estates?' + queryURL,
-        )
-        const estatesData = estatesFilteredResponse.data
-
-        changeEstatesData(estatesData)
         setLoading(false)
         setButtonLoading(false)
-
-        history.replaceState(null, '', updateLink)
     }
 
     return (
-        <ContainerBoxed className={'pt-10'}>
+        <ContainerBoxed className={'pt-4'}>
             <Form
                 form={form}
                 onFinish={onFinish}
+                // onValuesChange={onValuesChanged}
                 className="bg-white text-gray-50 ">
-                <Row justify={'space-between'}>
-                    <Col xs={24} sm={15}>
-                        <Row>
-                            <Col
-                                xs={12}
-                                sm={4}
-                                className="field-item d-flex flex-column">
-                                <SmallParagraph className="pl-2">
-                                    {t('label.contract')}
-                                </SmallParagraph>
-                                <Form.Item name="contract_type_id">
-                                    <Select
-                                        placeholder={t('label.contract')}
-                                        variant={'borderless'}
-                                        options={filtersData.contract_types}
-                                    />
-                                </Form.Item>
-                            </Col>
-                            <Col
-                                xs={12}
-                                sm={4}
-                                className="field-item d-flex flex-column">
-                                <SmallParagraph className="pl-2">
-                                    Տեսակ
-                                </SmallParagraph>
-                                <Form.Item name="estate_type_id">
-                                    <Select
-                                        showSearch
-                                        placeholder="Տեսակ"
-                                        variant={'borderless'}
-                                        optionFilterProp="children"
-                                        options={filtersData.estate_types}
-                                        allowClear
-                                    />
-                                </Form.Item>
-                            </Col>
-                            <Col
-                                xs={12}
-                                sm={4}
-                                className="field-item d-flex flex-column">
-                                <SmallParagraph className="pl-2">
-                                    Մարզ
-                                </SmallParagraph>
-                                <Form.Item name="location_province_id">
-                                    <Select
-                                        showSearch
-                                        placeholder="Մարզ"
-                                        variant={'borderless'}
-                                        optionFilterProp="children"
-                                        options={provinces}
-                                        style={{ width: '100%' }}
-                                        popupMatchSelectWidth={false}
-                                        onChange={handleProvinceChange}
-                                    />
-                                </Form.Item>
-                            </Col>
-                            <Col
-                                xs={12}
-                                sm={4}
-                                className="field-item d-flex flex-column">
-                                <SmallParagraph className="pl-2">
-                                    Համայնք
-                                </SmallParagraph>
-                                <Form.Item
-                                    name="location_city_id"
-                                    hidden={showYerevanCommunities}>
-                                    <Select
-                                        showSearch
-                                        placeholder="Ընտրել"
-                                        variant={'borderless'}
-                                        onChange={handleCityChange}
-                                        optionFilterProp="children"
-                                        style={{ width: '100%' }}
-                                        popupMatchSelectWidth={false}
-                                        options={cities}
-                                        allowClear
-                                    />
-                                </Form.Item>
-                                <Form.Item
-                                    name="location_community_id"
-                                    hidden={!showYerevanCommunities}>
-                                    <Select
-                                        showSearch
-                                        placeholder="Ընտրել"
-                                        variant={'borderless'}
-                                        onChange={handleCityChange}
-                                        style={{ width: '100%' }}
-                                        popupMatchSelectWidth={false}
-                                        options={filtersData.location_community}
-                                        allowClear
-                                    />
-                                </Form.Item>
-                            </Col>
+                {!showAdditionalFilters && (
+                    <Row justify={'space-between'} gutter={8}>
+                        <Col>
+                            <Form.Item name="contract_type_id">
+                                <FilterSelect
+                                    placeholder={t('label.contract')}
+                                    options={filtersData.contract_types}
+                                    popupMatchSelectWidth={false}
+                                    allowClear
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col>
+                            <Form.Item name="estate_type_id">
+                                <FilterSelect
+                                    placeholder="Տեսակ"
+                                    options={filtersData.estate_types}
+                                    popupMatchSelectWidth={false}
+                                    allowClear
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col>
+                            <Form.Item name="location_province_id">
+                                <FilterSelect
+                                    placeholder="Մարզ"
+                                    optionFilterProp="children"
+                                    options={provinces}
+                                    popupMatchSelectWidth={false}
+                                    onChange={handleProvinceChange}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col>
+                            <AdditionalButton onClick={handleAdditionalFilters}>
+                                <span>{t('label.additional')}</span>
+                            </AdditionalButton>
+                        </Col>
+                    </Row>
+                )}
 
-                            <Col
-                                xs={12}
-                                sm={4}
-                                className="field-item d-flex flex-column">
-                                <SmallParagraph className="pl-2">
-                                    Գին
-                                </SmallParagraph>
-                                <Form.Item name="prices">
-                                    <Select
-                                        showSearch
-                                        placeholder="Ընտրել"
-                                        variant={'borderless'}
-                                        optionFilterProp="children"
-                                        options={prices}
-                                        allowClear
-                                    />
-                                </Form.Item>
-                            </Col>
+                {showAdditionalFilters && (
+                    <Row justify={'space-between'}>
+                        <Col xs={24}>
+                            <Row justify={'space-between'} className={'mb-4'}>
+                                <Col>
+                                    <AdditionalButton
+                                        onClick={handleAdditionalFilters}>
+                                        <span className={'font-bold'}>
+                                            {t('label.additional')}
+                                        </span>
+                                    </AdditionalButton>
+                                </Col>
+                                <Col>
+                                    <Button
+                                        onClick={handleAdditionalFilters}
+                                        type={'text'}>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={
+                                                '/assets/img/svg/close-filter.svg'
+                                            }
+                                        />
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col xs={24} sm={24}>
+                            <Row gutter={8}>
+                                <Col xs={24}>
+                                    <Form.Item name="contract_type_id">
+                                        <Radio.Group
+                                            buttonStyle={'outline'}
+                                            className={
+                                                'flex w-full justify-around'
+                                            }>
+                                            {filtersData.contract_types.map(
+                                                option => {
+                                                    return (
+                                                        <Radio.Button
+                                                            key={option.value}
+                                                            style={{
+                                                                width: '33%',
+                                                                textAlign:
+                                                                    'center',
+                                                            }}
+                                                            value={
+                                                                option.value
+                                                            }>
+                                                            {option.label}
+                                                        </Radio.Button>
+                                                    )
+                                                },
+                                            )}
+                                        </Radio.Group>
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={24} sm={24}>
+                                    <Form.Item name={'estate_type_id'}>
+                                        <Radio.Group
+                                            buttonStyle="solid"
+                                            style={{ width: '100%' }}>
+                                            {filtersData.estate_types.map(
+                                                option => {
+                                                    return (
+                                                        <Radio.Button
+                                                            key={option.value}
+                                                            style={{
+                                                                width: '25%',
+                                                                textAlign:
+                                                                    'center',
+                                                            }}
+                                                            value={
+                                                                option.value
+                                                            }>
+                                                            {option.label}
+                                                        </Radio.Button>
+                                                    )
+                                                },
+                                            )}
+                                        </Radio.Group>
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={12} sm={12} className="field-item">
+                                    <Form.Item
+                                        name="location_province_id"
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.locationProvince')}>
+                                        <Select
+                                            showSearch
+                                            placeholder="Մարզ"
+                                            optionFilterProp="children"
+                                            options={provinces}
+                                            popupMatchSelectWidth={false}
+                                            onChange={handleProvinceChange}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={12}>
+                                    <Form.Item
+                                        name="location_city_id"
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.locationCity')}
+                                        hidden={showYerevanCommunities}>
+                                        <Select
+                                            showSearch
+                                            placeholder={t('label.selectOne')}
+                                            onChange={handleCityChange}
+                                            optionFilterProp="children"
+                                            popupMatchSelectWidth={false}
+                                            options={cities}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="location_community_id"
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.locationCommunity')}
+                                        hidden={!showYerevanCommunities}>
+                                        <Select
+                                            showSearch
+                                            placeholder={t('label.selectOne')}
+                                            onChange={handleCityChange}
+                                            popupMatchSelectWidth={false}
+                                            options={
+                                                filtersData.location_community
+                                            }
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
 
-                            <Col
-                                xs={12}
-                                sm={4}
-                                className="field-item d-flex flex-column">
-                                <SmallParagraph className="pl-2">
-                                    Սենյակ
-                                </SmallParagraph>
-                                <Form.Item name="room_count">
-                                    <Select
-                                        showSearch
-                                        placeholder="Ընտրել"
-                                        variant={'borderless'}
-                                        optionFilterProp="children"
-                                        options={filtersData.rooms}
-                                        allowClear
-                                    />
-                                </Form.Item>
-                            </Col>
-                            {showAdditionalFilters && (
-                                <>
-                                    <Col
-                                        xs={12}
-                                        sm={4}
-                                        className="field-item d-flex flex-column">
-                                        <SmallParagraph className="pl-2">
-                                            {t('label.area')}
-                                        </SmallParagraph>
-                                        <Form.Item name="area_total">
-                                            <Select
-                                                showSearch
-                                                placeholder="Ընտրել"
-                                                variant={'borderless'}
-                                                optionFilterProp="children"
-                                                options={filtersData.area_total}
-                                                allowClear
-                                            />
-                                        </Form.Item>
+                                <Col xs={24}>
+                                    <Form.Item
+                                        name="prices"
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.price.Additional')}>
+                                        <Select
+                                            placeholder={t('label.selectOne')}
+                                            options={prices}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={24}>
+                                    <Form.Item
+                                        name="room_count"
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.rooms')}>
+                                        <Radio.Group
+                                            buttonStyle="solid"
+                                            style={{ width: '100%' }}>
+                                            {filtersData.rooms.map(option => {
+                                                return (
+                                                    <Radio.Button
+                                                        key={option.value}
+                                                        style={{
+                                                            width: '20%',
+                                                            textAlign: 'center',
+                                                        }}
+                                                        value={option.value}>
+                                                        {option.label}
+                                                    </Radio.Button>
+                                                )
+                                            })}
+                                        </Radio.Group>
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <SmallParagraph className="pl-2">
+                                        {t('label.pricePerQwdMeter')}
+                                    </SmallParagraph>
+                                    <Form.Item name="prece_per_qwd">
+                                        <Select
+                                            showSearch
+                                            placeholder={t('label.selectOne')}
+                                            variant={'borderless'}
+                                            optionFilterProp="children"
+                                            options={filtersData.prece_per_qwd}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <SmallParagraph className="pl-2">
+                                        {t('label.locationStreet')}
+                                    </SmallParagraph>
+                                    <Form.Item name="location_street_id">
+                                        <Select
+                                            showSearch
+                                            placeholder={t('label.selectOne')}
+                                            variant={'borderless'}
+                                            style={{ width: '100%' }}
+                                            popupMatchSelectWidth={false}
+                                            options={streets}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <Form.Item
+                                        name={'area_total'}
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.area')}>
+                                        <Select
+                                            placeholder={t('label.selectOne')}
+                                            options={filtersData.area_total}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <Form.Item
+                                        name={'repairing_type_id'}
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.repairingType')}>
+                                        <Select
+                                            placeholder={t('label.selectOne')}
+                                            options={filtersData.repairing_type}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <Form.Item
+                                        name={'building_project_type_id'}
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.buildingProjectType')}>
+                                        <Select
+                                            placeholder={t('label.selectOne')}
+                                            options={
+                                                filtersData.building_project_type
+                                            }
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={12}>
+                                    <Form.Item
+                                        name={'building_type_id'}
+                                        labelCol={{ span: 24 }}
+                                        label={t('label.buildingType')}>
+                                        <Select
+                                            placeholder={t('label.selectOne')}
+                                            options={filtersData.building_type}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col xs={24} sm={24}>
+                            <Affix offsetBottom={8}>
+                                <Row
+                                    gutter={[32, 8]}
+                                    justify={'space-between'}
+                                    className={'mb-2 bg-white'}>
+                                    <Col xs={24} md={8} className="">
+                                        <GreyButton
+                                            onClick={() => form.resetFields()}>
+                                            {t('button.cancel')}
+                                        </GreyButton>
                                     </Col>
-
-                                    <Col
-                                        xs={12}
-                                        sm={4}
-                                        className="field-item d-flex flex-column">
-                                        <SmallParagraph className="pl-2">
-                                            {t('label.pricePerQwdMeter')}
-                                        </SmallParagraph>
-                                        <Form.Item name="prece_per_qwd">
-                                            <Select
-                                                showSearch
-                                                placeholder="Ընտրել"
-                                                variant={'borderless'}
-                                                optionFilterProp="children"
-                                                options={
-                                                    filtersData.prece_per_qwd
-                                                }
-                                                allowClear
-                                            />
-                                        </Form.Item>
+                                    <Col xs={24} md={6}>
+                                        <RedButton
+                                            htmlType="submit"
+                                            className={'md:ml-2'}
+                                            loading={buttonLoading}>
+                                            {t('label.search')}
+                                        </RedButton>
                                     </Col>
-
-                                    <Col
-                                        xs={12}
-                                        sm={4}
-                                        className="field-item d-flex flex-column">
-                                        <SmallParagraph className="pl-2">
-                                            {t('label.locationStreet')}
-                                        </SmallParagraph>
-                                        <Form.Item name="location_street_id">
-                                            <Select
-                                                showSearch
-                                                placeholder="Ընտրել"
-                                                variant={'borderless'}
-                                                style={{ width: '100%' }}
-                                                popupMatchSelectWidth={false}
-                                                options={streets}
-                                                allowClear
-                                            />
-                                        </Form.Item>
-                                    </Col>
-
-                                    <Col
-                                        xs={12}
-                                        sm={4}
-                                        className="field-item d-flex flex-column">
-                                        <SmallParagraph className="pl-2">
-                                            {t('label.buildingProjectType')}
-                                        </SmallParagraph>
-                                        <Form.Item name="building_project_type_id">
-                                            <Select
-                                                showSearch
-                                                placeholder="Ընտրել"
-                                                variant={'borderless'}
-                                                optionFilterProp="children"
-                                                options={
-                                                    filtersData.building_project_type
-                                                }
-                                                allowClear
-                                            />
-                                        </Form.Item>
-                                    </Col>
-
-                                    <Col
-                                        xs={12}
-                                        sm={4}
-                                        className="field-item d-flex flex-column">
-                                        <SmallParagraph className="pl-2">
-                                            {t('label.buildingType')}
-                                        </SmallParagraph>
-                                        <Form.Item name="building_type_id">
-                                            <Select
-                                                showSearch
-                                                placeholder="Ընտրել"
-                                                variant={'borderless'}
-                                                optionFilterProp="children"
-                                                options={
-                                                    filtersData.building_type
-                                                }
-                                                allowClear
-                                            />
-                                        </Form.Item>
-                                    </Col>
-
-                                    <Col
-                                        xs={12}
-                                        sm={4}
-                                        className="field-item d-flex flex-column">
-                                        <SmallParagraph className="pl-2">
-                                            {t('label.repairingType')}
-                                        </SmallParagraph>
-                                        <Form.Item name="repairing_type_id">
-                                            <Select
-                                                showSearch
-                                                placeholder="Ընտրել"
-                                                variant={'borderless'}
-                                                optionFilterProp="children"
-                                                options={
-                                                    filtersData.repairing_type
-                                                }
-                                                allowClear
-                                            />
-                                        </Form.Item>
-                                    </Col>
-                                </>
-                            )}
-                        </Row>
-                    </Col>
-
-                    <Col xs={24} sm={8}>
-                        <Row
-                            gutter={[32, 8]}
-                            justify={'center'}
-                            className={'mb-2'}>
-                            <Col xs={24} md={8} className="">
-                                <AdditionalButton
-                                    onClick={handleAdditionalFilters}>
-                                    {t('label.additional')}
-                                </AdditionalButton>
-                            </Col>
-                            <Col xs={24} md={6}>
-                                <RedButton
-                                    htmlType="submit"
-                                    className={'md:ml-2'}
-                                    loading={buttonLoading}>
-                                    {t('label.search')}
-                                </RedButton>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
+                                </Row>
+                            </Affix>
+                        </Col>
+                    </Row>
+                )}
             </Form>
         </ContainerBoxed>
     )

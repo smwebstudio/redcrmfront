@@ -1,37 +1,16 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Col, notification, Row, Spin } from 'antd'
+import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import AppImage from '@/components/common/Image/AppImage'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
+import { toggleEstateComparison } from '@/lib/helper'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
 export function EstateItem(props) {
     let item = props.item
-
-    function compare(item) {
-        let compareEstates =
-            JSON.parse(localStorage.getItem('compareEstates')) || []
-        const index = compareEstates.indexOf(item.id)
-
-        if (index === -1) {
-            compareEstates.push(item.id)
-            notification.open({
-                message: 'Ավելացվել է համեմատության համար',
-                duration: 1,
-            })
-        } else {
-            compareEstates.splice(index, 1)
-            notification.open({
-                message: 'Հանվել է համեմատելու ցանկից',
-                duration: 1,
-            })
-        }
-
-        localStorage.setItem('compareEstates', JSON.stringify(compareEstates))
-    }
 
     return (
         <div className="">
@@ -70,7 +49,9 @@ export function EstateItem(props) {
                                 <span
                                     className={'cursor-pointer'}
                                     key={'compare_' + item.id}
-                                    onClick={() => compare(item)}>
+                                    onClick={() =>
+                                        toggleEstateComparison(item)
+                                    }>
                                     <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/compare.svg'}

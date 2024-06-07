@@ -4,6 +4,7 @@ import { Button } from 'antd'
 
 const StyledRedOutlinedButton = styled(Button)`
     background: #fff !important;
+    border: 1px solid var(--main-color-one);
 
     span {
         color: var(--main-color-one) !important;

@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapDrawShapeManager from '@/lib/MapDrawShape/MapDrawShapeManager'
-import api from '@/hooks/api'
 import { apiURL } from '@/constants'
 import useSupercluster from 'use-supercluster'
 import EstateMarker from '@/components/Map/EstateMarker'
@@ -10,19 +9,31 @@ import MapDraw from '@/components/Map/MapButtons/MapDraw'
 import { Spin } from 'antd'
 import nextConfig from '../../../../next.config'
 import StyledEstateMap from '@/components/Estate/EstateMap/style'
+import { FilterContext } from '@/providers/FilterProvider'
+import { MapContext } from '@/providers/MapProvider'
 
 const Marker = ({ children }) => children
 
 const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
+    const { coords, updateCoords } = useContext(MapContext)
+
+    const { filteredMapEstates, filterMapEstates } = useContext(FilterContext)
+
     const [mapLoaded, setMapLoaded] = useState(false)
     const [loading, setLoading] = useState(false)
     const [drawingMode, setDrawingMode] = useState(false)
     const [drawFreeHandMode, setDrawFreeHandMode] = useState(true)
     const [estates, setEstates] = useState([])
     const mapDrawShapeManagerRef = useRef(null)
-    const [coords, setCoords] = useState([])
+
     const [shape, setShape] = useState([])
     const [radius, setRadius] = useState(50)
+
+    useEffect(() => {
+        if (filteredMapEstates) {
+            setEstates(filteredMapEstates)
+        }
+    }, [filteredMapEstates])
 
     const mapBootstrap = {
         key: nextConfig.env.GOOGLE_MAPS_API_KEY,
@@ -74,9 +85,9 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
     const [bounds, setBounds] = useState(null)
     const [zoom, setZoom] = useState(18)
 
-    useEffect(() => {
-        setEstates(estatesData.data)
-    }, [estatesData])
+    // useEffect(() => {
+    //     setEstates(estatesData.data)
+    // }, [estatesData])
 
     useEffect(() => {}, [])
     const points = useMemo(() => {
@@ -133,13 +144,16 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
     const fetchData = async () => {
         try {
             setLoading(true)
-            let coordsToSend = encodeURIComponent(JSON.stringify(coords))
-            const response = await api(lng).get(
-                endpoint + '?fromMap=1&filter[coordinates]=' + coordsToSend,
-            )
 
-            setEstates(response.data.data)
-            updateFilteredEstates(response.data)
+            await filterMapEstates(lng)
+
+            // let coordsToSend = encodeURIComponent(JSON.stringify(coords))
+            // const response = await api(lng).get(
+            //     endpoint + '?fromMap=1&filter[coordinates]=' + coordsToSend,
+            // )
+            //
+            // setEstates(response.data.data)
+            // updateFilteredEstates(response.data)
 
             setSearchInfoBoxHidden(true)
             setLoading(false)
@@ -160,9 +174,9 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
         }
     }, [coords])
 
-    const onDrawCallback = shape => {
+    const onDrawCallback = async shape => {
         let newCoords = shape.map(({ lat, lng }) => [lat, lng])
-        setCoords(newCoords)
+        await updateCoords(newCoords)
         setShape(shape)
         setDrawingMode(false)
     }

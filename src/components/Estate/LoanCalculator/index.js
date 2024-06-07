@@ -3,7 +3,8 @@ import { Button, Col, Form, Input, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from '@/app/i18n/client'
 import { useRouter } from 'next/navigation'
-import LoanData from '@/components/Tables/loanData'
+import StyledLoanCalculator from '@/components/Estate/LoanCalculator/style'
+import LoanTable from '@/components/Estate/LoanCalculator/LoanTable'
 
 const formItemLayout = {
     labelCol: {
@@ -31,14 +32,14 @@ const loanSchedule = new LoanSchedule({
     dateFormat: 'DD.MM.YYYY',
     prodCalendar: 'ru',
 })
-const LoanCalculator = props => {
-    const { t } = useTranslation(props.lng, 'common')
+const LoanCalculator = ({ estatePrice, lng }) => {
+    const { t } = useTranslation(lng, 'common')
     const router = useRouter()
     const [form] = Form.useForm()
 
     const [payments, setPayments] = useState([])
     const [deposit, setDeposit] = useState(0)
-    const [price, setPrice] = useState(parseInt(props.price))
+    const [price, setPrice] = useState(parseInt(estatePrice))
 
     const handlePrice = event => {
         const value = event.target.value
@@ -87,7 +88,7 @@ const LoanCalculator = props => {
     }
 
     return (
-        <div className={'container'}>
+        <StyledLoanCalculator className={'container'}>
             <Row>
                 <h3 className={'text-dark font-bold'}>{t('label.mortgage')}</h3>
             </Row>
@@ -221,7 +222,10 @@ const LoanCalculator = props => {
 
                                 <Col xs={24}>
                                     {payments.length > 0 && (
-                                        <LoanData payments={payments} />
+                                        <LoanTable
+                                            payments={payments}
+                                            lng={lng}
+                                        />
                                     )}
                                 </Col>
                             </Row>
@@ -229,7 +233,7 @@ const LoanCalculator = props => {
                     </div>
                 </Col>
             </Row>
-        </div>
+        </StyledLoanCalculator>
     )
 }
 export default LoanCalculator
