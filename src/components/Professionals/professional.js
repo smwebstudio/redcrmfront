@@ -1,29 +1,54 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
+import AppImage from '@/components/common/Image/AppImage'
+import { Col, Row } from 'antd'
 
 function Professional(props) {
-    let publicUrl = process.env.PUBLIC_URL + "/";
-    let professional = props.professional;
-    console.log(professional)
+    let publicUrl = process.env.PUBLIC_URL + '/'
+    let professional = props.professional
+
     return (
-
-        <div className="professional-card d-flex flex-row pt-4 pb-4">
-            <div className="professional-image d-flex p-2">
-                <Link href={"professionals/" + professional.id}>
-                    <a>
-
-                        <img src={professional.profile_picture} />
-                    </a>
+        <Row
+            className={
+                'professional-card flex flex-row pt-4 pb-4 bg-white border border-gray-100'
+            }>
+            <Col className="professional-image flex p-2">
+                <Link href={'professionals/' + professional.id}>
+                    <AppImage
+                        alt={'Red Group'}
+                        preview={false}
+                        width={100}
+                        height={100}
+                        src={professional.profile_picture}
+                    />
                 </Link>
-            </div>
-            <div className="professional-info p-2 d-flex flex-column justify-content-center">
-                <p className="font-size-13 mb-1 text-gray-800 text-dark">{professional.full_name}</p>
-                <p className="mb-1">Անշարժ գույքի գործակալ</p>
-                <p className="d-flex mb-1 justify-content-start text-dark"><img className="mr-2" src={publicUrl + "assets/img/svg/envelope.svg"} /> <span className="align-self-center">{professional.email}</span></p>
-                <p className="d-flex justify-content-start text-dark"><img className="mr-2" src={publicUrl + "assets/img/svg/mobile.svg"} /><span className="align-self-center">{professional.phone_1}</span></p>
-            </div>
-        </div>
-    );
+            </Col>
+            <Col className="professional-info p-2 flex flex-col justify-center">
+                <p className="font-size-13 mb-1 text-gray-800 text-dark">
+                    {professional.full_name}
+                </p>
+                <p className="mb-3">Անշարժ գույքի գործակալ</p>
+                <p className="flex mb-1 justify-start text-dark">
+                    <AppImage
+                        width={15}
+                        src={publicUrl + 'assets/img/svg/envelope.svg'}
+                    />
+                    <span className="align-self-center ml-2">
+                        {professional.email}
+                    </span>
+                </p>
+                <p className="flex justify-start text-dark">
+                    <AppImage
+                        width={15}
+                        src={publicUrl + 'assets/img/svg/mobile.svg'}
+                    />
+                    <span className="align-self-center ml-2">
+                        {professional.phone_1}
+                    </span>
+                </p>
+            </Col>
+        </Row>
+    )
 }
 
-export default Professional;
+export default Professional

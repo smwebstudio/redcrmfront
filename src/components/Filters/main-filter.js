@@ -1,216 +1,228 @@
-import { Button, Cascader, Col, Form, Row, Select } from "antd";
-import React, {  useState } from "react";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
-
-const filter = (inputValue, path) =>
-    path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+'use client'
+import { Col, Form, Row, Select } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useTranslation } from '@/app/i18n/client'
+import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
+import { objectToQueryParams } from '@/lib/helper'
+import { RedButton } from '@/components/common/Buttons/RedButton'
+import { AdditionalButton } from '@/components/common/Buttons/AdditionalButton'
 
 export default function MainFilter(props) {
-    const [form] = Form.useForm();
-    const router = useRouter();
-    const filtersData = props.filtersData;
+    const [form] = Form.useForm()
+    const router = useRouter()
+    const filtersData = props.filtersData
+    const contract_type = props.contractType
 
-    console.log('props');
-    console.log(props);
+    let initialProvince = filtersData.locations.find(x => x.id === 1)
+    const [loading, setLoading] = useState(false)
+    const [estateType, setEstateType] = useState(1)
+    const [locationProvince, setLocationProvince] = useState(initialProvince)
+    const [price, setPrice] = useState(null)
+    const [currency, setCurrency] = useState('AMD')
+    const [roomCount, setRoomCount] = useState(null)
+    const [cities, setCities] = useState(initialProvince.cities)
+    const [prices, setPrices] = useState(filtersData.prices.USD)
+    const [communities, setCommunities] = useState(
+        filtersData.location_community,
+    )
 
-    const { t } = useTranslation('common');
+    const { t } = useTranslation(props.lng, 'common')
 
+    const estateTypeOptions = filtersData.estate_types.map(value => ({
+        value: value.id,
+        label: value.label,
+    }))
 
-    let initialProvince = filtersData.data.locations.find(x => x.id === 1);
+    const provinces = filtersData.locations.map(value => ({
+        value: value.id,
+        label: value.label,
+    }))
 
-    const [cities, setCities] = useState(initialProvince.cities);
+    const roomOptions = filtersData.rooms.map(value => ({
+        value: value.id,
+        label: value.label,
+    }))
 
+    const currencyOptions = [
+        { value: 3, label: 'AMD' },
+        { value: 1, label: 'USD' },
+        { value: 2, label: 'RUR' },
+    ]
 
-    let estateTypeOptions = [];
-    let provinces = [];
-    let prices = [];
-    let rooms = [];
-    let currencies = [
-        {value: 'AMD', label: 'AMD'},
-        {value: 'USD', label: 'USD'},
-        {value: 'RUR', label: 'RUR'},
-    ];
+    useEffect(() => {}, [filtersData])
 
-    console.log(filtersData);
+    const handleProvinceChange = value => {
+        let province = filtersData.locations.find(x => x.id === value)
+        setLocationProvince(province)
+        setCities(province.cities)
+    }
 
+    const handleCurrencyChange = (value, option) => {
+        setPrices(filtersData.prices[option.label])
+        form.setFieldValue('prices', null)
+    }
 
-    filtersData.data.estate_types.forEach((value) => {
-        estateTypeOptions.push({
-            value: value.id,
-            label: value.label
-        });
-    });
-
-
-    filtersData.data.locations.forEach((value) => {
-        provinces.push({
-            value: value.id,
-            label: value.label,
-        });
-    });
-
-    filtersData.data.prices.forEach((value) => {
-        prices.push({
-            value: value.label,
-            label: value.label
-        });
-    });
-
-    console.log(filtersData);
-
-    filtersData.data.rooms.forEach((value) => {
-        rooms.push({
-            value: value.id,
-            label: value.label
-        });
-    });
-
-
-
-    const handleProvinceChange = (value) => {
-        let province = filtersData.data.locations.find(x => x.id === value);
-        setCities([]);
-        setCities(province.cities);
-    };
-
-
-
-
-
-    const onFinish = (values) => {
-
-        const queryData = Object.entries(values);
-
-        let query = {};
-
-        queryData.forEach(function(param){
-            query[param[0]] = param[1];
-        });
-
-
-        router.push({
-            pathname: "/search",
-            query: query
-        });
-    };
+    const onFinish = values => {
+        setLoading(true)
+        const queryData = Object.entries(values)
+        let query = {}
+        queryData.forEach(function (param) {
+            query[param[0]] = param[1]
+        })
+        const queryString = objectToQueryParams(query)
+        const updateLink =
+            '/estates?contract_type_id=' + contract_type + '&' + queryString
+        router.push(updateLink)
+    }
 
     return (
         <>
-            <Form form={form} onFinish={onFinish} action="/search" method="get"
-                  className="bg-white text-gray-50 ">
-                <Row>
-                <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.type')}</small>
-                    <Form.Item
-                        name="estate_type_id">
-                        <Select
-                            showSearch
-                            placeholder={t('label.type')}
-                            defaultValue={1}
-                            bordered={false}
-                            optionFilterProp="children"
-                            options={estateTypeOptions}
-                        />
-                    </Form.Item>
+            <Form
+                form={form}
+                onFinish={onFinish}
+                method="get"
+                className="bg-white text-gray-50 ">
+                <Row className={'pt-10 pb-10 pl-2'} justify={'space-between'}>
+                    <Col xs={24} md={16}>
+                        <Row className={'w-full'}>
+                            <Col
+                                xs={12}
+                                sm={5}
+                                className="field-item d-flex flex-column">
+                                <SmallParagraph className="pl-2">
+                                    {t('label.type')}
+                                </SmallParagraph>
+                                <Form.Item name="estate_type_id">
+                                    <Select
+                                        showSearch
+                                        placeholder={t('label.type')}
+                                        variant="borderless"
+                                        optionFilterProp="children"
+                                        options={estateTypeOptions}
+                                    />
+                                </Form.Item>
+                            </Col>
+                            <Col
+                                xs={12}
+                                sm={4}
+                                className="field-item d-flex flex-column">
+                                <SmallParagraph className="pl-2">
+                                    {t('label.locationProvince')}
+                                </SmallParagraph>
+                                <Form.Item name="location_province_id">
+                                    <Select
+                                        showSearch
+                                        placeholder={t(
+                                            'label.locationProvince',
+                                        )}
+                                        variant="borderless"
+                                        optionFilterProp="children"
+                                        options={provinces}
+                                        style={{ width: '100%' }}
+                                        popupMatchSelectWidth={false}
+                                        onChange={handleProvinceChange}
+                                    />
+                                </Form.Item>
+                            </Col>
 
+                            {locationProvince.id !== 1 ? (
+                                <Col
+                                    xs={12}
+                                    sm={5}
+                                    className="field-item d-flex flex-column">
+                                    <SmallParagraph className="pl-2">
+                                        {t('label.locationCommunity')}
+                                    </SmallParagraph>
+                                    <Form.Item name="location_city_id">
+                                        <Select
+                                            showSearch
+                                            placeholder={t('button.pick')}
+                                            variant="borderless"
+                                            optionFilterProp="children"
+                                            style={{ width: '100%' }}
+                                            popupMatchSelectWidth={false}
+                                            options={cities}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            ) : (
+                                <Col
+                                    xs={12}
+                                    sm={5}
+                                    className="field-item d-flex flex-column">
+                                    <SmallParagraph className="pl-2">
+                                        {t('label.locationCommunity')}
+                                    </SmallParagraph>
+                                    <Form.Item name="location_community_id">
+                                        <Select
+                                            showSearch
+                                            placeholder={t('button.pick')}
+                                            variant="borderless"
+                                            optionFilterProp="children"
+                                            style={{ width: '100%' }}
+                                            popupMatchSelectWidth={false}
+                                            options={communities}
+                                            allowClear
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            )}
+                            <Col
+                                xs={12}
+                                sm={4}
+                                className="field-item d-flex flex-column">
+                                <SmallParagraph className="pl-2">
+                                    {t('label.price.Additional')}{' '}
+                                </SmallParagraph>
+                                <Form.Item name="prices">
+                                    <Select
+                                        showSearch
+                                        placeholder={t('button.pick')}
+                                        variant="borderless"
+                                        optionFilterProp="children"
+                                        options={prices}
+                                        allowClear
+                                    />
+                                </Form.Item>
+                            </Col>
 
-                </Col>
-                <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.locationProvince')}</small>
-                    <Form.Item
-                        name="location_province_id"
-                    >
-                        <Select
-                            showSearch
-                            placeholder={t('label.locationProvince')}
-                            defaultValue={1}
-                            bordered={false}
-                            optionFilterProp="children"
-                            options={provinces}
-                            style={{ width: '100%' }}
-                            dropdownMatchSelectWidth={false}
-                            onChange={handleProvinceChange}
-                        />
-                    </Form.Item>
-                </Col>
-                <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.locationCommunity')}</small>
-                    <Form.Item
-                        name="location_city_id"
-                    >
-                        <Select
-                            showSearch
-                            placeholder={t('button.pick')}
-                            bordered={false}
-                            optionFilterProp="children"
-                            style={{ width: '100%' }}
-                            dropdownMatchSelectWidth={false}
-                            options={cities}
-                            allowClear
-                        />
-                    </Form.Item>
-                </Col>
-                <Col xs={12} sm={3} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.price.Additional')}</small>
-                    <Form.Item
-                        name="prices"
-                    >
-                        <Select
-                            showSearch
-                            placeholder={t('button.pick')}
-                            bordered={false}
-                            optionFilterProp="children"
-                            options={prices}
-                            allowClear
-                        />
-                    </Form.Item>
-                </Col>
-                <Col xs={12} sm={2} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.currency')}</small>
-                    <Form.Item
-                        name="currency">
-                        <Select
-                            showSearch
-                            placeholder={t('button.pick')}
-                            defaultValue={'AMD'}
-                            bordered={false}
-                            optionFilterProp="children"
-                            options={currencies}
-                        />
-                    </Form.Item>
-                </Col>
-                <Col xs={12} sm={2} className="field-item d-flex flex-column">
-                    <small className="pl-2">{t('label.design.room')}</small>
-                    <Form.Item
-                        name="room_count"
-                    >
-                        <Select
-                            showSearch
-                            placeholder={t('button.pick')}
-                            bordered={false}
-                            optionFilterProp="children"
-                            options={rooms}
-                        />
-                    </Form.Item>
-                </Col>
-                <Col xs={12} sm={4} className="field-item pl-3 pr-3">
-                    <Button
-                        className="btn  bg-white hover-primary w-100" size="large">
-                        {t('label.additional')}
-                    </Button>
-                </Col>
-                    <Col xs={12} sm={4} className="field-item   ">
-                        <Button htmlType="submit"
-                                className="btn btn-main w-100"
-                                size="large">
-                            {t('button.search')}
-                        </Button>
+                            <Col
+                                xs={12}
+                                sm={4}
+                                className="field-item d-flex flex-column">
+                                <SmallParagraph className="pl-2">
+                                    {t('common:label.roomCount')}
+                                </SmallParagraph>
+                                <Form.Item name="room_count">
+                                    <Select
+                                        showSearch
+                                        placeholder={t('button.pick')}
+                                        variant="borderless"
+                                        optionFilterProp="children"
+                                        options={roomOptions}
+                                    />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col xs={24} md={5}>
+                        <Row gutter={12}>
+                            <Col xs={24} md={12}>
+                                <AdditionalButton>
+                                    {t('label.additional')}
+                                </AdditionalButton>
+                            </Col>
+                            <Col xs={24} md={12}>
+                                <RedButton htmlType="submit" loading={loading}>
+                                    {t('button.search')}
+                                </RedButton>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Form>
-
         </>
-    );
-
+    )
 }

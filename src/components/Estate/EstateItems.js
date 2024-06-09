@@ -1,50 +1,38 @@
-import React, { Component, useEffect, useState } from "react";
-import sectiondata from "data/sections.json";
-import parse from "html-react-parser";
-import Link from "next/link";
-import api from "@/hooks/api";
-import { Tabs } from "antd";
-import { apiURL } from "@/constants";
-
-const onChange = (key) => {
-    console.log(key);
-};
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { apiURL } from '@/constants'
+import AppImage from '@/components/common/Image/AppImage'
 
 export function EstateItems(props) {
-
-    console.log(props);
-    console.log(54);
-    console.log(props.estates);
-    console.log(props.type);
-
-    console.log("props");
-    console.log(props);
-
-    const changeEstatesFoundCount = props.changeEstatesFoundCount;
-    const [estatesData, setEstatesData] = useState([]);
+    const changeEstatesFoundCount = props.changeEstatesFoundCount
+    const [estatesData, setEstatesData] = useState([])
     useEffect(() => {
-        fetch(apiURL + "api/estates/" + props.type)
+        fetch(apiURL + 'api/estates/' + props.type)
             .then(res => res.json())
             .then(data => {
-                setEstatesData(data);
-                changeEstatesFoundCount(data.meta.total);
-            }).catch((e) => {
-            console.log(e);
-        });
-    }, []);
+                setEstatesData(data)
+                changeEstatesFoundCount(data.meta.total)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }, [])
 
-    let publicUrl = process.env.PUBLIC_URL + "/";
-    let imagealt = "image";
-
+    let publicUrl = process.env.PUBLIC_URL + '/'
+    let imagealt = 'image'
 
     return (
         <>
-            {estatesData.data?.map((item, i) =>
-                <div key={i} className={"col-lg-4 col-sm-6 mb-5 cat" + item.contract_type_id}>
+            {estatesData.data?.map((item, i) => (
+                <div
+                    key={i}
+                    className={
+                        'col-lg-4 col-sm-6 mb-5 cat' + item.contract_type_id
+                    }>
                     <div className="single-feature">
                         <div className="thumb">
-                            <Link href={"estates/" + item.id}>
-                                <a><img src={item.image} alt="img" /></a>
+                            <Link href={'estates/' + item.id}>
+                                <AppImage alt={'Red Group'} src={item.image} />
                             </Link>
                         </div>
                         <div className="details">
@@ -55,10 +43,18 @@ export function EstateItems(props) {
                                 </div>
                                 <div className="col-6 text-right">
                                     <Link className="p-3" href="/">
-                                        <a className="ml-3"><img src={"/assets/img/svg/compare.svg"} alt="logo" /></a>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/compare.svg'}
+                                        />
                                     </Link>
                                     <Link className="p-3" href="/">
-                                        <a className="ml-3"><img src={"/assets/img/svg/favorites.svg"} alt="logo" /></a>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={
+                                                '/assets/img/svg/favorites.svg'
+                                            }
+                                        />
                                     </Link>
                                 </div>
                             </div>
@@ -66,34 +62,53 @@ export function EstateItems(props) {
                             <div className="row">
                                 <div className="col-9">
                                     <p className="address d-flex">
-                                        <span><img src={"/assets/img/svg/location.svg"} alt="logo" /></span>
-                                        <span className="ml-2">{item.full_address}</span>
+                                        <span>
+                                            <AppImage
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/location.svg'
+                                                }
+                                            />
+                                        </span>
+                                        <span className="ml-2">
+                                            {item.full_address}
+                                        </span>
                                     </p>
                                 </div>
                             </div>
 
                             <ul className="info-list">
-                                <li className="mr-4"><img src={"/assets/img/svg/doors.svg"} alt="logo" />{item.floor}
+                                <li className="mr-4">
+                                    <AppImage
+                                        alt={'Red Group'}
+                                        src={'/assets/img/svg/doors.svg'}
+                                    />
+                                    {item.floor}
                                 </li>
-                                {item.floor &&
-
-                                    <li className="mr-4"><img src={"/assets/img/svg/floor.svg"}
-                                                              alt="logo" />{item.floor} / {item.building_floor_count}
+                                {item.floor && (
+                                    <li className="mr-4">
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/floor.svg'}
+                                        />
+                                        {item.floor} /{' '}
+                                        {item.building_floor_count}
                                     </li>
-                                }
-                                <li className="mr-3"><img src={"/assets/img/svg/area.svg"}
-                                                          alt="logo" />{Math.round(item.area_total)} քմ
+                                )}
+                                <li className="mr-3">
+                                    <AppImage
+                                        alt={'Red Group'}
+                                        src={'/assets/img/svg/area.svg'}
+                                    />
+                                    {Math.round(item.area_total)} քմ
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            )
-            }
+            ))}
         </>
-    );
+    )
+}
 
-
-};
-
-export default EstateItems;
+export default EstateItems

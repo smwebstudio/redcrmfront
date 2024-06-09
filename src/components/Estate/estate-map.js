@@ -1,62 +1,44 @@
-import React, { Component, useState } from "react";
-import EstatesSection from "@/components/Estate/estates";
-import EstatesMap from "@/components/Estate/estates-map";
-import { Affix, Button, Col, Divider, Layout, Row } from "antd";
-import EstateSearch from "@/components/Filters/estate-search";
+'use client'
+import React, { useContext, useState } from 'react'
+import { Col, Row } from 'antd'
+import MapFilters from '@/components/Filters/MapFilters'
+import { MapContext } from '@/providers/MapProvider'
+import EstateMapSearch from '@/components/Estate/EstateMap'
 
+function EstateMap({
+    lng,
+    estatesData,
+    pageDataURL,
+    filtersData,
+    queryData,
+    queryDataParams,
+}) {
+    const [estates, setEstates] = useState(estatesData)
+    const [coords, setCoords] = useState([])
+    const [sortType, setSortType] = useState('created_on')
+    const [pageDataURLLink, setPageDataURLLink] = useState(pageDataURL + '?')
 
-function EstateMap(props) {
-
-    const estatesData = props.estatesData;
-    const filtersData = props.filtersData;
-    const pageDataURL = props.pageDataURL;
-    const totalCount = estatesData.meta.total;
-    const [estatesCount, setEstatesCount] = useState([]);
-    const [mapState, setMapState] = useState(false);
-    const changeEstatesFoundCount = (estatesCount) => {
-        setEstatesCount(estatesCount);
-    };
-
-    function onToggleMapClicked() {
-        setMapState(prevState => ({
-            opened: !prevState.opened
-        }));
-    }
-
-
+    const [loading, setLoading] = useState(false)
+    const { openMap, toggleMapContainer } = useContext(MapContext)
     return (
+        <Row gutter={48}>
+            <Col xs={24} sm={openMap ? 16 : 4} style={{ overflow: 'hidden' }}>
+                <EstateMapSearch lng={lng} estatesData={estates} />
+            </Col>
 
-        <>
-
-            <Row className={"mb-5"}>
-                <Col xs={24} className={"sortButtonsWrapper"}>
-
-                    <Button className={"sortButton"} onClick={() => sortEstates("created_on")}>
-                        Նոր ավելացված
-                    </Button>
-                    <Button className={"sortButton"} onClick={() => sortEstates("-visits_count")}>
-                        Ամենադիտված
-                    </Button>
-                    <Button className={"sortButton"} onClick={() => sortEstates("-room_count")}>
-                        Շտապ
-                    </Button>
-
-                </Col>
-            </Row>
-
-            <Row>
-                <Col xs={24} sm={24} className={""} style={{ overflow: "hidden" }}>
-
-                    <EstatesMap style={{ overflow: "hidden" }} toggleMap={onToggleMapClicked} />
-
-                </Col>
-
-
-            </Row>
-
-        </>
-    );
-
+            <Col xs={24} sm={openMap ? 8 : 20}>
+                <MapFilters
+                    filtersData={filtersData}
+                    queryData={queryData}
+                    queryDataParams={queryDataParams}
+                    changeEstatesData={setEstates}
+                    coords={coords}
+                    setLoading={setLoading}
+                    setPageDataURL={setPageDataURLLink}
+                />
+            </Col>
+        </Row>
+    )
 }
 
-export default EstateMap;
+export default EstateMap

@@ -1,43 +1,41 @@
-import React, { useEffect, useState } from "react";
-import Professional from "@/components/Professionals/professional";
-import Link from "next/link";
-import { apiURL } from "@/constants";
-import { Col, Row } from "antd";
+'use client'
+import React, { useState } from 'react'
+import Professional from '@/components/Professionals/professional'
+import Link from 'next/link'
+import { Col, Row } from 'antd'
+import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
+import { useTranslation } from '@/app/i18n/client'
 
+function Professionals({ bestBrokers, lng }) {
+    const { t } = useTranslation(lng, 'common')
+    const [professionalsData, setProfessionalsData] = useState(bestBrokers)
 
-
-function Professionals(props) {
-    const [professionalsData, setProfessionalsData] = useState([]);
-    useEffect(() => {
-        fetch(apiURL + "api/brokers/best")
-            .then(res => res.json())
-            .then(data => {
-                setProfessionalsData(data);
-            }).catch((e) => {
-            console.log(e);
-        });
-    }, []);
-
-    let professionals = professionalsData.data;
+    let professionals = professionalsData.data
 
     return (
-        <div className="container mt-5 mb-5">
-            <h5 className="text-dark font-bold mb-3 text-center text-sm-left">Առաջատար մասնագետներ</h5>
+        <ContainerBoxed className="mt-10 mb-20">
+            <DarkHeading1 className="text-dark font-bold mb-3 text-left">
+                {t('label.bestAgents')}
+            </DarkHeading1>
             <Row gutter={32}>
-                {professionals?.map((item, i) =>
+                {professionals?.map((item, i) => (
                     <Col xs={24} sm={8} className="" key={i}>
-                        <div className={"border border-light"}>
+                        <div className={'border border-light'}>
                             <Professional professional={item} key={i} />
                         </div>
                     </Col>
-                )
-                }
-                <div className="col-12 mt-3 text-center text-right">
-                    <Link href="/estates"><a className="text-main text-underline">Տեսնել բոլորը</a></Link>
-                </div>
+                ))}
+                <Col xs={24} className="mt-3 text-right">
+                    <Link
+                        href="/professionals"
+                        className="text-main text-underline">
+                        {t('label.seeAll')}
+                    </Link>
+                </Col>
             </Row>
-        </div>
-    );
+        </ContainerBoxed>
+    )
 }
 
-export default Professionals;
+export default Professionals

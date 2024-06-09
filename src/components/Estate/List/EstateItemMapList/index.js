@@ -1,0 +1,141 @@
+'use client'
+import React from 'react'
+import Link from 'next/link'
+import { Col, Row, Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
+import AppImage from '@/components/common/Image/AppImage'
+import { fallbackImg } from '@/components/Estate/fallbackImg'
+import EstatePrice from '@/components/Estate/EstatePrice'
+import AppText from '@/components/common/Typography/Text/AppText'
+import DarkText from '@/components/common/Typography/Text/DarkText'
+import StyledEstateItemMapList from '@/components/Estate/List/EstateItemMapList/style'
+import { formatNumberPrice, toggleEstateComparison } from '@/lib/helper'
+
+const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
+
+export function EstateItemList({ estate }) {
+    function sliceStringMax(str) {
+        // Ensure the string doesn't exceed the maxLength
+        if (str && str.length > 200) {
+            return str.slice(0, 200)
+        }
+        return str
+    }
+
+    const formattedPrice = formatNumberPrice(estate.price)
+
+    return (
+        <StyledEstateItemMapList>
+            <Row
+                key={estate.id}
+                gutter={[0, 0]}
+                className={'mb-8 border border-gray-300'}>
+                <Col xs={24} md={24} className={'flex items-center'}>
+                    <Link
+                        href={'estates/' + estate.id}
+                        style={{ width: '100%' }}>
+                        <AppImage
+                            alt={'Red Group'}
+                            src={estate.image}
+                            preview={false}
+                            style={{ objectFit: 'cover' }}
+                            fallback={fallbackImg}
+                            placeholder={
+                                <div
+                                    className={
+                                        'flex justify-content-center align-estates-center'
+                                    }>
+                                    <Spin indicator={antIcon} />
+                                </div>
+                            }
+                        />
+                    </Link>
+                </Col>
+                <Col xs={24} md={24} className={'p-4'}>
+                    <Row className="mb-6">
+                        <Col xs={18}>
+                            <EstatePrice className="price">
+                                {formattedPrice}
+                            </EstatePrice>
+                        </Col>
+                        <Col
+                            xs={6}
+                            className="text-right justify-end content-end flex flex-row pr-4">
+                            <AppImage
+                                alt={'Red Group'}
+                                key={'compare_' + estate.id}
+                                onClick={() => toggleEstateComparison(estate)}
+                                className={'cursor-pointer'}
+                                src={'/assets/img/svg/compare.svg'}
+                            />
+                            <AppImage
+                                alt={'Red Group'}
+                                className={'ml-4 cursor-pointer'}
+                                width={22}
+                                key={'add_to_favorites_' + estate.id}
+                                src={'/assets/img/svg/favorites.svg'}
+                            />
+                        </Col>
+                    </Row>
+                    <Row className={'mb-4'}>
+                        <Col xs={24}>
+                            <AppText>
+                                {sliceStringMax(estate.public_text)}...
+                            </AppText>
+                        </Col>
+                    </Row>
+                    <Row className={'mb-4'}>
+                        <Col xs={24} className={'flex flex-row estates-center'}>
+                            <AppImage
+                                alt={'Red Group'}
+                                src={'/assets/img/svg/location.svg'}
+                            />
+                            <DarkText className="ml-2">
+                                {estate.full_address}
+                            </DarkText>
+                        </Col>
+                    </Row>
+
+                    <Row gutter={48}>
+                        {estate.room_count && (
+                            <Col className={'flex items-center'}>
+                                <AppImage
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/doors.svg'}
+                                />
+                                <DarkText className={'ml-2'}>
+                                    {estate.room_count}
+                                </DarkText>
+                            </Col>
+                        )}
+                        {estate.floor && (
+                            <Col className={'flex items-center'}>
+                                <AppImage
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/floor.svg'}
+                                />
+                                <DarkText className={'ml-2'}>
+                                    {estate.floor} /{' '}
+                                    {estate.building_floor_count}
+                                </DarkText>
+                            </Col>
+                        )}
+                        {estate.area_total && (
+                            <Col className={'flex items-center'}>
+                                <AppImage
+                                    alt={'Red Group'}
+                                    src={'/assets/img/svg/area.svg'}
+                                />
+                                <DarkText className={'ml-2'}>
+                                    {Math.round(estate.area_total)} քմ
+                                </DarkText>
+                            </Col>
+                        )}
+                    </Row>
+                </Col>
+            </Row>
+        </StyledEstateItemMapList>
+    )
+}
+
+export default EstateItemList
