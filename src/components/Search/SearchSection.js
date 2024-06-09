@@ -25,14 +25,14 @@ function SearchSection(props) {
             children: <MainFilter filtersData={filtersData} contractType={2} />,
         },
         {
-            key: '3',
-            label: t('label.title.fee.normal'),
-            children: <MainFilter filtersData={filtersData} contractType={3} />,
-        },
-        {
             key: 'map',
             label: t('label.searchMap'),
-            children: 'Content of Tab Pane 3',
+            children: 'map',
+        },
+        {
+            key: 'developers',
+            label: t('label.apartmentConstruction'),
+            children: 'developers',
         },
         {
             key: '5',
@@ -44,6 +44,11 @@ function SearchSection(props) {
     const changeTab = activeKey => {
         if (activeKey === 'map') {
             router.push('/estates')
+            return
+        }
+
+        if (activeKey === 'developers') {
+            router.push('/developers')
             return
         }
 

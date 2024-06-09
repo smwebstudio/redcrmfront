@@ -17,9 +17,9 @@ const WhyChooseUs = ({ lng }) => {
                 'why-choose-us-area bg-gray pd-top-90 pd-bottom-60 text-xs-center'
             }>
             <ContainerBoxed className="container">
-                <Row gutter={64}>
+                <Row gutter={[64, 32]}>
                     {data.items.map((item, i) => (
-                        <Col key={i} xs={12} sm={8}>
+                        <Col key={i} xs={24} sm={8}>
                             <div className={'single-intro text-left '}>
                                 <div className="thumb">
                                     <AppImage

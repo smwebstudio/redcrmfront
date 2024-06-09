@@ -50,7 +50,7 @@ const EstateIntro = ({ estate, lng }) => {
                                 </Row>
                             </Col>
                             <Col>
-                                <Row align={'middle'}>
+                                <Row align={'middle'} gutter={[16]}>
                                     <Col>
                                         <EstateViewCount
                                             viewCount={estate.visits_count}

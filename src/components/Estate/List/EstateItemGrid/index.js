@@ -7,7 +7,9 @@ import AppImage from '@/components/common/Image/AppImage'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
 import StyledEstateItemGrid from '@/components/Estate/List/EstateItemGrid/style'
-import { toggleEstateComparison } from '@/lib/helper'
+import { CompareEstateButton } from '@/components/Estate/CompareEstateButton'
+import { LikeEstateButton } from '@/components/Estate/LikeEstateButton'
+import DarkText from '@/components/common/Typography/Text/DarkText'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -47,26 +49,9 @@ export function EstateItemGrid({ estate }) {
                             </Col>
                             <Col
                                 xs={6}
-                                className="text-right justify-end content-end flex flex-row">
-                                <span
-                                    className={'cursor-pointer'}
-                                    key={'compare_' + estate.id}
-                                    onClick={() =>
-                                        toggleEstateComparison(estate)
-                                    }>
-                                    <AppImage
-                                        alt={'Red Group'}
-                                        src={'/assets/img/svg/compare.svg'}
-                                    />
-                                </span>
-                                <span
-                                    className={'ml-4 cursor-pointer'}
-                                    key={'add_to_favorites_' + estate.id}>
-                                    <AppImage
-                                        alt={'Red Group'}
-                                        src={'/assets/img/svg/favorites.svg'}
-                                    />
-                                </span>
+                                className="flex flex-row gap-4 justify-end">
+                                <CompareEstateButton estate={estate} />
+                                <LikeEstateButton estate={estate} />
                             </Col>
                         </Row>
 
@@ -84,38 +69,42 @@ export function EstateItemGrid({ estate }) {
                             </Col>
                         </Row>
 
-                        <ul className="info-list">
+                        <Row gutter={12} className={'mt-4'}>
                             {estate.room_count && (
-                                <li className="mr-4">
+                                <Col className={'flex items-center'}>
                                     <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/doors.svg'}
                                     />
-                                    {estate.room_count}
-                                </li>
+                                    <DarkText className={'ml-2'}>
+                                        {estate.room_count}
+                                    </DarkText>
+                                </Col>
                             )}
-
                             {estate.floor && (
-                                <li className="mr-4">
+                                <Col className={'flex items-center'}>
                                     <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/floor.svg'}
                                     />
-                                    {estate.floor} /{' '}
-                                    {estate.building_floor_count}
-                                </li>
+                                    <DarkText className={'ml-2'}>
+                                        {estate.floor} /{' '}
+                                        {estate.building_floor_count}
+                                    </DarkText>
+                                </Col>
                             )}
-
                             {estate.area_total && (
-                                <li className="mr-3">
+                                <Col className={'flex items-center'}>
                                     <AppImage
                                         alt={'Red Group'}
                                         src={'/assets/img/svg/area.svg'}
                                     />
-                                    {Math.round(estate.area_total)} քմ
-                                </li>
+                                    <DarkText className={'ml-2'}>
+                                        {Math.round(estate.area_total)} քմ
+                                    </DarkText>
+                                </Col>
                             )}
-                        </ul>
+                        </Row>
                     </div>
                 </div>
             </div>

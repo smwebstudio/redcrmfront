@@ -28,7 +28,7 @@ export const MapProvider = ({ children }) => {
         [40.49689723302987, 44.25162070703122],
     ]
 
-    const [openMap, setOpenMap] = useState(true)
+    const [openMap, setOpenMap] = useState(false)
     const [coords, setCoords] = useState(YerevanBoundCoords)
     const toggleMapContainer = () => {
         setOpenMap(prevState => !prevState)

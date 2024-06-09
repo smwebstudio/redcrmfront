@@ -1,12 +1,11 @@
 'use client'
 import { Col, Form, Row, Select } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import { objectToQueryParams } from '@/lib/helper'
 import { RedButton } from '@/components/common/Buttons/RedButton'
-import { AdditionalButton } from '@/components/common/Buttons/AdditionalButton'
 
 export default function MainFilter(props) {
     const [form] = Form.useForm()
@@ -18,9 +17,6 @@ export default function MainFilter(props) {
     const [loading, setLoading] = useState(false)
     const [estateType, setEstateType] = useState(1)
     const [locationProvince, setLocationProvince] = useState(initialProvince)
-    const [price, setPrice] = useState(null)
-    const [currency, setCurrency] = useState('AMD')
-    const [roomCount, setRoomCount] = useState(null)
     const [cities, setCities] = useState(initialProvince.cities)
     const [prices, setPrices] = useState(filtersData.prices.USD)
     const [communities, setCommunities] = useState(
@@ -50,17 +46,10 @@ export default function MainFilter(props) {
         { value: 2, label: 'RUR' },
     ]
 
-    useEffect(() => {}, [filtersData])
-
     const handleProvinceChange = value => {
         let province = filtersData.locations.find(x => x.id === value)
         setLocationProvince(province)
         setCities(province.cities)
-    }
-
-    const handleCurrencyChange = (value, option) => {
-        setPrices(filtersData.prices[option.label])
-        form.setFieldValue('prices', null)
     }
 
     const onFinish = values => {
@@ -81,7 +70,6 @@ export default function MainFilter(props) {
             <Form
                 form={form}
                 onFinish={onFinish}
-                method="get"
                 className="bg-white text-gray-50 ">
                 <Row className={'pt-10 pb-10 pl-2'} justify={'space-between'}>
                     <Col xs={24} md={16}>
@@ -89,16 +77,14 @@ export default function MainFilter(props) {
                             <Col
                                 xs={12}
                                 sm={5}
-                                className="field-item d-flex flex-column">
+                                className="field-item  flex-column">
                                 <SmallParagraph className="pl-2">
                                     {t('label.type')}
                                 </SmallParagraph>
                                 <Form.Item name="estate_type_id">
                                     <Select
-                                        showSearch
                                         placeholder={t('label.type')}
                                         variant="borderless"
-                                        optionFilterProp="children"
                                         options={estateTypeOptions}
                                     />
                                 </Form.Item>
@@ -106,7 +92,7 @@ export default function MainFilter(props) {
                             <Col
                                 xs={12}
                                 sm={4}
-                                className="field-item d-flex flex-column">
+                                className="field-item  flex-column">
                                 <SmallParagraph className="pl-2">
                                     {t('label.locationProvince')}
                                 </SmallParagraph>
@@ -130,7 +116,7 @@ export default function MainFilter(props) {
                                 <Col
                                     xs={12}
                                     sm={5}
-                                    className="field-item d-flex flex-column">
+                                    className="field-item  flex-column">
                                     <SmallParagraph className="pl-2">
                                         {t('label.locationCommunity')}
                                     </SmallParagraph>
@@ -151,7 +137,7 @@ export default function MainFilter(props) {
                                 <Col
                                     xs={12}
                                     sm={5}
-                                    className="field-item d-flex flex-column">
+                                    className="field-item  flex-column">
                                     <SmallParagraph className="pl-2">
                                         {t('label.locationCommunity')}
                                     </SmallParagraph>
@@ -172,7 +158,7 @@ export default function MainFilter(props) {
                             <Col
                                 xs={12}
                                 sm={4}
-                                className="field-item d-flex flex-column">
+                                className="field-item  flex-column">
                                 <SmallParagraph className="pl-2">
                                     {t('label.price.Additional')}{' '}
                                 </SmallParagraph>
@@ -191,7 +177,7 @@ export default function MainFilter(props) {
                             <Col
                                 xs={12}
                                 sm={4}
-                                className="field-item d-flex flex-column">
+                                className="field-item  flex-column">
                                 <SmallParagraph className="pl-2">
                                     {t('common:label.roomCount')}
                                 </SmallParagraph>
@@ -208,18 +194,9 @@ export default function MainFilter(props) {
                         </Row>
                     </Col>
                     <Col xs={24} md={5}>
-                        <Row gutter={12}>
-                            <Col xs={24} md={12}>
-                                <AdditionalButton>
-                                    {t('label.additional')}
-                                </AdditionalButton>
-                            </Col>
-                            <Col xs={24} md={12}>
-                                <RedButton htmlType="submit" loading={loading}>
-                                    {t('button.search')}
-                                </RedButton>
-                            </Col>
-                        </Row>
+                        <RedButton htmlType="submit" loading={loading}>
+                            {t('button.search')}
+                        </RedButton>
                     </Col>
                 </Row>
             </Form>

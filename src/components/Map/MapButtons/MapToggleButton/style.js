@@ -8,7 +8,8 @@ const StyledMapToggleButton = styled(Button)`
     top: 300px;
     padding: 4px 16px;
 
-    @media only screen and (max-width: 991px) {
+    @media (max-width: 768px) {
+        display: none;
     }
 `
 

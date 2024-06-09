@@ -35,7 +35,7 @@ export function middleware(req) {
     ) {
         if (lng === 'hy') {
             return NextResponse.rewrite(
-                new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
+                new URL(`/${lng}${req.nextUrl.pathname}${urlParams}`, req.url),
             )
         } else {
             return NextResponse.redirect(

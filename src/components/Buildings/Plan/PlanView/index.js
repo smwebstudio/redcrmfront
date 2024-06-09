@@ -3,7 +3,7 @@ import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
-import { formatNumberPrice, toggleEstateComparison } from '@/lib/helper'
+import { formatNumberPrice } from '@/lib/helper'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
@@ -76,27 +76,6 @@ const PlanView = ({ lng, plan }) => {
                                 {plan.price_monthly}
                             </h6>
                             {/*<del>{plan.old_price}</del>*/}
-                        </Col>
-                        <Col
-                            xs={12}
-                            className="text-right justify-end content-end flex flex-row">
-                            <span
-                                className={'cursor-pointer'}
-                                key={'compare_' + plan.id}
-                                onClick={() => toggleEstateComparison(plan)}>
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/compare.svg'}
-                                />
-                            </span>
-                            <span
-                                className={'ml-4 cursor-pointer'}
-                                key={'add_to_favorites_' + plan.id}>
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/favorites.svg'}
-                                />
-                            </span>
                         </Col>
                     </Row>
 

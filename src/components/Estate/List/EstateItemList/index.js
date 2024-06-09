@@ -8,7 +8,9 @@ import { fallbackImg } from '@/components/Estate/fallbackImg'
 import EstatePrice from '@/components/Estate/EstatePrice'
 import AppText from '@/components/common/Typography/Text/AppText'
 import DarkText from '@/components/common/Typography/Text/DarkText'
-import { formatNumberPrice, toggleEstateComparison } from '@/lib/helper'
+import { formatNumberPrice } from '@/lib/helper'
+import { CompareEstateButton } from '@/components/Estate/CompareEstateButton'
+import { LikeEstateButton } from '@/components/Estate/LikeEstateButton'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -55,23 +57,9 @@ export function EstateItemList({ estate }) {
                             {formattedPrice}
                         </EstatePrice>
                     </Col>
-                    <Col
-                        xs={6}
-                        className="text-right justify-end content-end flex flex-row pr-4">
-                        <AppImage
-                            alt={'Red Group'}
-                            key={'compare_' + estate.id}
-                            onClick={() => toggleEstateComparison(estate)}
-                            className={'cursor-pointer'}
-                            src={'/assets/img/svg/compare.svg'}
-                        />
-                        <AppImage
-                            alt={'Red Group'}
-                            className={'ml-4 cursor-pointer'}
-                            width={22}
-                            key={'add_to_favorites_' + estate.id}
-                            src={'/assets/img/svg/favorites.svg'}
-                        />
+                    <Col xs={6} className="flex flex-row gap-4 justify-end">
+                        <CompareEstateButton estate={estate} />
+                        <LikeEstateButton estate={estate} />
                     </Col>
                 </Row>
                 <Row className={'mb-4'}>

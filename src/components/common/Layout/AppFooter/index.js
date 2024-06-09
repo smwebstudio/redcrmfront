@@ -5,13 +5,7 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import Link from 'next/link'
 import AppImage from '@/components/common/Image/AppImage'
 import FontIcon from '@/components/common/Icons/FontIcon'
-import {
-    faFacebook,
-    faInstagram,
-    faLinkedin,
-    faTwitter,
-    faYoutube,
-} from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { useTranslation } from '@/app/i18n/client'
 
 export const AppFooter = ({ lng }) => {
@@ -40,28 +34,17 @@ export const AppFooter = ({ lng }) => {
                             <div className="footer-social text-center sm:text-right">
                                 <ul className="social-icon">
                                     <li>
-                                        <Link href="#" target="_blank">
+                                        <Link
+                                            href="https://www.facebook.com/groups/573996579357491"
+                                            target="_blank">
                                             <FontIcon icon={faFacebook} />
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="#" target="_blank">
+                                        <Link
+                                            href="https://www.instagram.com/redinvestgroup/"
+                                            target="_blank">
                                             <FontIcon icon={faInstagram} />
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#" target="_blank">
-                                            <FontIcon icon={faTwitter} />
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#" target="_blank">
-                                            <FontIcon icon={faLinkedin} />
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#" target="_blank">
-                                            <FontIcon icon={faYoutube} />
                                         </Link>
                                     </li>
                                 </ul>
@@ -141,11 +124,6 @@ export const AppFooter = ({ lng }) => {
                                             {t('menu.evaluate')}
                                         </Link>
                                     </li>
-                                    <li className="">
-                                        <Link href="/">
-                                            {t('label.settingsProinfo')}
-                                        </Link>
-                                    </li>
                                 </ul>
                             </div>
                         </Col>
@@ -164,8 +142,6 @@ export const AppFooter = ({ lng }) => {
                                         />
                                         <p className="ml-3 text-white font-size-11">
                                             {t('label.red.addressOffice')}
-                                            <br />
-                                            {t('label.red.address')}
                                         </p>
                                     </li>
                                     <li className={'flex flex-row mb-3'}>
@@ -179,8 +155,7 @@ export const AppFooter = ({ lng }) => {
                                             className={'align-self-top'}
                                         />
                                         <span className="ml-3 text-white font-size-11">
-                                            +374 98 908 551 <br />
-                                            +374 96 908 881
+                                            +374 98 908 908
                                         </span>
                                     </li>
                                 </ul>

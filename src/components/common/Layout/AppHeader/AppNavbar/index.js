@@ -60,44 +60,58 @@ const AppNavbar = ({ lng }) => {
                                     <div className="collapse navbar-collapse">
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li>
-                                                <Link href={`/${lng}/estates`}>
+                                                <Link
+                                                    href={`/${lng}/estates`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.buy')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href={`/${lng}/estates`}>
+                                                <Link
+                                                    href={`/${lng}/estates`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.rent')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href={`/${lng}/about`}>
+                                                <Link
+                                                    href={`/${lng}/about`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.about')}
                                                 </Link>
                                             </li>
                                             <li>
                                                 <Link
-                                                    href={`/${lng}/professionals`}>
+                                                    href={`/${lng}/professionals`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.professional')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href={`/${lng}/blog`}>
+                                                <Link
+                                                    href={`/${lng}/blog`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.blog')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href={`/${lng}/contact`}>
+                                                <Link
+                                                    href={`/${lng}/contact`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.contact')}
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href={`/${lng}/estimate`}>
+                                                <Link
+                                                    href={`/${lng}/estimate`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.evaluate')}
                                                 </Link>
                                             </li>
                                             <li>
                                                 <Link
-                                                    href={`/${lng}/developers`}>
+                                                    href={`/${lng}/developers`}
+                                                    onClick={toggleMenu}>
                                                     {t('menu.buildDevelopers')}
                                                 </Link>
                                             </li>

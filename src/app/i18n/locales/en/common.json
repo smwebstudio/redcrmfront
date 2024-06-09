@@ -899,8 +899,8 @@
     "label.receiverEmailAddress": "Receiver email address",
     "label.recentPost": "Recent posts",
     "label.recommendation": "Specialist's opinion,recommendation",
-    "label.red.bestOffers": "The best offers are with us",
-    "label.red.sellProperties": "Sell houses, land plots, apartments in a way that suits you",
+    "label.red.bestOffers": "Inspire to discover more",
+    "label.red.sellProperties": "Sell and buy, rent and lease your apartment, house, commercial property, and land.",
     "label.regMyPage": "Registration / My page",
     "label.regPopupText1": "Real estate agents and real estate agencies",
     "label.regPopupText10": "In all property statuses",
@@ -1311,6 +1311,6 @@
     "validation.user.type.required": "The profession type is required",
     "validation.windowsView.required": "Windows view is required",
     "validation.year.required ": "The date of construction is required",
-    "label.red.addressOffice": "0010, RA, Yerevan, M. Khorenatsi Street, 15",
+    "label.red.addressOffice": "Yerevan, 107 Pavstos Buzand St., 7 floor",
     "label.red.address": "Elite Plaza Business Center, 4th floor"
 }
