@@ -241,7 +241,6 @@ const EstateList = ({
                                                 defaultCurrent={1}
                                                 total={estates.meta.total}
                                                 pageSizeOptions={[6, 9, 12, 24]}
-                                                locale={{ items_per_page: '' }}
                                                 onChange={handlePageChange}
                                             />
                                         </Col>

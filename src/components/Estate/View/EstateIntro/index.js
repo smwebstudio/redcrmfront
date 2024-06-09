@@ -12,6 +12,8 @@ import PriceOffer from '@/components/Estate/PriceOffer'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import { formatNumberPrice } from '@/lib/helper'
 import { useTranslation } from '@/app/i18n/client'
+import AppText from '@/components/common/Typography/Text/AppText'
+import Link from 'next/link'
 
 const EstateIntroStyled = styled.div`
     &&& {
@@ -101,8 +103,10 @@ const EstateIntro = ({ estate, lng }) => {
                                                     '/assets/img/svg/floor.svg'
                                                 }
                                             />
-                                            {estate.floor} /{' '}
-                                            {estate.building_floor_count}
+                                            <AppText>
+                                                {estate.floor} /
+                                                {estate.building_floor_count}
+                                            </AppText>
                                         </Col>
                                     )}
 
@@ -113,12 +117,28 @@ const EstateIntro = ({ estate, lng }) => {
                                                 className="mr-2"
                                                 src={'/assets/img/svg/area.svg'}
                                             />
-                                            <span>
+                                            <AppText>
                                                 {Math.round(estate.area_total)}{' '}
                                                 քմ
-                                            </span>
+                                            </AppText>
                                         </Col>
                                     )}
+
+                                    <Col>
+                                        <Link
+                                            href={'#estate-loan-anchor'}
+                                            className="flex flex-row gap-4 items-center">
+                                            <AppImage
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/hypotec-calc.svg'
+                                                }
+                                            />
+                                            <AppText className={'text-red-400'}>
+                                                {t('label.mortgage')}
+                                            </AppText>
+                                        </Link>
+                                    </Col>
                                 </Row>
                             </Col>
                             <Col>

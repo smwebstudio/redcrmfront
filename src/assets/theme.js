@@ -48,6 +48,7 @@ const redTheme = {
         Form: {
             labelHeight: 14,
             labelColor: '#959595',
+            itemMarginBottom: 8,
         },
     },
 }

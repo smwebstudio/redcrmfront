@@ -18,7 +18,7 @@ export function EstateItem(props) {
                 <div className="single-feature">
                     <div className="thumb">
                         <Link
-                            href={'estates/' + item.id}
+                            href={'/estates/' + item.id}
                             style={{ width: '100%' }}>
                             <AppImage
                                 alt={'Red Group'}

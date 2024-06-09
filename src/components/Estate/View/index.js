@@ -4,7 +4,6 @@ import 'react-image-gallery/styles/css/image-gallery.css'
 import ShareButtons from '@/components/Global/share-buttons'
 import { Col, Divider, Row, Typography } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
-import { CheckOutlined } from '@ant-design/icons'
 import ContactSimpleForm from '@/components/Forms/contact-simple-form'
 import EstateCarousel from '@/components/Estate/estate-carousel'
 import EstatesGoogleMapSingle from '@/components/Estate/estatesGoogleMapSingle'
@@ -17,6 +16,9 @@ import EstateIntro from '@/components/Estate/View/EstateIntro'
 import EstateAgent from '@/components/Estate/View/EstateAgent'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
 import ImageGallery from 'react-image-gallery'
+import BuildingAttribute from '@/components/Estate/View/BuildingAttribute'
+import EstateFacility from '@/components/Estate/View/EstateFacility'
+import AppText from '@/components/common/Typography/Text/AppText'
 
 const { Text } = Typography
 
@@ -37,146 +39,112 @@ const EstateView = ({ estateData, hotEstates, lng }) => {
     return (
         <StyledEstateView>
             <EstateIntro estate={estate} lng={lng} />
-
-            <ContainerFluid className={'bg-gray'}>
+            <ContainerFluid className={'bg-gray pt-6 pb-6'}>
                 <ContainerBoxed>
-                    <div className="bg-gray  pd-bottom-90">
-                        <div className="container">
-                            <Row gutter={64} className={'pt-5 '}>
-                                <Col xs={18}>
-                                    <ShareButtons />
-                                    <ImageGallery
-                                        items={images}
-                                        showNav={true}
-                                        thumbnailPosition={'right'}
-                                        showPlayButton={false}
-                                    />
-                                </Col>
+                    <Row gutter={64}>
+                        <Col xs={18}>
+                            <ShareButtons />
+                            <ImageGallery
+                                items={images}
+                                showNav={true}
+                                thumbnailPosition={'right'}
+                                showPlayButton={false}
+                            />
+                        </Col>
 
-                                <Col xs={6} className={'pt-3  bg-white'}>
-                                    <EstateAgent estate={estate} lng={lng} />
-
-                                    <Divider />
-                                    <ContactSimpleForm />
-                                </Col>
-                            </Row>
-                        </div>
-                    </div>
+                        <Col xs={6} className={'pt-3  bg-white'}>
+                            <EstateAgent estate={estate} lng={lng} />
+                            <Divider className={'mt-2 mb-2'} />
+                            <ContactSimpleForm />
+                        </Col>
+                    </Row>
                 </ContainerBoxed>
             </ContainerFluid>
-            <ContainerBoxed>
-                <div className="col-lg-9">
-                    <Row className="property-news-single-card pt-5 border-bottom-yellow flex flex-row flex-wrap">
-                        <Row>
-                            <Col xs={24}>
-                                <DarkHeading1 className={'mb-10'}>
-                                    {t('label.building')}
-                                </DarkHeading1>
-                            </Col>
+            <ContainerBoxed className={'py-10'}>
+                <Row>
+                    <Row>
+                        <Col xs={24}>
+                            <DarkHeading1 className={'mb-5'}>
+                                {t('label.building')}
+                            </DarkHeading1>
+                        </Col>
 
-                            {building_attributes?.map(
-                                (item, i) =>
-                                    item[1]['value'] && (
-                                        <Col
-                                            xs={24}
-                                            sm={12}
-                                            key={'col-' + item[1]['value']}
-                                            className={
-                                                'pr-1 flex  items-center font-size-13 mb-3'
-                                            }>
-                                            <Row className={'w-full'}>
-                                                <Col
-                                                    xs={12}
-                                                    className={
-                                                        'flex flex-row items-center'
-                                                    }>
-                                                    <span
-                                                        style={{
-                                                            width: '7px',
-                                                            height: '7px',
-                                                            borderRadius: '50%',
-                                                            background:
-                                                                '#D8002C',
-                                                        }}></span>
-                                                    <Text
-                                                        type="secondary"
-                                                        className={'ml-2'}>
-                                                        {item[1]['label']}:
-                                                    </Text>
-                                                </Col>
-                                                <Col xs={12}>
-                                                    <Text strong>
-                                                        {item[1]['value']}
-                                                    </Text>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    ),
-                            )}
-                        </Row>
-                        <Divider />
-                        <Row className="mb-3 mb-sm-0  flex flex-row flex-wrap">
+                        {building_attributes?.map(
+                            (attribute, index) =>
+                                attribute[1]['value'] && (
+                                    <Col xs={24} sm={12} key={index}>
+                                        <BuildingAttribute
+                                            key={index}
+                                            attribute={attribute}
+                                        />
+                                    </Col>
+                                ),
+                        )}
+                    </Row>
+                    <Divider />
+                    <Row className="mb-3 mb-sm-0 ">
+                        <Col xs={24}>
+                            <DarkHeading1 className={'mb-5'}>
+                                {t('label.utility.facilities')}
+                            </DarkHeading1>
+                        </Col>
+                        {estate_facilities?.map(
+                            (facility, index) =>
+                                facility[1]['value'] && (
+                                    <Col xs={24} sm={12} key={index}>
+                                        <EstateFacility
+                                            key={index}
+                                            facility={facility}
+                                        />
+                                    </Col>
+                                ),
+                        )}
+                    </Row>
+                    <Divider />
+                    {estate.public_text && (
+                        <Row className="mb-3 mb-sm-0 ">
                             <Col xs={24}>
-                                <DarkHeading1 className={'mb-10'}>
-                                    {t('label.utility.facilities')}
-                                </DarkHeading1>
-                            </Col>
-                            {estate_facilities?.map(
-                                (item, i) =>
-                                    item[1]['value'] && (
-                                        <Col
-                                            xs={24}
-                                            sm={12}
-                                            key={'col-' + i}
-                                            className={'flex  items-center'}>
-                                            <Row className={'w-full mb-2'}>
-                                                <Col xs={12}>
-                                                    <Text type="secondary">
-                                                        {item[1]['label']}:
-                                                    </Text>
-                                                </Col>
-                                                <Col xs={12}>
-                                                    <CheckOutlined />
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    ),
-                            )}
-                        </Row>
-                        <Divider />
-                        {estate.public_text_arm && (
-                            <>
-                                <DarkHeading1 className={'mb-10'}>
+                                <DarkHeading1 className={'mb-5'}>
                                     {t('label.menuGeneralInformation')}
                                 </DarkHeading1>
-                                <Row>{estate.public_text_arm}</Row>
-                                <Divider />
-                            </>
-                        )}
-
-                        <Row>
-                            <Col xs={24} className={'mb-4 mt-4'}>
-                                <DarkHeading1>Տեղը քարտեզով</DarkHeading1>
                             </Col>
                             <Col xs={24}>
-                                <EstatesGoogleMapSingle marker={estate} />
+                                <AppText>{estate.public_text}</AppText>
                             </Col>
                         </Row>
+                    )}
+
+                    <Row>
+                        <Col xs={24} className={'mb-4 mt-4'}>
+                            <DarkHeading1>Տեղը քարտեզով</DarkHeading1>
+                        </Col>
+                        <Col xs={24}>
+                            <EstatesGoogleMapSingle marker={estate} />
+                        </Col>
                     </Row>
-                </div>
-
-                <Row className={'bg-gray p-4'}>
-                    <Col xs={24}>
-                        <LoanCalculator estatePrice={estate.price} lng={lng} />
-                    </Col>
                 </Row>
+            </ContainerBoxed>
 
-                <Row gutter={32}>
+            <ContainerFluid
+                className={'bg-gray py-8'}
+                id={'estate-loan-anchor'}>
+                <ContainerBoxed>
+                    <Row>
+                        <Col xs={24}>
+                            <LoanCalculator
+                                estatePrice={estate.price}
+                                lng={lng}
+                            />
+                        </Col>
+                    </Row>
+                </ContainerBoxed>
+            </ContainerFluid>
+            <ContainerBoxed className={'py-8'}>
+                <Row gutter={[32, 60]}>
                     <Col xs={24}>
                         <DarkHeading2>Վերջին դիտվածներ</DarkHeading2>
                         <EstateCarousel lng={lng} estates={hotEstates} />
                     </Col>
-
                     <Col xs={24}>
                         <DarkHeading2>Նմատատիպ գույքեր</DarkHeading2>
                         <EstateCarousel lng={lng} estates={hotEstates} />

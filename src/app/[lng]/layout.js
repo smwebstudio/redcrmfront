@@ -2,6 +2,7 @@ import { dir } from 'i18next'
 // import '@/styles/red_theme.css'
 import AppLayout from '@/components/common/Layout'
 import { languages } from '../i18n/settings'
+import { Suspense } from 'react'
 // import '@/assets/css/vendor.css'
 
 export const metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({ children, params: { lng } }) {
     return (
         <html lang={lng} dir={dir(lng)}>
             <body>
-                <AppLayout lng={lng}>{children}</AppLayout>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <AppLayout lng={lng}>{children}</AppLayout>
+                </Suspense>
             </body>
         </html>
     )

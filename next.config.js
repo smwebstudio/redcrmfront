@@ -5,6 +5,7 @@ const nextConfig = {
     env: {
         NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
         API_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+        DEVELOPERS_API_URL: process.env.NEXT_PUBLIC_DEVELOPERS_BACKEND_URL,
         GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
         PUBLIC_URL: process.env.PUBLIC_URL,
     },

@@ -1,7 +1,7 @@
 import React from 'react'
-import AddPropertyForm from '@/components/Forms/add-property'
 import AppPage from '@/components/common/Layout/AppPage'
 import api from '@/hooks/api'
+import AddProperty from '@/components/pages/AddProperty'
 
 export default async function AddPropertyPage({ params: { lng, slug } }) {
     const evaluationDataResponse = await api(lng).post('/api/options', {})
@@ -9,7 +9,7 @@ export default async function AddPropertyPage({ params: { lng, slug } }) {
 
     return (
         <AppPage>
-            <AddPropertyForm lng={lng} evaluationData={evaluationData} />
+            <AddProperty lng={lng} evaluationData={evaluationData} />
         </AppPage>
     )
 }

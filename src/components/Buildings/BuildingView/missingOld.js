@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ImageGallery from 'react-image-gallery'
-import { Checkbox, Col, Divider, Form, Row, Select } from 'antd'
+import { Checkbox, Col, Divider, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { EnvironmentOutlined, EyeOutlined } from '@ant-design/icons'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
@@ -13,13 +13,15 @@ import PlanItem from '@/components/Buildings/PlanItem'
 import AppImage from '@/components/common/Image/AppImage'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import LoanCalculator from '@/components/Estate/LoanCalculator'
+import PreviewImage from '@/components/common/Image/PreviewImage'
 
 const { Option } = Select
 
-function BuildingDetails(props) {
-    const { t } = useTranslation(props.lng, 'common')
-    const developerData = props.developerData
+function BuildingDetails({ lng, building }) {
+    const { t } = useTranslation(lng, 'common')
 
+    console.log('building')
+    console.log(building)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const showModal = () => {
         setIsModalOpen(true)
@@ -31,24 +33,12 @@ function BuildingDetails(props) {
         setIsModalOpen(false)
     }
 
-    let imagesData = developerData.images
+    let imagesData = building.files
 
     let building_attributes = []
-    if (developerData) {
-        building_attributes = Object.entries(developerData.building_attributes)
-    }
-
-    const waitTime = (time = 100) => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(true)
-            }, time)
-        })
-    }
-
-    const [form] = Form.useForm()
-
-    const onFinish = values => {}
+    // if (building) {
+    //     building_attributes = Object.entries(building.building_attributes)
+    // }
 
     const renderVideo = item => {
         return (
@@ -66,18 +56,33 @@ function BuildingDetails(props) {
     }
 
     let images = []
+
     if (imagesData) {
-        imagesData.forEach(item => {
-            if (item === '/assets/img/theview/video.png') {
-                images.push({
-                    original: item,
-                    thumbnail: item,
-                    embedUrl: 'https://www.youtube.com/embed/FuVbRdhCZLk',
-                    renderItem: renderVideo.bind(this),
-                })
-            } else {
-                images.push({ original: item, thumbnail: item })
-            }
+        images = imagesData
+            .filter(image => image.block_id === 'top_gallery_img') // Adjust this condition as needed to filter your imagesData
+            .map(image => {
+                if (image.image === '/assets/img/theview/video.png') {
+                    return {
+                        original: image.image,
+                        thumbnail: image.image,
+                        embedUrl: 'https://www.youtube.com/embed/FuVbRdhCZLk',
+                        renderItem: renderVideo.bind(this),
+                    }
+                } else {
+                    return {
+                        original: image.image,
+                        thumbnail: image.small_image,
+                    }
+                }
+            })
+    }
+
+    if (building.project.content[0].descriptionVideo) {
+        images.unshift({
+            original: '/assets/img/theview/video.png',
+            thumbnail: '/assets/img/theview/video.png',
+            embedUrl: building.project.content[0].descriptionVideo,
+            renderItem: renderVideo.bind(this),
         })
     }
 
@@ -290,8 +295,7 @@ function BuildingDetails(props) {
                                 <Col sm={16} className={'mb-4'}>
                                     <h3>
                                         <span className="font-bold mr-5 font-size-24">
-                                            The View Պրեմիում դասի բնակելի
-                                            համալիր
+                                            {building.project.title}
                                         </span>
                                     </h3>
                                 </Col>
@@ -306,7 +310,10 @@ function BuildingDetails(props) {
                                                 marginRight: 10,
                                             }}
                                         />{' '}
-                                        <span className={'p-2'}>1362</span>
+                                        <span className={'p-2'}>
+                                            {' '}
+                                            {building.project.viewed}
+                                        </span>
                                         <span
                                             className={
                                                 'ml-6 bg-orange-400 text-white rounded-md p-2'
@@ -324,7 +331,7 @@ function BuildingDetails(props) {
                                             marginRight: 10,
                                         }}
                                     />{' '}
-                                    {developerData.full_address}
+                                    {building.project.address}
                                 </Col>
 
                                 <Col sm={24}>
@@ -389,6 +396,18 @@ function BuildingDetails(props) {
                                 <div className={'text-left mb-2'}>
                                     <Row className={'mb-1'}>
                                         <Col xs={24} sm={24}>
+                                            {building.project.content[0]
+                                                .videoDescList && (
+                                                <div
+                                                    dangerouslySetInnerHTML={{
+                                                        __html:
+                                                            building.project
+                                                                .content[0]
+                                                                .videoDescList,
+                                                    }}
+                                                />
+                                            )}
+
                                             <DarkHeading3>
                                                 <AppImage
                                                     alt={'Red Group'}
@@ -499,28 +518,32 @@ function BuildingDetails(props) {
                                     </DarkHeading2>
                                 </Col>
 
-                                <Col xs={24}>
-                                    {developerData.public_text_arm}
-                                </Col>
+                                <Col xs={24}>{building.public_text_arm}</Col>
                                 <Col xs={24}>
                                     <DarkHeading2 className={'mt-10'}>
                                         Կառուցապատման ընթացք
                                     </DarkHeading2>
                                 </Col>
                                 <Col xs={24} className={'flex flex-row'}>
-                                    {imagesData.map((img, idx) => (
-                                        <div
-                                            className={'mr-4'}
-                                            key={'col-' + idx}>
-                                            <AppImage
-                                                alt={'Red Group'}
-                                                key={idx}
-                                                width={100}
-                                                height={100}
-                                                src={img}
-                                            />
-                                        </div>
-                                    ))}
+                                    {imagesData
+                                        .filter(
+                                            img =>
+                                                img.block_id ===
+                                                'bottom_gallery_img',
+                                        )
+                                        .map((img, idx) => (
+                                            <div
+                                                className={'mr-4'}
+                                                key={'col-' + idx}>
+                                                <PreviewImage
+                                                    alt={'Red Group'}
+                                                    key={idx}
+                                                    width={100}
+                                                    height={100}
+                                                    src={img.image}
+                                                />
+                                            </div>
+                                        ))}
                                 </Col>
                                 <Divider />
                                 <Col xs={24}>
@@ -623,7 +646,7 @@ function BuildingDetails(props) {
 
                 <div className="bg-gray  pd-10 pt-10">
                     <div className={'container'}>
-                        <LoanCalculator price={developerData.price} lng={lng} />
+                        <LoanCalculator price={building.price} lng={lng} />
                     </div>
                 </div>
             </div>

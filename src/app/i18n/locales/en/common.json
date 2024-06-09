@@ -1203,7 +1203,7 @@
     "notification.recommendation.unVerified": "The rating is not verified and is not available on the agent`s page։",
     "notification.recommendation.verified": "The rating is verified and is available on the agent`s page։",
     "notification.registration.success": "The registration has been successfully completed. Your registration details have been sent to your e-mail address. ։",
-    "notification.required": " Required notification",
+    "notification.required": " Required",
     "notification.save.failed ": "Error, saving the data.",
     "notification.save.success": "Note successfully saved",
     "notification.sendingMail.failed": "During sending wrong message",

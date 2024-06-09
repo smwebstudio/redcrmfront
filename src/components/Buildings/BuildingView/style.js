@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 
-const StyledEstateView = styled.div`
+const StyledBuildingView = styled.div`
     padding: 24px 0;
 
     .image-gallery-left-nav,
@@ -36,8 +36,25 @@ const StyledEstateView = styled.div`
         color: #fff;
     }
 
+    .project_short_description {
+        ul {
+            list-style: square;
+            color: #d8002c;
+        }
+
+        ul li {
+            margin-bottom: 16px;
+            color: #414141;
+        }
+
+        p,
+        br {
+            margin-bottom: 16px;
+        }
+    }
+
     @media only screen and (max-width: 991px) {
     }
 `
 
-export default StyledEstateView
+export default StyledBuildingView
