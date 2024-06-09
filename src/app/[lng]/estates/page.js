@@ -4,8 +4,7 @@ import AppPage from '@/components/common/Layout/AppPage'
 import EstateList from '@/components/Estate/List/EstateList'
 import fetchApi from '@/hooks/fetchApi'
 
-export const dynamicParams = true
-export const revalidate = 12000
+export const revalidate = 0
 
 export default async function EstateListPage({
     params: { lng, slug },
@@ -34,16 +33,7 @@ export default async function EstateListPage({
         )
 
     queryData.forEach(function (param) {
-        if (param[0] === 'prices' && param[1].length > 0) {
-            let pricesRange = param[1].split('-')
-            queryURL +=
-                'filter[price_from]=' +
-                pricesRange[0] +
-                '&' +
-                'filter[price_to]=' +
-                pricesRange[1] +
-                '&'
-        } else {
+        if (param[1] && param[0] != 'page') {
             queryURL += 'filter[' + param[0] + ']' + '=' + param[1] + '&'
         }
     })

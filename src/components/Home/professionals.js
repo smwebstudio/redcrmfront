@@ -14,11 +14,11 @@ function Professionals({ bestBrokers, lng }) {
     let professionals = professionalsData.data
 
     return (
-        <ContainerBoxed className="mt-10 mb-20">
+        <ContainerBoxed className="mt-10 mb-4">
             <DarkHeading1 className="text-dark font-bold mb-3 text-left">
                 {t('label.bestAgents')}
             </DarkHeading1>
-            <Row gutter={32}>
+            <Row gutter={[32, 16]}>
                 {professionals?.map((item, i) => (
                     <Col xs={24} sm={8} className="" key={i}>
                         <div className={'border border-light'}>

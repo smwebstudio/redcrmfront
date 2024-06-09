@@ -6,6 +6,7 @@ const StyledCompareEstateButton = styled(Button)`
     padding: 0;
     border: 0;
     height: auto;
+    background: none;
     @media only screen and(max-width: 991px) {
     }
 `

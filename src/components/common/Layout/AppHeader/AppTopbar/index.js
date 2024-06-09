@@ -38,7 +38,7 @@ export const AppTopbar = ({ lng }) => {
                                 />
                             </Col>
                             <Col xs={0} sm={13}>
-                                <span>37496 908 900, 37411 970 908</span>
+                                <span>+374 98 908 908</span>
                             </Col>
 
                             <Col xs={4} sm={2} className={'border-right'}>
@@ -65,25 +65,28 @@ export const AppTopbar = ({ lng }) => {
                                 </Link>
                             </Col>
                             <Col xs={4} sm={2} className={'border-right'}>
-                                <Row gutter={4} justify="center" align="middle">
-                                    <Col
-                                        xs={24}
-                                        sm={4}
-                                        flex="auto"
-                                        className={'text-center'}>
-                                        <AppImage
-                                            alt={'Red Group'}
-                                            src={
-                                                '/assets/img/svg/favorites.svg'
-                                            }
-                                        />
-                                    </Col>
-                                    <Col xs={0} sm={16}>
-                                        <Link href={'/test'}>
+                                <Link href={'/favorites'}>
+                                    <Row
+                                        gutter={4}
+                                        justify="center"
+                                        align="middle">
+                                        <Col
+                                            xs={24}
+                                            sm={4}
+                                            flex="auto"
+                                            className={'text-center'}>
+                                            <AppImage
+                                                alt={'Red Group'}
+                                                src={
+                                                    '/assets/img/svg/favorites.svg'
+                                                }
+                                            />
+                                        </Col>
+                                        <Col xs={0} sm={16}>
                                             {t('label.favorites')}
-                                        </Link>
-                                    </Col>
-                                </Row>
+                                        </Col>
+                                    </Row>
+                                </Link>
                             </Col>
 
                             <Col

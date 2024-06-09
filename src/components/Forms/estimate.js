@@ -267,8 +267,8 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
                                 <Divider />
                             </Row>
 
-                            <Row>
-                                <Col span={4} offset={20}>
+                            <Row justify={'end'}>
+                                <Col>
                                     <Form.Item wrapperCol={{ sm: 24 }}>
                                         {!showResult && (
                                             <Button
@@ -334,7 +334,9 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
 
                                 <Col
                                     xs={24}
-                                    className={'d-flex justify-content-end'}>
+                                    className={
+                                        'flex justify-center md:justify-content-end'
+                                    }>
                                     <Button type="primary" onClick={onRenew}>
                                         {t('label.button.newEvaluation')}
                                     </Button>

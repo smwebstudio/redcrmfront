@@ -31,18 +31,11 @@ export function BuildingList({ lng, buildingsData }) {
             try {
                 const params = new URLSearchParams(searchParams)
 
-                console.log('params')
-                console.log(params)
-
                 const response = await developersApi(lng).get('api/projects', {
                     params: params,
                 })
 
-                console.log('response')
-                console.log(response)
-
                 setBuildings(response.data)
-
                 setLoading(false)
             } catch (error) {
                 console.error(error)

@@ -57,6 +57,29 @@ export function toggleEstateComparison(item) {
     }
 
     localStorage.setItem('compareEstates', JSON.stringify(compareEstates))
+    return compareEstates
+}
+
+export function toggleEstateFavourite(item) {
+    let favEstates = JSON.parse(localStorage.getItem('favEstates')) || []
+    const index = favEstates.indexOf(item.id)
+
+    if (index === -1) {
+        favEstates.push(item.id)
+        notification.open({
+            message: 'Ավելացվել է ցանկին',
+            duration: 1,
+        })
+    } else {
+        favEstates.splice(index, 1)
+        notification.open({
+            message: 'Հանվել է ցանկից',
+            duration: 1,
+        })
+    }
+
+    localStorage.setItem('favEstates', JSON.stringify(favEstates))
+    return favEstates
 }
 
 export function formatNumberPrice(number) {

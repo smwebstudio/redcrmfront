@@ -3,7 +3,6 @@ import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
-import { toggleEstateComparison } from '@/lib/helper'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -74,27 +73,6 @@ export function PlanItem(props) {
                                 {item.price_monthly}
                             </h6>
                             {/*<del>{item.old_price}</del>*/}
-                        </Col>
-                        <Col
-                            xs={12}
-                            className="text-right justify-end content-end flex flex-row">
-                            <span
-                                className={'cursor-pointer'}
-                                key={'compare_' + item.id}
-                                onClick={() => toggleEstateComparison(item)}>
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/compare.svg'}
-                                />
-                            </span>
-                            <span
-                                className={'ml-4 cursor-pointer'}
-                                key={'add_to_favorites_' + item.id}>
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/favorites.svg'}
-                                />
-                            </span>
                         </Col>
                     </Row>
 

@@ -6,6 +6,6 @@ export const metadata = {
     description: 'RED Group',
 }
 
-export default function Home({ filtersData, queryData }) {
+export default function Home({}) {
     return <AppPage></AppPage>
 }

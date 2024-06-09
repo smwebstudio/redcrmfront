@@ -144,17 +144,7 @@ const EstateMapSearch = ({ lng, estatesData, updateFilteredEstates }) => {
     const fetchData = async () => {
         try {
             setLoading(true)
-
             await filterMapEstates(lng)
-
-            // let coordsToSend = encodeURIComponent(JSON.stringify(coords))
-            // const response = await api(lng).get(
-            //     endpoint + '?fromMap=1&filter[coordinates]=' + coordsToSend,
-            // )
-            //
-            // setEstates(response.data.data)
-            // updateFilteredEstates(response.data)
-
             setSearchInfoBoxHidden(true)
             setLoading(false)
         } catch (error) {

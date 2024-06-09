@@ -53,16 +53,16 @@ function EstateMainTabs(props) {
                                     />
                                 ),
                             },
-                            {
-                                label: t('label.title.fee.normal'),
-                                key: '3',
-                                children: (
-                                    <EstateCarousel
-                                        type="daily"
-                                        estates={props.dailyEstates}
-                                    />
-                                ),
-                            },
+                            // {
+                            //     label: t('label.title.fee.normal'),
+                            //     key: '3',
+                            //     children: (
+                            //         <EstateCarousel
+                            //             type="daily"
+                            //             estates={props.dailyEstates}
+                            //         />
+                            //     ),
+                            // },
                         ]}
                     />
                 </Col>

@@ -1247,8 +1247,8 @@
     "validation.windowsView.required": "Պատուհանների դիրքը պարտադիր է",
     "validation.year.required": "Կառուցման տարեթիվը պարտադիր է",
     "variable-example": "վարձակալել a variable {{count}}",
-    "label.red.bestOffers": "Լավագույն առաջարկները մեզ մոտ",
-    "label.red.sellProperties": "Վաճառեք տներ, հողատարածքներ, բնակարաններ, ձեզ հարմար տարբերակով",
-    "label.red.addressOffice": "0010, ՀՀ, Երևան, Մ. Խորենացու փողոց, 15",
+    "label.red.bestOffers": "Ոգեշնչում ենք բացահայտել ավելին",
+    "label.red.sellProperties": "Վաճառեք և գնեք, վարձակալեք և հանձնեք վարձակալության Ձեր բնակարանը, առանձնատունը, կոմերցիոն տարածքն ու հողատարածքը",
+    "label.red.addressOffice": " Երևան, Փավստոս Բուզանդ 107, 7֊րդ հարկ",
     "label.red.address": "Էլիտ Պլազա բիզնես կենտրոն 4-րդ հարկ"
 }
