@@ -7,8 +7,9 @@ import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
 import api from '@/hooks/api'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
+import { isMobile } from 'react-device-detect'
 
-export function EstateCompareCarousel({ lng }) {
+export const EstateCompare = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
 
     const [estatesData, setEstatesData] = useState([])
@@ -63,7 +64,7 @@ export function EstateCompareCarousel({ lng }) {
             ...estatesData.map(item => ({
                 dataIndex: item.id.toString(),
                 key: item.id.toString(),
-                width: 200,
+                width: isMobile ? 120 : 200,
                 style: { padding: '0px 8px' },
                 fixed: item.id === estatesData[0].id ? 'left' : null,
             })),
@@ -209,7 +210,6 @@ export function EstateCompareCarousel({ lng }) {
             '.ant-table-cell-fix-left',
         )
         if (tableBody) {
-            console.log(12)
             const fixedColumnWidth = tableFixedColumn.clientWidth
             tableBody.scrollTo({
                 left: tableBody.scrollLeft - fixedColumnWidth,
@@ -262,4 +262,4 @@ export function EstateCompareCarousel({ lng }) {
     )
 }
 
-export default EstateCompareCarousel
+export default EstateCompare

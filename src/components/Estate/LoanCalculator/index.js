@@ -5,6 +5,7 @@ import { useTranslation } from '@/app/i18n/client'
 import { useRouter } from 'next/navigation'
 import StyledLoanCalculator from '@/components/Estate/LoanCalculator/style'
 import LoanTable from '@/components/Estate/LoanCalculator/LoanTable'
+import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 
 const formItemLayout = {
     labelCol: {
@@ -65,9 +66,6 @@ const LoanCalculator = ({ estatePrice, lng }) => {
     }, [price, deposit])
 
     const onFinish = values => {
-        console.log(values)
-        console.log(values.price)
-
         const tomorrow = new Date()
         tomorrow.setDate(tomorrow.getDate() + 1)
         const day = String(tomorrow.getDate()).padStart(2, '0')
@@ -90,7 +88,11 @@ const LoanCalculator = ({ estatePrice, lng }) => {
     return (
         <StyledLoanCalculator className={'container'}>
             <Row>
-                <h3 className={'text-dark font-bold'}>{t('label.mortgage')}</h3>
+                <Col xs={0} md={24}>
+                    <DarkHeading3 className={'text-dark font-bold'}>
+                        {t('label.mortgage')}
+                    </DarkHeading3>
+                </Col>
             </Row>
 
             <Row gutter={32}>
@@ -105,8 +107,8 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                             onFinish={onFinish}
                             style={{}}
                             scrollToFirstError>
-                            <Row>
-                                <Col xs={24} sm={8}>
+                            <Row gutter={[16, 16]}>
+                                <Col xs={12} sm={8}>
                                     <Form.Item
                                         name="price"
                                         label={t('label.estateMortgage.price')}>
@@ -117,7 +119,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col xs={24} sm={8}>
+                                <Col xs={12} sm={8}>
                                     <Form.Item
                                         name="percent"
                                         label={t(
@@ -134,7 +136,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col xs={24} sm={8}>
+                                <Col xs={12} sm={8}>
                                     <Form.Item
                                         name="term"
                                         label={
@@ -152,10 +154,8 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                            </Row>
 
-                            <Row>
-                                <Col xs={24} sm={8}>
+                                <Col xs={12} sm={8}>
                                     <Form.Item
                                         name="deposit"
                                         label={t(
@@ -172,7 +172,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col xs={24} sm={8}>
+                                <Col xs={12} sm={8}>
                                     <Form.Item
                                         name="depositPercent"
                                         label={
@@ -191,7 +191,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col xs={24} sm={8}>
+                                <Col xs={12} sm={8}>
                                     <Form.Item
                                         name="mortgageSum"
                                         label={t(
@@ -208,7 +208,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                         <Input disabled={true} />
                                     </Form.Item>
                                 </Col>
-                                <Col span={24}>
+                                <Col xs={24}>
                                     <Form.Item wrapperCol={{ sm: 24 }}>
                                         <Button
                                             type="primary"

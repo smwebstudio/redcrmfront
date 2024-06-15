@@ -1,7 +1,7 @@
 'use client'
 import { Col, Row } from 'antd'
 import React from 'react'
-import EstateCarousel from '@/components/Estate/estate-carousel'
+import EstateCarousel from '@/components/Estate/EstateCarousel'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
@@ -22,7 +22,7 @@ function EstateMainTabs(props) {
                         className={
                             isTabletOrMobile
                                 ? 'text-center text-dark  font-bold pb-3'
-                                : 'text-dark  font-bold pb-3'
+                                : 'text-dark  font-bold -mb-10'
                         }>
                         {t('label.hotOffer')}
                     </DarkHeading2>

@@ -20,6 +20,7 @@ import { useTranslation } from '@/app/i18n/client'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
+import SuccessModal from '@/components/common/Modals/SuccessModal'
 
 const { Option } = Select
 
@@ -75,8 +76,15 @@ const AddProperty = ({ lng, evaluationData }) => {
         setBuildingOptions([...buildingLists])
     }, [])
 
+    const [showModal, setShowModal] = useState(false)
+
+    const handleModal = () => {
+        setShowModal(!showModal)
+    }
+
     const onFinish = values => {
         console.log('Received values of form: ', values)
+        handleModal()
     }
 
     const [current, setCurrent] = useState(0)
@@ -447,6 +455,12 @@ const AddProperty = ({ lng, evaluationData }) => {
                     </Affix>
                 </Col>
             </Row>
+            <SuccessModal
+                lng={lng}
+                text={t('label.tankYouForUsingOurServices')}
+                show={showModal}
+                setShowModal={setShowModal}
+            />
         </ContainerBoxed>
     )
 }

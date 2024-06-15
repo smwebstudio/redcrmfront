@@ -7,6 +7,7 @@ import {
 } from '@react-google-maps/api'
 import nextConfig from '../../../next.config'
 import AppImage from '@/components/common/Image/AppImage'
+import { isMobile } from 'react-device-detect'
 
 const libraries = ['drawing']
 
@@ -51,7 +52,7 @@ const EstatesGoogleMapSingle = props => {
     const [center, setCenter] = useState(centerInitial)
     const mapContainerStyle = {
         height: '500px',
-        width: '1280px',
+        width: isMobile ? '100%' : '1280px',
     }
 
     const handleMarkerClick = marker => {

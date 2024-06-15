@@ -1,10 +1,9 @@
 import React from 'react'
-import api from '@/hooks/api'
-import SearchSectionDevelopers from '@/components/Search/SearchSectionDevelopers'
 import AppPage from '@/components/common/Layout/AppPage'
 import BannerDevelopers from '@/components/pages/Developers/DevelopersBanner'
 import fetchDevelopersApi from '@/hooks/fetchDevelopersApi'
 import BuildingList from '@/components/Buildings/List'
+import DeveloperFilterSection from '@/components/Developers/DeveloperFilterSection'
 
 export default async function DeveloperListPage({
     params: { lng, slug },
@@ -18,13 +17,15 @@ export default async function DeveloperListPage({
     )
     const buildings = buildingsResponse
 
-    const response = await api(lng).post('/api/filters', {})
-    const filtersData = response.data
+    const filtersResponse = await fetchDevelopersApi(lng).get('api/projects/', {
+        next: { revalidate: 0 },
+    })
+    const filtersData = filtersResponse
     const queryData = ''
     return (
         <AppPage>
             <BannerDevelopers />
-            <SearchSectionDevelopers
+            <DeveloperFilterSection
                 filtersData={filtersData}
                 queryData={queryData}
                 lng={lng}

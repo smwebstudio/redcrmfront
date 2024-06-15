@@ -8,6 +8,7 @@ import BuildingItem from '@/components/Buildings/List/BuildingItem'
 import { FullListSkeleton } from '@/components/common/Skeletons/FullListSkeleton'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import developersApi from '@/hooks/developersApi'
+import Link from 'next/link'
 
 export function BuildingList({ lng, buildingsData }) {
     const { t } = useTranslation(lng, 'common')
@@ -77,7 +78,7 @@ export function BuildingList({ lng, buildingsData }) {
         <>
             <Suspense>
                 <ContainerBoxed className="property-area min-vh-100">
-                    <Row className={'mt-20'}>
+                    <Row gutter={[24, 24]} className={'mt-20'}>
                         {!loading &&
                             buildings.data.map((building, index) => (
                                 <Col
@@ -87,11 +88,15 @@ export function BuildingList({ lng, buildingsData }) {
                                     xl={8}
                                     className={'pr-3 pl-3 flex items-stretch'}
                                     key={'col-' + index}>
-                                    <BuildingItem
-                                        key={index}
-                                        building={building}
-                                        lng={lng}
-                                    />
+                                    <Link
+                                        href={'developers/' + building.id}
+                                        style={{ width: '100%' }}>
+                                        <BuildingItem
+                                            key={index}
+                                            building={building}
+                                            lng={lng}
+                                        />
+                                    </Link>
                                 </Col>
                             ))}
                     </Row>

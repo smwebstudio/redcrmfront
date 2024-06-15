@@ -16,7 +16,7 @@ export const ContactDetails = ({ lng }) => {
     const { t } = useTranslation(lng, 'common')
     return (
         <ContainerBoxed className={'pt-10 pb-10'}>
-            <Row gutter={[24, 40]}>
+            <Row gutter={[24, 24]}>
                 <Col xs={24} md={6}>
                     <ContactBlockWrapper>
                         <AppImage
@@ -74,7 +74,7 @@ export const ContactDetails = ({ lng }) => {
                 </Col>
                 <Col xs={24} md={6}>
                     <ContactBlockWrapper>
-                        <ContactSimpleForm />
+                        <ContactSimpleForm lng={lng} />
                     </ContactBlockWrapper>
                 </Col>
                 <Col xs={24} md={6}>

@@ -11,6 +11,12 @@ const EstatePriceStyled = styled(Paragraph)`
         font-size: inherit;
         line-height: inherit;
     }
+
+    @media only screen and (max-width: 991px) {
+        &&& {
+            font-size: 20px;
+        }
+    }
 `
 
 const EstatePrice = ({ children, ...props }) => {

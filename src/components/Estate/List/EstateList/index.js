@@ -63,18 +63,12 @@ const EstateList = ({
             try {
                 const params = new URLSearchParams(searchParams)
 
-                console.log('params')
-                console.log(params)
-
                 const response = await api(lng).get(
                     'api/estates/filter/estates',
                     {
                         params: params,
                     },
                 )
-
-                console.log('response')
-                console.log(response)
 
                 setEstates(response.data)
 
