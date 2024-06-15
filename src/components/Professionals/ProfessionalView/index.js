@@ -2,27 +2,25 @@
 import React from 'react'
 import { Col, Divider, Rate, Row, Typography } from 'antd'
 import ContactSimpleForm from '@/components/Forms/contact-simple-form'
-import EstateProfessionalList from '@/components/Estate/estate-professional-list'
-import ProfessionalInfo from '@/components/Professionals/professional-info'
 import AppImage from '@/components/common/Image/AppImage'
 import AppTabs from '@/components/common/Tabs/AppTabs'
+import ProfessionalEstatesList from '@/components/Professionals/ProfessionalEstatesList'
+import ProfessionalDetails from '@/components/Professionals/ProfessionalDetails'
 
 const { Text } = Typography
 
-function ProfessionalDetails(props) {
-    console.error('props')
-    console.error(props.professionalItem.data)
+export const ProfessionalView = ({ lng, professionalItem }) => {
+    const professional = professionalItem.data
 
-    const professional = props.professionalItem.data
     let publicUrl = process.env.PUBLIC_URL + '/'
     let professions = professional.professions
     let estatesLabel = 'Հայտարարություններ (' + professional.estates_count + ')'
     return (
-        <Row className={'container mt-4'}>
-            <Col sm={6}>
+        <Row className={'container mt-4'} gutter={[24, 24]}>
+            <Col sm={6} className={'-mt-36 bg-white'}>
                 <div
                     className={
-                        'professionalDetails bg-white pt-4 flex flex-col justify-center items-center mb-5'
+                        'ProfessionalView bg-white pt-4 flex flex-col justify-center items-center mb-5'
                     }>
                     <AppImage
                         alt={'Red Group'}
@@ -73,26 +71,30 @@ function ProfessionalDetails(props) {
                 </div>
 
                 <Divider />
-                <ContactSimpleForm />
+                <ContactSimpleForm lng={lng} />
             </Col>
             <Col xs={24} sm={18} className={'pl-5 pt-2'}>
                 <AppTabs
-                    defaultActiveKey="1"
+                    defaultActiveKey="2"
                     items={[
                         {
-                            label: 'Մասնագետի մասին ինֆորմացիա',
+                            label: `Մասնագետի մասին ինֆորմացիա`,
                             key: '1',
                             children: (
-                                <ProfessionalInfo professional={professional} />
+                                <ProfessionalDetails
+                                    professional={professional}
+                                    lng={lng}
+                                />
                             ),
                         },
                         {
                             label: estatesLabel,
                             key: '2',
                             children: (
-                                <EstateProfessionalList
+                                <ProfessionalEstatesList
                                     id={professional.user?.id}
                                     estatesCount={professional.estates_count}
+                                    estates={professional.estates}
                                 />
                             ),
                         },
@@ -103,4 +105,4 @@ function ProfessionalDetails(props) {
     )
 }
 
-export default ProfessionalDetails
+export default ProfessionalView

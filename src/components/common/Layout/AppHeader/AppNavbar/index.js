@@ -123,6 +123,7 @@ const AppNavbar = ({ lng }) => {
                                     sm={{ span: 3, offset: 0 }}>
                                     <Link
                                         href={`/${lng}/add-property`}
+                                        onClick={toggleMenu}
                                         className={
                                             'btn btn-main-transparent  block w-11/12 pr-1 pl-1 text-center'
                                         }>

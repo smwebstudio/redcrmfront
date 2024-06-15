@@ -3,6 +3,9 @@ import React from 'react'
 
 const StyledPriceOffer = styled.div`
     @media only screen and (max-width: 991px) {
+        .ant-btn {
+            width: 100%;
+        }
     }
 `
 

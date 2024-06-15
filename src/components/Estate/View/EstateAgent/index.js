@@ -53,7 +53,7 @@ const EstateAgent = ({ estate, lng }) => {
         <EstateAgentStyled>
             {estate.contact && (
                 <Row className="contact-info">
-                    <Col xs={24} sm={8}>
+                    <Col xs={6} sm={8}>
                         <AppImage
                             alt={'Red Group'}
                             style={{
@@ -64,29 +64,35 @@ const EstateAgent = ({ estate, lng }) => {
                             src={estate.contact.profile_picture}
                         />
                     </Col>
-                    <Col xs={24} sm={16} className="profile-col">
+                    <Col xs={14} sm={16} className="profile-col">
                         <h5>{estate.contact.full_name}</h5>
                         <p>{t('common:label.broker')}</p>
                     </Col>
-                    <Col xs={24} className="contact-details">
-                        <Text className="contact-detail">
-                            <AppImage
-                                alt={'Email Icon'}
-                                className="icon"
-                                height={12}
-                                src={'/assets/img/svg/envelope.svg'}
-                            />
-                            <span>{estate.contact.email}</span>
-                        </Text>
-                        <Text className="contact-detail">
-                            <AppImage
-                                alt={'Phone Icon'}
-                                className="icon"
-                                height={16}
-                                src={'/assets/img/svg/mobile.svg'}
-                            />
-                            <span>{estate.contact.phone_1}</span>
-                        </Text>
+                    <Col xs={24} sm={24} className="contact-details">
+                        <Row>
+                            <Col xs={24}>
+                                <Text className="contact-detail">
+                                    <AppImage
+                                        alt={'Email Icon'}
+                                        className="icon"
+                                        height={12}
+                                        src={'/assets/img/svg/envelope.svg'}
+                                    />
+                                    <span>{estate.contact.email}</span>
+                                </Text>
+                            </Col>
+                            <Col xs={24}>
+                                <Text className="contact-detail">
+                                    <AppImage
+                                        alt={'Phone Icon'}
+                                        className="icon"
+                                        height={16}
+                                        src={'/assets/img/svg/mobile.svg'}
+                                    />
+                                    <span>{estate.contact.phone_1}</span>
+                                </Text>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             )}

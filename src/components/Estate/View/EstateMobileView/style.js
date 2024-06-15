@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 
-const StyledEstateView = styled.div`
+const StyledEstateMobileView = styled.div`
     padding: 24px 0;
 
     .image-gallery-left-nav,
@@ -41,4 +41,4 @@ const StyledEstateView = styled.div`
     }
 `
 
-export default StyledEstateView
+export default StyledEstateMobileView
