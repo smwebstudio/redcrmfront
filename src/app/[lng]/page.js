@@ -28,7 +28,7 @@ export default async function HomePage({ params: { lng } }) {
         next: { revalidate: 12400 },
     })
     const bestBrokersResponse = await fetchApi(lng).get('api/brokers/best/', {
-        next: { revalidate: 12400 },
+        next: { revalidate: 0 },
     })
 
     const filters = filtersResponse.data
@@ -50,10 +50,12 @@ export default async function HomePage({ params: { lng } }) {
                     lng={lng}
                 />
                 <EstateEstimate filtersData={filters} lng={lng} />
-                <Professionals bestBrokers={bestBrokers} lng={lng} />
                 <EstateMainHot hotEstates={hotEstates} lng={lng} />
             </ContainerBoxed>
             <WhyChooseUs lng={lng} />
+            <ContainerBoxed>
+                <Professionals bestBrokers={bestBrokers} lng={lng} />
+            </ContainerBoxed>
         </AppPage>
     )
 }

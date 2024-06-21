@@ -2,12 +2,17 @@ import React from 'react'
 import AboutBanner from '@/components/About/about-banner'
 import AboutContent from '@/components/About/about-content'
 import AppPage from '@/components/common/Layout/AppPage'
+import AboutContentEnglish from '@/components/pages/About/AbountContentEnglish'
 
 export default async function AboutUsPage({ params: { lng, slug } }) {
+    console.log('lng')
+    console.log(lng)
     return (
         <AppPage>
             <AboutBanner />
-            <AboutContent />
+            {lng === 'hy' && <AboutContent />}
+            {lng === 'en' && <AboutContentEnglish />}
+            {lng === 'ru' && <AboutContent />}
         </AppPage>
     )
 }

@@ -12,7 +12,7 @@ import { ClockCircleOutlined } from '@ant-design/icons'
 import { isMobile } from 'react-device-detect'
 import DarkParagraph from '@/components/common/Typography/Paragraph/DarkParagraph'
 
-export const AboutContent = ({ lng }) => {
+export const AboutContentEnglish = ({ lng }) => {
     let publicUrl = process.env.PUBLIC_URL + '/'
 
     return (
@@ -22,15 +22,15 @@ export const AboutContent = ({ lng }) => {
                     <Col xs={24} sm={10}>
                         <Row gutter={[16, 16]} className={'mt-10'}>
                             <Col xs={24}>
-                                <DarkHeading1>Մեր Առաքելությունը</DarkHeading1>
+                                <DarkHeading1>Our Mission</DarkHeading1>
                             </Col>
                             <Col xs={24}>
                                 <DarkParagraph>
-                                    Մենք միտված ենք օգնել մարդկանց հասկանալ
-                                    անշարժ գույքի շուկան, կայացնել ճիշտ
-                                    որոշումներ՝ բացահայտելով նրանց ֆինանսական
-                                    ներուժը և այն վերածելով հնարավորությունների՝
-                                    հանուն կյանքի ավելի լավ որակի:
+                                    We aim to help people understand the real
+                                    estate market and make informed decisions by
+                                    uncovering their financial potential and
+                                    turning it into opportunities for a better
+                                    quality of life.
                                 </DarkParagraph>
                             </Col>
                         </Row>
@@ -49,15 +49,8 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                RED Invest Group-ի հիմնադրում
-                                            </Tag>
-                                            <Tag
-                                                bordered={false}
-                                                color={'red'}
-                                                className={
-                                                    'mb-2 whitespace-normal'
-                                                }>
-                                                Երկրորդային շուկա
+                                                Establishment of RED Invest
+                                                Group
                                             </Tag>
                                         </>
                                     ),
@@ -75,7 +68,7 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                Առաջնային շուկա
+                                                Entered the secondary market
                                             </Tag>
                                         </>
                                     ),
@@ -93,20 +86,7 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                ՄԱՍՆԱՃՅՈՒՂ Ա-ում
-                                            </Tag>
-                                            <Tag
-                                                bordered={false}
-                                                color={'red'}
-                                                className={
-                                                    'mb-2 whitespace-normal'
-                                                }>
-                                                DALAN TECHNOPARK
-                                            </Tag>
-                                            <Tag
-                                                bordered={false}
-                                                color={'red whitespace-normal'}>
-                                                ՆԵՐԴՐՈՒՄԱՅԻՆ ՇՈՒԿԱ
+                                                Entered the primary market
                                             </Tag>
                                         </>
                                     ),
@@ -119,7 +99,7 @@ export const AboutContent = ({ lng }) => {
                                     children: (
                                         <>
                                             <Tag bordered={false} color={'red'}>
-                                                Դուբայ (ԱՄԷ)
+                                                Investment market
                                             </Tag>
                                         </>
                                     ),
@@ -135,7 +115,7 @@ export const AboutContent = ({ lng }) => {
                                                 bordered={false}
                                                 color={'red'}
                                                 className={'mb-2'}>
-                                                Մեծ թիմ
+                                                Team of 50 members
                                             </Tag>
                                             <Tag
                                                 bordered={false}
@@ -143,7 +123,7 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                Նոր գրասենյակ՝ Բուզանդ 107
+                                                New office at Buzand 107
                                             </Tag>
                                         </>
                                     ),
@@ -160,9 +140,7 @@ export const AboutContent = ({ lng }) => {
                 <ContainerBoxed className={'pb-10'}>
                     <Row gutter={[24, 48]}>
                         <Col xs={24}>
-                            <DarkHeading2>
-                                Առաջնային շուկայի ծառայություններ
-                            </DarkHeading2>
+                            <DarkHeading2>Primary Market</DarkHeading2>
                         </Col>
                         <Col xs={24} sm={8}>
                             <Row className={'bg-white p-4'} gutter={[16, 16]}>
@@ -183,7 +161,7 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                2320 միավոր գույք
+                                                2320 units of property
                                             </Tag>
                                         </Col>
                                         <Col>
@@ -192,8 +170,8 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                27 ընթացիկ նախագիծ, որից 6-ը
-                                                կհանձնվի 2024 թ.-ին
+                                                27 ongoing projects, 6 of which
+                                                will be completed in 2024
                                             </Tag>
                                         </Col>
                                         <Col>
@@ -202,8 +180,8 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                9 ավարտված նախագիծ, 7-ը հանձնված
-                                                շահագործման
+                                                9 completed projects, 7 handed
+                                                over for operation
                                             </Tag>
                                         </Col>
                                     </Row>
@@ -219,70 +197,37 @@ export const AboutContent = ({ lng }) => {
                                     }
                                 />
                                 <DarkHeading3>
-                                    Ինչ տարբերակով գույք ձեռք բերել
+                                    How to Purchase Property
                                 </DarkHeading3>
                                 <SmallParagraph>
-                                    Առաջնային շուկայից՝ կառուցապատողից գույք
-                                    ձեռք բերելու դեպքում
+                                    When buying property from the primary
+                                    market:
                                 </SmallParagraph>
                                 <ul
                                     className={
                                         'text-xs list-disc pl-10 my-4 flex flex-col gap-4'
                                     }>
                                     <li>
-                                        Հիփոթեքային վարկավորման միջոցով
-                                        Եկամտահարկի վերադարձի մասին օրենք
+                                        Mortgage loans with income tax return
+                                        benefits
                                     </li>
                                     <li>
-                                        Տարաժամկետ վճարման եղանակով
-                                        Շինարարության ողջ ընթացքում գույքի
-                                        արժեքի մարում առանց %-ների
+                                        Payment in installments: Pay for the
+                                        property value throughout the
+                                        construction period without interest
+                                        rates
                                     </li>
                                 </ul>
                                 <SmallParagraph>
-                                    RED Invest Group-ը կառուցապատող
-                                    ընկերությունների հետ աշխատում է միայն
-                                    վաճառքի բացառիկ իրավունքի պայմանով
+                                    RED Invest Group works with developers only
+                                    under exclusive sales rights
                                 </SmallParagraph>
                             </div>
                         </Col>
                     </Row>
                     <Row gutter={[24, 24]} className={'mt-12'}>
-                        <Col xs={24} className={'text-right'}>
-                            <DarkHeading2>
-                                Երկրորդային շուկայի ծառայություններ
-                            </DarkHeading2>
-                        </Col>
-                        <Col xs={24} sm={{ span: 12, offset: 4 }}>
-                            <div className={'bg-white p-4'}>
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={
-                                        publicUrl + 'assets/img/svg/about/1.svg'
-                                    }
-                                />
-                                <DarkHeading2>
-                                    Ինչ տարբերակով գույք ձեռք բերել
-                                </DarkHeading2>
-                                <DarkParagraph>
-                                    Երկրորդային շուկայից՝ սեփականատիրոջից գույք
-                                    ձեռք բերելու դեպքում
-                                </DarkParagraph>
-                                <ul
-                                    className={
-                                        'text-xs list-disc pl-10 my-4 flex flex-col gap-4'
-                                    }>
-                                    <li>
-                                        Հիփոթեքային վարկավորման միջոցով Ձեր
-                                        նախընտրած բանկի միջոցով
-                                    </li>
-                                    <li>
-                                        «Երիտասարդ ընտանիքին՝ մատչելի բնակարան»
-                                        պետական նպատակային ծրագիր
-                                    </li>
-                                    <li>Կանխիկ եղանակով</li>
-                                </ul>
-                            </div>
+                        <Col xs={24}>
+                            <DarkHeading2>Secondary Market</DarkHeading2>
                         </Col>
                         <Col xs={24} sm={8}>
                             <Row className={'bg-white p-4'} gutter={[16, 16]}>
@@ -303,10 +248,9 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                13,500 վաճառքի գույք
-                                                (բնակարաններ, առանձնատներ,
-                                                կոմերցիոն տարածքներ,
-                                                հողատարածքներ)
+                                                13,500 properties for sale
+                                                (apartments, houses, commercial
+                                                spaces, land plots)
                                             </Tag>
                                         </Col>
                                         <Col>
@@ -315,19 +259,50 @@ export const AboutContent = ({ lng }) => {
                                                 className={
                                                     'mb-2 whitespace-normal'
                                                 }>
-                                                9300 վարձակալության գույքեր
+                                                9300 properties for rent
                                             </Tag>
                                         </Col>
                                     </Row>
                                 </Col>
                             </Row>
                         </Col>
+                        <Col xs={24} sm={{ span: 12 }}>
+                            <div className={'bg-white p-4'}>
+                                <AppImage
+                                    alt={'Red Group'}
+                                    src={
+                                        publicUrl + 'assets/img/svg/about/1.svg'
+                                    }
+                                />
+                                <DarkHeading2>
+                                    How to Purchase Property
+                                </DarkHeading2>
+                                <DarkParagraph>
+                                    When buying property from the secondary
+                                    market:
+                                </DarkParagraph>
+                                <ul
+                                    className={
+                                        'text-xs list-disc pl-10 my-4 flex flex-col gap-4'
+                                    }>
+                                    <li>
+                                        Mortgage loans through your preferred
+                                        bank
+                                    </li>
+                                    <li>
+                                        Affordable Housing for Young Families
+                                        state target program
+                                    </li>
+                                    <li>Cash payment</li>
+                                </ul>
+                            </div>
+                        </Col>
                     </Row>
                 </ContainerBoxed>
                 <ContainerFluid className={'bg-white py-10'}>
                     <ContainerBoxed className={'mt-20'}>
                         <Col xs={24} className={'mb-10'}>
-                            <DarkHeading1>ՄԵՐ ԹԻՄԸ</DarkHeading1>
+                            <DarkHeading1>OUR TEAM</DarkHeading1>
                         </Col>
                         <Row gutter={[24, 24]}>
                             <Col xs={24} sm={8}>
@@ -337,8 +312,8 @@ export const AboutContent = ({ lng }) => {
                                     height={320}
                                     src={publicUrl + 'assets/img/team/04.png'}
                                 />
-                                <DarkHeading3>ՀԻՄՆԱԴԻՐ ՏՆՕՐԵՆ</DarkHeading3>
-                                <DarkHeading2>Արսեն Ավետիսյան</DarkHeading2>
+                                <DarkHeading3>FOUNDER AND CEO</DarkHeading3>
+                                <DarkHeading2>Arsen Avetisyan</DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -347,8 +322,8 @@ export const AboutContent = ({ lng }) => {
                                     height={320}
                                     src={publicUrl + 'assets/img/team/01.png'}
                                 />
-                                <DarkHeading3>ՓՈԽՏՆՕՐԵՆ</DarkHeading3>
-                                <DarkHeading2>Անի Մարգարյան</DarkHeading2>
+                                <DarkHeading3>DEPUTY DIRECTOR</DarkHeading3>
+                                <DarkHeading2>Ani Margaryan</DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -358,9 +333,11 @@ export const AboutContent = ({ lng }) => {
                                     src={publicUrl + 'assets/img/team/06.png'}
                                 />
                                 <DarkHeading3>
-                                    ԲԻԶՆԵՍԻ ԶԱՐԳԱՑՄԱՆ ՏՆՕՐԵՆ
+                                    BUSINESS DEVELOPMENT DIRECTOR
                                 </DarkHeading3>
-                                <DarkHeading2>Հովհաննես Բասենցյան</DarkHeading2>
+                                <DarkHeading2>
+                                    Hovhannes Basentsyan
+                                </DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -370,9 +347,9 @@ export const AboutContent = ({ lng }) => {
                                     src={publicUrl + 'assets/img/team/07.png'}
                                 />
                                 <DarkHeading3>
-                                    ՄԱՐԴԻԿ և ՄՇԱԿՈՒՅԹ ԲԱԺՆԻ ՂԵԿԱՎԱՐ
+                                    HEAD OF PEOPLE AND CULTURE DEPARTMENT
                                 </DarkHeading3>
-                                <DarkHeading2>Սոնա Գրիգորյան</DarkHeading2>
+                                <DarkHeading2>Sona Grigoryan</DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -382,9 +359,9 @@ export const AboutContent = ({ lng }) => {
                                     src={publicUrl + 'assets/img/team/02.png'}
                                 />
                                 <DarkHeading3>
-                                    ՎԱՃԱՌՔԻ ԲԱԺՆԻ ՂԵԿԱՎԱՐ
+                                    HEAD OF SALES DEPARTMENT
                                 </DarkHeading3>
-                                <DarkHeading2>Անի Քոչարյան</DarkHeading2>
+                                <DarkHeading2> Ani Kocharyan</DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -394,10 +371,10 @@ export const AboutContent = ({ lng }) => {
                                     src={publicUrl + 'assets/img/team/05.png'}
                                 />
                                 <DarkHeading3>
-                                    ՄԻՋԱԶԳԱՅԻՆ ԵՎ ՆԵՐԴՐՈՒՄԱՅԻՆ
-                                    <br /> ԳՈՒՅՔԵՐԻ ՎԱՃԱՌՔԻ ԲԱԺՆԻ ՂԵԿԱՎԱՐ
+                                    HEAD OF INTERNATIONAL AND
+                                    <br /> INVESTMENT PROPERTY SALES DEPARTMENT
                                 </DarkHeading3>
-                                <DarkHeading2>Լևոն Գասպարյան</DarkHeading2>
+                                <DarkHeading2>Levon Gasparyan</DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -407,9 +384,12 @@ export const AboutContent = ({ lng }) => {
                                     src={publicUrl + 'assets/img/team/08.png'}
                                 />
                                 <DarkHeading3>
-                                    ՄԱՐՔԵԹԻՆԳԻ ԲԱԺՆԻ ՂԵԿԱՎԱՐ
+                                    HEAD OF MARKETING DEPARTMENT
                                 </DarkHeading3>
-                                <DarkHeading2>Ստեֆանի Գյոկչյան</DarkHeading2>
+                                <DarkHeading2>
+                                    {' '}
+                                    Stephanie Gyokchyan
+                                </DarkHeading2>
                             </Col>
                             <Col xs={24} sm={8}>
                                 <AppImage
@@ -419,9 +399,9 @@ export const AboutContent = ({ lng }) => {
                                     src={publicUrl + 'assets/img/team/03.png'}
                                 />
                                 <DarkHeading3>
-                                    ՆԵՐԳՐԱՎՄԱՆ ԲԱԺՆԻ ՂԵԿԱՎԱՐ
+                                    HEAD OF RECRUITMENT DEPARTMENT
                                 </DarkHeading3>
-                                <DarkHeading2>Անիկա Բարսեղյան</DarkHeading2>
+                                <DarkHeading2>Anika Barseghyan</DarkHeading2>
                             </Col>
                         </Row>
                     </ContainerBoxed>
@@ -431,4 +411,4 @@ export const AboutContent = ({ lng }) => {
     )
 }
 
-export default AboutContent
+export default AboutContentEnglish

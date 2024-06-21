@@ -31,14 +31,18 @@ export const AppTopbar = ({ lng }) => {
                 <div className="topbar-area">
                     <div className="container nav-container">
                         <Row gutter={8} justify="space-between" align="middle">
-                            <Col xs={4} sm={1}>
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/phone.svg'}
-                                />
-                            </Col>
-                            <Col xs={0} sm={13}>
-                                <span>+374 98 908 908</span>
+                            <Col xs={4} sm={13}>
+                                <Row gutter={8}>
+                                    <Col>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/phone.svg'}
+                                        />
+                                    </Col>
+                                    <Col className={'hidden md:inline'}>
+                                        <span>+374 98 908 908</span>
+                                    </Col>
+                                </Row>
                             </Col>
 
                             <Col xs={4} sm={2} className={'border-right'}>

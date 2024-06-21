@@ -29,7 +29,9 @@ const WhyChooseUs = ({ lng }) => {
                                 </div>
                                 <div className="details mt-2">
                                     <h6 className="title">{t(item.title)}</h6>
-                                    <p>{t(item.content)}</p>
+                                    <p className={'whitespace-pre-wrap'}>
+                                        {t(item.content)}
+                                    </p>
                                 </div>
                             </div>
                         </Col>

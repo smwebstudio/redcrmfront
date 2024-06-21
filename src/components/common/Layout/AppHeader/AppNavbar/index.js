@@ -75,9 +75,16 @@ const AppNavbar = ({ lng }) => {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href={`/${lng}/about`}
+                                                    href={`/${lng}/developers`}
                                                     onClick={toggleMenu}>
-                                                    {t('menu.about')}
+                                                    {t('menu.buildDevelopers')}
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
+                                                    href={`/${lng}/estimate`}
+                                                    onClick={toggleMenu}>
+                                                    {t('menu.evaluate')}
                                                 </Link>
                                             </li>
                                             <li>
@@ -87,6 +94,14 @@ const AppNavbar = ({ lng }) => {
                                                     {t('menu.professional')}
                                                 </Link>
                                             </li>
+                                            <li>
+                                                <Link
+                                                    href={`/${lng}/about`}
+                                                    onClick={toggleMenu}>
+                                                    {t('menu.about')}
+                                                </Link>
+                                            </li>
+
                                             <li>
                                                 <Link
                                                     href={`/${lng}/blog`}
@@ -99,20 +114,6 @@ const AppNavbar = ({ lng }) => {
                                                     href={`/${lng}/contact`}
                                                     onClick={toggleMenu}>
                                                     {t('menu.contact')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href={`/${lng}/estimate`}
-                                                    onClick={toggleMenu}>
-                                                    {t('menu.evaluate')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href={`/${lng}/developers`}
-                                                    onClick={toggleMenu}>
-                                                    {t('menu.buildDevelopers')}
                                                 </Link>
                                             </li>
                                         </ul>
