@@ -18,15 +18,27 @@ export default function MainFilter(props) {
     const [estateType, setEstateType] = useState(1)
     const [locationProvince, setLocationProvince] = useState(initialProvince)
     const [cities, setCities] = useState(initialProvince.cities)
-    const [prices, setPrices] = useState(filtersData.prices.USD)
+    const [estateTypes, setEstateTypes] = useState(
+        filtersData.estate_types.map(value => ({
+            value: value.id,
+            label: value.label,
+        })),
+    )
+    const [prices, setPrices] = useState(
+        contract_type === 1
+            ? filtersData.prices.sale.AMD
+            : filtersData.prices.rent.AMD,
+    )
     const [communities, setCommunities] = useState(
         filtersData.location_community,
     )
 
+    console.log('filtersData')
+    console.log(filtersData)
     const { t } = useTranslation(props.lng, 'common')
 
     const estateTypeOptions = filtersData.estate_types.map(value => ({
-        value: value.id,
+        value: value.value,
         label: value.label,
     }))
 
@@ -36,7 +48,7 @@ export default function MainFilter(props) {
     }))
 
     const roomOptions = filtersData.rooms.map(value => ({
-        value: value.id,
+        value: value.value,
         label: value.label,
     }))
 
@@ -45,6 +57,32 @@ export default function MainFilter(props) {
         { value: 1, label: 'USD' },
         { value: 2, label: 'RUR' },
     ]
+
+    const priceOptions =
+        contract_type === 1
+            ? [
+                  { value: 1, from: 0, to: 15000000 },
+                  { value: 2, from: 15000000, to: 20000000 },
+                  { value: 3, from: 20000000, to: 30000000 },
+                  { value: 4, from: 30000000, to: 40000000 },
+                  { value: 5, from: 40000000, to: 50000000 },
+                  { value: 6, from: 50000000, to: 60000000 },
+                  { value: 7, from: 60000000, to: 75000000 },
+                  { value: 8, from: 75000000, to: 90000000 },
+                  { value: 9, from: 90000000, to: 100000000 },
+                  { value: 10, from: 100000000, to: Infinity },
+              ]
+            : [
+                  { value: 1, from: 0, to: 50000 },
+                  { value: 2, from: 50000, to: 75000 },
+                  { value: 3, from: 75000, to: 100000 },
+                  { value: 4, from: 100000, to: 125000 },
+                  { value: 5, from: 125000, to: 150000 },
+                  { value: 6, from: 150000, to: 200000 },
+                  { value: 7, from: 200000, to: 30000 },
+                  { value: 8, from: 300000, to: 400000 },
+                  { value: 9, from: 400000, to: 100000000 },
+              ]
 
     const handleProvinceChange = value => {
         let province = filtersData.locations.find(x => x.id === value)
@@ -57,13 +95,31 @@ export default function MainFilter(props) {
         const queryData = Object.entries(values)
         let query = {}
         queryData.forEach(function (param) {
-            query[param[0]] = param[1]
+            console.log('param')
+            console.log(param)
+
+            if (param[0] === 'prices') {
+                query['price_from'] = priceOptions.find(
+                    option => option.value === param[1],
+                )?.from
+                query['price_to'] = priceOptions.find(
+                    option => option.value === param[1],
+                )?.to
+            } else {
+                query[param[0]] = param[1]
+            }
         })
+
         const queryString = objectToQueryParams(query)
+
+        console.log(queryString)
+
         const updateLink =
             '/estates?contract_type_id=' + contract_type + '&' + queryString
         router.push(updateLink)
     }
+
+    console.log('rerend')
 
     return (
         <>
@@ -167,7 +223,6 @@ export default function MainFilter(props) {
                                         showSearch
                                         placeholder={t('button.pick')}
                                         variant="borderless"
-                                        optionFilterProp="children"
                                         options={prices}
                                         allowClear
                                     />
@@ -186,7 +241,6 @@ export default function MainFilter(props) {
                                         showSearch
                                         placeholder={t('button.pick')}
                                         variant="borderless"
-                                        optionFilterProp="children"
                                         options={roomOptions}
                                     />
                                 </Form.Item>

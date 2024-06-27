@@ -209,7 +209,12 @@ const EstateList = ({
 
                         <Col xs={openMap ? 24 : 0} sm={openMap ? 8 : 20}>
                             <Row>
-                                <Col xs={24}>
+                                <Col
+                                    xs={{
+                                        span: openMap ? 24 : 10,
+                                        offset: openMap ? 0 : 14,
+                                    }}
+                                    className={'mb-4'}>
                                     <EstateFilters
                                         filtersData={filtersData}
                                         queryDataParams={queryDataParams}

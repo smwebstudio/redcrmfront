@@ -22,7 +22,7 @@ export function EstateItemGrid({ estate }) {
                 <div className="single-feature">
                     <div className="thumb">
                         <Link
-                            href={'estates/' + estate.id}
+                            href={'/estates/' + estate.id}
                             style={{ width: '100%', display: 'block' }}>
                             <AppImage
                                 alt={'Red Group'}

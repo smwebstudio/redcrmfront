@@ -5,7 +5,7 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import AppTabs from '@/components/common/Tabs/AppTabs'
 import ProfessionalTabList from '@/components/Professionals/ProfessionalTabList'
 
-const ProfessionalTabs = ({ allProfessionals, brokers, banks, estimators }) => {
+const ProfessionalTabs = ({ allProfessionals }) => {
     return (
         <ContainerBoxed className={'mt-5'}>
             <div className={''}>
@@ -34,33 +34,33 @@ const ProfessionalTabs = ({ allProfessionals, brokers, banks, estimators }) => {
                                             />
                                         ),
                                     },
-                                    {
-                                        label: `Անշարժ գույքի գործակալ / գործակալություն`,
-                                        key: '2',
-                                        children: (
-                                            <ProfessionalTabList
-                                                professionals={brokers}
-                                            />
-                                        ),
-                                    },
-                                    {
-                                        label: `Բանկ, վարկային կազմակերպություն`,
-                                        key: '3',
-                                        children: (
-                                            <ProfessionalTabList
-                                                professionals={banks}
-                                            />
-                                        ),
-                                    },
-                                    {
-                                        label: `Անշարժ գույք գնահատող`,
-                                        key: '4',
-                                        children: (
-                                            <ProfessionalTabList
-                                                professionals={estimators}
-                                            />
-                                        ),
-                                    },
+                                    // {
+                                    //     label: `Անշարժ գույքի գործակալ / գործակալություն`,
+                                    //     key: '2',
+                                    //     children: (
+                                    //         <ProfessionalTabList
+                                    //             professionals={brokers}
+                                    //         />
+                                    //     ),
+                                    // },
+                                    // {
+                                    //     label: `Բանկ, վարկային կազմակերպություն`,
+                                    //     key: '3',
+                                    //     children: (
+                                    //         <ProfessionalTabList
+                                    //             professionals={banks}
+                                    //         />
+                                    //     ),
+                                    // },
+                                    // {
+                                    //     label: `Անշարժ գույք գնահատող`,
+                                    //     key: '4',
+                                    //     children: (
+                                    //         <ProfessionalTabList
+                                    //             professionals={estimators}
+                                    //         />
+                                    //     ),
+                                    // },
                                 ]}
                             />
                         </div>
