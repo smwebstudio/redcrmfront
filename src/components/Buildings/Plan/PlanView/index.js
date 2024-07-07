@@ -12,7 +12,7 @@ const PlanView = ({ lng, plan }) => {
     return (
         <div
             key={plan.id}
-            className={' mb-10 border-solid  border-gray-200 border'}>
+            className={' mb-10 border-solid  border-gray-200 border relative'}>
             {plan.status === 'sold' && (
                 <div>
                     <span
