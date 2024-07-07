@@ -1,23 +1,25 @@
 import { Button, Col, Form, Input, Row } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { objectToQueryParams } from '@/lib/helper'
 
-export default function MainSearch(props) {
+export default function SearchByCode(props) {
     const [form] = Form.useForm()
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const onFinish = values => {
+        setLoading(true)
         const queryData = Object.entries(values)
         let query = {}
-
         queryData.forEach(function (param) {
-            query['text_search'] = param[1]
+            query[param[0]] = param[1]
         })
 
-        router.push({
-            pathname: '/search',
-            query: query,
-        })
+        const queryString = objectToQueryParams(query)
+
+        const updateLink = '/estates?' + queryString
+        router.push(updateLink)
     }
 
     return (
@@ -25,12 +27,10 @@ export default function MainSearch(props) {
             <Form
                 form={form}
                 onFinish={onFinish}
-                action="/search"
-                method="get"
                 className="bg-white text-gray-50 ">
                 <Row className={'pl-4 pt-10 pb-10'}>
                     <Col span={20} className=" ">
-                        <Form.Item name="search_query" wrapperCol={{ sm: 22 }}>
+                        <Form.Item name="code" wrapperCol={{ sm: 22 }}>
                             <Input placeholder={'Հասցե, կոդ'} size="large" />
                         </Form.Item>
                     </Col>
@@ -38,6 +38,7 @@ export default function MainSearch(props) {
                         <Button
                             htmlType="submit"
                             className="btn btn-main w-100"
+                            loading={loading}
                             size="large">
                             Փնտրել
                         </Button>

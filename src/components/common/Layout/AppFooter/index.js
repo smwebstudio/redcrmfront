@@ -5,7 +5,12 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import Link from 'next/link'
 import AppImage from '@/components/common/Image/AppImage'
 import FontIcon from '@/components/common/Icons/FontIcon'
-import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import {
+    faFacebook,
+    faInstagram,
+    faLinkedin,
+    faYoutube,
+} from '@fortawesome/free-brands-svg-icons'
 import { useTranslation } from '@/app/i18n/client'
 
 export const AppFooter = ({ lng }) => {
@@ -45,6 +50,20 @@ export const AppFooter = ({ lng }) => {
                                             href="https://www.instagram.com/redinvestgroup/"
                                             target="_blank">
                                             <FontIcon icon={faInstagram} />
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href="https://www.linkedin.com/in/red-invest-group-real-estate-company-9377b82b6/"
+                                            target="_blank">
+                                            <FontIcon icon={faLinkedin} />
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href="https://www.youtube.com/@REDInvestGroup"
+                                            target="_blank">
+                                            <FontIcon icon={faYoutube} />
                                         </Link>
                                     </li>
                                 </ul>

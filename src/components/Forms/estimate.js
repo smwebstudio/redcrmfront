@@ -13,11 +13,11 @@ import {
 import React, { useEffect, useState } from 'react'
 import { CheckCircleOutlined } from '@ant-design/icons'
 import { useTranslation } from '@/app/i18n/client'
-import Link from 'next/link'
 import api from '@/hooks/api'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
+import Link from 'next/link'
 
 const formItemLayout = {
     labelCol: {
@@ -318,17 +318,25 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
                                 </Col>
                                 <Col xs={24}>
                                     <p>{t('label.Ev.to.newAnounc')}</p>
-                                    <p>{t('label.Ev.to.newAnounc5')}</p>
                                     <p>
-                                        {t('label.Ev.to.newAnounc3')}
+                                        {t('label.Ev.to.newAnounc5')}{' '}
                                         <Link
-                                            href={'/professionals'}
+                                            href={'/add-property'}
                                             className={'text-main'}>
-                                            {' '}
-                                            {t('label.Ev.to.newAnounc3.1')}{' '}
+                                            {t('label.addNewAnnouncement')}
                                         </Link>
                                     </p>
-                                    <p>{t('label.Ev.to.newAnounc4')}</p>
+
+                                    {/*<p>*/}
+                                    {/*    {t('label.Ev.to.newAnounc3')}*/}
+                                    {/*    <Link*/}
+                                    {/*        href={'/professionals'}*/}
+                                    {/*        className={'text-main'}>*/}
+                                    {/*        {' '}*/}
+                                    {/*        {t('label.Ev.to.newAnounc3.1')}{' '}*/}
+                                    {/*    </Link>*/}
+                                    {/*</p>*/}
+                                    {/*<p>{t('label.Ev.to.newAnounc4')}</p>*/}
                                     <Divider />
                                 </Col>
 

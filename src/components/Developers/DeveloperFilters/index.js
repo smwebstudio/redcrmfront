@@ -1,11 +1,12 @@
 'use client'
-import { Button, Col, Form, Row, Select } from 'antd'
+import { Col, Form, Row, Select } from 'antd'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/app/i18n/client'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import { OrderCall } from '@/components/Developers/OrderCall'
 import { FilterSelect } from '@/components/common/Selects/FilterSelect'
+import { RedButton } from '@/components/common/Buttons/RedButton'
 
 export default function DeveloperFilters({ filtersData, lng }) {
     const [form] = Form.useForm()
@@ -87,17 +88,17 @@ export default function DeveloperFilters({ filtersData, lng }) {
                         </Row>
                     </Col>
                     <Col>
-                        <Row gutter={16}>
-                            <Col>
-                                <Button
+                        <Row gutter={[16, 8]}>
+                            <Col xs={24} flex={'1'}>
+                                <RedButton
                                     htmlType="submit"
                                     className="btn btn-main w-100"
                                     size="middle">
                                     {t('button.search')}
-                                </Button>
+                                </RedButton>
                             </Col>
 
-                            <Col>
+                            <Col xs={24} flex={'1'}>
                                 <OrderCall lng={lng} />
                             </Col>
                         </Row>

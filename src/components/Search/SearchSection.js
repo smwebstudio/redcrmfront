@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from 'react'
-import MainSearch from '@/components/Filters/main-search'
 import { Col, Tabs } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import MainFilter from '@/components/Filters/main-filter'
 import TabPane from 'antd/es/tabs/TabPane'
 import { useRouter } from 'next/navigation'
+import SearchByCode from '@/components/Estate/SearchByCode'
 
 function SearchSection(props) {
     const { t } = useTranslation(props.lng, 'common')
@@ -37,7 +37,7 @@ function SearchSection(props) {
         {
             key: '5',
             label: t('label.search'),
-            children: <MainSearch />,
+            children: <SearchByCode />,
         },
     ]
 

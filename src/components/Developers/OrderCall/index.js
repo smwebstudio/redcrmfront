@@ -73,17 +73,15 @@ export const OrderCall = ({ lng }) => {
                             </SmallParagraph>
                         </Col>
                     </Row>
-                    <Row gutter={24}>
+                    <Row gutter={[24, 16]}>
                         <Col xs={24} sm={6}>
                             <Form.Item
-                                label={t('common:label.firstLastName')}
+                                label={t('label.name')}
                                 name="full_name"
                                 rules={[
                                     {
                                         required: true,
-                                        message: t(
-                                            'common:validation.firstLastName.required',
-                                        ),
+                                        message: t('notification.required'),
                                     },
                                 ]}>
                                 <Input />
@@ -92,14 +90,12 @@ export const OrderCall = ({ lng }) => {
 
                         <Col xs={24} sm={8}>
                             <Form.Item
-                                label={t('common:label.phone')}
+                                label={t('label.phone')}
                                 name="e_mail"
                                 rules={[
                                     {
                                         required: true,
-                                        message: t(
-                                            'common:validation.phone.fixed.required',
-                                        ),
+                                        message: t('notification.required'),
                                     },
                                 ]}>
                                 <Input />
@@ -113,38 +109,35 @@ export const OrderCall = ({ lng }) => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: t(
-                                            'common:validation.phone.fixed.required',
-                                        ),
+                                        message: t('notification.required'),
                                     },
                                 ]}>
-                                <div className={'flex flex-row'}>
-                                    <Select
-                                        placeholder=""
-                                        style={{ width: '200px' }}>
-                                        {hours.map(hour => (
-                                            <Option key={hour} value={hour}>
-                                                {hour
-                                                    .toString()
-                                                    .padStart(2, '0')}
-                                                :00
-                                            </Option>
-                                        ))}
-                                    </Select>
-                                    <span> - </span>
-                                    <Select
-                                        placeholder=""
-                                        style={{ width: '200px' }}>
-                                        {hours.map(hour => (
-                                            <Option key={hour} value={hour}>
-                                                {hour
-                                                    .toString()
-                                                    .padStart(2, '0')}
-                                                :00
-                                            </Option>
-                                        ))}
-                                    </Select>
-                                </div>
+                                <Row gutter={8}>
+                                    <Col xs={24} sm={12}>
+                                        <Select>
+                                            {hours.map(hour => (
+                                                <Option key={hour} value={hour}>
+                                                    {hour
+                                                        .toString()
+                                                        .padStart(2, '0')}
+                                                    :00
+                                                </Option>
+                                            ))}
+                                        </Select>
+                                    </Col>
+                                    <Col xs={24} sm={12}>
+                                        <Select>
+                                            {hours.map(hour => (
+                                                <Option key={hour} value={hour}>
+                                                    {hour
+                                                        .toString()
+                                                        .padStart(2, '0')}
+                                                    :00
+                                                </Option>
+                                            ))}
+                                        </Select>
+                                    </Col>
+                                </Row>
                             </Form.Item>
                         </Col>
                         <Col xs={24}>

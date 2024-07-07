@@ -4,7 +4,12 @@ import DarkParagraph from '@/components/common/Typography/Paragraph/DarkParagrap
 import { useTranslation } from '@/app/i18n/client'
 import Link from 'next/link'
 import FontIcon from '@/components/common/Icons/FontIcon'
-import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import {
+    faFacebook,
+    faInstagram,
+    faLinkedin,
+    faYoutube,
+} from '@fortawesome/free-brands-svg-icons'
 import React from 'react'
 import AppImage from '@/components/common/Image/AppImage'
 import { assetsUrl } from '@/constants'
@@ -63,6 +68,26 @@ export const ContactDetails = ({ lng }) => {
                             target="_blank">
                             <FontIcon
                                 icon={faInstagram}
+                                size={'2x'}
+                                color={'#D8002C'}
+                            />
+                        </Link>
+
+                        <Link
+                            href="https://www.linkedin.com/in/red-invest-group-real-estate-company-9377b82b6/"
+                            target="_blank">
+                            <FontIcon
+                                icon={faLinkedin}
+                                size={'2x'}
+                                color={'#D8002C'}
+                            />
+                        </Link>
+
+                        <Link
+                            href="https://www.youtube.com/@REDInvestGroup"
+                            target="_blank">
+                            <FontIcon
+                                icon={faYoutube}
                                 size={'2x'}
                                 color={'#D8002C'}
                             />
