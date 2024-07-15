@@ -100,7 +100,12 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                     <div className={'mt-10'}>
                         <Form
                             {...formItemLayout}
-                            initialValues={{ price: price }}
+                            initialValues={{
+                                price: price,
+                                percent: 11,
+                                deposit: 0,
+                                term: 20,
+                            }}
                             form={form}
                             name="loan-calculate"
                             layout="vertical"

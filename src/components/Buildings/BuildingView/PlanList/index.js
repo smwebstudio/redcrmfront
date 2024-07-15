@@ -1,7 +1,7 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'react-image-gallery/styles/css/image-gallery.css'
-import { Checkbox, Col, Divider, Row, Select } from 'antd'
+import { Checkbox, Col, Divider, Modal, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
@@ -9,12 +9,20 @@ import ContainerBoxed from '@/components/Containers/ContainerBoxed'
 import PlanView from '@/components/Buildings/Plan/PlanView'
 import { RedButton } from '@/components/common/Buttons/RedButton'
 import StyledPlansList from '@/components/Buildings/BuildingView/PlanList/style'
+import PlanModalView from '@/components/Buildings/Plan/PlanModalView'
+import FontIcon from '@/components/common/Icons/FontIcon'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const { Option } = Select
 
 export const PlanList = ({ lng, building }) => {
     const { t } = useTranslation(lng, 'common')
+    const router = useRouter()
     const [visibleCount, setVisibleCount] = useState(9)
+    const searchParams = useSearchParams()
+
+    const planIdLoad = searchParams.get('plan')
 
     const plans = building.products
 
@@ -69,6 +77,48 @@ export const PlanList = ({ lng, building }) => {
     }
 
     const visiblePlans = filteredPlans.slice(0, visibleCount)
+
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [currentPlanIndex, setCurrentPlanIndex] = useState(null)
+
+    const [currentPlanId, setCurrentPlanId] = useState(
+        planIdLoad ? planIdLoad : null,
+    )
+
+    const showModal = planId => {
+        setCurrentPlanId(planId)
+        setIsModalVisible(true)
+    }
+
+    useEffect(() => {
+        if (planIdLoad) {
+            showModal(planIdLoad)
+        }
+    }, [])
+
+    const handleCancel = () => {
+        setIsModalVisible(false)
+    }
+
+    const handlePrev = () => {
+        const currentIndex = visiblePlans.findIndex(
+            plan => plan.id === currentPlanId,
+        )
+        if (currentIndex > 0) {
+            setCurrentPlanId(visiblePlans[currentIndex - 1].id)
+        }
+    }
+
+    const handleNext = () => {
+        const currentIndex = visiblePlans.findIndex(
+            plan => plan.id === currentPlanId,
+        )
+        if (currentIndex < visiblePlans.length - 1) {
+            setCurrentPlanId(visiblePlans[currentIndex + 1].id)
+        }
+    }
+
+    const currentPlan = visiblePlans.find(plan => plan.id === currentPlanId)
 
     return (
         <StyledPlansList>
@@ -163,7 +213,11 @@ export const PlanList = ({ lng, building }) => {
                     <Col xs={24}>
                         <Row gutter={32}>
                             {visiblePlans.map((plan, index) => (
-                                <Col xs={24} md={8} key={'col-' + index}>
+                                <Col
+                                    xs={24}
+                                    md={8}
+                                    key={'col-' + index}
+                                    onClick={() => showModal(plan.id)}>
                                     <PlanView key={index} plan={plan} />
                                 </Col>
                             ))}
@@ -178,6 +232,44 @@ export const PlanList = ({ lng, building }) => {
                     </Col>
                 </Row>
             </ContainerBoxed>
+
+            {currentPlan && (
+                <Modal
+                    visible={isModalVisible}
+                    onCancel={handleCancel}
+                    footer={[
+                        <RedButton
+                            key="prev"
+                            onClick={handlePrev}
+                            className={'absolute left-0.5 top-1/2 w-auto'}
+                            disabled={currentPlanIndex === 0}>
+                            <FontIcon
+                                icon={faArrowLeft}
+                                size={'lg'}
+                                color={'#FFFFFF'}
+                            />
+                        </RedButton>,
+                        <RedButton
+                            key="next"
+                            onClick={handleNext}
+                            className={'absolute right-0.5 top-1/2 w-auto'}
+                            disabled={
+                                currentPlanIndex === visiblePlans.length - 1
+                            }>
+                            <FontIcon
+                                icon={faArrowRight}
+                                size={'lg'}
+                                color={'#FFFFFF'}
+                            />
+                        </RedButton>,
+                    ]}>
+                    <PlanModalView
+                        plan={currentPlan}
+                        building={building}
+                        lng={lng}
+                    />
+                </Modal>
+            )}
         </StyledPlansList>
     )
 }

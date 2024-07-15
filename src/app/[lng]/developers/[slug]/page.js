@@ -13,11 +13,9 @@ export default async function DeveloperViewPage({
             next: { revalidate: 0 },
         },
     )
-    const building = buildingResponse
-
     return (
         <AppPage>
-            <BuildingView building={building} lng={lng} />
+            <BuildingView building={buildingResponse} lng={lng} />
         </AppPage>
     )
 }
