@@ -85,13 +85,15 @@ export const PlanList = ({ lng, building }) => {
         planIdLoad ? planIdLoad : null,
     )
 
+    const currentPlan = visiblePlans.find(plan => plan.id == currentPlanId)
+
     const showModal = planId => {
         setCurrentPlanId(planId)
         setIsModalVisible(true)
     }
 
     useEffect(() => {
-        if (planIdLoad) {
+        if (planIdLoad && visiblePlans) {
             showModal(planIdLoad)
         }
     }, [])
@@ -117,8 +119,6 @@ export const PlanList = ({ lng, building }) => {
             setCurrentPlanId(visiblePlans[currentIndex + 1].id)
         }
     }
-
-    const currentPlan = visiblePlans.find(plan => plan.id === currentPlanId)
 
     return (
         <StyledPlansList>
@@ -241,7 +241,7 @@ export const PlanList = ({ lng, building }) => {
                         <RedButton
                             key="prev"
                             onClick={handlePrev}
-                            className={'absolute left-0.5 top-1/2 w-auto'}
+                            className={'absolute left-0.5  top-60 w-auto'}
                             disabled={currentPlanIndex === 0}>
                             <FontIcon
                                 icon={faArrowLeft}
@@ -252,7 +252,7 @@ export const PlanList = ({ lng, building }) => {
                         <RedButton
                             key="next"
                             onClick={handleNext}
-                            className={'absolute right-0.5 top-1/2 w-auto'}
+                            className={'absolute right-0.5 top-60 w-auto'}
                             disabled={
                                 currentPlanIndex === visiblePlans.length - 1
                             }>

@@ -14,7 +14,6 @@ import {
     faLocationPin,
     faPhone,
 } from '@fortawesome/free-solid-svg-icons'
-import { RedButton } from '@/components/common/Buttons/RedButton'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
 import RedText from '@/components/Typography/text/RedText'
 import { formatNumberPrice } from '@/lib/helper'
@@ -165,19 +164,18 @@ const PlanModalView = ({ lng, plan, building }) => {
                     )}
                 </Col>
             </Row>
-            <Row justify={'end'}>
-                {(showLoan || showMap) && (
+            {(showLoan || showMap) && (
+                <Row justify={'end'} className={'mt-4'}>
                     <Col>
-                        <RedButton onClick={() => closeAll()}>
-                            <FontIcon
-                                icon={faClose}
-                                size={'lg'}
-                                color={'#FFFFFF'}
-                            />
-                        </RedButton>
+                        <FontIcon
+                            icon={faClose}
+                            size={'2x'}
+                            color={'#111111'}
+                            onClick={() => closeAll()}
+                        />
                     </Col>
-                )}
-            </Row>
+                </Row>
+            )}
             <Row>
                 {showLoan && (
                     <Col xs={24}>
@@ -191,51 +189,47 @@ const PlanModalView = ({ lng, plan, building }) => {
                     </Col>
                 )}
             </Row>
-            <Row gutter={8} className={'mt-10'} justify={'center'}>
+            <Row gutter={32} className={'mt-10'} justify={'center'}>
                 <Col>
-                    <RedButton onClick={() => toggleLoan()}>
-                        <FontIcon
-                            icon={faCalculator}
-                            size={'lg'}
-                            color={'#FFFFFF'}
-                        />
-                    </RedButton>
+                    <FontIcon
+                        icon={faCalculator}
+                        size={'2x'}
+                        color={'#D8002C'}
+                        onClick={() => toggleLoan()}
+                    />
                 </Col>
                 <Col>
-                    <RedButton
-                        key="download"
-                        onClick={e => onDownload(plan.image)}>
-                        <FontIcon
-                            icon={faDownload}
-                            size={'lg'}
-                            color={'#FFFFFF'}
-                        />
-                    </RedButton>
+                    <FontIcon
+                        icon={faDownload}
+                        size={'2x'}
+                        color={'#D8002C'}
+                        onClick={e => onDownload(plan.image)}
+                    />
                 </Col>
                 <Col>
-                    <RedButton onClick={() => copyToClipboard()}>
-                        <FontIcon icon={faCopy} size={'lg'} color={'#FFFFFF'} />
-                    </RedButton>
+                    <FontIcon
+                        icon={faCopy}
+                        size={'2x'}
+                        color={'#D8002C'}
+                        onClick={() => copyToClipboard()}
+                    />
                 </Col>
                 <Col>
-                    <RedButton onClick={() => callPhone()}>
-                        <FontIcon
-                            icon={faPhone}
-                            size={'lg'}
-                            color={'#FFFFFF'}
-                        />
-                    </RedButton>
+                    <FontIcon
+                        icon={faPhone}
+                        size={'2x'}
+                        color={'green'}
+                        onClick={() => callPhone()}
+                    />
                 </Col>
                 <Col>
-                    <RedButton onClick={() => toggleMap()}>
-                        <FontIcon
-                            icon={faLocationPin}
-                            size={'lg'}
-                            color={'#FFFFFF'}
-                        />
-                    </RedButton>
+                    <FontIcon
+                        icon={faLocationPin}
+                        size={'2x'}
+                        color={'#D8002C'}
+                        onClick={() => toggleMap()}
+                    />
                 </Col>
-                <Col></Col>
             </Row>
         </div>
     )
