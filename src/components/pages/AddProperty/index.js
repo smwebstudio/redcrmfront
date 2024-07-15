@@ -145,7 +145,6 @@ const AddProperty = ({ lng, evaluationData }) => {
     }
 
     const onFinish = values => {
-        console.log('Received values of form: ', values)
         handleModal()
     }
 

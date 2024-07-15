@@ -4,6 +4,7 @@ import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import StyledOrderCall from '@/components/Developers/OrderCall/style'
 import { useTranslation } from '@/app/i18n/client'
 import { GreyButton } from '@/components/common/Buttons/GreyButton'
+import SuccessModal from '@/components/common/Modals/SuccessModal'
 
 const { Option } = Select
 
@@ -21,18 +22,10 @@ export const OrderCall = ({ lng }) => {
         setIsModalOpen(false)
     }
 
+    const [showModalOk, setShowModalOk] = useState(false)
+
     const onFinish = values => {
-        const queryData = Object.entries(values)
-        let query = {}
-
-        queryData.forEach(function (param) {
-            query[param[0]] = param[1]
-        })
-
-        router.push({
-            pathname: '/estates',
-            query: query,
-        })
+        setShowModalOk(!showModalOk)
     }
 
     const hours = Array.from({ length: 10 }, (_, index) => index + 9) // Generate hours between 9 and 18
@@ -91,7 +84,7 @@ export const OrderCall = ({ lng }) => {
                         <Col xs={24} sm={8}>
                             <Form.Item
                                 label={t('label.phone')}
-                                name="e_mail"
+                                name="phone"
                                 rules={[
                                     {
                                         required: true,
@@ -103,17 +96,19 @@ export const OrderCall = ({ lng }) => {
                         </Col>
 
                         <Col xs={24} sm={10}>
-                            <Form.Item
-                                label="Ձեզ հարմար ժամերը"
-                                name="hours"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: t('notification.required'),
-                                    },
-                                ]}>
-                                <Row gutter={8}>
-                                    <Col xs={24} sm={12}>
+                            <Row gutter={8}>
+                                <Col xs={24} sm={12}>
+                                    <Form.Item
+                                        label={' '}
+                                        name="hours_from"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: t(
+                                                    'notification.required',
+                                                ),
+                                            },
+                                        ]}>
                                         <Select>
                                             {hours.map(hour => (
                                                 <Option key={hour} value={hour}>
@@ -124,8 +119,21 @@ export const OrderCall = ({ lng }) => {
                                                 </Option>
                                             ))}
                                         </Select>
-                                    </Col>
-                                    <Col xs={24} sm={12}>
+                                    </Form.Item>
+                                </Col>
+
+                                <Col xs={24} sm={12}>
+                                    <Form.Item
+                                        label={' '}
+                                        name="hours_to"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: t(
+                                                    'notification.required',
+                                                ),
+                                            },
+                                        ]}>
                                         <Select>
                                             {hours.map(hour => (
                                                 <Option key={hour} value={hour}>
@@ -136,9 +144,9 @@ export const OrderCall = ({ lng }) => {
                                                 </Option>
                                             ))}
                                         </Select>
-                                    </Col>
-                                </Row>
-                            </Form.Item>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
                         </Col>
                         <Col xs={24}>
                             <Checkbox>
@@ -150,6 +158,13 @@ export const OrderCall = ({ lng }) => {
                     </Row>
                 </Form>
             </Modal>
+
+            <SuccessModal
+                lng={lng}
+                text={t('label.tankYouForUsingOurServices')}
+                show={showModalOk}
+                setShowModal={setShowModalOk}
+            />
         </StyledOrderCall>
     )
 }
