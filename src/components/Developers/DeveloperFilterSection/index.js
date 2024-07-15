@@ -19,7 +19,7 @@ export const DeveloperFilterSection = ({ filtersData, lng, queryData }) => {
 
     return (
         <StyledDeveloperFilterSection>
-            <ContainerBoxed className={'container -mt-44'}>
+            <ContainerBoxed className={'mt-4'}>
                 <Col xs={24} sm={24}>
                     <Tabs type="card" defaultActiveKey={1}>
                         {filters.map(filter => (

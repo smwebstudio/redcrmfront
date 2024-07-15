@@ -990,5 +990,11 @@
     "label.red.bestOffers": "Откройте для себя ваш новый адрес",
     "label.red.sellProperties": "Покупайте, продавайте, сдавайте и арендуйте вашу квартиру, дом, коммерческую недвижимость и земельные участки",
     "label.red.addressOffice": " ул. Павстоса Бюзанда, 107, 7-й этаж",
-    "label.red.address": "Бизнес-центр Элит Плаза, 4-й этаж"
+    "label.red.address": "Бизнес-центр Элит Плаза, 4-й этаж",
+    "developers.block": "մ-շ",
+    "developers.entry": "մուտք",
+    "developers.floor": "հարկ",
+    "developers.room": "սենյակ",
+    "developers.area_unit": "քմ",
+    "label.loadMore": "Բեռնել ավելին"
 }

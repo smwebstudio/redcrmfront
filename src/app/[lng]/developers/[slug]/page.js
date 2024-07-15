@@ -14,6 +14,7 @@ export default async function DeveloperViewPage({
         },
     )
     const building = buildingResponse
+
     return (
         <AppPage>
             <BuildingView building={building} lng={lng} />

@@ -7,7 +7,7 @@ export default async function EstimateViewPage({ params: { lng } }) {
     const evaluationOptions = await fetchApi(lng).post(
         'api/evaluationOptions',
         {
-            next: { revalidate: 3600 },
+            next: { revalidate: 0 },
         },
     )
 

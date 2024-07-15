@@ -5,10 +5,13 @@ import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
 import { formatNumberPrice } from '@/lib/helper'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
+import DarkParagraph from '@/components/common/Typography/Paragraph/DarkParagraph'
+import { useTranslation } from '@/app/i18n/client'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
 const PlanView = ({ lng, plan }) => {
+    const { t } = useTranslation(lng, 'common')
     return (
         <div
             key={plan.id}
@@ -75,55 +78,104 @@ const PlanView = ({ lng, plan }) => {
                                 </RedText>{' '}
                                 {plan.price_monthly}
                             </h6>
-                            {/*<del>{plan.old_price}</del>*/}
                         </Col>
                     </Row>
 
-                    <Row>
-                        <Col xs={24}>
-                            <p className="address flex flex-row items-center ">
-                                <span>
-                                    <AppImage
-                                        alt={'Red Group'}
-                                        src={'/assets/img/svg/location.svg'}
-                                    />
-                                </span>
-                                <span className="ml-2">{plan.title}</span>
-                            </p>
+                    <Row gutter={8} align={'middle'} wrap={false}>
+                        <Col>
+                            <AppImage
+                                alt={'Red Group'}
+                                src={'/assets/img/svg/location.svg'}
+                            />
+                        </Col>
+                        <Col>
+                            <DarkParagraph>
+                                {plan?.block && (
+                                    <>
+                                        {' '}
+                                        {plan.block} {t('developers.block')} |
+                                    </>
+                                )}
+
+                                {plan?.entry && (
+                                    <>
+                                        {' '}
+                                        {plan.entry} {t('developers.entry')} |
+                                    </>
+                                )}
+
+                                {plan?.floor && (
+                                    <>
+                                        {' '}
+                                        {plan.floor} {t('developers.floor')} |
+                                    </>
+                                )}
+
+                                {plan?.area && (
+                                    <>
+                                        {' '}
+                                        {plan.area} {t('developers.area_unit')}{' '}
+                                        |
+                                    </>
+                                )}
+
+                                {plan?.rooms && (
+                                    <>
+                                        {' '}
+                                        {plan.rooms} {t('developers.room')}
+                                    </>
+                                )}
+                            </DarkParagraph>
                         </Col>
                     </Row>
 
-                    <ul className="info-list">
+                    <Row gutter={16} className={'mt-4'}>
                         {plan.rooms && (
-                            <li className="mr-4">
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/doors.svg'}
-                                />
-                                {plan.rooms}
-                            </li>
+                            <Col>
+                                <Row gutter={4} align={'middle'}>
+                                    <Col>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/doors.svg'}
+                                        />
+                                    </Col>
+                                    <Col> {plan.rooms}</Col>
+                                </Row>
+                            </Col>
                         )}
 
                         {plan.floor && (
-                            <li className="mr-4">
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/floor.svg'}
-                                />
-                                {plan.floor}
-                            </li>
+                            <Col>
+                                <Row gutter={4} align={'middle'}>
+                                    <Col>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/floor.svg'}
+                                        />
+                                    </Col>
+                                    <Col> {plan.floor}</Col>
+                                </Row>
+                            </Col>
                         )}
 
                         {plan.area && (
-                            <li className="mr-3">
-                                <AppImage
-                                    alt={'Red Group'}
-                                    src={'/assets/img/svg/area.svg'}
-                                />
-                                {Math.round(plan.area)} քմ
-                            </li>
+                            <Col>
+                                <Row gutter={4} align={'middle'}>
+                                    <Col>
+                                        <AppImage
+                                            alt={'Red Group'}
+                                            src={'/assets/img/svg/area.svg'}
+                                        />
+                                    </Col>
+                                    <Col>
+                                        {' '}
+                                        {Math.round(plan.area)}{' '}
+                                        {t('developers.area_unit')}
+                                    </Col>
+                                </Row>
+                            </Col>
                         )}
-                    </ul>
+                    </Row>
                 </div>
             </div>
         </div>

@@ -22,8 +22,6 @@ import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
 import SuccessModal from '@/components/common/Modals/SuccessModal'
 
-const { Option } = Select
-
 const filter = (inputValue, path) =>
     path.some(
         option =>
@@ -42,9 +40,73 @@ const AddProperty = ({ lng, evaluationData }) => {
         evaluationData.estateOptionsData,
     )
     const [buildingOptions, setBuildingOptions] = useState([])
+    const [fieldWatchStates, setFieldWatchStates] = useState({
+        full_name: false,
+        phone: false,
+        email: false,
+        estate_type: false,
+        contract_type: false,
+        address: false,
+        building: false,
+        apartment: false,
+    })
+
+    const [steps, setSteps] = useState({
+        personal: false,
+        estate: false,
+        contract: false,
+        building: false,
+        address: false,
+        other: false,
+    })
+
+    const onValuesChange = (changedValues, allValues) => {
+        const newfieldWatchStates = { ...fieldWatchStates }
+        Object.keys(changedValues).forEach(key => {
+            newfieldWatchStates[key] = !!changedValues[key]
+        })
+        setFieldWatchStates(newfieldWatchStates)
+    }
+
     useEffect(() => {
-        console.log('evaluationData')
-        console.log(evaluationData)
+        if (
+            fieldWatchStates.full_name &&
+            fieldWatchStates.email &&
+            fieldWatchStates.phone
+        ) {
+            setSteps(prevSteps => ({
+                ...prevSteps,
+                personal: true,
+            }))
+        }
+
+        if (fieldWatchStates.estate_type) {
+            setSteps(prevSteps => ({
+                ...prevSteps,
+                estate: true,
+            }))
+        }
+
+        if (fieldWatchStates.contract_type) {
+            setSteps(prevSteps => ({
+                ...prevSteps,
+                contract: true,
+            }))
+        }
+
+        if (
+            fieldWatchStates.address &&
+            fieldWatchStates.apartment &&
+            fieldWatchStates.building
+        ) {
+            setSteps(prevSteps => ({
+                ...prevSteps,
+                address: true,
+            }))
+        }
+    }, [fieldWatchStates])
+
+    useEffect(() => {
         evaluationData.locationData.forEach(value => {
             locationOptions.push({
                 value: value.id,
@@ -87,26 +149,24 @@ const AddProperty = ({ lng, evaluationData }) => {
         handleModal()
     }
 
-    const [current, setCurrent] = useState(0)
-    const onStepChange = value => {
-        setCurrent(value)
-    }
-
     return (
         <ContainerBoxed className={'mt-5 mb-5'}>
             <Row>
                 <DarkHeading1>{t('label.addNewAnnouncement')}</DarkHeading1>
             </Row>
-
-            <Row gutter={32}>
-                <Col xs={24} xl={18} className={'add_property_wrapper mt-2'}>
-                    <Form
-                        form={form}
-                        name="register"
-                        layout="vertical"
-                        onFinish={onFinish}
-                        style={{}}
-                        scrollToFirstError>
+            <Form
+                form={form}
+                name="register"
+                layout="vertical"
+                onFinish={onFinish}
+                onValuesChange={onValuesChange}
+                style={{}}
+                scrollToFirstError>
+                <Row gutter={32}>
+                    <Col
+                        xs={24}
+                        xl={18}
+                        className={'add_property_wrapper mt-2'}>
                         <Row gutter={32}>
                             <Col xs={24} className={'mb-4'}>
                                 <DarkHeading2>
@@ -283,7 +343,7 @@ const AddProperty = ({ lng, evaluationData }) => {
                             </Col>
                             <Col span={24}>
                                 <Form.Item
-                                    name="residence"
+                                    name="address"
                                     label={t('label.address')}
                                     wrapperCol={{ sm: 24 }}
                                     rules={[
@@ -397,7 +457,10 @@ const AddProperty = ({ lng, evaluationData }) => {
                                 </h4>
                             </Col>
                             <Col span={24}>
-                                <Checkbox.Group options={estateOptions} />
+                                <Checkbox.Group
+                                    options={estateOptions}
+                                    className={'gap-4'}
+                                />
                             </Col>
                             <Divider />
                         </Row>
@@ -411,50 +474,70 @@ const AddProperty = ({ lng, evaluationData }) => {
                                 </Form.Item>
                             </Col>
                         </Row>
-                    </Form>
-                </Col>
-                <Col xs={0} xl={6} className={'pt-5 shadow'}>
-                    <Affix offsetTop={150}>
-                        <Steps
-                            direction="vertical"
-                            onChange={onStepChange}
-                            current={current}
-                            items={[
-                                {
-                                    title: t(
-                                        'label.newAnnouncement.personalInfo',
-                                    ),
-                                    icon: <CheckCircleOutlined />,
-                                },
-                                {
-                                    title: t('common:label.estateType'),
-                                    icon: <CheckCircleOutlined />,
-                                    status: 'finish',
-                                },
-                                {
-                                    title: t('common:label.contract'),
-                                    icon: <CheckCircleOutlined />,
-                                },
-                                {
-                                    title: t('common:label.general'),
-                                    icon: <CheckCircleOutlined />,
-                                },
-                                {
-                                    title: t('common:label.buildingApartment'),
-                                    icon: <CheckCircleOutlined />,
-                                },
-                                {
-                                    title: t('common:label.other'),
-                                    icon: <CheckCircleOutlined />,
-                                },
-                            ]}
-                        />
-                        <Button className={'mt-5'} style={{ width: '100%' }}>
-                            {t('common:button.reset')}
-                        </Button>
-                    </Affix>
-                </Col>
-            </Row>
+                    </Col>
+                    <Col xs={0} xl={6} className={'pt-5 shadow'}>
+                        <Affix offsetTop={150}>
+                            <Steps
+                                direction="vertical"
+                                items={[
+                                    {
+                                        title: t(
+                                            'label.newAnnouncement.personalInfo',
+                                        ),
+                                        icon: <CheckCircleOutlined />,
+                                        status: steps.personal
+                                            ? 'process'
+                                            : 'wait',
+                                    },
+                                    {
+                                        title: t('common:label.estateType'),
+                                        icon: <CheckCircleOutlined />,
+                                        status: steps.estate
+                                            ? 'process'
+                                            : 'wait',
+                                    },
+                                    {
+                                        title: t('common:label.contract'),
+                                        icon: <CheckCircleOutlined />,
+                                        status: steps.contract
+                                            ? 'process'
+                                            : 'wait',
+                                    },
+                                    {
+                                        title: t('common:label.general'),
+                                        icon: <CheckCircleOutlined />,
+                                        status: steps.address
+                                            ? 'process'
+                                            : 'wait',
+                                    },
+                                    {
+                                        title: t(
+                                            'common:label.buildingApartment',
+                                        ),
+                                        icon: <CheckCircleOutlined />,
+                                        status: steps.building
+                                            ? 'process'
+                                            : 'wait',
+                                    },
+                                    {
+                                        title: t('common:label.other'),
+                                        icon: <CheckCircleOutlined />,
+                                        status: steps.other
+                                            ? 'process'
+                                            : 'wait',
+                                    },
+                                ]}
+                            />
+                            <Button
+                                className={'mt-5'}
+                                style={{ width: '100%' }}
+                                htmlType="reset">
+                                {t('common:button.reset')}
+                            </Button>
+                        </Affix>
+                    </Col>
+                </Row>
+            </Form>
             <SuccessModal
                 lng={lng}
                 text={t('label.tankYouForUsingOurServices')}

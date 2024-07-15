@@ -2,16 +2,12 @@
 import React, { useState } from 'react'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ImageGallery from 'react-image-gallery'
-import { Checkbox, Col, Collapse, Row, Select } from 'antd'
+import { Col, Collapse, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { EnvironmentOutlined, EyeOutlined } from '@ant-design/icons'
-import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
-import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
-import LoanCalculator from '@/components/Estate/LoanCalculator'
 import PreviewImage from '@/components/common/Image/PreviewImage'
 import StyledBuildingView from '@/components/Buildings/BuildingView/style'
-import PlanView from '@/components/Buildings/Plan/PlanView'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
 import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
@@ -286,97 +282,6 @@ export const BuildingMobileView = ({ lng, building }) => {
                         />
                     </Col>
                 </Row>
-
-                <Row gutter={[8, 16]}>
-                    <Col xs={24}>
-                        <DarkHeading2 className={'mt-10 mb-4'}>
-                            Հատակագծեր
-                        </DarkHeading2>
-                    </Col>
-
-                    <Col xs={24}>
-                        <Checkbox
-                            checked={hideSaled}
-                            onChange={handleHideSaledChange}>
-                            <SmallParagraph>
-                                Թաքցնել վաճառվածները
-                            </SmallParagraph>
-                        </Checkbox>
-                    </Col>
-                    <Col xs={12}>
-                        <Select
-                            defaultValue=""
-                            onChange={handleAreaChange}
-                            style={{
-                                width: '100%',
-                            }}>
-                            <Option value="">Մակերես</Option>
-                            {areaOptions.map((area, index) => (
-                                <Option key={index} value={area}>
-                                    {area}
-                                </Option>
-                            ))}
-                        </Select>
-                    </Col>
-                    <Col xs={12}>
-                        <Select
-                            defaultValue=""
-                            onChange={handleRoomCountChange}
-                            style={{
-                                width: '100%',
-                            }}>
-                            <Option value="">Սենյակներ</Option>
-                            {roomCountOptions.map((roomCount, index) => (
-                                <Option key={index} value={roomCount}>
-                                    {roomCount} սենյակ
-                                </Option>
-                            ))}
-                        </Select>
-                    </Col>
-
-                    <Col xs={24}>
-                        <Row align={'middle'}>
-                            <Col>
-                                <SmallParagraph className={'mr-4 mb-0'}>
-                                    Դասավորել ըստ։{' '}
-                                </SmallParagraph>
-                            </Col>
-                            <Col>
-                                <Select
-                                    defaultValue="price-asc"
-                                    onChange={handleSortChange}
-                                    style={{ width: 200 }}>
-                                    <Option value="price-asc">Գնի աճման</Option>
-                                    <Option value="price-desc">
-                                        Գնի նվազման
-                                    </Option>
-                                    <Option value="area_total-asc">
-                                        Մակերեսի աճման
-                                    </Option>
-                                    <Option value="area_total-desc">
-                                        Մակերեսի նվազման
-                                    </Option>
-                                </Select>
-                            </Col>
-                        </Row>
-                    </Col>
-
-                    <Col xs={24}>
-                        <Row gutter={32}>
-                            {filteredPlans.map((plan, index) => (
-                                <Col xs={24} md={8} key={'col-' + index}>
-                                    <PlanView key={index} plan={plan} />
-                                </Col>
-                            ))}
-                        </Row>
-                    </Col>
-                </Row>
-
-                <div className="bg-gray  pd-10 pt-10">
-                    <div className={'container'}>
-                        <LoanCalculator price={building.price} lng={lng} />
-                    </div>
-                </div>
             </ContainerBoxed>
         </StyledBuildingView>
     )

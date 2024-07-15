@@ -88,9 +88,47 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
         width: '100%',
     }
 
+    const [fieldWatchStates, setFieldWatchStates] = useState({
+        locationCommunity: false,
+        buildingProject: false,
+        area: false,
+    })
+
+    const [steps, setSteps] = useState({
+        basic: false,
+        apartment: false,
+        evaluated: false,
+    })
+
+    const onValuesChange = (changedValues, allValues) => {
+        const newfieldWatchStates = { ...fieldWatchStates }
+        Object.keys(changedValues).forEach(key => {
+            newfieldWatchStates[key] = !!changedValues[key]
+        })
+        setFieldWatchStates(newfieldWatchStates)
+    }
+
+    useEffect(() => {
+        if (
+            fieldWatchStates.locationCommunity &&
+            fieldWatchStates.buildingProject &&
+            fieldWatchStates.area
+        ) {
+            setSteps(prevSteps => ({
+                ...prevSteps,
+                basic: true,
+            }))
+        }
+    }, [fieldWatchStates])
+
     const onFinish = values => {
         const data = new FormData()
         data.append('json', JSON.stringify(values))
+
+        setSteps(prevSteps => ({
+            ...prevSteps,
+            apartment: true,
+        }))
 
         api(lng)
             .post('/api/evaluate', values)
@@ -99,6 +137,10 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
                 setPrice(
                     priceAMD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'),
                 )
+                setSteps(prevSteps => ({
+                    ...prevSteps,
+                    evaluated: true,
+                }))
                 setShowResult(true)
             })
             .catch(e => {
@@ -108,6 +150,12 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
 
     const onRenew = () => {
         setShowResult(false)
+        setSteps(prevSteps => ({
+            ...prevSteps,
+            basic: false,
+            evaluated: false,
+            apartment: false,
+        }))
         form.resetFields()
     }
     const [current, setCurrent] = useState(0)
@@ -135,6 +183,7 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
                             name="register"
                             layout="vertical"
                             onFinish={onFinish}
+                            onValuesChange={onValuesChange}
                             style={{}}
                             scrollToFirstError>
                             <Row>
@@ -327,16 +376,6 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
                                         </Link>
                                     </p>
 
-                                    {/*<p>*/}
-                                    {/*    {t('label.Ev.to.newAnounc3')}*/}
-                                    {/*    <Link*/}
-                                    {/*        href={'/professionals'}*/}
-                                    {/*        className={'text-main'}>*/}
-                                    {/*        {' '}*/}
-                                    {/*        {t('label.Ev.to.newAnounc3.1')}{' '}*/}
-                                    {/*    </Link>*/}
-                                    {/*</p>*/}
-                                    {/*<p>{t('label.Ev.to.newAnounc4')}</p>*/}
                                     <Divider />
                                 </Col>
 
@@ -357,25 +396,45 @@ const EstimateForm = ({ lng, evaluationOptionsData }) => {
                     <Affix offsetTop={150}>
                         <Steps
                             direction="vertical"
-                            onChange={onStepChange}
-                            current={current}
                             items={[
                                 {
                                     title: t('label.general'),
                                     icon: <CheckCircleOutlined />,
+                                    status: steps.basic ? 'process' : 'wait',
                                 },
                                 {
                                     title: t('label.apartment'),
                                     icon: <CheckCircleOutlined />,
+                                    status: steps.apartment
+                                        ? 'process'
+                                        : 'wait',
                                 },
                                 {
                                     title: t(
                                         'label.evaluation.buildingMarketValue',
                                     ),
                                     icon: <CheckCircleOutlined />,
+                                    status: steps.evaluated
+                                        ? 'process'
+                                        : 'wait',
                                 },
                             ]}
                         />
+                        <Button
+                            className={'mt-5'}
+                            style={{ width: '100%' }}
+                            onClick={() => {
+                                setSteps(prevSteps => ({
+                                    ...prevSteps,
+                                    basic: false,
+                                    evaluated: false,
+                                    apartment: false,
+                                }))
+                                form.resetFields()
+                            }}
+                            htmlType="reset">
+                            {t('common:button.reset')}
+                        </Button>
                     </Affix>
                 </Col>
             </Row>

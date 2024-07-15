@@ -1066,6 +1066,7 @@
     "label.unVerified": "Չհաստատված",
     "label.updated": "Թարմացված",
     "label.uploadImage": "Բեռնել նկար",
+    "label.loadMore": "Բեռնել ավելին",
     "label.urgent": "Շտապ",
     "label.urgentAd": "Շտապ հայտարարություններ",
     "label.user": "Օգտատեր",
@@ -1250,5 +1251,10 @@
     "label.red.bestOffers": "Բացահայտե՛ք Ձեր նոր հասցեն",
     "label.red.sellProperties": "Վաճառեք և գնեք, վարձակալեք և հանձնեք վարձակալության Ձեր բնակարանը, առանձնատունը, կոմերցիոն տարածքն ու հողատարածքը",
     "label.red.addressOffice": " Երևան, Փավստոս Բուզանդ 107, 7֊րդ հարկ",
-    "label.red.address": "Էլիտ Պլազա բիզնես կենտրոն 4-րդ հարկ"
+    "label.red.address": "Էլիտ Պլազա բիզնես կենտրոն 4-րդ հարկ",
+    "developers.block": "մ-շ",
+    "developers.entry": "մուտք",
+    "developers.floor": "հարկ",
+    "developers.room": "սենյակ",
+    "developers.area_unit": "քմ"
 }

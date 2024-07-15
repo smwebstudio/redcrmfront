@@ -5,8 +5,6 @@ import AppPage from '@/components/common/Layout/AppPage'
 import AboutContentEnglish from '@/components/pages/About/AbountContentEnglish'
 
 export default async function AboutUsPage({ params: { lng, slug } }) {
-    console.log('lng')
-    console.log(lng)
     return (
         <AppPage>
             <AboutBanner />

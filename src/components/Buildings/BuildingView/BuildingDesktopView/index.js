@@ -2,24 +2,20 @@
 import React, { useState } from 'react'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import ImageGallery from 'react-image-gallery'
-import { Checkbox, Col, Collapse, Divider, Row, Select } from 'antd'
+import { Col, Collapse, Row, Select } from 'antd'
 import { useTranslation } from '@/app/i18n/client'
 import { EnvironmentOutlined, EyeOutlined } from '@ant-design/icons'
-import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
-import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import ContainerBoxed from '@/components/Containers/ContainerBoxed'
-import LoanCalculator from '@/components/Estate/LoanCalculator'
 import PreviewImage from '@/components/common/Image/PreviewImage'
 import StyledBuildingView from '@/components/Buildings/BuildingView/style'
-import PlanView from '@/components/Buildings/Plan/PlanView'
+import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
+import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 
 const { Option } = Select
 
 export const BuildingDesktopView = ({ lng, building }) => {
     const { t } = useTranslation(lng, 'common')
 
-    console.log('building')
-    console.log(building)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const showModal = () => {
         setIsModalOpen(true)
@@ -33,10 +29,7 @@ export const BuildingDesktopView = ({ lng, building }) => {
 
     let imagesData = building.files
 
-    let building_attributes = []
-    // if (building) {
-    //     building_attributes = Object.entries(building.building_attributes)
-    // }
+    const [visibleCount, setVisibleCount] = useState(9)
 
     const renderVideo = item => {
         return (
@@ -45,7 +38,6 @@ export const BuildingDesktopView = ({ lng, building }) => {
                     width="100%"
                     height="510px"
                     src={item.embedUrl}
-                    frameBorder="0"
                     allowFullScreen
                     title="ex"
                 />
@@ -132,6 +124,12 @@ export const BuildingDesktopView = ({ lng, building }) => {
         return areaMatch && roomCountMatch && saledMatch
     })
 
+    const loadMore = () => {
+        setVisibleCount(prevCount => prevCount + 9)
+    }
+
+    const visiblePlans = filteredPlans.slice(0, visibleCount)
+
     function sliceStringMax(str) {
         // Ensure the string doesn't exceed the maxLength
         if (str && str.length > 500) {
@@ -143,17 +141,7 @@ export const BuildingDesktopView = ({ lng, building }) => {
     const showGeneralInfoItem = [
         {
             key: '1',
-            label: (
-                <div
-                    dangerouslySetInnerHTML={{
-                        __html:
-                            sliceStringMax(
-                                building.project.content[0].description,
-                            ) + '...',
-                    }}
-                    className={'project_short_description'}
-                />
-            ),
+            label: <DarkHeading3>Ընդհանուր</DarkHeading3>,
             children: (
                 <div
                     dangerouslySetInnerHTML={{
@@ -163,300 +151,111 @@ export const BuildingDesktopView = ({ lng, building }) => {
                 />
             ),
         },
+        {
+            key: '2',
+            label: <DarkHeading3>Կառուցապատման ընթացք</DarkHeading3>,
+            children: (
+                <Row gutter={8}>
+                    {imagesData
+                        .filter(img => img.block_id === 'bottom_gallery_img')
+                        .map((img, idx) => (
+                            <Col key={'col-' + idx}>
+                                <PreviewImage
+                                    alt={'Red Group'}
+                                    key={idx}
+                                    width={100}
+                                    height={100}
+                                    src={img.image}
+                                />
+                            </Col>
+                        ))}
+                </Row>
+            ),
+        },
     ]
 
     return (
         <StyledBuildingView>
             <ContainerBoxed>
-                <div className="property-details-area">
-                    <div className="bg-gray  pd-bottom-90">
-                        <div className={'container-fluid bg-white pt-5 pb-1'}>
-                            <div className={'container'}>
-                                <Row className={'mb-4'}>
-                                    <Col sm={16} className={'mb-4'}>
-                                        <h3>
-                                            <span className="font-bold mr-5 font-size-24">
-                                                {building.project.title}
-                                            </span>
-                                        </h3>
-                                    </Col>
-                                    <Col sm={8}>
+                <Row className={'mb-4'}>
+                    <Col sm={16} className={'mb-4'}>
+                        <DarkHeading1>{building.project.title}</DarkHeading1>
+                    </Col>
+                    <Col sm={8}>
+                        <div className={'flex justify-end align-center'}>
+                            <EyeOutlined
+                                style={{
+                                    fontSize: 24,
+                                    marginRight: 10,
+                                }}
+                            />{' '}
+                            <span className={'p-2'}>
+                                {' '}
+                                {building.project.viewed}
+                            </span>
+                            <span
+                                className={
+                                    'ml-6 bg-orange-400 text-white rounded-md p-2'
+                                }>
+                                Եկամտահարկի վերադարձ
+                            </span>
+                        </div>
+                    </Col>
+                    <Col sm={24} className={'flex align-center mb-4'}>
+                        <EnvironmentOutlined
+                            style={{
+                                fontSize: 24,
+                                marginRight: 10,
+                            }}
+                        />{' '}
+                        {building.project.address}
+                    </Col>
+                </Row>
+            </ContainerBoxed>
+            <ContainerBoxed className={'bg-gray pd-bottom-10'}>
+                <Row gutter={64} className={'pt-5 '}>
+                    <Col xs={18}>
+                        <ImageGallery
+                            items={images}
+                            showNav={true}
+                            thumbnailPosition={'right'}
+                            showPlayButton={false}
+                        />
+                    </Col>
+
+                    <Col xs={6} className={'pt-3  bg-white'}>
+                        <div className={'text-left mb-2'}>
+                            <Row className={'mb-1'}>
+                                <Col xs={24} sm={24}>
+                                    {building.project.content[0]
+                                        .videoDescList && (
                                         <div
-                                            className={
-                                                'flex justify-end align-center'
-                                            }>
-                                            <EyeOutlined
-                                                style={{
-                                                    fontSize: 24,
-                                                    marginRight: 10,
-                                                }}
-                                            />{' '}
-                                            <span className={'p-2'}>
-                                                {' '}
-                                                {building.project.viewed}
-                                            </span>
-                                            <span
-                                                className={
-                                                    'ml-6 bg-orange-400 text-white rounded-md p-2'
-                                                }>
-                                                Եկամտահարկի վերադարձ
-                                            </span>
-                                        </div>
-                                    </Col>
-                                    <Col
-                                        sm={24}
-                                        className={'flex align-center mb-4'}>
-                                        <EnvironmentOutlined
-                                            style={{
-                                                fontSize: 24,
-                                                marginRight: 10,
+                                            dangerouslySetInnerHTML={{
+                                                __html:
+                                                    building.project.content[0]
+                                                        .videoDescList,
                                             }}
-                                        />{' '}
-                                        {building.project.address}
-                                    </Col>
-                                </Row>
-                            </div>
-                        </div>
-
-                        <div className="container">
-                            <Row gutter={64} className={'pt-5 '}>
-                                <Col xs={18}>
-                                    <ImageGallery
-                                        items={images}
-                                        showNav={true}
-                                        thumbnailPosition={'right'}
-                                        showPlayButton={false}
-                                    />
-                                </Col>
-
-                                <Col xs={6} className={'pt-3  bg-white'}>
-                                    <div className={'text-left mb-2'}>
-                                        <Row className={'mb-1'}>
-                                            <Col xs={24} sm={24}>
-                                                {building.project.content[0]
-                                                    .videoDescList && (
-                                                    <div
-                                                        dangerouslySetInnerHTML={{
-                                                            __html:
-                                                                building.project
-                                                                    .content[0]
-                                                                    .videoDescList,
-                                                        }}
-                                                        className={
-                                                            'project_short_description'
-                                                        }
-                                                    />
-                                                )}
-                                            </Col>
-                                        </Row>
-                                    </div>
+                                            className={
+                                                'project_short_description'
+                                            }
+                                        />
+                                    )}
                                 </Col>
                             </Row>
                         </div>
-                    </div>
-                    <div className="container">
-                        <div>
-                            <Row className="property-news-single-card pt-5 border-bottom-yellow">
-                                <Row>
-                                    <Col xs={24}>
-                                        <DarkHeading2 className={'mt-10'}>
-                                            Ընդհանուր
-                                        </DarkHeading2>
-                                    </Col>
-
-                                    <Col xs={24}>
-                                        {building.project.content[0]
-                                            .description && (
-                                            <Collapse
-                                                items={showGeneralInfoItem}
-                                                expandIconPosition={'end'}
-                                                ghost
-                                            />
-                                        )}
-                                    </Col>
-                                    <Col xs={24}>
-                                        <DarkHeading2 className={'mt-10'}>
-                                            Կառուցապատման ընթացք
-                                        </DarkHeading2>
-                                    </Col>
-                                    <Col xs={24} className={'flex flex-row'}>
-                                        {imagesData
-                                            .filter(
-                                                img =>
-                                                    img.block_id ===
-                                                    'bottom_gallery_img',
-                                            )
-                                            .map((img, idx) => (
-                                                <div
-                                                    className={'mr-4'}
-                                                    key={'col-' + idx}>
-                                                    <PreviewImage
-                                                        alt={'Red Group'}
-                                                        key={idx}
-                                                        width={100}
-                                                        height={100}
-                                                        src={img.image}
-                                                    />
-                                                </div>
-                                            ))}
-                                    </Col>
-                                    <Divider />
-                                    <Col xs={24}>
-                                        <DarkHeading2 className={'mt-10 mb-10'}>
-                                            Հատակագծեր
-                                        </DarkHeading2>
-                                    </Col>
-                                    <Col xs={24} className={'mb-6'}>
-                                        <Row
-                                            gutter={0}
-                                            justify={'space-between'}>
-                                            <Col>
-                                                <Row align={'middle'}>
-                                                    <Col>
-                                                        <Checkbox
-                                                            checked={hideSaled}
-                                                            onChange={
-                                                                handleHideSaledChange
-                                                            }
-                                                            style={{
-                                                                marginLeft:
-                                                                    '1rem',
-                                                            }}>
-                                                            <SmallParagraph>
-                                                                Թաքցնել
-                                                                վաճառվածները
-                                                            </SmallParagraph>
-                                                        </Checkbox>
-                                                    </Col>
-                                                    <Col>
-                                                        <Select
-                                                            defaultValue=""
-                                                            onChange={
-                                                                handleAreaChange
-                                                            }
-                                                            style={{
-                                                                width: 200,
-                                                                marginLeft:
-                                                                    '1rem',
-                                                            }}>
-                                                            <Option value="">
-                                                                Մակերես
-                                                            </Option>
-                                                            {areaOptions.map(
-                                                                (
-                                                                    area,
-                                                                    index,
-                                                                ) => (
-                                                                    <Option
-                                                                        key={
-                                                                            index
-                                                                        }
-                                                                        value={
-                                                                            area
-                                                                        }>
-                                                                        {area}
-                                                                    </Option>
-                                                                ),
-                                                            )}
-                                                        </Select>
-                                                    </Col>
-                                                    <Col>
-                                                        <Select
-                                                            defaultValue=""
-                                                            onChange={
-                                                                handleRoomCountChange
-                                                            }
-                                                            style={{
-                                                                width: 200,
-                                                                marginLeft:
-                                                                    '1rem',
-                                                            }}>
-                                                            <Option value="">
-                                                                Սենյակներ
-                                                            </Option>
-                                                            {roomCountOptions.map(
-                                                                (
-                                                                    roomCount,
-                                                                    index,
-                                                                ) => (
-                                                                    <Option
-                                                                        key={
-                                                                            index
-                                                                        }
-                                                                        value={
-                                                                            roomCount
-                                                                        }>
-                                                                        {
-                                                                            roomCount
-                                                                        }{' '}
-                                                                        սենյակ
-                                                                    </Option>
-                                                                ),
-                                                            )}
-                                                        </Select>
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                            <Col>
-                                                <div
-                                                    className={
-                                                        'flex flex-row justify-end items-center'
-                                                    }>
-                                                    <SmallParagraph
-                                                        className={'mr-4 mb-0'}>
-                                                        Դասավորել ըստ։{' '}
-                                                    </SmallParagraph>
-                                                    <Select
-                                                        defaultValue="price-asc"
-                                                        onChange={
-                                                            handleSortChange
-                                                        }
-                                                        style={{ width: 200 }}>
-                                                        <Option value="price-asc">
-                                                            Գնի աճման
-                                                        </Option>
-                                                        <Option value="price-desc">
-                                                            Գնի նվազման
-                                                        </Option>
-                                                        <Option value="area_total-asc">
-                                                            Մակերեսի աճման
-                                                        </Option>
-                                                        <Option value="area_total-desc">
-                                                            Մակերեսի նվազման
-                                                        </Option>
-                                                    </Select>
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col xs={24}>
-                                        <Row gutter={32}>
-                                            {filteredPlans.map(
-                                                (plan, index) => (
-                                                    <Col
-                                                        xs={24}
-                                                        md={8}
-                                                        key={'col-' + index}>
-                                                        <PlanView
-                                                            key={index}
-                                                            plan={plan}
-                                                        />
-                                                    </Col>
-                                                ),
-                                            )}
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Row>
-                        </div>
-                    </div>
-
-                    <div className="bg-gray  pd-10 pt-10">
-                        <div className={'container'}>
-                            <LoanCalculator price={building.price} lng={lng} />
-                        </div>
-                    </div>
-                </div>
+                    </Col>
+                </Row>
+            </ContainerBoxed>
+            <ContainerBoxed>
+                <Row className={'my-10'}>
+                    <Col xs={24}>
+                        <Collapse
+                            items={showGeneralInfoItem}
+                            expandIconPosition={'end'}
+                            ghost
+                        />
+                    </Col>
+                </Row>
             </ContainerBoxed>
         </StyledBuildingView>
     )
