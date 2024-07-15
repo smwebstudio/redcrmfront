@@ -10,6 +10,7 @@ import StyledEstateItemGrid from '@/components/Estate/List/EstateItemGrid/style'
 import { CompareEstateButton } from '@/components/Estate/CompareEstateButton'
 import { LikeEstateButton } from '@/components/Estate/LikeEstateButton'
 import DarkText from '@/components/common/Typography/Text/DarkText'
+import { formatNumberPrice } from '@/lib/helper'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />
 
@@ -45,7 +46,9 @@ export function EstateItemGrid({ estate }) {
                     <div className="details">
                         <Row className="mb-3">
                             <Col xs={18}>
-                                <h6 className="price">{estate.price}</h6>
+                                <h6 className="price">
+                                    {formatNumberPrice(estate.price)}
+                                </h6>
                             </Col>
                             <Col
                                 xs={6}

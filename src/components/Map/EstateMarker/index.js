@@ -6,6 +6,7 @@ import AppImage from '@/components/common/Image/AppImage'
 import SmallParagraph from '@/components/Typography/paragraph/SmallParagraph'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
 import StyledEstateMarker from '@/components/Map/EstateMarker/style'
+import { formatNumberPrice } from '@/lib/helper'
 
 export function EstateMarker({ estate }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -36,7 +37,7 @@ export function EstateMarker({ estate }) {
                 <Row>
                     <Col xs={24}>
                         <DarkHeading3 className="price">
-                            {estate.price}
+                            {formatNumberPrice(estate.price)}
                         </DarkHeading3>
                     </Col>
                     <Col xs={24}>
@@ -51,7 +52,7 @@ export function EstateMarker({ estate }) {
         <StyledEstateMarker>
             <Popover content={estateContent} className={'marker-popover'}>
                 <Button type="primary" className={'text-white p-1 opacity-80'}>
-                    {estate.price}
+                    {formatNumberPrice(estate.price)}
                 </Button>
             </Popover>
         </StyledEstateMarker>
