@@ -33,8 +33,6 @@ export default function MainFilter(props) {
         filtersData.location_community,
     )
 
-    console.log('filtersData')
-    console.log(filtersData)
     const { t } = useTranslation(props.lng, 'common')
 
     const estateTypeOptions = filtersData.estate_types.map(value => ({
@@ -95,9 +93,6 @@ export default function MainFilter(props) {
         const queryData = Object.entries(values)
         let query = {}
         queryData.forEach(function (param) {
-            console.log('param')
-            console.log(param)
-
             if (param[0] === 'prices') {
                 query['price_from'] = priceOptions.find(
                     option => option.value === param[1],
@@ -112,14 +107,10 @@ export default function MainFilter(props) {
 
         const queryString = objectToQueryParams(query)
 
-        console.log(queryString)
-
         const updateLink =
             '/estates?contract_type_id=' + contract_type + '&' + queryString
         router.push(updateLink)
     }
-
-    console.log('rerend')
 
     return (
         <>
