@@ -11,6 +11,8 @@ import StyledBuildingView from '@/components/Buildings/BuildingView/style'
 import ContainerFluid from '@/components/Containers/ContainerFluid'
 import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
+import FontIcon from '@/components/common/Icons/FontIcon'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 const { Option } = Select
 
@@ -278,6 +280,15 @@ export const BuildingMobileView = ({ lng, building }) => {
                     <Col xs={24}>
                         <Collapse
                             items={collapseItems}
+                            expandIcon={({ isActive }) => (
+                                <FontIcon
+                                    icon={
+                                        isActive ? faChevronUp : faChevronDown
+                                    }
+                                    size={'2x'}
+                                    color={'#D8002C'}
+                                />
+                            )}
                             expandIconPosition={'end'}
                         />
                     </Col>

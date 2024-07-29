@@ -10,7 +10,7 @@ export default async function DeveloperListPage({
     searchParams,
 }) {
     const buildings = await fetchDevelopersApi(lng).get('api/projects/', {
-        next: { revalidate: 0 },
+        next: { revalidate: 3600 },
     })
 
     const filtersResponse = await fetchDevelopersApi(lng).get('api/projects/', {
@@ -20,7 +20,7 @@ export default async function DeveloperListPage({
     const withCoordinates = await fetchDevelopersApi(lng).get(
         'api/projects/allCoordinates',
         {
-            next: { revalidate: 0 },
+            next: { revalidate: 3600 },
         },
     )
 

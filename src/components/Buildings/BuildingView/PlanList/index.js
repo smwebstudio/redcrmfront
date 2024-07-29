@@ -29,7 +29,7 @@ export const PlanList = ({ lng, building }) => {
     const [sortOption, setSortOption] = useState('price-asc')
     const [filterArea, setFilterArea] = useState('')
     const [filterRoomCount, setFilterRoomCount] = useState('')
-    const [hideSaled, setHideSaled] = useState(false)
+    const [hideSaled, setHideSaled] = useState(true)
 
     const handleSortChange = value => {
         setSortOption(value)
@@ -236,6 +236,8 @@ export const PlanList = ({ lng, building }) => {
             {currentPlan && (
                 <Modal
                     visible={isModalVisible}
+                    centered
+                    width={800}
                     onCancel={handleCancel}
                     footer={[
                         <RedButton

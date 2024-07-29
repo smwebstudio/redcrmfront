@@ -3,7 +3,7 @@ import { Col, Row, Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import RedText from '@/components/Typography/text/RedText'
 import AppImage from '@/components/common/Image/AppImage'
-import { formatNumberPrice } from '@/lib/helper'
+import { calculateMortgagePayment, formatNumberPrice } from '@/lib/helper'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
 import DarkParagraph from '@/components/common/Typography/Paragraph/DarkParagraph'
 import { useTranslation } from '@/app/i18n/client'
@@ -70,16 +70,26 @@ const PlanView = ({ lng, plan }) => {
                     />
                 </div>
                 <div className="details bg-transparent border-solid  border-gray-200 border-t">
-                    <Row className="mb-3">
-                        <Col xs={12}>
-                            <h6>
-                                <RedText>
-                                    {formatNumberPrice(plan.price)} AMD
-                                </RedText>{' '}
-                                {plan.price_monthly}
-                            </h6>
-                        </Col>
-                    </Row>
+                    {plan.status !== 'sold' && (
+                        <Row className="mb-3">
+                            <Col xs={12}>
+                                <h6>
+                                    <RedText>
+                                        {formatNumberPrice(plan.price)} AMD
+                                    </RedText>
+                                </h6>
+                            </Col>
+                            <Col>
+                                <Col className={'font-size-12'}>
+                                    {t('label.mortgage.monthlyFee')} -{' '}
+                                    {formatNumberPrice(
+                                        calculateMortgagePayment(plan.price),
+                                    )}{' '}
+                                    AMD
+                                </Col>
+                            </Col>
+                        </Row>
+                    )}
 
                     <Row gutter={8} align={'middle'} wrap={false}>
                         <Col>

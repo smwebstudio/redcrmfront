@@ -61,6 +61,13 @@ const AppNavbar = ({ lng }) => {
                                         <ul className="navbar-nav menu-open readeal-top">
                                             <li>
                                                 <Link
+                                                    href={`/${lng}/developers`}
+                                                    onClick={toggleMenu}>
+                                                    {t('menu.buildDevelopers')}
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
                                                     href={`/${lng}/estates`}
                                                     onClick={toggleMenu}>
                                                     {t('menu.buy')}
@@ -71,13 +78,6 @@ const AppNavbar = ({ lng }) => {
                                                     href={`/${lng}/estates`}
                                                     onClick={toggleMenu}>
                                                     {t('menu.rent')}
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href={`/${lng}/developers`}
-                                                    onClick={toggleMenu}>
-                                                    {t('menu.buildDevelopers')}
                                                 </Link>
                                             </li>
                                             <li>

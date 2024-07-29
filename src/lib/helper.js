@@ -85,3 +85,35 @@ export function toggleEstateFavourite(item) {
 export function formatNumberPrice(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 }
+
+export function isWithinLast90Days(createdAt) {
+    const now = new Date()
+    const ninetyDaysAgo = new Date(now)
+    ninetyDaysAgo.setDate(now.getDate() - 90)
+
+    const projectCreatedAt = new Date(createdAt)
+
+    return projectCreatedAt >= ninetyDaysAgo
+}
+
+export function calculateMortgagePayment(estateValue) {
+    // Constants
+    const initialPaymentPercentage = 0.1
+    const annualInterestRate = 0.11
+    const loanTermYears = 20
+
+    // Calculate loan amount
+    const initialPayment = estateValue * initialPaymentPercentage
+    const loanAmount = estateValue - initialPayment
+
+    // Calculate monthly interest rate and total number of payments
+    const monthlyInterestRate = annualInterestRate / 12
+    const totalNumberOfPayments = loanTermYears * 12
+
+    // Calculate monthly payment
+    const monthlyPayment =
+        (loanAmount * monthlyInterestRate) /
+        (1 - Math.pow(1 + monthlyInterestRate, -totalNumberOfPayments))
+
+    return Math.round(monthlyPayment)
+}

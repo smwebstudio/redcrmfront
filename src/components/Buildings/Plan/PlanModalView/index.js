@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Badge, Col, Image, Row, Spin } from 'antd'
+import { Badge, Col, Image, Row, Spin, Tooltip } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import AppImage from '@/components/common/Image/AppImage'
 import { fallbackImg } from '@/components/Estate/fallbackImg'
@@ -16,7 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import DarkHeading2 from '@/components/Typography/Heading2t/DarkHeading2'
 import RedText from '@/components/Typography/text/RedText'
-import { formatNumberPrice } from '@/lib/helper'
+import { calculateMortgagePayment, formatNumberPrice } from '@/lib/helper'
 import DarkHeading1 from '@/components/Typography/Heading1/DarkHeading1'
 import LoanCalculator from '@/components/Estate/LoanCalculator'
 import SingleBuildingMap from '@/components/Buildings/BuildingView/SingleBuildingMap'
@@ -27,6 +27,7 @@ const PlanModalView = ({ lng, plan, building }) => {
     const { t } = useTranslation(lng, 'common')
     const [showLoan, setShowLoan] = useState(false)
     const [showMap, setShowMap] = useState(false)
+    const [copy, setCopy] = useState(false)
     useEffect(() => {
         const newUrl = `/developers/${building.project.id}?plan=${plan.id}`
         history.replaceState(null, '', newUrl)
@@ -47,6 +48,7 @@ const PlanModalView = ({ lng, plan, building }) => {
         navigator.clipboard.writeText(url).then(
             () => {
                 console.log('ok')
+                setCopy(true)
             },
             err => {
                 console.log('smth went wrong')
@@ -77,7 +79,7 @@ const PlanModalView = ({ lng, plan, building }) => {
     }
 
     return (
-        <div key={plan.id} className={' mb-10  relative'}>
+        <div key={plan.id} className={'relative'}>
             <PlanModalGlobalStyles />
             <Row>
                 <Col xs={24}>
@@ -86,7 +88,7 @@ const PlanModalView = ({ lng, plan, building }) => {
                     </DarkHeading1>
                 </Col>
             </Row>
-            <Row gutter={8} align={'middle'} wrap={false} className={'mb-10'}>
+            <Row gutter={8} align={'middle'} wrap={false} className={'mb-2'}>
                 <Col>
                     <AppImage
                         alt={'Red Group'}
@@ -127,14 +129,24 @@ const PlanModalView = ({ lng, plan, building }) => {
                         )}
                     </DarkHeading2>
                 </Col>
-                <Col>
-                    <RedText className={'font-size-16 md:font-size-24'}>
-                        - {formatNumberPrice(plan.price)} AMD
-                    </RedText>{' '}
-                    {plan.price_monthly}
-                </Col>
             </Row>
 
+            {plan.status !== 'sold' && (
+                <Row className={'mb-4'} gutter={16}>
+                    <Col>
+                        <RedText className={'font-size-18 md:font-size-24'}>
+                            {formatNumberPrice(plan.price)} AMD
+                        </RedText>
+                    </Col>
+                    <Col>
+                        / {t('label.mortgage.monthlyFee')} -{' '}
+                        {formatNumberPrice(
+                            calculateMortgagePayment(plan.price),
+                        )}{' '}
+                        AMD
+                    </Col>
+                </Row>
+            )}
             <Row className="mb-0">
                 <Col xs={24} className="thumb ">
                     {plan.status === 'sold' ? (
@@ -189,46 +201,59 @@ const PlanModalView = ({ lng, plan, building }) => {
                     </Col>
                 )}
             </Row>
-            <Row gutter={32} className={'mt-10'} justify={'center'}>
+            <Row gutter={32} className={'mt-12'} justify={'center'}>
                 <Col>
-                    <FontIcon
-                        icon={faCalculator}
-                        size={'2x'}
-                        color={'#D8002C'}
-                        onClick={() => toggleLoan()}
-                    />
+                    <Tooltip title={t('label.mortgage')}>
+                        <FontIcon
+                            icon={faCalculator}
+                            size={'2x'}
+                            color={'#D8002C'}
+                            onClick={() => toggleLoan()}
+                        />
+                    </Tooltip>
                 </Col>
                 <Col>
-                    <FontIcon
-                        icon={faDownload}
-                        size={'2x'}
-                        color={'#D8002C'}
-                        onClick={e => onDownload(plan.image)}
-                    />
+                    <Tooltip title={t('button.download')}>
+                        <FontIcon
+                            icon={faDownload}
+                            size={'2x'}
+                            color={'#D8002C'}
+                            onClick={e => onDownload(plan.image)}
+                        />
+                    </Tooltip>
                 </Col>
                 <Col>
-                    <FontIcon
-                        icon={faCopy}
-                        size={'2x'}
-                        color={'#D8002C'}
-                        onClick={() => copyToClipboard()}
-                    />
+                    <Tooltip
+                        title={
+                            copy ? t('label.copyOk') : t('label.copyHeader')
+                        }>
+                        <FontIcon
+                            icon={faCopy}
+                            size={'2x'}
+                            color={'#D8002C'}
+                            onClick={() => copyToClipboard()}
+                        />
+                    </Tooltip>
                 </Col>
                 <Col>
-                    <FontIcon
-                        icon={faPhone}
-                        size={'2x'}
-                        color={'green'}
-                        onClick={() => callPhone()}
-                    />
+                    <Tooltip title={t('button.call')}>
+                        <FontIcon
+                            icon={faPhone}
+                            size={'2x'}
+                            color={'green'}
+                            onClick={() => callPhone()}
+                        />
+                    </Tooltip>
                 </Col>
                 <Col>
-                    <FontIcon
-                        icon={faLocationPin}
-                        size={'2x'}
-                        color={'#D8002C'}
-                        onClick={() => toggleMap()}
-                    />
+                    <Tooltip title={t('label.mapView')}>
+                        <FontIcon
+                            icon={faLocationPin}
+                            size={'2x'}
+                            color={'#D8002C'}
+                            onClick={() => toggleMap()}
+                        />
+                    </Tooltip>
                 </Col>
             </Row>
         </div>

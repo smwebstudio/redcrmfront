@@ -1,11 +1,12 @@
 'use client'
 import { Button, Col, Form, Input, Row } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from '@/app/i18n/client'
 import { useRouter } from 'next/navigation'
 import StyledLoanCalculator from '@/components/Estate/LoanCalculator/style'
 import LoanTable from '@/components/Estate/LoanCalculator/LoanTable'
 import DarkHeading3 from '@/components/Typography/Heading3/DarkHeading3'
+import { debounce } from 'next/dist/server/utils'
 
 const formItemLayout = {
     labelCol: {
@@ -37,7 +38,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
     const { t } = useTranslation(lng, 'common')
     const router = useRouter()
     const [form] = Form.useForm()
-
+    const [formValues, setFormValues] = useState(form.getFieldsValue())
     const [payments, setPayments] = useState([])
     const [deposit, setDeposit] = useState(0)
     const [price, setPrice] = useState(parseInt(estatePrice))
@@ -85,6 +86,16 @@ const LoanCalculator = ({ estatePrice, lng }) => {
         setPayments(newPayments)
     }
 
+    const debouncedOnFinish = useCallback(debounce(onFinish, 300), [])
+
+    useEffect(() => {
+        debouncedOnFinish(formValues)
+    }, [formValues, debouncedOnFinish])
+
+    const handleFormChange = (changedValues, allValues) => {
+        setFormValues(allValues)
+    }
+
     return (
         <StyledLoanCalculator className={'container'}>
             <Row>
@@ -110,6 +121,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                             name="loan-calculate"
                             layout="vertical"
                             onFinish={onFinish}
+                            onValuesChange={handleFormChange}
                             style={{}}
                             scrollToFirstError>
                             <Row gutter={[16, 16]}>
@@ -220,7 +232,7 @@ const LoanCalculator = ({ estatePrice, lng }) => {
                                             size="large"
                                             className={'w-100 h-50 mt-10'}
                                             htmlType="submit">
-                                            {t('button.send')}
+                                            {t('button.schedule')}
                                         </Button>
                                     </Form.Item>
                                 </Col>
